@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        function move(btn,color){
+        btn.style.color=color;
+        }
+        function out(btn,color){
+        btn.style.color=color;
+        }
+
+    </script>
+</head> 
+<body>
+    <input type="button" value="点击我试试" onclick="this.style.backgroundColor='red'">
+    <input type="button" value="开始" onmouseover="move(this,'red')" onmouseout="out(this,'grey')">
+    <input type="button" value="结束" onmouseover="move(this,'yellow')" onmouseout="out(this,'grey')">
+    <!-- onmouseover 事件会在鼠标指针移动到指定的元素上时发生 -->
+</body>
+</html>
