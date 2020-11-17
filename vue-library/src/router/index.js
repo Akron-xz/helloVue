@@ -29,10 +29,10 @@ const routes = [{
             import ( /* webpackChunkName: "about" */ '../views/Administrator.vue')
     },
     {
-        path: "/hello",
-        name: "Hello",
+        path: "/userLogin",
+        name: "UserLogin",
         component: () =>
-            import ('../views/Hello.vue')
+            import ('../views/UserLogin.vue')
     },
     {
         path: "/user",

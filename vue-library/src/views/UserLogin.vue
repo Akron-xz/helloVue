@@ -1,6 +1,7 @@
 <template>
-    <div>
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+<div  class="login-container">
+      <el-header>用户登陆</el-header>
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
         </el-form-item>
@@ -13,8 +14,11 @@
     </el-form-item>
  
   </el-form>
-    </div>
+    
+
+</div>
 </template>
+
 
 <script>
 export default {
@@ -57,5 +61,38 @@ export default {
 </script>
 
 <style scoped>
+ .login-container{
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+ }
+ .demo-ruleForm{
+        position: absolute;
+        left: 70px;
+        top: 180px;
+        width: 300px;
+        height: 50px;
+       
+ }
+ .el-header {
+    
+   
+    text-align: left;
+    line-height: 60px;
+    font-weight: 1000;
+    font-size: 30px;
+    color: transparent;
+   -webkit-text-stroke: 1px white;
+    letter-spacing: 0.04em;
+    
+  }
+  
+
+  
+
 
 </style>
