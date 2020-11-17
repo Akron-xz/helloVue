@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="signup-container">
         <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="登录ID：" prop="id">
+        <el-form-item label="注册ID：" prop="id">
             <el-input v-model.number="ruleForm2.id"></el-input>
         </el-form-item>
 
@@ -35,7 +35,7 @@
     data() {
       var checkId = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('ID不能为空'));
+          return callback(new Error('注册ID不能为空'));
         }
         setTimeout(() => {
           if (!Number.isInteger(value)) {
@@ -118,6 +118,27 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       }
-    }
+    },
+
   }
 </script>
+
+<style scoped>
+    .signup-container {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+    }
+
+    .demo-ruleForm{
+        position: absolute;
+        right: 70px;
+        top: 80px;
+        width: 300px;
+        height: 50px;
+    }
+
+</style>

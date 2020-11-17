@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-login">
+  <div class="admin-login-container">
     <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
       <el-form-item label="管理员ID：" prop="adminId">
         <el-input v-model.number="ruleForm2.adminId"></el-input>
@@ -22,7 +22,7 @@
     data() {
       var checkadminId = (rule, value, callback) => {
         if (!value) {
-          return callback(new Error('账号不能为空'));
+          return callback(new Error('ID不能为空'));
         }
         setTimeout(() => {
           if (!Number.isInteger(value)) {
@@ -79,6 +79,23 @@
 
 
 <style scoped>
+  .admin-login-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  }
+
+  .demo-ruleForm{
+    position: absolute;
+    right: 70px;
+    top: 80px;
+    width: 300px;
+    height: 50px;
+  }
+
 </style>
 
 

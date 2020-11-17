@@ -40,6 +40,13 @@ const routes = [{
         component: () =>
             import ('../views/SignUp.vue')
     },
+    {
+        path: "/adminmain",
+        name: "AdminMain",
+        component: () =>
+            import ('../views/AdminMain.vue')
+    },
+
 
 
 ]
