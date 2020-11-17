@@ -1,0 +1,13 @@
+[{
+        "img": "/img/user/MyInformation.jpg",
+        "name": "我的信息"
+    },
+    {
+        "img": "/img/user/MyBookshelves.jpg",
+        "name": "我的书架"
+    },
+    {
+        "img": "/img/user/Library.jpg",
+        "name": "图书馆"
+    }
+]
