@@ -1,48 +1,38 @@
 <template>
     <div class="user-container container">
-        <div class="list" v-show="!playerVisible">
-            <h1 class="title">今天你阅读了吗？</h1>
-            <ul class="row user-list">
-                <li class="user-item col-md-4" 
-                v-for="(userViews,index) in list" 
-                v-bind:key="index">
-                    <img v-bind:src="userViews.img" alt="" class="user-img" v-on:click="1">
-                    <p class="logo-name" v-on:click="1">{{userViews.name}}</p>
-                </li>
-            </ul>
-        </div>
+        <h1 class="title">今天你阅读了吗？</h1>
         
+        <div class="myInformation box">
+            <img src="/img/user/MyInformation.jpg" class="user-img" alt="" v-on:click="toMyInformation">
+            <p class="logo-name" v-on:click="toMyInformation">我的信息</p>
+        </div>
+        <div class="myShelves box">
+            <img src="/img/user/MyBookshelves.jpg" class="user-img" alt="">
+            <p class="logo-name">我的书架</p>
+        </div>
+        <div class="Library box">
+            <img src="/img/user/Library.jpg" class="user-img" alt="">
+            <p class="logo-name">图书馆</p>
+        </div>
+
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+
 export default {
     data() {
         return {
-            current:{
-                "name":"",
-                "img":"",
-            },
-            index:0,
-            list:[],
-            playerVisible:false,
+            
         }
     },
     methods: {
-        
+         toMyInformation(){
+            this.$router.push({path:'/MyInformation'})
+        },
     },
     created() {
-        const url="/data/userViews.json";
-        axios({
-            method:"get",
-            url:url
-        }).then(response=>{
-            let list=response.data;
-            this.list=list;
-        }).catch(err=>{
-            console.log("err...",err)
-        });
+        
     },
 }
 </script>
@@ -59,7 +49,7 @@ export default {
 
 }
 
-.user-item .user-img{
+.user-img{
     width: 150px;
     height:150px;
     margin-top: 50px;
@@ -68,22 +58,21 @@ export default {
     transition: width 1s, height 1s, transform 1s;
 }
 
-.user-item .user-img:hover{
+.user-img:hover{
     width: 180px;
     height:180px;
 }
 
-.user-item .logo-name:hover{
+.logo-name:hover{
     cursor: pointer;
     color: blue;
 }
-.user-item{
+
+.box{
     list-style-type: none;
     float: left;
     margin: auto;
     width: 33%;
-    
-    
 }
 
 </style>
