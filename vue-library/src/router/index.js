@@ -53,10 +53,17 @@ const routes = [{
             import ('../views/AdminMain.vue')
     },
     {
+
         path: "/mymsg",
         name: "MyMsg",
         component: () =>
             import ('../views/MyMsg.vue')
+    }, {
+        path: "/library",
+        name: "Library",
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/Library.vue')
+
     },
     {
         path: "/modifymsg",
