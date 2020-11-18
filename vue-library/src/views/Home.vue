@@ -3,6 +3,9 @@
          <div class="login box">
             <img src="/img/home/login.jpg" alt="" class="home-img" @click="toLogin">
             <p class="logo-name" @click="toLogin">登陆</p>
+        <div class="admin" @click="toAdmin">
+            管理员
+
         </div>
 
         <div class="admin box" >
@@ -21,7 +24,9 @@
 
 
 <script>
+
 export default {
+   
     methods: {
         toLogin(){
             this.$router.push({path:'/UserLogin'})
