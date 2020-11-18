@@ -96,6 +96,12 @@ const routes = [{
         component: () =>
             import ('../views/BookSearch.vue')
     },
+    {
+        path: "/MyBookshelves",
+        name: "MyBookshelves",
+        component: () =>
+            import ('../views/MyBookshelves.vue')
+    },
 ]
 
 const router = new VueRouter({
