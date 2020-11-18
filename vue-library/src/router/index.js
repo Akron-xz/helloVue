@@ -54,11 +54,18 @@ const routes = [{
     },
     {
 
+        path: "/MyInformation",
+        name: "MyInformation",
+        component: () =>
+            import ('../views/MyInformation.vue')
+    },
+    {
         path: "/mymsg",
         name: "MyMsg",
         component: () =>
             import ('../views/MyMsg.vue')
-    }, {
+    },
+    {
         path: "/library",
         name: "Library",
         component: () =>
