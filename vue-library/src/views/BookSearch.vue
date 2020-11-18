@@ -1,6 +1,40 @@
 <template>
-<div class="history-container">
-<h class="history-title">借阅历史</h>
+<div class="search-container">
+<h class="search-title">书籍查询</h>
+<div>
+<el-select v-model="value" placeholder="国家">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+  <el-select v-model="value" placeholder="类型">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" placeholder="篇幅">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" placeholder="主题">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+  </div>
  <el-divider></el-divider>
  <div class="search">
  <input type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;">
@@ -17,18 +51,10 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="BorrowDate"
-        label="借阅时间"
+        prop="LaunchTime"
+        label="上架时间"
         width="180">
       </el-table-column>
-      <el-table-column
-        prop="ReturnDate"
-        label="应归还时间"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="BorrowValidity"
-        label="借阅有效期"></el-table-column>
       <el-table-column label="操作">
       
         <el-popover
@@ -44,7 +70,7 @@
     <el-table-column width="100" property="BorrowValidity" label="借阅有效期"></el-table-column>
 
   </el-table>
-  <el-button slot="reference" class="reference-btn">详情</el-button>
+  <el-button slot="reference" class="reference-btn">编辑</el-button>
 </el-popover>
          
       </el-table-column>
@@ -60,30 +86,37 @@
 </div>
   </template>
 <script>
-    export default {
-      data() {
+  export default {
+    data() {
         return {
-          tableData: [{
+            tableData: [{
             BookName: '1',
-            BorrowDate: '2',
-            ReturnDate: '3',
-            BorrowValidity: '4',
+            LaunchTime: '2',
           }],
-          gridData:[{
-            UserNumber:'1',
-            Name:'',
-            SurplusDate:'',
-             BookName: '',
-            BorrowDate: '',
-            BorrowValidity: '',
-          }]
+          options: [{
+          value: '选项1',
+          label: '中国'
+        }, {
+          value: '选项2',
+          label: '德国'
+        }, {
+          value: '选项3',
+          label: '美国'
+        }, {
+          value: '选项4',
+          label: '英国'
+        }, {
+          value: '选项5',
+          label: '其他国家'
+        }],
+         value: ''
         }
-      }
-    }
+    },
+  }
 </script>
 
 <style scoped>
-.history-container{
+.search-container{
   position:fixed;
   left: 0;
   top: 0;
@@ -91,7 +124,7 @@
   height: 100%;
         background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
-.history-title{
+.search-title{
   font-size: 40px;
   color: darkblue;
 }

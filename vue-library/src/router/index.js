@@ -53,6 +53,12 @@ const routes = [{
             import ('../views/AdminMain.vue')
     },
     {
+        path: "/mymsg",
+        name: "MyMsg",
+        component: () =>
+            import ('../views/MyMsg.vue')
+    },
+    {
         path: "/modifymsg",
         name: "ModifyMsg",
         component: () =>
@@ -63,6 +69,12 @@ const routes = [{
         name: "BorrowHistory",
         component: () =>
             import ('../views/BorrowHistory.vue')
+    },
+    {
+        path: "/booksearch",
+        name: "BookSearch",
+        component: () =>
+            import ('../views/BookSearch.vue')
     },
 
 ]
