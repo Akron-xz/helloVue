@@ -47,7 +47,7 @@ export default {
       console.log(key, keyPath);
     },
     toMain(){
-      this.$router.push({path:'/'});
+      this.$router.push({path:'/#'});
     },
 
     toSearchClient(){

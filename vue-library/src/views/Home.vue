@@ -1,16 +1,18 @@
 <template>
     <div class="home-container">
-       
-        <div class="admin" @click="toAdmin">
-            管理员
+         <div class="login box">
+            <img src="/img/home/login.jpg" alt="" class="home-img" @click="toLogin">
+            <p class="logo-name" @click="toLogin">登陆</p>
         </div>
 
-        <div class="login" @click="toLogin">
-            登陆
+        <div class="admin box" >
+            <img src="/img/home/manage.jpg" alt="" class="home-img" @click="toAdmin">
+            <p class="logo-name" @click="toAdmin">图书管理</p>
         </div>
 
-        <div class="signup" @click="toSignUp">
-            注册
+        <div class="signup box">
+            <img src="/img/home/signup.jpg" alt="" class="home-img" @click="toSignUp">
+            <p class="logo-name" @click="toSignUp">注册</p>
         </div>
     </div>
 </template>>
@@ -19,7 +21,11 @@
 <script>
 
 export default {
-   
+   data() {
+        return {
+            
+        }
+    },
     methods: {
         toLogin(){
             this.$router.push({path:'/UserLogin'})
@@ -30,6 +36,9 @@ export default {
         toSignUp(){
             this.$router.push({path:'/signup'})
         },
+    },
+    created() {
+        
     },
 }
 </script>
@@ -47,37 +56,31 @@ export default {
     text-align: center;
 }
 
-.admin{
-    position: absolute;
-    left:50%;
-    width: 300px;
-    height: 100px;
-    margin-left: -150px;
+.home-img{
+    width: 150px;
+    height:150px;
     margin-top: 50px;
-    background-color: red;
+    border-radius: 80px;
     cursor: pointer;
+    transition: width 1s, height 1s, transform 1s;
 }
 
-.login{
-    position: absolute;
-    left:25%;
-    width: 300px;
-    height: 100px;
-    margin-left: -150px;
-    margin-top: 250px;
-    background-color: blue;
-    cursor: pointer;
+.home-img:hover{
+    width: 180px;
+    height:180px;
 }
 
-.signup{
-    position: absolute;
-    right:25%;
-    width: 300px;
-    height: 100px;
-    margin-right: -150px;
-    margin-top: 250px;
-    background-color: black;
-cursor: pointer;
+.logo-name:hover{
+    cursor: pointer;
+    color: blue;
 }
+
+.box{
+    list-style-type: none;
+    float: left;
+    margin: auto;
+    width: 33%;
+}
+
 
 </style>>

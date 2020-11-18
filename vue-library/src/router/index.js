@@ -54,11 +54,18 @@ const routes = [{
     },
     {
 
+        path: "/MyInformation",
+        name: "MyInformation",
+        component: () =>
+            import ('../views/MyInformation.vue')
+    },
+    {
         path: "/mymsg",
         name: "MyMsg",
         component: () =>
             import ('../views/MyMsg.vue')
-    }, {
+    },
+    {
         path: "/library",
         name: "Library",
         component: () =>
@@ -78,12 +85,17 @@ const routes = [{
             import ('../views/BorrowHistory.vue')
     },
     {
+        path: "/newissue",
+        name: "NewIssue",
+        component: () =>
+            import ('../views/NewIssue.vue')
+    },
+    {
         path: "/booksearch",
         name: "BookSearch",
         component: () =>
             import ('../views/BookSearch.vue')
     },
-
 ]
 
 const router = new VueRouter({
