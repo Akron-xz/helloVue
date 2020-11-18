@@ -52,6 +52,12 @@ const routes = [{
         component: () =>
             import ('../views/AdminMain.vue')
     },
+    {
+        path: "/library",
+        name: "Library",
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/Library.vue')
+    },
 
 ]
 
