@@ -64,6 +64,12 @@ const routes = [{
         component: () =>
             import ('../views/BorrowHistory.vue')
     },
+    {
+        path: "/newissue",
+        name: "NewIssue",
+        component: () =>
+            import ('../views/NewIssue.vue')
+    },
 
 ]
 
