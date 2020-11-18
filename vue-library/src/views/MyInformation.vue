@@ -7,11 +7,11 @@
         </div>
         <div class="img-box">
             <div class="information-modify">
-                <img src="/img/PPT11/information.jpg" class="PPT11-img" alt=""><br>         
+                <img src="/img/PPT11/information.jpg" class="PPT11-img" alt="" @click="toModifyMsg"><br>         
                 <p>信息修改</p>
             </div>
             <div class="borrowing-history">
-                <img src="/img/PPT11/history.jpg" class="PPT11-img" alt=""><br>
+                <img src="/img/PPT11/history.jpg" class="PPT11-img" alt="" @click="toBorrowHistory"><br>
                 <p>借阅历史</p>
             </div>
         </div>
@@ -26,7 +26,13 @@ export default {
         }
     },
     methods: {
-        
+        toModifyMsg(){
+            this.$router.push({path:'/ModifyMsg'})
+        },
+        toBorrowHistory(){
+            this.$router.push({path:'/BorrowHistory'})
+
+        }
     },
     created() {
         

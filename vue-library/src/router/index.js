@@ -60,12 +60,6 @@ const routes = [{
             import ('../views/MyInformation.vue')
     },
     {
-        path: "/mymsg",
-        name: "MyMsg",
-        component: () =>
-            import ('../views/MyMsg.vue')
-    },
-    {
         path: "/library",
         name: "Library",
         component: () =>
@@ -102,6 +96,14 @@ const routes = [{
         component: () =>
             import ('../views/MyBookshelves.vue')
     },
+    {
+        path: "/newissue",
+        name: "NewIssue",
+        component: () =>
+            import ('../views/NewIssue.vue')
+    },
+
+
 ]
 
 const router = new VueRouter({

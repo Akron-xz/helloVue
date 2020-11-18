@@ -11,7 +11,7 @@
             <p class="logo-name">我的书架</p>
         </div>
         <div class="Library box">
-            <img src="/img/user/Library.jpg" class="user-img" alt="">
+            <img src="/img/user/Library.jpg" class="user-img" alt="" @click="toLibrary">
             <p class="logo-name">图书馆</p>
         </div>
 
@@ -29,6 +29,9 @@ export default {
     methods: {
          toMyInformation(){
             this.$router.push({path:'/MyInformation'})
+        },
+         toLibrary(){
+            this.$router.push({path:'/library'})
         },
     },
     created() {

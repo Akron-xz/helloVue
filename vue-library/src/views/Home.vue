@@ -1,5 +1,6 @@
 <template>
     <div class="home-container">
+
          <div class="login box">
             <img src="/img/home/login.jpg" alt="" class="home-img" @click="toLogin">
             <p class="logo-name" @click="toLogin">登陆</p>
