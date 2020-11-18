@@ -1,5 +1,6 @@
 <template>
   <div class="search-container">
+ <Navigation></Navigation>
     <h class="search-title">书籍查询</h>
     <div class="choiceBox">
       <table>
@@ -60,14 +61,14 @@
       </table>
     </div>
 
-    <div class="search">
+    <div class="searchBox">
       <input type="text" style="width: 180px; height: 30px" />&nbsp;&nbsp;<input
         type="button"
         value="搜索"
         style="width: 50px; height: 30px"
       />
     </div>
-    <div class="table-box">
+    <div class="tableBox">
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="BookName" label="书籍名称" width="380">
         </el-table-column>
@@ -87,11 +88,10 @@
       </el-table>
     </div>
     <!-- 弹窗 -->
-    <div class="choiceBox">
+    <div class="EditBox">
       <el-dialog title="书籍名称" :visible.sync="dialogFormVisible">
         <table :model="form">
           <tr>
-            <td>国家</td>
             <td>
               <el-select v-model="value" placeholder="国家">
                 <el-option
@@ -103,7 +103,7 @@
                 </el-option>
               </el-select>
             </td>
-            <td>类型</td>
+           
             <td>
               <el-select v-model="Class" placeholder="类型">
                 <el-option
@@ -115,7 +115,7 @@
                 </el-option>
               </el-select>
             </td>
-            <td>篇幅</td>
+            
             <td>
               <el-select v-model="Length" placeholder="篇幅">
                 <el-option
@@ -127,11 +127,11 @@
                 </el-option>
               </el-select>
             </td>
-            <td>主题</td>
+           
             <td>
-              <el-select v-model="Theme" placeholder="主题">
+              <el-select v-model="OnShelve" placeholder="上架数量">
                 <el-option
-                  v-for="item in optionsTheme"
+                  v-for="item in optionsOnShelve"
                   :key="item.value"
                   :label="item.label"
                   :value="item.value"
@@ -155,19 +155,26 @@
   </div>
 </template>
 <script>
+import Navigation from '@/components/Nav.vue'
+
 export default {
+  components:{
+    Navigation
+  },
   data() {
     return {
+      input:"",
       dialogFormVisible: false,
       form: {
       },
-      formLabelWidth: "120px",
+    
 
       tableData: [
         {
           BookName: "1",
           LaunchTime: "2",
         },
+        
       ],
       options: [
         {
@@ -238,14 +245,14 @@ export default {
   position: absolute;
   right: 10%;
 }
-.search {
-  position: absolute;
-  top: 20%;
-  right: 10%;
-}
-.table-box {
+.searchBox {
   position: absolute;
   top: 25%;
+  right: 10%;
+}
+.tableBox {
+  position: absolute;
+  top: 32%;
   right: 10%;
   width: 80%;
 }
