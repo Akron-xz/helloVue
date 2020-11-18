@@ -52,6 +52,18 @@ const routes = [{
         component: () =>
             import ('../views/AdminMain.vue')
     },
+    {
+        path: "/modifymsg",
+        name: "ModifyMsg",
+        component: () =>
+            import ('../views/ModifyMsg.vue')
+    },
+    {
+        path: "/borrowhistory",
+        name: "BorrowHistory",
+        component: () =>
+            import ('../views/BorrowHistory.vue')
+    },
 
 ]
 
