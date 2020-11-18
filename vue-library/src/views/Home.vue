@@ -3,17 +3,12 @@
          <div class="login box">
             <img src="/img/home/login.jpg" alt="" class="home-img" @click="toLogin">
             <p class="logo-name" @click="toLogin">登陆</p>
-        <div class="admin" @click="toAdmin">
-            管理员
-
         </div>
 
         <div class="admin box" >
             <img src="/img/home/manage.jpg" alt="" class="home-img" @click="toAdmin">
             <p class="logo-name" @click="toAdmin">图书管理</p>
         </div>
-
-        
 
         <div class="signup box">
             <img src="/img/home/signup.jpg" alt="" class="home-img" @click="toSignUp">
@@ -26,7 +21,11 @@
 <script>
 
 export default {
-   
+   data() {
+        return {
+            
+        }
+    },
     methods: {
         toLogin(){
             this.$router.push({path:'/UserLogin'})
@@ -37,6 +36,9 @@ export default {
         toSignUp(){
             this.$router.push({path:'/signup'})
         },
+    },
+    created() {
+        
     },
 }
 </script>
