@@ -49,7 +49,7 @@
     </el-select>
      </label>
     </div>
-
+      <el-button type="primary" class="query">主要按钮</el-button>
     </div>
 </template>
 <script>
@@ -123,6 +123,13 @@ export default {
   .el-select{
       width: 200px;
     
+  }
+
+  .query{
+    display: flex;
+    position: fixed;
+    top: 200px;
+    justify-content: flex-end;
   }
     
 

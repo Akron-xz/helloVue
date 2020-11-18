@@ -1,5 +1,6 @@
 <template>
     <div class="home-container">
+       
         <div class="admin" @click="toAdmin">
             管理员
         </div>
@@ -16,7 +17,9 @@
 
 
 <script>
+
 export default {
+   
     methods: {
         toLogin(){
             this.$router.push({path:'/UserLogin'})

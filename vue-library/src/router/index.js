@@ -56,8 +56,9 @@ const routes = [{
         path: "/library",
         name: "Library",
         component: () =>
-            import ( /* webpackChunkName: "about" */ '../views/Library.vue'),
-
+            import ( /* webpackChunkName: "about" */ '../views/Library.vue')
+    },
+    {
         path: "/modifymsg",
         name: "ModifyMsg",
         component: () =>
