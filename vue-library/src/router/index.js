@@ -53,6 +53,19 @@ const routes = [{
             import ('../views/AdminMain.vue')
     },
     {
+
+        path: "/mymsg",
+        name: "MyMsg",
+        component: () =>
+            import ('../views/MyMsg.vue')
+    }, {
+        path: "/library",
+        name: "Library",
+        component: () =>
+            import ( /* webpackChunkName: "about" */ '../views/Library.vue')
+
+    },
+    {
         path: "/modifymsg",
         name: "ModifyMsg",
         component: () =>
@@ -69,6 +82,11 @@ const routes = [{
         name: "NewIssue",
         component: () =>
             import ('../views/NewIssue.vue')
+
+        path: "/booksearch",
+        name: "BookSearch",
+        component: () =>
+            import ('../views/BookSearch.vue')
     },
 
 ]
