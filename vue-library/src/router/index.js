@@ -96,6 +96,13 @@ const routes = [{
         component: () =>
             import ('../views/BookSearch.vue')
     },
+    {
+        path: "/newissue",
+        name: "NewIssue",
+        component: () =>
+            import ('../views/NewIssue.vue')
+    },
+
 ]
 
 const router = new VueRouter({
