@@ -82,11 +82,18 @@ const routes = [{
         name: "NewIssue",
         component: () =>
             import ('../views/NewIssue.vue')
-
+    },
+    {
         path: "/booksearch",
         name: "BookSearch",
         component: () =>
             import ('../views/BookSearch.vue')
+    },
+    {
+        path: "/newissue",
+        name: "NewIssue",
+        component: () =>
+            import ('../views/NewIssue.vue')
     },
 
 ]
