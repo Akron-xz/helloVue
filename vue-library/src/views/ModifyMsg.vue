@@ -12,19 +12,20 @@
       </tr>
       <tr>
         <td class="msg-header">姓名：</td>
-        <td>
+        <td prop="Name">
           <input
-            type="int"
-            name="Name"
+            type="text"
+            v-model="Name"
             maxlength="20"
             style="width: 180px; height: 30px"
+            
           />
         </td>
         <td class="msg-header">性别：</td>
         <td>
           <input
             type="text"
-            name="Sex"
+            v-model="Sex"
             maxlength="5"
             style="width: 180px; height: 30px"
           />
@@ -33,7 +34,7 @@
         <td>
           <input
             type="text"
-            name="Age"
+            v-model="Age"
             maxlength="5"
             style="width: 180px; height: 30px"
           />
@@ -44,7 +45,7 @@
         <td>
           <input
             type="text"
-            name="Email"
+         v-model="Email"
             maxlength="30"
             style="width: 180px; height: 30px"
           />
@@ -53,7 +54,7 @@
         <td>
           <input
             type="text"
-            name="Birthday"
+            v-model="Birthday"
             maxlength="30"
             style="width: 180px; height: 30px"
           />
@@ -62,7 +63,7 @@
         <td>
           <input
             type="text"
-            name="Phone"
+            v-model="Phone"
             maxlength="30"
             style="width: 180px; height: 30px"
           />
@@ -73,7 +74,7 @@
         <td colspan="5">
           <input
             type="text"
-            name="Adress"
+            v-model="Adress"
             maxlength="100"
             style="width: 720px; height: 30px"
           />
@@ -84,7 +85,7 @@
         <td colspan="5">
           <input
             type="text"
-            name="introduction"
+            v-model="Introduction"
             maxlength="100"
             style="width: 720px; height: 60px"
           />
@@ -123,6 +124,14 @@
 export default {
   data() {
     return {
+      Name: '测试',
+      Sex:'',
+      Age:'',
+      Email:'',
+      Birthday:'',
+      Phone:'',
+      Adress:'',
+      Introduction:'',
       ruleForm: {
         password: "",
       },
@@ -130,6 +139,9 @@ export default {
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         password2: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
+      
+            
+         
     };
   },
   methods: {
