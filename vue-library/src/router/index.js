@@ -91,11 +91,18 @@ const routes = [{
             import ('../views/BookSearch.vue')
     },
     {
+        path: "/MyBookshelves",
+        name: "MyBookshelves",
+        component: () =>
+            import ('../views/MyBookshelves.vue')
+    },
+    {
         path: "/newissue",
         name: "NewIssue",
         component: () =>
             import ('../views/NewIssue.vue')
     },
+
 
 ]
 
