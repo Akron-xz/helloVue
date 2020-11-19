@@ -16,12 +16,12 @@
         </div>
         <div class="img-box">
             <div class="information-modify">
-                <img src="/img/PPT11/information.jpg" class="PPT11-img" alt="" @click="toModifyMsg"><br>         
-                <p>信息修改</p>
+                <img src="/img/user/modify.png" class="PPT11-img" alt="" @click="toModifyMsg"><br>         
+                <p @click="toModifyMsg">信息修改</p>
             </div>
             <div class="borrowing-history">
-                <img src="/img/PPT11/history.jpg" class="PPT11-img" alt="" @click="toBorrowHistory"><br>
-                <p>借阅历史</p>
+                <img src="/img/user/books.png" class="PPT11-img" alt="" @click="toBorrowHistory"><br>
+                <p @click="toBorrowHistory">借阅历史</p>
             </div>
         </div>
     </div>
@@ -122,10 +122,9 @@ export default {
 }
 
 .img-box{
+    display: flex;
     list-style-type: none;
-    float: left;
-    margin: auto;
-    width: 33%;
+    justify-content: space-around;
 }
 
 
