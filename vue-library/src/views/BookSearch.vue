@@ -1,14 +1,14 @@
 <template>
   <div class="search-container">
  <Navigation></Navigation>
-     <div v-show="tableDisplay">
-    <h class="search-title">书籍查询</h>
-    <div class="choiceBox" >
+      <div v-show="tableDisplay">
+      <h1 class="search-title">书籍查询</h1>
+       <div class="choiceBox" >
       <table>
         <tr>
           <td>国家</td>
           <td>
-            <el-select v-model="country" placeholder="国家">
+            <el-select v-model="country" placeholder="请选择">
               <el-option
                 v-for="item in optionsCountry"
                 :key="item.value"
@@ -20,7 +20,7 @@
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="type" placeholder="类型">
+            <el-select v-model="type" placeholder="请选择">
               <el-option
                 v-for="item in optionsType"
                 :key="item.value"
@@ -32,7 +32,7 @@
           </td>
           <td>篇幅</td>
           <td>
-            <el-select v-model="pages" placeholder="篇幅">
+            <el-select v-model="pages" placeholder="请选择">
               <el-option
                 v-for="item in optionsPages"
                 :key="item.value"
@@ -44,7 +44,7 @@
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="theme" placeholder="主题">
+            <el-select v-model="theme" placeholder="请选择">
               <el-option
                 v-for="item in optionsTheme"
                 :key="item.value"
@@ -76,15 +76,14 @@
         <el-table-column prop="OnTime" label="上架时间" width="380">
         </el-table-column>
         <el-table-column label="操作">
-          <el>
-            <el-button
-              type="text"
-              @click="MsgModify"
-              slot="edit"
-              class="edit-btn"
-              >编辑</el-button
-            >
-          </el>
+          <template>
+        
+         <el-button  @click="MsgModify"
+          type="primary "
+          class="edit-btn"
+          size="small">编辑</el-button>
+      </template>
+    
         </el-table-column>
       </el-table>
     </div>
@@ -94,8 +93,14 @@
     </div>
     <!-- 弹窗 -->
     <div class="MsgModify-box" v-show="!tableDisplay">
-       <h1 v-text="book_name"></h1>
+      
       <table>
+      <tr>
+      <td></td>
+      <td></td>
+      <td style="font-size: 25px;">书名</td>
+      <td><input type="text" v-model="book_name" style="width: 180px; height: 30px"></td>
+      </tr>
         <tr>
            <td>国家</td>
           <td>
@@ -321,12 +326,12 @@ export default {
 }
 .searchBox {
   position: absolute;
-  top: 25%;
+  top: 35%;
   right: 10%;
 }
 .tableBox {
   position: absolute;
-  top: 32%;
+  top: 40%;
   right: 10%;
   width: 80%;
 }
@@ -338,10 +343,10 @@ export default {
   bottom: 0;
 }
 .edit-btn {
+  font-weight: bold;
     width: 50px;
     height: 35px;
-  color: #000;
-  background-color: rgb(23, 23, 187);
+ 
 }
 .MsgModify-box{
   position: absolute;
