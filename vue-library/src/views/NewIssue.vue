@@ -17,7 +17,7 @@
         
         <br>
         <br>
-        <el-table :data="tableData">
+        <el-table :data="lists">
             <el-table-column prop="userId" label="用户ID" width="80">
             </el-table-column>
             <el-table-column prop="name" label="姓名" width="100">
@@ -39,11 +39,13 @@
         <el-pagination
             background
             layout="prev, pager, next"
-            :page-size="pageSize"
-            :total="total"
+            :page-size="page.rows"
+            :total="page.pageTotal"
             @current-change="change">
         </el-pagination>
+
     </div>
+
     <!-- 个人完整信息 -->
     <div v-show="dispalyInfo">
       <br>
@@ -81,25 +83,39 @@
 
 <script>
 import Navigation from "@/components/Nav.vue";
+import axios from "axios";
 
 export default {
+  name:"newIssue",
+
   components: {
     Navigation,
   },
+
   data() {
     return {
       activeIndex: "1",
       activeIndex2: "1",
       dispalyInfo: false,
 
+      lists:[],
+
+      page: [{
+        //总页数
+        // pageTotal: 1,
+        //每页显示多少条数据
+        // rows: 10,
+        currentPage: 1, // 当前页码
+        total: 20, // 总条数
+        pageSize: 10 // 每页的数据条数
+
+      }],
+
+      //写死的数据
       searchContent: '',
         pageSize: 5,
         total: 10,
-        tableData:[
-          {userId:1,name:"test1",sex:"1",age:"1",email:"111@qq.com"},
-          {userId:2,name:"test2",sex:"2",age:"2",email:"222@qq.com"},
-          {userId:3,name:"test3",sex:"3",age:"3",email:"333@qq.com"}
-        ]
+
     };
   },
   methods:{
@@ -117,7 +133,40 @@ export default {
       this.dispalyInfo = !this.dispalyInfo;
     },
 
+    //获取 lists json 数据
+    getLists(){
+      axios({
+        //get方式获取数据
+        method: 'get',
+        //接口地址
+        url:'data/user.json',
+      }).then(res=>{  //请求数据 res 返回的数据
+        console.log(res);
+
+        let list = res.data;
+        //列表数据
+        this.lists = list;
+        //总页数
+        this.page.pageTotal = res.pageTotal;
+        //总条数
+        // this.total = res.total;
+
+        this.total = 157;
+      }).catch(function(error) {   //请求失败
+        console.log("error...", error);
+      })
+
+    }
+
   },
+
+  created(){
+    this.getLists();
+  },
+
+  // mountd:function() { //生命周期钩子函数  挂载完成
+  //   this.getLists();
+  // },
 
 };
 </script>

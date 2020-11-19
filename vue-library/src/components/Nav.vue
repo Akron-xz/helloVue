@@ -11,16 +11,16 @@
         text-font="15px"
       >
         <el-menu-item index="1">
-          <a @click="toMain" target="_self" >用户列表</a></el-menu-item
+          <a @click="toSearchClient" target="_self" >用户列表</a></el-menu-item
         >
         <el-menu-item index="2">
-          <a @click="toMain" target="_self">图书借阅与归还</a>
+          <a @click="toBooks" target="_self">图书借阅与归还</a>
         </el-menu-item>
         <el-menu-item index="3"
           ><a @click="toMain" target="_self">注销用户</a></el-menu-item
         >
         <el-menu-item index="4">
-          <a @click="toMain" target="_self">首页公告管理</a>
+          <a @click="toAnnounce" target="_self">首页公告管理</a>
         </el-menu-item>
         <el-menu-item index="5">
           <a @click="toMain" target="_self">图书借阅统计</a></el-menu-item
@@ -47,16 +47,16 @@ export default {
     },
 
     toSearchClient(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/newissue'});
     },
     toSearchFile(){
       this.$router.push({path:'/signup'});
     },
     toAnnounce(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/modifyannounce'});
     },
     toBooks(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/booksearch'});
     },
     toGraphReport(){
       this.$router.push({path:'/signup'});

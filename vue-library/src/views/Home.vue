@@ -15,6 +15,10 @@
             <img src="/img/home/signup.jpg" alt="" class="home-img" @click="toSignUp">
             <p class="logo-name" @click="toSignUp">注册</p>
         </div>
+
+        <div class="announce-box" >
+            <p>{{announceContent}}</p>
+        </div>
     </div>
 </template>>
 
@@ -24,7 +28,8 @@
 export default {
    data() {
         return {
-            
+            announceContent:"测试公告",
+            announceTime:""
         }
     },
     methods: {
@@ -81,6 +86,17 @@ export default {
     float: left;
     margin: auto;
     width: 33%;
+}
+.announce-box{
+    position: fixed;
+    bottom: 70px;
+    left: 50%;
+    height: 200px;
+    width: 80%;
+    margin-left: -40%;
+    background-color: #ffffff70;
+    border: 2px solid black;
+
 }
 
 
