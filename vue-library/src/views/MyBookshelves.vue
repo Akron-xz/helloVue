@@ -1,5 +1,14 @@
 <template>
     <div class="Bookshelves-container container">
+     <div>
+      <el-header>
+        <router-link to="./" class="a">首页</router-link>
+        /
+        <router-link to="./user" class="b">我是借阅者</router-link>
+        /
+        <router-link to="./MyBookshelves" class="c">我的书架</router-link>
+      </el-header>
+    </div>
 
         <div class="guide">
 
@@ -70,7 +79,7 @@
                 <table border="0" cellspacing="0" width="800px"  align="center" class="book-table">
                     <tr align="left" >
                         <td class="field-name" >书本名称:</td>
-                        <td><input type="text" name="bookName" maxlength="20" style="width:200px;height:30px;" readonly></td>
+                        <td><input v-model="bookName" type="text" name="bookName" maxlength="20" style="width:200px;height:30px;" readonly ></td>
                         <td class="field-name" >国家:</td>
                         <td><input type="text" name="contry" maxlength="20" style="width:150px;height:30px;" readonly></td>
                         <td class="field-name" >类型:</td>
@@ -94,11 +103,33 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+            bookName:"时间简史"
+        }
+    },
 }
 </script>
 
 <style scoped>
+.el-header {
+  position: absolute;
+  left: 30px;
+  color: #333;
+  line-height: 60px;
+  width: 100%;
+  height: 60px;
+  text-align: left;
+}
+.a {
+  text-decoration: none;
+}
+.b {
+  text-decoration: none;
+}
+.c {
+  text-decoration: none;
+}
 
 .bookstatus{
     width: 400px;
