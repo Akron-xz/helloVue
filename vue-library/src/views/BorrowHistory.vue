@@ -17,17 +17,17 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="BorrowDate"
+        prop="BorrowTime"
         label="借阅时间"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="ReturnDate"
+        prop="ReturnTime"
         label="应归还时间"
         width="180">
       </el-table-column>
       <el-table-column
-        prop="BorrowValidity"
+        prop="ValidTime"
         label="借阅有效期"></el-table-column>
       <el-table-column label="操作">
       
@@ -38,10 +38,10 @@
   <el-table :data="gridData">
     <el-table-column width="100" property="UserNumber" label="用户编号"></el-table-column>
     <el-table-column width="100" property="Name" label="用户姓名"></el-table-column>
-    <el-table-column width="100" property="SurplusDate" label="距归还还剩"></el-table-column>
+    <el-table-column width="100" property="Deadline" label="距归还还剩"></el-table-column>
     <el-table-column width="100" property="BookName" label="书籍名称"></el-table-column>
-    <el-table-column width="100" property="BorrowDate" label="借阅时间"></el-table-column>
-    <el-table-column width="100" property="BorrowValidity" label="借阅有效期"></el-table-column>
+    <el-table-column width="100" property="BorrowTime" label="借阅时间"></el-table-column>
+    <el-table-column width="100" property="ValidTime" label="借阅有效期"></el-table-column>
 
   </el-table>
   <el-button slot="reference" class="reference-btn">详情</el-button>
@@ -65,17 +65,17 @@
         return {
           tableData: [{
             BookName: '1',
-            BorrowDate: '2',
-            ReturnDate: '3',
-            BorrowValidity: '4',
+            BorrowTime: '2',
+            ReturnTime: '3',
+            ValidTime: '4',
           }],
           gridData:[{
             UserNumber:'1',
             Name:'',
-            SurplusDate:'',
+            Deadline:'',
              BookName: '',
-            BorrowDate: '',
-            BorrowValidity: '',
+            BorrowTime: '',
+            ValidTime: '',
           }]
         }
       }
