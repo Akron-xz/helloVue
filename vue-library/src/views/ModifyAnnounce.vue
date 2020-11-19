@@ -4,7 +4,7 @@
     <div class="announce-box">
       <el-input placeholder="修改公告"  :disabled="true">
       </el-input>
-      <el-button type="info">发布公告</el-button>
+      <el-button type="info" @click="updateAnnounce">发布公告</el-button>
     </div>
     <div class="contebt-box">
       <el-input
@@ -19,6 +19,7 @@
 
 
 <script>
+import axios from 'axios'
 import Navigation from "@/components/Nav.vue";
 export default {
   components: {
@@ -26,8 +27,21 @@ export default {
   },
   data(){
       return{
-          announceContent:"测试公告"
+          announceContent:""
       }
+  },
+
+  methods:{
+    updateAnnounce(){
+      axios({
+        method:"post",
+        url:"http://localhost:8081/announce/update",
+        data:{
+          announceContent:this.announceContent
+        }
+      })
+      alert("公告更新成功")
+    }
   }
 };
 </script>
