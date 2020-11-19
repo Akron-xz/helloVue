@@ -108,6 +108,12 @@ const routes = [{
         component: () =>
             import ('../views/ModifyAnnounce.vue')
     },
+    {
+        path: "/statistics",
+        name: "Statistics",
+        component: () =>
+            import ('../views/Statistics.vue')
+    },
 
 
 ]
