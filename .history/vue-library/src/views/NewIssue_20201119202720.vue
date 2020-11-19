@@ -1,5 +1,5 @@
 <template>
-  <div class="new-issue-container">
+  <div class="new-issue-container" v-infinite-scroll="load">
     <!-- 导航栏 -->
     <div>
       <navigation></navigation>
@@ -32,10 +32,8 @@
         </el-table-column>
         <el-table-column prop="name" label="姓名" width="100">
         </el-table-column>
-        <el-table-column prop="sex" label="性别" width="80">
-        </el-table-column>
-        <el-table-column prop="age" label="年龄" width="60">
-        </el-table-column>
+        <el-table-column prop="sex" label="性别" width="80"> </el-table-column>
+        <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
         <el-table-column prop="email" label="邮箱" width="140">
         </el-table-column>
         <el-table-column label="操作">
@@ -131,9 +129,9 @@ export default {
     },
     //查看个人信息
     retrieve(row) {
-      console.log(row);
+      let a = row;
       this.dispalyInfo = !this.dispalyInfo;
-      
+      console.log(a);
     },
     //返回
     goBack() {
@@ -163,8 +161,13 @@ export default {
           let list = res.data;
           //列表数据
           this.lists = list;
-          //检查数据是否能正常接受1
-          // console.log("json", this.lists);
+          //总页数
+          // this.page.total = res.total;
+          //总条数
+          // this.total = res.total;
+          // this.page.total = 157;
+
+          console.log("json", this.lists);
         })
         .catch(function (error) {
           //请求失败
@@ -208,4 +211,17 @@ a {
   bottom: 0;
 }
 
+.new-issue-container::-webkit-scrollbar {
+  /* 设置竖向滚动条的宽度 */
+  width: 5px;
+  /* 设置横向滚动条的高度 */
+  height: 5px;
+}
+
+.new-issue-container::-webkit-scrollbar-thumb {
+  /*滚动条的背景色*/
+  background-color: rgba(144,147,153,.3);
+  border-radius: 35px;
+  position: relative;
+}
 </style>

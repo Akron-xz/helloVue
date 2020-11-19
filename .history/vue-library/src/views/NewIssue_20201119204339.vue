@@ -1,5 +1,5 @@
 <template>
-  <div class="new-issue-container">
+  <div class="new-issue-container" v-infinite-scroll="load">
     <!-- 导航栏 -->
     <div>
       <navigation></navigation>
@@ -32,10 +32,8 @@
         </el-table-column>
         <el-table-column prop="name" label="姓名" width="100">
         </el-table-column>
-        <el-table-column prop="sex" label="性别" width="80">
-        </el-table-column>
-        <el-table-column prop="age" label="年龄" width="60">
-        </el-table-column>
+        <el-table-column prop="sex" label="性别" width="80"> </el-table-column>
+        <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
         <el-table-column prop="email" label="邮箱" width="140">
         </el-table-column>
         <el-table-column label="操作">
@@ -131,9 +129,9 @@ export default {
     },
     //查看个人信息
     retrieve(row) {
-      console.log(row);
+      let a = row;
       this.dispalyInfo = !this.dispalyInfo;
-      
+      console.log(a);
     },
     //返回
     goBack() {
