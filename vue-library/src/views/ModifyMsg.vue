@@ -44,7 +44,7 @@
         <td>
           <input
             type="text"
-            name="Mail"
+            name="Email"
             maxlength="30"
             style="width: 180px; height: 30px"
           />
@@ -62,7 +62,7 @@
         <td>
           <input
             type="text"
-            name="PhoneNumber"
+            name="Phone"
             maxlength="30"
             style="width: 180px; height: 30px"
           />
@@ -84,7 +84,7 @@
         <td colspan="5">
           <input
             type="text"
-            name=""
+            name="introduction"
             maxlength="100"
             style="width: 720px; height: 60px"
           />
@@ -155,6 +155,8 @@ export default {
   position: fixed;
   width: 100%;
   height: 100%;
+  top: 0;
+  right: 0;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .tableid {
