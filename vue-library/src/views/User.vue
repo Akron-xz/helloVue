@@ -7,12 +7,12 @@
             <p class="logo-name" v-on:click="toMyInformation">我的信息</p>
         </div>
         <div class="myShelves box">
-            <img src="/img/user/MyBookshelves.jpg" class="user-img" alt="">
-            <p class="logo-name">我的书架</p>
+            <img src="/img/user/MyBookshelves.jpg" class="user-img" alt="" @click="toMyBookshelves">
+            <p class="logo-name" @click="toMyBookshelves">我的书架</p>
         </div>
         <div class="Library box">
-            <img src="/img/user/Library.jpg" class="user-img" alt="">
-            <p class="logo-name">图书馆</p>
+            <img src="/img/user/Library.jpg" class="user-img" alt="" @click="toLibrary">
+            <p class="logo-name" @click="toLibrary">图书馆</p>
         </div>
 
     </div>
@@ -27,8 +27,14 @@ export default {
         }
     },
     methods: {
-         toMyInformation(){
+        toMyInformation(){
             this.$router.push({path:'/MyInformation'})
+        },
+        toLibrary(){
+            this.$router.push({path:'/library'})
+        },
+        toMyBookshelves(){
+            this.$router.push({path:'/MyBookshelves'})
         },
     },
     created() {
@@ -41,6 +47,7 @@ export default {
 .user-container{
     position: fixed;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;

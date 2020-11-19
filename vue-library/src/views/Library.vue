@@ -68,7 +68,7 @@
       <div class="keyWordQuery">
         <el-input
           placeholder="请输入关键字"
-          v-model="input3"
+          type="text"
           class="input-with-select"
         >
           <el-button slot="append" icon="el-icon-search"></el-button>
@@ -80,7 +80,7 @@
         <el-table-column label="书名"  property="bookname"></el-table-column>
         <el-table-column label="国家"  property="country"></el-table-column>
         <el-table-column label="类型"  property="type"></el-table-column>
-        <el-table-column label="书名"  property="theme"></el-table-column>
+        <el-table-column label="主题"  property="theme"></el-table-column>
         <el-table-column label="状态">
           <el-button type="" @click="borrowStatus">借阅</el-button>
         </el-table-column>

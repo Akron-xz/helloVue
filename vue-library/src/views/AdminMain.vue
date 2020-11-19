@@ -60,7 +60,7 @@ export default {
       this.$router.push({path:'/signup'});
     },
     toBooks(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/booksearch'});
     },
     toGraphReport(){
       this.$router.push({path:'/signup'});
