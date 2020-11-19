@@ -102,6 +102,12 @@ const routes = [{
         component: () =>
             import ('../views/NewIssue.vue')
     },
+    {
+        path: "/modifyAnnounce",
+        name: "ModifyAnnounce",
+        component: () =>
+            import ('../views/ModifyAnnounce.vue')
+    },
 
 
 ]
