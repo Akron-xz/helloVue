@@ -13,24 +13,24 @@
                 :disabled="true">
             </el-input>
             <el-button type="primary" round>还书</el-button>
-            <div class="books-table">
+            
                 <table border="0" cellspacing="0" width="800px"  align="center" class="book-table">
                     <tr align="left" >
                         <td class="field-name" >书本名称:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="text" name="bookName" maxlength="20" style="width:200px;height:30px;" readonly></td>
                         <td class="field-name" >国家:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:80px;height:30px;"></td>
+                        <td><input type="text" name="contry" maxlength="20" style="width:150px;height:30px;" readonly></td>
                         <td class="field-name" >类型:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:80px;height:30px;"></td>
+                        <td><input type="text" name="type" maxlength="20" style="width:150px;height:30px;" readonly></td>
                     </tr>
                     <tr align="left">
                         <td class="field-name" >借阅时间:</td>
-                        <td><input type="date" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="date" name="borrowTime" maxlength="20" style="width:200px;height:30px;" readonly></td>
                         <td class="field-name" >应归还时间:</td>
-                        <td><input type="date" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="date" name="deadline" maxlength="20" style="width:200px;height:30px;" readonly></td>
                     </tr>
                 </table>
-            </div>
+            
         </div>
 
         <div class="book-second">
@@ -41,24 +41,22 @@
                 :disabled="true">
             </el-input>
             <el-button type="primary" round>还书</el-button>
-            <div class="books-table">
-                <table border="0" cellspacing="0" width="800px"  align="center" class="book-table">
+                <table border="0" cellspacing="0" width="800px"  align="center" class="book-table" >
                     <tr align="left" >
                         <td class="field-name" >书本名称:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="text" name="bookName" maxlength="20" style="width:200px;height:30px;" readonly></td>
                         <td class="field-name" >国家:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:80px;height:30px;"></td>
+                        <td><input type="text" name="contry" maxlength="20" style="width:150px;height:30px;" readonly></td>
                         <td class="field-name" >类型:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:80px;height:30px;"></td>
+                        <td><input type="text" name="type" maxlength="20" style="width:150px;height:30px;" readonly></td>
                     </tr>
                     <tr align="left">
                         <td class="field-name" >借阅时间:</td>
-                        <td><input type="date" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="date" name="borrowTime" maxlength="20" style="width:200px;height:30px;" readonly></td>
                         <td class="field-name" >应归还时间:</td>
-                        <td><input type="date" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="date" name="deadline" maxlength="20" style="width:200px;height:30px;" readonly></td>
                     </tr>
                 </table>
-            </div>
         </div>
 
         <div class="book-third">
@@ -69,24 +67,22 @@
                 :disabled="true">
             </el-input>
             <el-button type="primary" round>还书</el-button>
-            <div class="books-table">
                 <table border="0" cellspacing="0" width="800px"  align="center" class="book-table">
                     <tr align="left" >
                         <td class="field-name" >书本名称:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="text" name="bookName" maxlength="20" style="width:200px;height:30px;" readonly></td>
                         <td class="field-name" >国家:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:80px;height:30px;"></td>
+                        <td><input type="text" name="contry" maxlength="20" style="width:150px;height:30px;" readonly></td>
                         <td class="field-name" >类型:</td>
-                        <td><input type="text" name="Name" maxlength="20" style="width:80px;height:30px;"></td>
+                        <td><input type="text" name="type" maxlength="20" style="width:150px;height:30px;" readonly></td>
                     </tr>
                     <tr align="left">
                         <td class="field-name" >借阅时间:</td>
-                        <td><input type="date" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="date" name="borrowTime" maxlength="20" style="width:200px;height:30px;" readonly></td>
                         <td class="field-name" >应归还时间:</td>
-                        <td><input type="date" name="Name" maxlength="20" style="width:200px;height:30px;"></td>
+                        <td><input type="date" name="deadline" maxlength="20" style="width:200px;height:30px;" readonly></td>
                     </tr>
                 </table>
-            </div>
         </div>
 
         
@@ -120,8 +116,36 @@ export default {
 
 }
 
-.books-table{
+.book-table{
+    height: 100px;
     width: 800px;
+    margin-top: 5px;
+    background: #fafafa;
+    border-radius: 10px;
+    text-align:right;
     
+}
+
+.field-name{
+    width: fit-content;
+}
+
+.book-table input{
+    border: 1px solid #00000030;
+    border-radius: 4px;
+    background: none;
+    
+}
+
+.book-first{
+    margin-top: 100px;
+}
+
+.book-second{
+    margin-top: 50px;
+}
+
+.book-third{
+    margin-top: 50px;
 }
 </style>
