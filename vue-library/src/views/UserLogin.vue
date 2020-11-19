@@ -21,14 +21,16 @@
 
 
 <script>
+import axios from "axios"
 export default {
     data() {
         return {
              ruleForm: {
           username: '',
-          password:'',
+          password:'',      
          
         },
+        user:[],
         rules:{
             username:[
                 { required: true, message: '请输入用户名', trigger: 'blur'}
@@ -45,7 +47,18 @@ export default {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            axios({
+              method:"get",
+              url:"data/user.json"
+            }).then(res=>{
+              this.user = res.data;
+              console.log(this.user)
+              
+                alert("登陆成功")
+              
+              
+            })
+            
           } else {
             console.log('error submit!!');
             return false;

@@ -1,6 +1,6 @@
 <template>
   <div class="ModifyAnnounce-container">
-    <Navigation></Navigation>
+    <navigation></navigation>
     <div class="announce-box">
       <el-input placeholder="修改公告"  :disabled="true">
       </el-input>
