@@ -97,16 +97,16 @@ const routes = [{
             import ('../views/MyBookshelves.vue')
     },
     {
-        path: "/newissue",
-        name: "NewIssue",
-        component: () =>
-            import ('../views/NewIssue.vue')
-    },
-    {
         path: "/modifyAnnounce",
         name: "ModifyAnnounce",
         component: () =>
             import ('../views/ModifyAnnounce.vue')
+    },
+    {
+        path: "/statistics",
+        name: "Statistics",
+        component: () =>
+            import ('../views/Statistics.vue')
     },
 
 

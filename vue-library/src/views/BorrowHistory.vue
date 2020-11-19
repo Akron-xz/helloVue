@@ -1,10 +1,10 @@
 <template>
 <div class="history-container">
-<h class="history-title">借阅历史</h>
+<h1 class="history-title">借阅历史</h1>
  <el-divider></el-divider>
  <div class="search">
  <input type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;">
- <el-divider></el-divider>
+ 
  </div>
  <div class="table-box">
     <el-table
@@ -97,7 +97,7 @@
 }
 .search{
  position: absolute;
- top: 12%;
+ top: 15%;
  right: 10%;
 }
 .table-box{

@@ -105,7 +105,8 @@
 export default {
     data() {
         return {
-            bookName:"时间简史"
+            bookName:"时间简史",
+            input:"",
         }
     },
 }
