@@ -15,9 +15,9 @@
         <td prop="Name">
           <input
             type="text"
-            v-model="Name"
+            v-model="Name" 
             maxlength="20"
-            style="width: 180px; height: 30px"
+            style="width: 190px; height: 30px"
             
           />
         </td>
@@ -27,7 +27,7 @@
             type="text"
             v-model="Sex"
             maxlength="5"
-            style="width: 180px; height: 30px"
+            style="width: 190px; height: 30px"
           />
         </td>
         <td class="msg-header">年龄：</td>
@@ -36,7 +36,7 @@
             type="text"
             v-model="Age"
             maxlength="5"
-            style="width: 180px; height: 30px"
+            style="width: 190px; height: 30px"
           />
         </td>
       </tr>
@@ -47,7 +47,7 @@
             type="text"
          v-model="Email"
             maxlength="30"
-            style="width: 180px; height: 30px"
+            style="width: 190px; height: 30px"
           />
         </td>
         <td class="msg-header">出生年月：</td>
@@ -56,7 +56,7 @@
             type="text"
             v-model="Birthday"
             maxlength="30"
-            style="width: 180px; height: 30px"
+            style="width: 190px; height: 30px"
           />
         </td>
         <td class="msg-header">联系电话：</td>
@@ -65,7 +65,7 @@
             type="text"
             v-model="Phone"
             maxlength="30"
-            style="width: 180px; height: 30px"
+            style="width: 190px; height: 30px"
           />
         </td>
       </tr>
@@ -76,7 +76,7 @@
             type="text"
             v-model="Adress"
             maxlength="100"
-            style="width: 720px; height: 30px"
+            style="width: 750px; height: 30px"
           />
         </td>
       </tr>
@@ -87,17 +87,18 @@
             type="text"
             v-model="Introduction"
             maxlength="100"
-            style="width: 720px; height: 60px"
+            style="width: 750px; height: 60px"
           />
         </td>
       </tr>
     </table>
     <br /><br />
 
-    <div style="text-align: center">
-      <button value="submit" class="modify-btn">编辑</button>
+    <div>
+      
+      <el-button type="primary" class="modify-btn">编辑</el-button>
     </div>
-    <div class="modify-pasawd">
+    <div class="modify-pasawd-box">
       <el-form
         :model="ruleForm"
         :rules="rules"
@@ -124,7 +125,7 @@
 export default {
   data() {
     return {
-      Name: '测试',
+      Name: '',
       Sex:'',
       Age:'',
       Email:'',
@@ -204,9 +205,9 @@ button:hover {
 .msg-header {
   background-color: lightgray;
 }
-.modify-pasawd {
+.modify-pasawd-box {
   position: absolute;
   top: 60%;
-  left: 680px;
+  left: 36%;
 }
 </style>

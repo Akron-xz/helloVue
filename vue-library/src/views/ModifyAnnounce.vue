@@ -1,8 +1,8 @@
 <template>
   <div class="ModifyAnnounce-container">
-    <Navigation></Navigation>
+    <navigation></navigation>
     <div class="announce-box">
-      <el-input placeholder="修改公告" v-model="input" :disabled="true">
+      <el-input placeholder="修改公告"  :disabled="true">
       </el-input>
       <el-button type="info">发布公告</el-button>
     </div>
