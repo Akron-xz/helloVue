@@ -1,13 +1,13 @@
 <template>
   <div class="home-container">
     <div class="login box">
-      <img src="/img/home/login.jpg" alt="" class="home-img" @click="toLogin" />
+      <img src="/img/home/login.png" alt="" class="home-img" @click="toLogin" />
       <p class="logo-name" @click="toLogin">登陆</p>
     </div>
 
     <div class="admin box">
       <img
-        src="/img/home/manage.jpg"
+        src="/img/home/admin.png"
         alt=""
         class="home-img"
         @click="toAdmin"
@@ -17,7 +17,7 @@
 
     <div class="signup box">
       <img
-        src="/img/home/signup.jpg"
+        src="/img/home/signup.png"
         alt=""
         class="home-img"
         @click="toSignUp"
@@ -26,7 +26,7 @@
     </div>
 
     <div class="announce-box" >
-      <p></p>
+      <p>{{announceContent}}</p>
     </div>
   </div>
 </template>>
@@ -39,7 +39,7 @@ export default {
     return {
      
       announceTime: "",
-      announce:[ ]
+      announceContent:"",
      
 
       
@@ -49,10 +49,11 @@ export default {
     getAnnounce() {
       axios({
               method:"get",
-              url:"data/announce.json"
+              url:"http://localhost:8081/announce/list"
             }).then(res=>{
-                let list = res.data;
-              this.announce = list; 
+                let announceContent = res.data.announceContent;
+                this.announceContent = announceContent;
+              console.log(announceContent);
                     
               
             })

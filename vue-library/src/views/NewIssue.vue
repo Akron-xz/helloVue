@@ -100,7 +100,9 @@
 
 <script>
 import Navigation from "@/components/Nav.vue";
-import axios from "axios";
+
+import axios from 'axios';
+
 
 export default {
   name: "newIssue",
@@ -114,6 +116,15 @@ export default {
       dispalyInfo: false,
       searchContent: "",
       userData: [],
+
+      searchContent: '',
+        pageSize: 5,
+        total: 10,
+        tableData:[
+          {userId:1,name:"test1",sex:"1",age:"1",email:"111@qq.com"},
+          {userId:2,name:"test2",sex:"2",age:"2",email:"222@qq.com"},
+          {userId:3,name:"test3",sex:"3",age:"3",email:"333@qq.com"}
+        ],
 
       lists: [],
 
@@ -180,7 +191,17 @@ export default {
     },
   },
 
+<<<<<<< HEAD
   // created() {
+=======
+  created() {
+    this.getLists();
+  },
+  created(){
+  },
+
+  // mounted(){ //生命周期钩子函数  挂载完成
+>>>>>>> 1c2a8d62de9608e5b0632b940c56514cc657a84f
   //   this.getLists();
   // },
 
