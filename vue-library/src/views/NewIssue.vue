@@ -1,64 +1,84 @@
-<template lang="html">
-  <div class="admin-main-container">
+<template>
+  <div class="new-issue-container">
     <!-- 导航栏 -->
     <div>
       <navigation></navigation>
     </div>
-    <br>
+    <br />
     <!-- 展示简略表格 -->
     <div class="table-div" v-show="!dispalyInfo">
       <el-input
-          placeholder="输入姓名查询"
-          prefix-icon="el-icon-search"
-          v-model="searchContent"
-          style="width: 20%">
-        </el-input>
-        <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
-        
-        <br>
-        <br>
-        <el-table :data="tableData">
-            <el-table-column prop="userId" label="用户ID" width="80">
-            </el-table-column>
-            <el-table-column prop="name" label="姓名" width="100">
-            </el-table-column>
-            <el-table-column prop="sex" label="性别" width="80">
-            </el-table-column>
-            <el-table-column prop="age" label="年龄" width="60">
-            </el-table-column>
-            <el-table-column prop="email" label="邮箱" width="140">
-            </el-table-column>
-            <el-table-column label="操作">
-                <template slot-scope="scope">
-                    <el-button type="primary" size="mini" @click="retrieve(scope.row)">查看</el-button>
-                    <el-button type="primary" size="mini" @click="deleteById(scope.row)">注销</el-button>
-                </template>
-            </el-table-column>
-        </el-table>
-        <br>
-        <el-pagination
-            background
-            layout="prev, pager, next"
-            :page-size="pageSize"
-            :total="total"
-            @current-change="change">
-        </el-pagination>
-    </div>
-    <!-- 个人完整信息 -->
-    <div v-show="dispalyInfo">
-      <br>
-      <el-button type="primary" icon="el-icon-back" @click="goBack">返回</el-button>
-      <br>
-      <br>
-      <el-table :data="userData">
+        placeholder="输入姓名查询"
+        prefix-icon="el-icon-search"
+        v-model="searchContent"
+        style="width: 20%"
+      >
+      </el-input>
+      <el-button type="primary" icon="el-icon-search" @click="search"
+        >搜索</el-button
+      >
+      <br />
+      <br />
+      <el-table
+        :data="
+          lists.slice(
+            (page.currentPage - 1) * page.pageSize,
+            page.currentPage * page.pageSize
+          )
+        "
+        max-height="315"
+      >
         <el-table-column prop="userId" label="用户ID" width="80">
         </el-table-column>
-        <el-table-column prop="name" label="姓名" width="80">
+        <el-table-column prop="name" label="姓名" width="100">
         </el-table-column>
-        <el-table-column prop="sex" label="性别" width="60">
+        <el-table-column prop="sex" label="性别" width="80">
         </el-table-column>
         <el-table-column prop="age" label="年龄" width="60">
         </el-table-column>
+        <el-table-column prop="email" label="邮箱" width="140">
+        </el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button type="primary" size="mini" @click="retrieve(scope.row)"
+              >查看</el-button
+            >
+            <el-button type="primary" size="mini" @click="deleteById(scope.row)"
+              >注销</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+      <br />
+      <!-- 分页器 -->
+      <div class="block" style="margin-top: 15px">
+        <el-pagination
+          align="center"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="page.currentPage"
+          :page-sizes="[1, 5, 10, 20]"
+          :page-size="page.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="lists.length"
+        >
+        </el-pagination>
+      </div>
+    </div>
+    <!-- 个人完整信息 -->
+    <div v-show="dispalyInfo">
+      <br />
+      <el-button type="primary" icon="el-icon-back" @click="goBack"
+        >返回</el-button
+      >
+      <br />
+      <br />
+      <el-table :data="userData">
+        <el-table-column prop="userId" label="用户ID" width="80">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
+        <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
+        <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
         <el-table-column prop="email" label="邮箱" width="140">
         </el-table-column>
         <el-table-column prop="password" label="密码" width="140">
@@ -75,23 +95,27 @@
         </el-table-column>
       </el-table>
     </div>
-
   </div>
 </template>
 
 <script>
 import Navigation from "@/components/Nav.vue";
+
 import axios from 'axios';
 
+
 export default {
+  name: "newIssue",
+
   components: {
     Navigation,
   },
+
   data() {
     return {
-      activeIndex: "1",
-      activeIndex2: "1",
       dispalyInfo: false,
+      searchContent: "",
+      userData: [{}],
 
       searchContent: '',
         pageSize: 5,
@@ -101,67 +125,79 @@ export default {
           {userId:2,name:"test2",sex:"2",age:"2",email:"222@qq.com"},
           {userId:3,name:"test3",sex:"3",age:"3",email:"333@qq.com"}
         ],
-      pageInfo:{
-       pageNum:0,
-       pageSize:0,
-       total:0,
-       list:[]
-      }
+
+      lists: [],
+
+      page: {
+        currentPage: 1, // 当前页码
+        total: 20, // 总条数
+        pageSize: 5, // 每页的数据条数
+      },
     };
   },
-  methods:{
+  methods: {
     //搜索
-    search(){
-        //
+    search() {
+      //
     },
     //查看个人信息
-    retrieve(){
+    retrieve(row) {
+      console.log(row);
       this.dispalyInfo = !this.dispalyInfo;
-
+      
     },
     //返回
-    goBack(){
+    goBack() {
       this.dispalyInfo = !this.dispalyInfo;
     },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.page.currentPage = 1;
+      this.page.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val;
+    },
+    //获取 lists json 数据
+    getLists() {
+      axios({
+        //get方式获取数据
+        method: "get",
+        //接口地址
+        url: "/data/user.json",
+      })
+        .then((res) => {
+          //请求数据 res 返回的数据
+          console.log(res);
 
+          let list = res.data;
+          //列表数据
+          this.lists = list;
+          //检查数据是否能正常接受1
+          // console.log("json", this.lists);
+        })
+        .catch(function (error) {
+          //请求失败
+          console.log("error...", error);
+        });
+    },
+  },
+
+  created() {
+    this.getLists();
   },
   created(){
-    axios
-    .get('http://localhost:8080/user/selectUser',
-      {params:{
-        pageNum:1,
-        pageSize:5
-      }})
-    .then((res) => {
-     let pageInfo = res.data;
-     this.pageInfo = pageInfo;
-     this.tableData = pageInfo.list;
-    })
-    .catch((err) => console.log("error...", err));
-
-    axios
-    .post('http://localhost:8080/user/updateUser',
-      {
-        name:"小吴",
-        sex:1,
-        age:18,
-        email:"123456789@xx.com",
-        birthday:"1995-02-03",
-        phone:"1234567890",
-        address:"中国",
-        introduction:"一个人"
-      },{emulateJSON:true})
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => console.log("error...", err));
   },
 
+  // mounted(){ //生命周期钩子函数  挂载完成
+  //   this.getLists();
+  // },
 };
 </script>
 
 <style scoped>
-.admin-main-container {
+.new-issue-container {
   position: fixed;
   left: 0;
   top: 0;
@@ -175,13 +211,14 @@ a {
   text-decoration: none;
 }
 
-.table-div{
+.table-div {
   width: 700px;
-  margin: auto; 
-  position: absolute; 
-  top: 80px; 
-  left: 0; 
-  right: 0; 
+  margin: auto;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
   bottom: 0;
 }
+
 </style>

@@ -39,9 +39,9 @@
 
       <label for=""
         >篇幅:
-        <el-select clearable placeholder="请选择">
+        <el-select clearable placeholder="请选择" v-model="type.value">
           <el-option
-            v-for="item in options"
+            v-for="item in type"
             :key="item.value"
             :label="item.label"
             :value="item.value"

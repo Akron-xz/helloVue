@@ -1,5 +1,14 @@
 <template>
     <div class="MyInformation-container container">
+         <div>
+      <el-header>
+        <router-link to="./" class="a">首页</router-link>
+        /
+        <router-link to="./user" class="b">我是借阅者</router-link>
+        /
+        <router-link to="./MyInformation" class="c">我的信息</router-link>
+      </el-header>
+    </div>
         <div class="exit">
         <button class="exit-login">
             退出登陆
@@ -7,12 +16,12 @@
         </div>
         <div class="img-box">
             <div class="information-modify">
-                <img src="/img/PPT11/information.jpg" class="PPT11-img" alt="" @click="toModifyMsg"><br>         
-                <p>信息修改</p>
+                <img src="/img/user/modify.png" class="PPT11-img" alt="" @click="toModifyMsg"><br>         
+                <p @click="toModifyMsg">信息修改</p>
             </div>
             <div class="borrowing-history">
-                <img src="/img/PPT11/history.jpg" class="PPT11-img" alt="" @click="toBorrowHistory"><br>
-                <p>借阅历史</p>
+                <img src="/img/user/books.png" class="PPT11-img" alt="" @click="toBorrowHistory"><br>
+                <p @click="toBorrowHistory">借阅历史</p>
             </div>
         </div>
     </div>
@@ -41,6 +50,24 @@ export default {
 </script>
 
 <style scoped>
+.el-header {
+  position: absolute;
+  left: 30px;
+  color: #333;
+  line-height: 60px;
+  width: 100%;
+  height: 60px;
+  text-align: left;
+}
+.a {
+  text-decoration: none;
+}
+.b {
+  text-decoration: none;
+}
+.c {
+  text-decoration: none;
+}
 .MyInformation-container{
     position: fixed;
     left: 0;
@@ -95,10 +122,9 @@ export default {
 }
 
 .img-box{
+    display: flex;
     list-style-type: none;
-    float: left;
-    margin: auto;
-    width: 33%;
+    justify-content: space-around;
 }
 
 
