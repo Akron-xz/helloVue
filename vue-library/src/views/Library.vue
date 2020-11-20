@@ -13,12 +13,12 @@
     <div class="select">
       <label for=""
         >国家:
-        <el-select v-model="country.value" clearable placeholder="请选择">
+        <el-select v-model="couId" clearable placeholder="请选择">
           <el-option
             v-for="item in country"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            :key="item.countryId"
+            :label="item.countryName"
+            :value="item.countryId"
           >
           </el-option>
         </el-select>
@@ -26,12 +26,12 @@
 
       <label for=""
         >类型:
-        <el-select v-model="type.value" clearable placeholder="请选择">
+        <el-select v-model="tyId" clearable placeholder="请选择">
           <el-option
             v-for="item in type"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            :key="item.typeId"
+            :label="item.typeName"
+            :value="item.typeId"
           >
           </el-option>
         </el-select>
@@ -52,18 +52,18 @@
 
       <label for=""
         >主题:
-        <el-select v-model="value" clearable placeholder="请选择">
+        <el-select v-model="thId" clearable placeholder="请选择">
           <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in theme"
+            :key="item.themeId"
+            :label="item.themeName"
+            :value="item.themeId"
           >
           </el-option>
         </el-select>
       </label>
     </div>
-    <el-button type="primary" class="query">查询</el-button>
+    <el-button type="primary" class="query" @click="selectByLabel">查询</el-button>
     <div>
       <div class="keyWordQuery">
         <el-input
@@ -77,10 +77,10 @@
     </div>
     <div class="table-box" v-show="tableDisplay">
       <el-table :data="tableData"  >
-        <el-table-column label="书名"  property="bookname"></el-table-column>
-        <el-table-column label="国家"  property="country"></el-table-column>
-        <el-table-column label="类型"  property="type"></el-table-column>
-        <el-table-column label="主题"  property="theme"></el-table-column>
+        <el-table-column label="书名"  property="bookName"></el-table-column>
+        <el-table-column label="国家"  property="country.countryName"></el-table-column>
+        <el-table-column label="类型"  property="type.typeName"></el-table-column>
+        <el-table-column label="主题"  property="theme.themeName"></el-table-column>
         <el-table-column label="状态">
           <el-button type="" @click="borrowStatus">借阅</el-button>
         </el-table-column>
@@ -96,41 +96,53 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
+      couId:'',
+      tyId:'',
+      thId:'',
+      pages:0,
       brief:"霍金写的书",
       bookname:"时间简史",
       tableDisplay:true,
       tableData:[{
-        bookname : "1",
-        country : "2",
+        bookName : "1",
+        country:{
+          countryId : 0,
+          countryName : "",
+        },
         type : "3",
         theme : "4",
         brief : "5",
 
       }],
-      country: [
-        {
-          value: "中国",
-          label: "中国",
-        },
-        {
-          value: "外国",
-          label: "外国",
-        },
-      ],
-      type: [
-        {
-          value: "小说",
-          label: "小说",
-        },
-        {
-          value: "教辅",
-          label: "教辅",
-        },
-      ],
       value: "",
+      pageInfo:{
+       pageNum:0,
+       pageSize:0,
+       total:0,
+       list:[]
+      },
+      country:[
+        {
+          countryId:0,
+          countryName:'',
+        }
+      ],
+      type:[
+        {
+          typeId:0,
+          typeName:'',
+        }
+      ],
+      theme:[
+        {
+          themeId:0,
+          themeName:'',
+        }
+      ]
     };
   },
   methods:{
@@ -140,8 +152,43 @@ export default {
 
     borrow(){
       this.tableDisplay=!this.tableDisplay;
+    },
+
+    selectByLabel(){
+      axios
+      .post('http://localhost:8080/book/list/label',
+        {
+          countryId:this.couId,
+          typeId:this.tyId,
+          themeId:this.thId,
+          lengthRange:this.pages
+        },{emulateJSON:true})
+      .then((res) => {
+        let pageInfo = res.data;
+        this.pageInfo = pageInfo;
+        this.tableData = pageInfo.list;
+      })
+      .catch((err) => console.log("error...", err));
     }
-  }
+  },
+  created(){
+    axios
+    .get('http://localhost:8080/book/list',
+      {params:{
+        pageNum:1,
+        pageSize:5
+      }})
+    .then((res) => {
+     let pageInfo = res.data;
+     this.pageInfo = pageInfo;
+     this.tableData = pageInfo.list;
+    })
+    .catch((err) => console.log("error...", err));
+
+    axios.get('http://localhost:8080/country/list').then((res)=>{this.country=res.data});
+    axios.get('http://localhost:8080/type/list').then((res)=>{this.type=res.data});
+    axios.get('http://localhost:8080/theme/list').then((res)=>{this.theme=res.data});
+  },
 };
 </script>
 

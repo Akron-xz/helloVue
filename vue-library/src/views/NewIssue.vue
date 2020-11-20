@@ -81,6 +81,7 @@
 
 <script>
 import Navigation from "@/components/Nav.vue";
+import axios from 'axios';
 
 export default {
   components: {
@@ -99,7 +100,13 @@ export default {
           {userId:1,name:"test1",sex:"1",age:"1",email:"111@qq.com"},
           {userId:2,name:"test2",sex:"2",age:"2",email:"222@qq.com"},
           {userId:3,name:"test3",sex:"3",age:"3",email:"333@qq.com"}
-        ]
+        ],
+      pageInfo:{
+       pageNum:0,
+       pageSize:0,
+       total:0,
+       list:[]
+      }
     };
   },
   methods:{
@@ -117,6 +124,37 @@ export default {
       this.dispalyInfo = !this.dispalyInfo;
     },
 
+  },
+  created(){
+    axios
+    .get('http://localhost:8080/user/selectUser',
+      {params:{
+        pageNum:1,
+        pageSize:5
+      }})
+    .then((res) => {
+     let pageInfo = res.data;
+     this.pageInfo = pageInfo;
+     this.tableData = pageInfo.list;
+    })
+    .catch((err) => console.log("error...", err));
+
+    axios
+    .post('http://localhost:8080/user/updateUser',
+      {
+        name:"小吴",
+        sex:1,
+        age:18,
+        email:"123456789@xx.com",
+        birthday:"1995-02-03",
+        phone:"1234567890",
+        address:"中国",
+        introduction:"一个人"
+      },{emulateJSON:true})
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => console.log("error...", err));
   },
 
 };
