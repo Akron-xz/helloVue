@@ -26,7 +26,7 @@
             page.currentPage * page.pageSize
           )
         "
-        max-height="315"
+        
       >
         <el-table-column prop="userId" label="用户ID" width="80">
         </el-table-column>
@@ -136,7 +136,6 @@ export default {
       this.dispalyInfo = !this.dispalyInfo;
       this.userData = [row];
     },
-    //删除某个用户
     deleteById(row){
       console.log(row)
       // const id=row.id;

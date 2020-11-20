@@ -136,9 +136,7 @@ export default {
       this.dispalyInfo = !this.dispalyInfo;
       this.userData = [row];
     },
-    //删除某个用户
     deleteById(row){
-      console.log(row)
       // const id=row.id;
       // axios()
     },

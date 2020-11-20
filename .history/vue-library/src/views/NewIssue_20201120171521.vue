@@ -136,11 +136,9 @@ export default {
       this.dispalyInfo = !this.dispalyInfo;
       this.userData = [row];
     },
-    //删除某个用户
     deleteById(row){
-      console.log(row)
-      // const id=row.id;
-      // axios()
+      const id=row.id;
+      axios()
     },
     //返回
     goBack() {
@@ -184,7 +182,7 @@ export default {
   //   this.getLists();
   // },
 
-  mounted(){ //生命周期钩子函数  挂载完成
+  mountd(){ //生命周期钩子函数  挂载完成
     this.getLists();
   },
 };
