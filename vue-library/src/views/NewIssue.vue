@@ -116,8 +116,6 @@ export default {
       dispalyInfo: false,
       searchContent: "",
       userData: [],
-
-      searchContent: '',
         pageSize: 5,
         total: 10,
         tableData:[
@@ -191,13 +189,7 @@ export default {
     },
   },
 
-  created() {
-    this.getLists();
-  },
-  created(){
-  },
-
-  // mounted(){ //生命周期钩子函数  挂载完成
+  // created() {
   //   this.getLists();
   // },
 

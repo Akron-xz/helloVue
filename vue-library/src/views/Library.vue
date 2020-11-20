@@ -107,12 +107,14 @@ export default {
       brief:"霍金写的书",
       bookname:"时间简史",
       tableDisplay:true,
+
       tableData:[{
         bookName : "1",
         country:{
           countryId : 0,
           countryName : "",
         },
+        
         type : "3",
         theme : "4",
         brief : "5",
