@@ -178,8 +178,9 @@ export default {
         //   userId : userId
         // },
       });
-      this.getLists();
+      
       alert("删除成功");
+      this.getLists();
     },
     //返回
     goBack() {
