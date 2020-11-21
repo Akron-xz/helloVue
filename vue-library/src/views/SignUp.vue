@@ -1,5 +1,6 @@
 <template>
     <div class="signup-container">
+      <div class="signUpBox">
         <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="注册ID：" prop="id">
             <el-input v-model.number="ruleForm2.id"></el-input>
@@ -25,6 +26,7 @@
             <el-button @click="resetForm('ruleForm2')">重置</el-button>
         </el-form-item>
         </el-form>
+      </div>
     </div>
 </template>
 
@@ -142,21 +144,33 @@ import axios from "axios"
 </script>
 
 <style scoped>
-    .signup-container {
+.signup-container {
         position: fixed;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-    }
+}
 
-    .demo-ruleForm{
+.demo-ruleForm{
         position: absolute;
         right: 70px;
-        top: 80px;
+        top: 30px;
         width: 300px;
         height: 50px;
-    }
+}
+
+.signUpBox{
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 400px;
+  height: 410px;
+  background: white;
+  border-radius: 20px;
+
+}
+  
 
 </style>

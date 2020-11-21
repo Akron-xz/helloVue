@@ -1,19 +1,23 @@
 <template>
 <div  class="login-container">
       <el-header>用户登陆</el-header>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="username">
+      <div class="loginBox">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="用户名" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-            <el-input v-model="ruleForm.password" type="password"></el-input>
-        </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-      </el-form-item>
- 
-  </el-form>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+           <el-input v-model="ruleForm.password" type="password"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
+            <el-link type="warning" @click="toSignUp">立即注册</el-link>
+          </el-form-item>
+         
+        </el-form>
+      
+      </div>
     
 
 </div>
@@ -67,7 +71,10 @@ export default {
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      }
+      },
+      toSignUp(){
+            this.$router.push({path:'/SignUp'})
+      },
     }
     
 }
@@ -90,11 +97,8 @@ export default {
         top: 180px;
         width: 300px;
         height: 50px;
-       
  }
  .el-header {
-    
-   
     text-align: left;
     line-height: 60px;
     font-weight: 1000;
@@ -104,8 +108,19 @@ export default {
     letter-spacing: 0.04em;
     
   }
-  
 
+.loginBox{
+  margin-left: 70px;
+  margin-top: 100px;
+  width: 380px;
+  height: 230px;
+  border-radius: 20px;
+  background: rgb(255, 255, 255);
+}
+  
+.el-link{
+  float: right;
+}
   
 
 
