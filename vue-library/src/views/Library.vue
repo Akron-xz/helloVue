@@ -73,14 +73,10 @@
           placeholder="请输入关键字"
           style="width: 220px"
           class="input-with-select"
-          v-model="inputContent"
+          v-model="key"
           @keyup.enter.native="searchContent"
         >
-          <el-button slot="append" icon="el-icon-search" @click="searchContent"
-            >查询</el-button
-          >
-
-          v-model="key" >
+        
           <el-button
             slot="append"
             icon="el-icon-search"
@@ -197,12 +193,7 @@ export default {
       ],
 
       // 篇幅
-      value: [
-        {
-          vId: 0,
-          vType: "",
-        },
-      ],
+    
 
       // 主题
 
@@ -278,9 +269,8 @@ export default {
     selectByLabel() {
       axios
         .post(
-          "http://localhost:8081/book/list/" + this.inputContent,
 
-          "http://localhost:8080/book/list/label",
+          "http://localhost:8081/book/list/label",
 
           {
             countryId: this.couId,
@@ -299,7 +289,7 @@ export default {
     selectByKey() {
       axios
         .get(
-          "http://localhost:8080/book/list/key",
+          "http://localhost:8081/book/list/key",
           {
             params:{
               key:this.key,
@@ -315,7 +305,7 @@ export default {
 
   created() {
     axios
-      .get("http://localhost:8080/book/list", {
+      .get("http://localhost:8081/book/list", {
         params: {
           pageNum: 1,
 
@@ -329,13 +319,13 @@ export default {
       })
       .catch((err) => console.log("error...", err));
 
-    axios.get("http://localhost:8080/country/list").then((res) => {
+    axios.get("http://localhost:8081/country/list").then((res) => {
       this.country = res.data;
     });
-    axios.get("http://localhost:8080/type/list").then((res) => {
+    axios.get("http://localhost:8081/type/list").then((res) => {
       this.type = res.data;
     });
-    axios.get("http://localhost:8080/theme/list").then((res) => {
+    axios.get("http://localhost:8081/theme/list").then((res) => {
       this.theme = res.data;
     });
   },
