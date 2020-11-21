@@ -228,7 +228,7 @@ export default {
     },
      MsgSave(){
       this.tableDisplay=!this.tableDisplay;
-<<<<<<< HEAD
+
     },
     MsgInsert(){
        this.tableDisplayS=!this.tableDisplayS;
@@ -245,10 +245,9 @@ export default {
       console.log(`当前页: ${val}`);
       this.page.currentPage = val;
     },
-=======
-    }
->>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
-  },
+
+    },
+  
   data() {
     return {
       input:"",
@@ -258,7 +257,7 @@ export default {
       form: {
       },
 
-<<<<<<< HEAD
+
     tableData:
      [{ BookName: "1",OnTime: "2",},{ BookName: "1",OnTime: "8",},{ BookName: "1",OnTime: "6",},],
 
@@ -273,7 +272,7 @@ export default {
       optionsOff_number:[{value: "选项1",label: "1", },],
       off_number: "",
       optionsOn_number:[{value: "选项1",label: "1",},],
-=======
+
     tableData: [
         {
           BookName: "1",
@@ -349,7 +348,6 @@ export default {
           label: "2",
         },
       ],
->>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
       on_number: "",
       page: {
         currentPage: 1, // 当前页码
