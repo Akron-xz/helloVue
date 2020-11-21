@@ -15,10 +15,9 @@
         <td prop="Name">
           <input
             type="text"
-            v-model="Name" 
+            v-model="Name"
             maxlength="20"
             style="width: 190px; height: 30px"
-            
           />
         </td>
         <td class="msg-header">性别：</td>
@@ -45,7 +44,7 @@
         <td>
           <input
             type="text"
-         v-model="Email"
+            v-model="Email"
             maxlength="30"
             style="width: 190px; height: 30px"
           />
@@ -92,10 +91,12 @@
         </td>
       </tr>
     </table>
+
+
+
     <br /><br />
 
     <div>
-      
       <el-button type="primary" class="modify-btn">编辑</el-button>
     </div>
     <div class="modify-pasawd-box">
@@ -125,14 +126,14 @@
 export default {
   data() {
     return {
-      Name: '',
-      Sex:'',
-      Age:'',
-      Email:'',
-      Birthday:'',
-      Phone:'',
-      Adress:'',
-      Introduction:'',
+      Name: "",
+      Sex: "",
+      Age: "",
+      Email: "",
+      Birthday: "",
+      Phone: "",
+      Adress: "",
+      Introduction: "",
       ruleForm: {
         password: "",
       },
@@ -140,9 +141,6 @@ export default {
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         password2: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
-      
-            
-         
     };
   },
   methods: {
@@ -176,6 +174,11 @@ export default {
   position: absolute;
   right: 370px;
   top: 80px;
+
+  border-color: rgb(231, 231, 231);
+  background: white;
+
+
 }
 .tableid input {
   border: 0;

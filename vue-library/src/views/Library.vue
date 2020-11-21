@@ -39,12 +39,12 @@
 
       <label for=""
         >篇幅:
-        <el-select clearable placeholder="请选择" v-model="pages">
+        <el-select clearable placeholder="请选择" v-model="type.value">
           <el-option
-            v-for="item in page"
-            :key="item.pageId"
-            :label="item.pageName"
-            :value="item.pageId"
+            v-for="item in type"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
           >
           </el-option>
         </el-select>
@@ -70,9 +70,8 @@
           placeholder="请输入关键字"
           type="text"
           class="input-with-select"
-          v-model="key"
         >
-          <el-button slot="append" icon="el-icon-search" @click="selectByKey"></el-button>
+          <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </div>
     </div>
@@ -104,8 +103,7 @@ export default {
       couId:'',
       tyId:'',
       thId:'',
-      pages:'',
-      key:'',
+      pages:0,
       brief:"霍金写的书",
       bookname:"时间简史",
       tableDisplay:true,
@@ -123,6 +121,12 @@ export default {
 
       }],
       value: "",
+      pageInfo:{
+       pageNum:0,
+       pageSize:0,
+       total:0,
+       list:[]
+      },
       country:[
         {
           countryId:0,
@@ -134,24 +138,6 @@ export default {
           typeId:0,
           typeName:'',
         }
-      ],
-      page:[
-        {
-          pageId:1,
-          pageName:"1-500字",
-        },
-        {
-          pageId:2,
-          pageName:"501-1000字",
-        },
-        {
-          pageId:3,
-          pageName:"1001-1500字",
-        },
-        {
-          pageId:4,
-          pageName:">1500字",
-        },
       ],
       theme:[
         {
@@ -180,26 +166,12 @@ export default {
           lengthRange:this.pages
         },{emulateJSON:true})
       .then((res) => {
-        this.tableData = res.data;
-      })
-      .catch((err) => console.log("error...", err));
-    },
-
-    selectByKey(){
-      axios
-      .get('http://localhost:8080/book/list/key',
-        {
-          params:{
-            key:this.key
-          }
-        })
-      .then((res) => {
-        this.tableData = res.data;
-        this.key='';
+        let pageInfo = res.data;
+        this.pageInfo = pageInfo;
+        this.tableData = pageInfo.list;
       })
       .catch((err) => console.log("error...", err));
     }
-    
   },
   created(){
     axios
@@ -210,7 +182,9 @@ export default {
         pageSize:5
       }})
     .then((res) => {
-     this.tableData = res.data;
+     let pageInfo = res.data;
+     this.pageInfo = pageInfo;
+     this.tableData = pageInfo.list;
     })
     .catch((err) => console.log("error...", err));
 
