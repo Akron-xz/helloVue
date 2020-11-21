@@ -5,7 +5,7 @@
       cellspacing="0"
       width="850px"
       align="center"
-      class="tableid"
+      class="tableBox"
     >
       <tr>
         <td align="center" colspan="6" class="msg-title">个人资料</td>
@@ -170,8 +170,8 @@ export default {
   right: 0;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
-.tableid {
-  position: absolute;
+.tableBox {
+  position: fixed;
   right: 370px;
   top: 80px;
   border-color: rgb(231, 231, 231);
@@ -179,12 +179,12 @@ export default {
 
 
 }
-.tableid input {
+.tableBox input {
   border: 0;
   background: none;
 }
 .modify-btn {
-  position: absolute;
+  position: fixed;
   top: 320px;
   right: 380px;
   height: 40px;
@@ -202,8 +202,8 @@ button:hover {
   background-color: lightgray;
 }
 .modify-pasawd-box {
-  position: absolute;
-  top: 60%;
+  position: fixed;
+  top: 400px;
   left: 36%;
 }
 </style>

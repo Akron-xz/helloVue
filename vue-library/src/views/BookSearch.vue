@@ -2,8 +2,8 @@
   <div class="search-container">
  <Navigation></Navigation>
 
-      <div v-show="tableDisplay">
-      <div v-show="tableDisplayS">
+      <div v-show="ModifyTableDisplay">
+      <div v-show="InsertTableDisplay">
       <h1 class="search-title">书籍查询</h1>
        <div class="choiceBox" >
       <table>
@@ -68,7 +68,7 @@
         </el-table-column>
       </el-table>
     </div>
-     <div class="paging" >
+     <div class="pagingBox" >
         <el-pagination
           align="center"
           @size-change="handleSizeChange"
@@ -84,7 +84,7 @@
     </div>
     </div>
  <!-- 添加书籍弹窗 -->
-     <div class="MsgModify-box" v-show="!tableDisplayS"> 
+     <div class="MsgModify-box" v-show="!InsertTableDisplay"> 
       <table>
       <tr>
       <td></td>
@@ -143,11 +143,11 @@
         </tr>
         <tr>
         <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSaveS">保存</el-button></td></tr>
+        <td><el-button type="primary" @click="MsgSaveI">保存</el-button></td></tr>
       </table>
     </div>
     <!-- 编辑弹窗 -->
-    <div class="MsgModify-box" v-show="!tableDisplay"> 
+    <div class="MsgModify-box" v-show="!ModifyTableDisplay"> 
       <table>
       <tr>
       <td></td>
@@ -206,7 +206,7 @@
         </tr>
         <tr>
         <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSave">保存</el-button></td></tr>
+        <td><el-button type="primary" @click="MsgSaveM">保存</el-button></td></tr>
       </table>
     </div>
     
@@ -221,17 +221,17 @@ export default {
   },
   methods: {
     MsgModify(){
-      this.tableDisplay=!this.tableDisplay;
+      this.ModifyTableDisplay=!this.ModifyTableDisplay;
     },
-     MsgSave(){
-      this.tableDisplay=!this.tableDisplay;
+     MsgSaveM(){
+      this.ModifyTableDisplay=!this.ModifyTableDisplay;
 
     },
     MsgInsert(){
-       this.tableDisplayS=!this.tableDisplayS;
+       this.InsertTableDisplay=!this.InsertTableDisplay;
     },
-    MsgSaveS(){
-      this.tableDisplayS=!this.tableDisplayS;
+    MsgSaveI(){
+      this.InsertTableDisplay=!this.InsertTableDisplay;
     },
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -248,13 +248,11 @@ export default {
   data() {
     return {
       input:"",
-      tableDisplay:true,
-      tableDisplayS:true,
+      ModifyTableDisplay:true,
+      InsertTableDisplay:true,
       brief:"暂无",
       book_name:"书名",
      
-
-
     tableData:
      [{ BookName: "1",OnTime: "2",},{ BookName: "1",OnTime: "8",},{ BookName: "1",OnTime: "6",},],
 
@@ -294,26 +292,28 @@ export default {
   color: darkblue;
 }
 .choiceBox {
-  position: absolute;
+  position: fixed;
   right: 10%;
+  top: 150px;
 }
 .searchBox {
-  position: absolute;
-  top: 35%;
+  position: fixed;
+  top: 220px;
   right: 10%;
 }
 .tableBox {
-  position: absolute;
-  top: 40%;
+  position: fixed;
+  top: 260px;
   right: 10%;
   width: 80%;
 }
-.paging {
+.pagingBox {
   position: fixed;
   width: 200px;
   height: 50px;
   right: 300px;
   bottom: 0;
+  top: 700px;
 }
 .edit-btn {
   font-weight: bold;

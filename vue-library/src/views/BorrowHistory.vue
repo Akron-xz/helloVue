@@ -2,14 +2,16 @@
 <div class="history-container">
 <h1 class="history-title">借阅历史</h1>
  <el-divider></el-divider>
- <div class="search">
+ <div class="searchBox">
  <input type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;">
  
  </div>
  <div class="table-box">
     <el-table
-      :data="tableData"
-      style="width: 100%">
+      :data="tableData.slice(
+            (page.currentPage - 1) * page.pageSize,
+            page.currentPage * page.pageSize
+          )" style="width: 100%">
       
       <el-table-column
         prop="BookName"
@@ -51,12 +53,19 @@
     </el-table>
  </div>
     <!-- 分页 -->
-    <div class="block">
-  <el-pagination
-    layout="prev, pager, next"
-    :total="50">
-  </el-pagination>
-</div>
+    <div class="pagingBox" >
+        <el-pagination
+          align="center"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="page.currentPage"
+          :page-sizes="[1, 5, 10, 20]"
+          :page-size="page.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="tableData.length"
+        >
+        </el-pagination>
+      </div>
 </div>
   </template>
 <script>
@@ -68,7 +77,8 @@
             BorrowTime: '2',
             ReturnTime: '3',
             ValidTime: '4',
-          }],
+          },
+          ],
           gridData:[{
             UserNumber:'1',
             Name:'',
@@ -76,9 +86,25 @@
              BookName: '',
             BorrowTime: '',
             ValidTime: '',
-          }]
+          }],
+          page: {
+        currentPage: 1, // 当前页码
+        total: 20, // 总条数
+        pageSize: 5, // 每页的数据条数
+      },
         }
-      }
+      },
+      methods: {
+         handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.page.currentPage = 1;
+      this.page.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val;
+    },
+      },
     }
 </script>
 
@@ -95,24 +121,25 @@
   font-size: 40px;
   color: darkblue;
 }
-.search{
- position: absolute;
- top: 15%;
+.searchBox{
+ position: fixed;
+ top: 116px;
  right: 10%;
 }
 .table-box{
-  position: absolute;
-  top: 20%;
-  right: 10%;
+  position: fixed;
+  top: 155px;
+  right: 160px;
   width: 80%;
   
 }
-.block{
+.pagingBox{
   position: fixed;
   width: 200px;
   height: 50px;
-  right: 160px;
+  right: 280px;
   bottom: 0;
+  top: 690px;
 
 }
 .reference-btn{
