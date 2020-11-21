@@ -62,19 +62,30 @@
           </el-option>
         </el-select>
       </label>
+      <el-button type="primary" class="query" @click="selectByLabel"
+        >查询</el-button
+      >
     </div>
-    <el-button type="primary" class="query" @click="selectByLabel"
-      >查询</el-button
-    >
+
     <div>
       <div class="keyWordQuery">
         <el-input
           placeholder="请输入关键字"
-          type="text"
+          style="width: 220px"
           class="input-with-select"
-          v-model="key"
+          v-model="inputContent"
+          @keyup.enter.native="searchContent"
         >
-          <el-button slot="append" icon="el-icon-search" @click="selectByKey"></el-button>
+          <el-button slot="append" icon="el-icon-search" @click="searchContent"
+            >查询</el-button
+          >
+
+          v-model="key" >
+          <el-button
+            slot="append"
+            icon="el-icon-search"
+            @click="selectByKey"
+          ></el-button>
         </el-input>
       </div>
     </div>
@@ -140,19 +151,21 @@ export default {
       tyId: "",
       thId: "",
       pagenumber: "",
-      key:"",
+      key: "",
       brief: "霍金写的书",
       bookname: "时间简史",
       tableDisplay: true,
 
-      // 接受数据
-      lists:[],
+      // 接收数据
+      lists: [],
       // 分页
       page: {
         currentPage: 1, // 当前页码
         total: 20, // 总条数
         pageSize: 5, // 每页的数据条数
       },
+      // 输入框内容
+      inputContent: "",
 
       tableData: [
         {
@@ -174,30 +187,44 @@ export default {
           countryName: "",
         },
       ],
+
+      // 类型
       type: [
         {
           typeId: 0,
           typeName: "",
         },
       ],
-      pages:[
+
+      // 篇幅
+      value: [
         {
-          pageId:1,
-          pageName:"1-500字",
-        },
-        {
-          pageId:2,
-          pageName:"501-1000字",
-        },
-        {
-          pageId:3,
-          pageName:"1001-1500字",
-        },
-        {
-          pageId:4,
-          pageName:">1500字",
+          vId: 0,
+          vType: "",
         },
       ],
+
+      // 主题
+
+      pages: [
+        {
+          pageId: 1,
+          pageName: "1-500字",
+        },
+        {
+          pageId: 2,
+          pageName: "501-1000字",
+        },
+        {
+          pageId: 3,
+          pageName: "1001-1500字",
+        },
+        {
+          pageId: 4,
+          pageName: ">1500字",
+        },
+      ],
+
       theme: [
         {
           themeId: 0,
@@ -227,10 +254,34 @@ export default {
       this.page.currentPage = val;
     },
 
+    // 书籍模糊搜索
+    searchContent() {
+      if (this.inputContent == "") {
+        alert("请输入需要查询的信息。");
+        return 0;
+      }
+      axios
+        .post(
+          // 接口路径是什么？
+          "http://localhost:8081/book/list/" + this.inputContent
+        )
+        .then((res) => {
+          console.log("搜索成功");
+          let list = res.data;
+          console.log(list);
+        })
+        .catch((err) => console.log("error...", err));
+      //清空输入框
+      this.inputContent = "";
+    },
+
     selectByLabel() {
       axios
         .post(
+          "http://localhost:8081/book/list/" + this.inputContent,
+
           "http://localhost:8080/book/list/label",
+
           {
             countryId: this.couId,
             typeId: this.tyId,
@@ -256,11 +307,12 @@ export default {
           })
         .then((res) => {
           this.lists = res.data;
-          this.key = '';
+          this.key = "";
         })
         .catch((err) => console.log("error...", err));
     },
   },
+
   created() {
     axios
       .get("http://localhost:8080/book/list", {
@@ -271,7 +323,6 @@ export default {
         },
       })
       .then((res) => {
-
         // console.log(pageInfo);
         // 使用全局lists接受响应的json数据
         this.lists = res.data;
@@ -335,15 +386,10 @@ export default {
   width: 200px;
 }
 
-.query {
-  position: fixed;
-  top: 150px;
-  right: 60px;
-}
 .keyWordQuery {
   position: fixed;
   top: 200px;
-  right: 60px;
+  right: 300px;
   width: 200px;
 }
 .table-box {
