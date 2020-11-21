@@ -39,12 +39,12 @@
 
       <label for=""
         >篇幅:
-        <el-select clearable placeholder="请选择" v-model="type.value">
+        <el-select clearable placeholder="请选择" v-model="pagenumber">
           <el-option
-            v-for="item in type"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            v-for="item in pages"
+            :key="item.pageId"
+            :label="item.pageName"
+            :value="item.pageId"
           >
           </el-option>
         </el-select>
@@ -72,8 +72,9 @@
           placeholder="请输入关键字"
           type="text"
           class="input-with-select"
+          v-model="key"
         >
-          <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-button slot="append" icon="el-icon-search" @click="selectByKey"></el-button>
         </el-input>
       </div>
     </div>
@@ -138,7 +139,8 @@ export default {
       couId: "",
       tyId: "",
       thId: "",
-      pages: 0,
+      pagenumber: "",
+      key:"",
       brief: "霍金写的书",
       bookname: "时间简史",
       tableDisplay: true,
@@ -166,12 +168,6 @@ export default {
         },
       ],
       value: "",
-      pageInfo: {
-        pageNum: 0,
-        pageSize: 0,
-        total: 0,
-        list: [],
-      },
       country: [
         {
           countryId: 0,
@@ -182,6 +178,24 @@ export default {
         {
           typeId: 0,
           typeName: "",
+        },
+      ],
+      pages:[
+        {
+          pageId:1,
+          pageName:"1-500字",
+        },
+        {
+          pageId:2,
+          pageName:"501-1000字",
+        },
+        {
+          pageId:3,
+          pageName:"1001-1500字",
+        },
+        {
+          pageId:4,
+          pageName:">1500字",
         },
       ],
       theme: [
@@ -216,26 +230,40 @@ export default {
     selectByLabel() {
       axios
         .post(
-          "http://localhost:8081/book/list/label",
+          "http://localhost:8080/book/list/label",
           {
             countryId: this.couId,
             typeId: this.tyId,
             themeId: this.thId,
-            lengthRange: this.pages,
+            lengthRange: this.pagenumber,
           },
           { emulateJSON: true }
         )
         .then((res) => {
-          let pageInfo = res.data;
-          this.pageInfo = pageInfo;
-          this.tableData = pageInfo.list;
+          this.lists = res.data;
+        })
+        .catch((err) => console.log("error...", err));
+    },
+
+    selectByKey() {
+      axios
+        .get(
+          "http://localhost:8080/book/list/key",
+          {
+            params:{
+              key:this.key
+            }
+          })
+        .then((res) => {
+          this.lists = res.data;
+          this.key = '';
         })
         .catch((err) => console.log("error...", err));
     },
   },
   created() {
     axios
-      .get("http://localhost:8081/book/list", {
+      .get("http://localhost:8080/book/list", {
         params: {
           pageNum: 1,
 
@@ -243,24 +271,20 @@ export default {
         },
       })
       .then((res) => {
-        let pageInfo = res.data;
 
         // console.log(pageInfo);
         // 使用全局lists接受响应的json数据
-        this.lists = pageInfo;
-
-        this.pageInfo = pageInfo;
-        this.tableData = pageInfo.list;
+        this.lists = res.data;
       })
       .catch((err) => console.log("error...", err));
 
-    axios.get("http://localhost:8081/country/list").then((res) => {
+    axios.get("http://localhost:8080/country/list").then((res) => {
       this.country = res.data;
     });
-    axios.get("http://localhost:8081/type/list").then((res) => {
+    axios.get("http://localhost:8080/type/list").then((res) => {
       this.type = res.data;
     });
-    axios.get("http://localhost:8081/theme/list").then((res) => {
+    axios.get("http://localhost:8080/theme/list").then((res) => {
       this.theme = res.data;
     });
   },
