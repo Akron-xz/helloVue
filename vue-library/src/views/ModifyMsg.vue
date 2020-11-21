@@ -174,7 +174,6 @@ export default {
   position: absolute;
   right: 370px;
   top: 80px;
-
   border-color: rgb(231, 231, 231);
   background: white;
 
@@ -182,7 +181,7 @@ export default {
 }
 .tableid input {
   border: 0;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: none;
 }
 .modify-btn {
   position: absolute;
@@ -190,15 +189,9 @@ export default {
   right: 380px;
   height: 40px;
   width: 70px;
-  background-color: rgb(155, 247, 64);
+  background-color: #409EFF;
 }
-.confirm-btn {
-  height: 40px;
-  width: 70px;
-  border-radius: 15px;
-  border: 0;
-  background-color: rgb(35, 35, 241);
-}
+
 button:hover {
   cursor: pointer;
 }

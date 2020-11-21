@@ -6,30 +6,30 @@
             <div class="lendBox">
                 <div class="dayLendMod">
                     <p class="title">今日借出统计</p>
-                    <h1>{{dayLend}}</h1>
+                    <h1>{{statis[0]}}</h1>
                 </div>
                 <div class="monthLendMod module">
                     <p class="title">本月借出统计</p>
-                    <h1>{{monthLend}}</h1>
+                    <h1>{{statis[2]}}</h1>
                 </div>
                 <div class="yearLendMod module">
                     <p class="title">年度借出统计</p>
-                    <h1>{{yearLend}}</h1>
+                    <h1>{{statis[4]}}</h1>
                 </div>
             </div>
 
             <div class="returnBox">
                 <div class="dayReturnMod">
                     <p class="title">今日归还统计</p>
-                    <h1>{{dayReturn}}</h1>
+                    <h1>{{statis[1]}}</h1>
                 </div>
                 <div class="monthReturnMod module">
                     <p class="title">本月归还统计</p>
-                    <h1>{{monthReturn}}</h1>
+                    <h1>{{statis[3]}}</h1>
                 </div>
                 <div class="yearReturnMod module">
                     <p class="title">年度归还统计</p>
-                    <h1>{{yearReturn}}</h1>
+                    <h1>{{statis[5]}}</h1>
                 </div>
             </div>
         </div>
@@ -38,22 +38,25 @@
 
 <script>
 import Navigation from "@/components/Nav.vue";
+import axios from 'axios';
 export default {
       components: {
     Navigation,
   },
     data() {
         return {
-            dayLend:"1213",
-            monthLend:"666666",
-            yearLend:"8888888",
-
-            dayReturn:"1212",
-            monthReturn:"10101",
-            yearReturn:"20202",
+            statis:[]
 
         }
     },
+    created(){
+    axios
+    .get('http://localhost:8080/borrow/statistics')
+    .then((res) => {
+     this.statis = res.data;
+    })
+    .catch((err) => console.log("error...", err));
+  },
 }
 </script>
 
