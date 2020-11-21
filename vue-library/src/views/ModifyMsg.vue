@@ -1,5 +1,6 @@
 <template>
   <div class="table-container">
+    
     <table
       border="1"
       cellspacing="0"
@@ -92,6 +93,7 @@
         </td>
       </tr>
     </table>
+    
     <br /><br />
 
     <div>
@@ -172,22 +174,31 @@ export default {
   right: 0;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
+
 .tableid {
   position: fixed;
+
   right: 24%;
+
+  right: 370px;
+
   top: 80px;
+  border-color: rgb(231, 231, 231) ;
+  background: white;
 }
-.tableid input {
+.tableid input{
   border: 0;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: none;
 }
 .modify-btn {
-  position: absolute;
+  position: fixed;
   top: 320px;
   right: 380px;
   height: 40px;
   width: 70px;
+
   background-color: rgb(155, 247, 64);
+  background-color: #409eff;
 }
 
 button:hover {
@@ -197,11 +208,12 @@ button:hover {
   font-size: 30px;
 }
 .msg-header {
-  background-color: lightgray;
+  background-color: rgb(243, 243, 243);
 }
 .modify-pasawd-box {
   position: fixed;
   top: 450px;
+  top: 60%;
   left: 36%;
 }
 </style>
