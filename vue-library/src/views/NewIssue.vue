@@ -11,10 +11,14 @@
         placeholder="输入姓名查询"
         prefix-icon="el-icon-search"
         v-model="searchContent"
+        @keyup.enter.native="search"
         style="width: 20%"
       >
       </el-input>
-      <el-button type="primary" icon="el-icon-search" @click="search"
+      <el-button
+        type="primary"
+        icon="el-icon-search"
+        @click="search"
         >搜索</el-button
       >
       <br />
@@ -71,7 +75,6 @@
       <br />
       <br />
       <el-table :data="userData">
-
         <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
         <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
@@ -132,6 +135,11 @@ export default {
     //搜索
 
     search() {
+      if (this.searchContent=="") {
+        alert("请输入需要查询的信息。");
+        return 0;
+      }
+
       let searchContent = this.searchContent;
       // const id=row.i
       // axios()

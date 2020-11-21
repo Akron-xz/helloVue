@@ -65,15 +65,21 @@
     </div>
     <el-button type="primary" class="query" @click="selectByLabel"
       >查询</el-button
-    >
+    > 
     <div>
       <div class="keyWordQuery">
         <el-input
           placeholder="请输入关键字"
-          type="text"
+          style="width: 220px"
           class="input-with-select"
+          v-model="inputContent"
+          @keyup.enter.native="searchContent"
         >
-          <el-button slot="append" icon="el-icon-search"></el-button>
+          <el-button
+            slot="append"
+            icon="el-icon-search"
+            @click="searchContent"
+          >查询</el-button>
         </el-input>
       </div>
     </div>
@@ -143,7 +149,7 @@ export default {
       bookname: "时间简史",
       tableDisplay: true,
 
-      // 接受数据
+      // 接收数据
       lists:[],
       // 分页
       page: {
@@ -151,6 +157,8 @@ export default {
         total: 20, // 总条数
         pageSize: 5, // 每页的数据条数
       },
+      // 输入框内容
+      inputContent: "",
 
       tableData: [
         {
@@ -165,25 +173,37 @@ export default {
           brief: "5",
         },
       ],
-      value: "",
+    
       pageInfo: {
         pageNum: 0,
         pageSize: 0,
         total: 0,
         list: [],
       },
+
+      // 国家
       country: [
         {
           countryId: 0,
           countryName: "",
         },
       ],
+
+      // 类型
       type: [
         {
           typeId: 0,
           typeName: "",
         },
       ],
+
+      // 篇幅
+      value: [{
+        vId: 0,
+        vType: "",
+      }],
+
+      // 主题
       theme: [
         {
           themeId: 0,
@@ -213,10 +233,31 @@ export default {
       this.page.currentPage = val;
     },
 
+    // 书籍模糊搜索
+    searchContent() {
+      if (this.inputContent=="") {
+        alert("请输入需要查询的信息。");
+        return 0;
+      }
+      axios
+        .post(
+          // 接口路径是什么？
+          "http://localhost:8081/book/list/key"
+        )
+        .then((res) => {
+          console.log("搜索成功");
+          let list = res.data;
+          console.log(list);
+        })
+        .catch((err) => console.log("error...", err));
+        //清空输入框
+        this.inputContent="";
+    },
+
     selectByLabel() {
       axios
         .post(
-          "http://localhost:8081/book/list/label",
+          "http://localhost:8081/book/list/"+this.inputContent,
           {
             countryId: this.couId,
             typeId: this.tyId,
@@ -233,6 +274,7 @@ export default {
         .catch((err) => console.log("error...", err));
     },
   },
+  
   created() {
     axios
       .get("http://localhost:8081/book/list", {
