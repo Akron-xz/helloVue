@@ -251,7 +251,7 @@ export default {
           "http://localhost:8080/book/list/key",
           {
             params:{
-              key:this.key
+              key:this.key,
             }
           })
         .then((res) => {
