@@ -71,7 +71,10 @@
     </div>
 
     <div class="tableBox" >
-      <el-table :data="tableData" style="width: 100%">
+      <el-table :data="tableData.slice(
+            (page.currentPage - 1) * page.pageSize,
+            page.currentPage * page.pageSize
+          )" style="width: 100%">
         <el-table-column prop="BookName" label="书籍名称" width="380">
         </el-table-column>
         <el-table-column prop="OnTime" label="上架时间" width="380">
@@ -88,9 +91,19 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="paging">
-      <el-pagination layout="prev, pager, next" :total="50"> </el-pagination>
-    </div>
+     <div class="block" style="margin-top: 15px">
+        <el-pagination
+          align="center"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="page.currentPage"
+          :page-sizes="[1, 5, 10, 20]"
+          :page-size="page.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="tableData.length"
+        >
+        </el-pagination>
+      </div>
     </div>
     </div>
     <!-- 修改弹窗 -->
@@ -331,6 +344,15 @@ export default {
     MsgSaveS(){
       this.tableDisplayS=!this.tableDisplayS;
     },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.page.currentPage = 1;
+      this.page.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val;
+    },
   },
   data() {
     return {
@@ -342,55 +364,26 @@ export default {
       form: {
       },
 
-    tableData: [
-        {
-          BookName: "1",
-          OnTime: "2",
-        },
-        
-      ],
-      optionsCountry: [
-        {
-          value: "选项1",
-          label: "中国",
-        },
-      ],
+    tableData:
+     [{ BookName: "1",OnTime: "2",},{ BookName: "1",OnTime: "8",},{ BookName: "1",OnTime: "6",},],
+
+      optionsCountry: [ {value: "选项1",label: "中国", },],
       country: "",
-      optionsType: [
-        {
-          value: "选项1",
-          label: "a",
-        },
-      ],
+      optionsType: [{value: "选项1",label: "a",},],
       type: "",
-      optionsPages: [
-        {
-          value: "选项1",
-          label: "1",
-        },
-      ],
+      optionsPages: [{value: "选项1",label: "1",}, ],
       pages: "",
-      optionsTheme: [
-        {
-          value: "选项1",
-          label: "主题一",
-        },
-      ],
+      optionsTheme: [{ value: "选项1", label: "主题一",},],
       theme: "",
-      optionsOff_number:[
-        {
-          value: "选项1",
-          label: "1",
-        },
-      ],
+      optionsOff_number:[{value: "选项1",label: "1", },],
       off_number: "",
-      optionsOn_number:[
-        {
-          value: "选项1",
-          label: "1",
-        },
-      ],
+      optionsOn_number:[{value: "选项1",label: "1",},],
       on_number: "",
+      page: {
+        currentPage: 1, // 当前页码
+        total: 20, // 总条数
+        pageSize: 5, // 每页的数据条数
+      },
     };
   },
 };
