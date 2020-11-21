@@ -235,7 +235,7 @@ export default {
   },
   created() {
     axios
-      .get("http://localhost:8081/book/list", {
+      .get("http://localhost:8081/book/list", {  //http://localhost:8081/book/list
         params: {
           pageNum: 1,
 
@@ -246,7 +246,8 @@ export default {
         let pageInfo = res.data;
 
         // console.log(pageInfo);
-        // 使用全局lists接受响应的json数据
+
+        // 使用全局lists变量来接收响应的json数据
         this.lists = pageInfo;
 
         this.pageInfo = pageInfo;
