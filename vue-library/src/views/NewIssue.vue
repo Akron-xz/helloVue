@@ -6,7 +6,8 @@
     </div>
     <br />
     <!-- 展示简略表格 -->
-    <div class="table-div" v-show="!dispalyInfo">
+    <!-- <div class="table-div" v-show="!dispalyInfo"> -->
+    <div class="table-div">
       <el-input
         placeholder="输入姓名查询"
         prefix-icon="el-icon-search"
@@ -66,8 +67,8 @@
         </el-pagination>
       </div>
     </div>
-    <!-- 个人完整信息 -->
-    <div v-show="dispalyInfo">
+    <!-- 个人完整信息（第1种） -->
+    <div v-show="false">
       <br />
       <el-button type="primary" icon="el-icon-back" @click="goBack"
         >返回</el-button
@@ -93,6 +94,36 @@
         <el-table-column prop="identity" label="身份" width="100">
         </el-table-column>
       </el-table>
+    </div>
+
+    <!-- 个人完整信息（第2种） -->
+    <div>
+      <el-dialog title="个人信息表" 
+        :visible.sync="dispalyInfo" 
+        :append-to-body="true" 
+        :modal-append-to-body="false"
+        :center="true">
+        <el-table :data="userData">
+
+        <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
+        <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
+        <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
+        <el-table-column prop="email" label="邮箱" width="140">
+        </el-table-column>
+        <el-table-column prop="password" label="密码" width="140">
+        </el-table-column>
+        <el-table-column prop="birthday" label="出生年月" width="200">
+        </el-table-column>
+        <el-table-column prop="phone" label="联系电话" width="140">
+        </el-table-column>
+        <el-table-column prop="address" label="居住地址" width="140">
+        </el-table-column>
+        <el-table-column prop="introduction" label="个人描述" width="100">
+        </el-table-column>
+        <el-table-column prop="identity" label="身份" width="100">
+        </el-table-column>
+      </el-table>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -201,7 +232,7 @@ export default {
         //get方式获取数据
         method: "get",
         //接口地址
-        url: "http://localhost:8081/user/selectAllUser",
+        url: "/data/user.json",
       })
         .then((res) => {
           //请求数据 res 返回的数据

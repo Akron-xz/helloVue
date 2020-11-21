@@ -90,24 +90,24 @@
       <td></td>
       <td></td>
       <td style="font-size: 25px;">书名</td>
-      <td><input type="text" v-model="book_name" style="width: 180px; height: 30px"></td>
+      <td><input type="text" v-model="book_name" style="width: 210px; height: 35px" placeholder="请输入"></td>
       </tr>
         <tr>
            <td>国家</td>
           <td>
-            <el-select v-model="country" placeholder="国家">
+            <el-select v-model="country" placeholder="请选择">
               <el-option v-for="item in optionsCountry" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="type" placeholder="类型">
+            <el-select v-model="type" placeholder="请选择">
               <el-option v-for="item in optionsType" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>上架数量</td>
           <td>
-            <el-select v-model="on_number" placeholder="上架数量">
+            <el-select v-model="on_number" placeholder="请选择">
               <el-option
                 v-for="item in optionsOn_number" :key="item.value" :label="item.label" :value="item.value" ></el-option>
             </el-select>
@@ -116,19 +116,19 @@
           <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="pages" placeholder="篇幅">
+            <el-select v-model="pages" placeholder="请选择">
               <el-option v-for="item in optionsPages" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="theme" placeholder="主题">
+            <el-select v-model="theme" placeholder="请选择">
               <el-option v-for="item in optionsTheme" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </td>
           <td>下架数量</td>
           <td>
-            <el-select v-model="off_number" placeholder="下架数量">
+            <el-select v-model="off_number" placeholder="请选择">
               <el-option v-for="item in optionsOff_number" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
@@ -136,14 +136,13 @@
         <tr>
         <td>简介:</td>
         </tr>
-        <tr>
-        <td colspan="6" v-text="brief" class="brief">
-        <input type="text" name="" maxlength="100" style="width: 720px; height: 60px"/>
-        </td>
-        </tr>
-        <tr>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSaveI">保存</el-button></td></tr>
+        <div class="briefBox"> 
+    <textarea name="txt" clos=",50" rows="5" warp="virtual" style="width: 780px; height: 100px"></textarea>
+        <div class="MsgSave-btn">
+        <el-button type="primary" @click="MsgSaveI">保存</el-button>
+        </div>
+      </div>
+      
       </table>
     </div>
     <!-- 编辑弹窗 -->
@@ -153,24 +152,24 @@
       <td></td>
       <td></td>
       <td style="font-size: 25px;">书名</td>
-      <td><input type="text" v-model="book_name" style="width: 180px; height: 30px"></td>
+      <td><input type="text" v-model="book_name" style="width: 210px; height: 35px"></td>
       </tr>
         <tr>
            <td>国家</td>
           <td>
-            <el-select v-model="country" placeholder="国家">
+            <el-select v-model="country" placeholder="请选择">
               <el-option v-for="item in optionsCountry" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="type" placeholder="类型">
+            <el-select v-model="type" placeholder="请选择">
               <el-option v-for="item in optionsType" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>上架数量</td>
           <td>
-            <el-select v-model="on_number" placeholder="上架数量">
+            <el-select v-model="on_number" placeholder="请选择">
               <el-option
                 v-for="item in optionsOn_number" :key="item.value" :label="item.label" :value="item.value" ></el-option>
             </el-select>
@@ -179,19 +178,19 @@
           <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="pages" placeholder="篇幅">
+            <el-select v-model="pages" placeholder="请选择">
               <el-option v-for="item in optionsPages" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="theme" placeholder="主题">
+            <el-select v-model="theme" placeholder="请选择">
               <el-option v-for="item in optionsTheme" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </td>
           <td>下架数量</td>
           <td>
-            <el-select v-model="off_number" placeholder="下架数量">
+            <el-select v-model="off_number" placeholder="请选择">
               <el-option v-for="item in optionsOff_number" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
@@ -199,15 +198,23 @@
         <tr>
         <td>简介:</td>
         </tr>
-        <tr>
+        <!--<tr>
         <td colspan="6" v-text="brief" class="brief">
         <input type="text" name="" maxlength="100" style="width: 720px; height: 60px"/>
         </td>
         </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td></tr>
         <tr>
         <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSaveM">保存</el-button></td></tr>
+        <td><el-button type="primary" @click="MsgSaveM">保存</el-button></td></tr>-->
       </table>
+      <div class="briefBox"> 
+    <textarea name="txt" clos=",50" rows="5" warp="virtual" style="width: 780px; height: 100px"></textarea>
+        <div class="MsgSave-btn">
+        <el-button type="primary" @click="MsgSaveM">保存</el-button>
+        </div>
+      </div>
     </div>
     
   </div>
@@ -251,7 +258,7 @@ export default {
       ModifyTableDisplay:true,
       InsertTableDisplay:true,
       brief:"暂无",
-      book_name:"书名",
+      book_name:"",
      
     tableData:
      [{ BookName: "1",OnTime: "2",},{ BookName: "1",OnTime: "8",},{ BookName: "1",OnTime: "6",},],
@@ -267,6 +274,7 @@ export default {
       optionsOff_number:[{value: "选项1",label: "1", },],
       off_number: "",
       optionsOn_number:[{value: "选项1",label: "1",},],
+      on_number:"",
 
       page: {
         currentPage: 1, // 当前页码
@@ -326,5 +334,14 @@ export default {
   top: 25%;
   right: 25%;
 }
-
+.briefBox{
+  position: fixed;
+  top: 350px;
+  right: 400px;
+}
+.MsgSave-btn{
+  position: fixed;
+  top: 470px;
+  right: 400px;
+}
 </style>
