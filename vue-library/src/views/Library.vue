@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="library-container">
     <div>
       <el-header>
@@ -158,7 +158,7 @@ export default {
 
     selectByLabel(){
       axios
-      .post('http://localhost:8080/book/list/label',
+      .post('http://localhost:8081/book/list/label',
         {
           countryId:this.couId,
           typeId:this.tyId,
@@ -175,7 +175,7 @@ export default {
   },
   created(){
     axios
-    .get('http://localhost:8080/book/list',
+    .get('http://localhost:8081/book/list',
       {params:{
         pageNum:1,
         
@@ -188,9 +188,9 @@ export default {
     })
     .catch((err) => console.log("error...", err));
 
-    axios.get('http://localhost:8080/country/list').then((res)=>{this.country=res.data});
-    axios.get('http://localhost:8080/type/list').then((res)=>{this.type=res.data});
-    axios.get('http://localhost:8080/theme/list').then((res)=>{this.theme=res.data});
+    axios.get('http://localhost:8081/country/list').then((res)=>{this.country=res.data});
+    axios.get('http://localhost:8081/type/list').then((res)=>{this.type=res.data});
+    axios.get('http://localhost:8081/theme/list').then((res)=>{this.theme=res.data});
   },
 };
 </script>
