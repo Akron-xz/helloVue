@@ -173,8 +173,8 @@ export default {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .tableid {
-  position: absolute;
-  right: 370px;
+  position: fixed;
+  right: 24%;
   top: 80px;
 }
 .tableid input {
@@ -189,13 +189,7 @@ export default {
   width: 70px;
   background-color: rgb(155, 247, 64);
 }
-.confirm-btn {
-  height: 40px;
-  width: 70px;
-  border-radius: 15px;
-  border: 0;
-  background-color: rgb(35, 35, 241);
-}
+
 button:hover {
   cursor: pointer;
 }
@@ -206,8 +200,8 @@ button:hover {
   background-color: lightgray;
 }
 .modify-pasawd-box {
-  position: absolute;
-  top: 60%;
+  position: fixed;
+  top: 450px;
   left: 36%;
 }
 </style>
