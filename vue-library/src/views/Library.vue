@@ -206,6 +206,7 @@ export default {
     .get('http://localhost:8080/book/list',
       {params:{
         pageNum:1,
+        
         pageSize:5
       }})
     .then((res) => {
