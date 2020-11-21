@@ -63,7 +63,9 @@
         </el-select>
       </label>
     </div>
-    <el-button type="primary" class="query" @click="selectByLabel">查询</el-button>
+    <el-button type="primary" class="query" @click="selectByLabel"
+      >查询</el-button
+    >
     <div>
       <div class="keyWordQuery">
         <el-input
@@ -76,121 +78,191 @@
       </div>
     </div>
     <div class="table-box" v-show="tableDisplay">
-      <el-table :data="tableData"  >
-        <el-table-column label="书名"  property="bookName"></el-table-column>
-        <el-table-column label="国家"  property="country.countryName"></el-table-column>
-        <el-table-column label="类型"  property="type.typeName"></el-table-column>
-        <el-table-column label="主题"  property="theme.themeName"></el-table-column>
+      <el-table
+        :data="
+          lists.slice(
+            (page.currentPage - 1) * page.pageSize,
+            page.currentPage * page.pageSize
+          )
+        "
+        max-height="240"
+      >
+        <el-table-column label="书名" property="bookName"></el-table-column>
+        <el-table-column
+          label="国家"
+          property="country.countryName"
+        ></el-table-column>
+        <el-table-column
+          label="类型"
+          property="type.typeName"
+        ></el-table-column>
+        <el-table-column
+          label="主题"
+          property="theme.themeName"
+        ></el-table-column>
         <el-table-column label="状态">
           <el-button type="" @click="borrowStatus">借阅</el-button>
         </el-table-column>
       </el-table>
+      <br />
+      <!-- 分页器 -->
+      <div class="block" style="margin-top: 15px">
+        <el-pagination
+          align="center"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="page.currentPage"
+          :page-sizes="[1, 5, 10, 20]"
+          :page-size="page.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="lists.length"
+        >
+        </el-pagination>
+      </div>
     </div>
+
     <div class="borrow-box" v-show="!tableDisplay">
-       <h1>书名：时间简史</h1>
-       <div v-text="'简介：'+brief" class="brief"></div>
-       <div class="borrow-button">
-       <el-button type="primary" @click="borrow">借阅</el-button>
-       </div>
+      <h1>书名：时间简史</h1>
+      <div v-text="'简介：' + brief" class="brief"></div>
+      <div class="borrow-button">
+        <el-button type="primary" @click="borrow">借阅</el-button>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
   data() {
     return {
-      couId:'',
-      tyId:'',
-      thId:'',
-      pages:0,
-      brief:"霍金写的书",
-      bookname:"时间简史",
-      tableDisplay:true,
+      couId: "",
+      tyId: "",
+      thId: "",
+      pages: 0,
+      brief: "霍金写的书",
+      bookname: "时间简史",
+      tableDisplay: true,
 
-      tableData:[{
-        bookName : "1",
-        country:{
-          countryId : 0,
-          countryName : "",
-        },
-        
-        type : "3",
-        theme : "4",
-        brief : "5",
-
-      }],
-      value: "",
-      pageInfo:{
-       pageNum:0,
-       pageSize:0,
-       total:0,
-       list:[]
+      // 接受数据
+      lists:[],
+      // 分页
+      page: {
+        currentPage: 1, // 当前页码
+        total: 20, // 总条数
+        pageSize: 5, // 每页的数据条数
       },
-      country:[
+
+      tableData: [
         {
-          countryId:0,
-          countryName:'',
-        }
+          bookName: "1",
+          country: {
+            countryId: 0,
+            countryName: "",
+          },
+
+          type: "3",
+          theme: "4",
+          brief: "5",
+        },
       ],
-      type:[
+      value: "",
+      pageInfo: {
+        pageNum: 0,
+        pageSize: 0,
+        total: 0,
+        list: [],
+      },
+      country: [
         {
-          typeId:0,
-          typeName:'',
-        }
+          countryId: 0,
+          countryName: "",
+        },
       ],
-      theme:[
+      type: [
         {
-          themeId:0,
-          themeName:'',
-        }
-      ]
+          typeId: 0,
+          typeName: "",
+        },
+      ],
+      theme: [
+        {
+          themeId: 0,
+          themeName: "",
+        },
+      ],
     };
   },
-  methods:{
-    borrowStatus(){
-      this.tableDisplay=!this.tableDisplay;
+  methods: {
+    borrowStatus() {
+      this.tableDisplay = !this.tableDisplay;
     },
 
-    borrow(){
-      this.tableDisplay=!this.tableDisplay;
+    borrow() {
+      this.tableDisplay = !this.tableDisplay;
     },
 
-    selectByLabel(){
+    // 每页多少条数据
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.page.currentPage = 1;
+      this.page.pageSize = val;
+    },
+    // 当前页码
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val;
+    },
+
+    selectByLabel() {
       axios
-      .post('http://localhost:8081/book/list/label',
-        {
-          countryId:this.couId,
-          typeId:this.tyId,
-          themeId:this.thId,
-          lengthRange:this.pages
-        },{emulateJSON:true})
+        .post(
+          "http://localhost:8081/book/list/label",
+          {
+            countryId: this.couId,
+            typeId: this.tyId,
+            themeId: this.thId,
+            lengthRange: this.pages,
+          },
+          { emulateJSON: true }
+        )
+        .then((res) => {
+          let pageInfo = res.data;
+          this.pageInfo = pageInfo;
+          this.tableData = pageInfo.list;
+        })
+        .catch((err) => console.log("error...", err));
+    },
+  },
+  created() {
+    axios
+      .get("http://localhost:8081/book/list", {
+        params: {
+          pageNum: 1,
+
+          pageSize: 5,
+        },
+      })
       .then((res) => {
         let pageInfo = res.data;
+
+        // console.log(pageInfo);
+        // 使用全局lists接受响应的json数据
+        this.lists = pageInfo;
+
         this.pageInfo = pageInfo;
         this.tableData = pageInfo.list;
       })
       .catch((err) => console.log("error...", err));
-    }
-  },
-  created(){
-    axios
-    .get('http://localhost:8081/book/list',
-      {params:{
-        pageNum:1,
-        
-        pageSize:5
-      }})
-    .then((res) => {
-     let pageInfo = res.data;
-     this.pageInfo = pageInfo;
-     this.tableData = pageInfo.list;
-    })
-    .catch((err) => console.log("error...", err));
 
-    axios.get('http://localhost:8081/country/list').then((res)=>{this.country=res.data});
-    axios.get('http://localhost:8081/type/list').then((res)=>{this.type=res.data});
-    axios.get('http://localhost:8081/theme/list').then((res)=>{this.theme=res.data});
+    axios.get("http://localhost:8081/country/list").then((res) => {
+      this.country = res.data;
+    });
+    axios.get("http://localhost:8081/type/list").then((res) => {
+      this.type = res.data;
+    });
+    axios.get("http://localhost:8081/theme/list").then((res) => {
+      this.theme = res.data;
+    });
   },
 };
 </script>
@@ -250,26 +322,24 @@ export default {
   right: 60px;
   width: 200px;
 }
-.table-box{
+.table-box {
   position: fixed;
-  top:250px;
+  top: 250px;
   left: 50%;
   margin-left: -400px;
   width: 800px;
-  
 }
-.borrow-box{
+.borrow-box {
   position: fixed;
-  top:250px;
+  top: 250px;
   left: 50%;
   margin-left: -400px;
   width: 800px;
   height: 300px;
   background-color: white;
-  
 }
 
-.brief{
+.brief {
   border: 1px solid black;
   width: 400px;
   height: 200px;
@@ -277,13 +347,11 @@ export default {
   text-align: left;
 }
 
-.borrow-button{
-    float: right;
-    height: 150px;
-    width: 200px;
-    margin-top: -50px;
-    margin-left: 40px;
-
-
+.borrow-button {
+  float: right;
+  height: 150px;
+  width: 200px;
+  margin-top: -50px;
+  margin-left: 40px;
 }
 </style>

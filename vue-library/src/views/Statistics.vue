@@ -51,7 +51,7 @@ export default {
     },
     created(){
     axios
-    .get('http://localhost:8080/borrow/statistics')
+    .get('http://localhost:8081/borrow/statistics')
     .then((res) => {
      this.statis = res.data;
     })

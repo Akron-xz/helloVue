@@ -28,8 +28,6 @@
         "
         max-height="315"
       >
-        <el-table-column prop="userId" label="用户ID" width="80">
-        </el-table-column>
         <el-table-column prop="name" label="姓名" width="100">
         </el-table-column>
         <el-table-column prop="sexStr" label="性别" width="80">
@@ -73,8 +71,7 @@
       <br />
       <br />
       <el-table :data="userData">
-        <el-table-column prop="userId" label="用户ID" width="80">
-        </el-table-column>
+
         <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
         <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
