@@ -273,82 +273,8 @@ export default {
       off_number: "",
       optionsOn_number:[{value: "选项1",label: "1",},],
 
-    tableData: [
-        {
-          BookName: "1",
-          OnTime: "2",
-        },
-        
-      ],
-      optionsCountry: [
-        {
-          value: "选项1",
-          label: "中国",
-        },
-        {
-          value: "选项5",
-          label: "其他国家",
-        },
-      ],
-      country: "",
-
-      optionsType: [
-        {
-          value: "选项1",
-          label: "a",
-        },
-        {
-          value: "选项2",
-          label: "b",
-        },
-      ],
-      type: "",
-
-      optionsPages: [
-        {
-          value: "选项1",
-          label: "1",
-        },
-        {
-          value: "选项2",
-          label: "2",
-        },
-      ],
-      pages: "",
-
-      optionsTheme: [
-        {
-          value: "选项1",
-          label: "主题一",
-        },
-        {
-          value: "选项2",
-          label: "主题二",
-        },
-      ],
-      theme: "",
-      optionsOff_number:[
-        {
-          value: "选项1",
-          label: "1",
-        },
-        {
-          value: "选项2",
-          label: "2",
-        },
-      ],
-      off_number: "",
-      optionsOn_number:[
-        {
-          value: "选项1",
-          label: "1",
-        },
-        {
-          value: "选项2",
-          label: "2",
-        },
-      ],
-      on_number: "",
+    
+      
       page: {
         currentPage: 1, // 当前页码
         total: 20, // 总条数

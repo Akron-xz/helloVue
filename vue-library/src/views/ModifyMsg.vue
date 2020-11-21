@@ -91,10 +91,6 @@
         </td>
       </tr>
     </table>
-<<<<<<< HEAD
-
-=======
->>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
     <br /><br />
 
     <div>
@@ -175,11 +171,11 @@ export default {
   position: absolute;
   right: 370px;
   top: 80px;
-<<<<<<< HEAD
+
   border-color: rgb(231, 231, 231);
   background: white;
-=======
->>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
+
+
 }
 .tableid input {
   border: 0;
