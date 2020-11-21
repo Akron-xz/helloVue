@@ -2,19 +2,19 @@
     <div class="signup-container">
         <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="注册ID：" prop="id">
-            <el-input v-model.number="ruleForm2.id"></el-input>
+            <el-input v-model.number="ruleForm2.id" οnkeyup="value=value.replace(/[\u4e00-\u9fa5]/ig,'')" placeholder="请输入账号" ></el-input>
         </el-form-item>
 
         <el-form-item label="姓名：" prop="name">
-            <el-input v-model.number="ruleForm2.name"></el-input>
+            <el-input v-model.number="ruleForm2.name" ></el-input>
         </el-form-item>
 
         <el-form-item label="邮箱：" prop="email">
-            <el-input v-model.number="ruleForm2.email"></el-input>
+            <el-input v-model.number="ruleForm2.email" type="email" ></el-input>
         </el-form-item>
         
         <el-form-item label="密码：" prop="pwd">
-            <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
+            <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off" ></el-input>
         </el-form-item>
         <el-form-item label="确认密码：" prop="checkPwd">
             <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off"></el-input>
