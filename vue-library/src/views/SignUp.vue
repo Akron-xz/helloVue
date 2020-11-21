@@ -6,11 +6,11 @@
         </el-form-item>
 
         <el-form-item label="姓名：" prop="name">
-            <el-input v-model.number="ruleForm2.name"></el-input>
+            <el-input v-model="ruleForm2.name"></el-input>
         </el-form-item>
 
         <el-form-item label="邮箱：" prop="email">
-            <el-input v-model.number="ruleForm2.email"></el-input>
+            <el-input v-model="ruleForm2.email"></el-input>
         </el-form-item>
         
         <el-form-item label="密码：" prop="pwd">
@@ -31,6 +31,7 @@
 
 
 <script>
+import axios from "axios"
   export default {
     data() {
       var checkId = (rule, value, callback) => {
@@ -49,11 +50,17 @@
         if (!value) {
           return callback(new Error('姓名不能为空'));
         }
+         else {
+            callback();
+          }
       };
       var checkEmail = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('邮箱不能为空'));
         }
+         else {
+            callback();
+          }
       };
 
       var validatePass = (rule, value, callback) => {
@@ -68,7 +75,7 @@
       };
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请再次输入密码'));
+          callback(new Error('请再次输入密码!!'));
         } else if (value !== this.ruleForm2.pwd) {
           callback(new Error('两次输入密码不一致!'));
         } else {
@@ -107,8 +114,19 @@
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
+          console.log(valid);
           if (valid) {
-            alert('submit!');
+            alert("注册成功")
+            axios({
+              method:"post",
+              url:"http://localhost:8081/user/saveUser/",
+              data:{
+                userId:this.ruleForm2.id,
+                name:this.ruleForm2.name,
+                email:this.ruleForm2.email,
+                password:this.ruleForm2.pwd
+              },
+            },{emulateJSON:true})
           } else {
             console.log('error submit!!');
             return false;

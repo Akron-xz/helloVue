@@ -1,7 +1,9 @@
 <template>
   <div class="search-container">
  <Navigation></Navigation>
-      <div v-show="tableDisplay">
+
+      <div v-show="ModifyTableDisplay">
+      <div v-show="InsertTableDisplay">
       <h1 class="search-title">书籍查询</h1>
        <div class="choiceBox" >
       <table>
@@ -9,52 +11,28 @@
           <td>国家</td>
           <td>
             <el-select v-model="country" placeholder="请选择">
-              <el-option
-                v-for="item in optionsCountry"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+              <el-option v-for="item in optionsCountry" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
             <el-select v-model="type" placeholder="请选择">
-              <el-option
-                v-for="item in optionsType"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+              <el-option v-for="item in optionsType" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>篇幅</td>
           <td>
             <el-select v-model="pages" placeholder="请选择">
-              <el-option
-                v-for="item in optionsPages"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+              <el-option v-for="item in optionsPages" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>主题</td>
           <td>
             <el-select v-model="theme" placeholder="请选择">
-              <el-option
-                v-for="item in optionsTheme"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+              <el-option v-for="item in optionsTheme" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
-          <td><el-button type="" icon="el-icon-plus"  @click="MsgModify"></el-button></td>
+          <td><el-button type="" icon="el-icon-plus"  @click="MsgInsert"></el-button></td>
           <td>
             <el-button type="" icon="el-icon-search">搜索</el-button>
           </td>
@@ -70,7 +48,10 @@
     </div>
 
     <div class="tableBox" >
-      <el-table :data="tableData" style="width: 100%">
+      <el-table :data="tableData.slice(
+            (page.currentPage - 1) * page.pageSize,
+            page.currentPage * page.pageSize
+          )" style="width: 100%">
         <el-table-column prop="BookName" label="书籍名称" width="380">
         </el-table-column>
         <el-table-column prop="OnTime" label="上架时间" width="380">
@@ -87,117 +68,153 @@
         </el-table-column>
       </el-table>
     </div>
-    <div class="paging">
-      <el-pagination layout="prev, pager, next" :total="50"> </el-pagination>
+     <div class="pagingBox" >
+        <el-pagination
+          align="center"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="page.currentPage"
+          :page-sizes="[1, 5, 10, 20]"
+          :page-size="page.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="tableData.length"
+        >
+        </el-pagination>
+      </div>
     </div>
     </div>
-    <!-- 弹窗 -->
-    <div class="MsgModify-box" v-show="!tableDisplay">
-      
+ <!-- 添加书籍弹窗 -->
+     <div class="MsgModify-box" v-show="!InsertTableDisplay"> 
       <table>
       <tr>
       <td></td>
       <td></td>
       <td style="font-size: 25px;">书名</td>
-      <td><input type="text" v-model="book_name" style="width: 180px; height: 30px"></td>
+      <td><input type="text" v-model="book_name" style="width: 210px; height: 35px" placeholder="请输入"></td>
       </tr>
         <tr>
            <td>国家</td>
           <td>
-            <el-select v-model="country" placeholder="国家">
-              <el-option
-                v-for="item in optionsCountry"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select v-model="country" placeholder="请选择">
+              <el-option v-for="item in optionsCountry" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="type" placeholder="类型">
-              <el-option
-                v-for="item in optionsType"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select v-model="type" placeholder="请选择">
+              <el-option v-for="item in optionsType" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>上架数量</td>
           <td>
-            <el-select v-model="on_number" placeholder="上架数量">
+            <el-select v-model="on_number" placeholder="请选择">
               <el-option
-                v-for="item in optionsOn_number"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+                v-for="item in optionsOn_number" :key="item.value" :label="item.label" :value="item.value" ></el-option>
             </el-select>
           </td>
           </tr>
           <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="pages" placeholder="篇幅">
-              <el-option
-                v-for="item in optionsPages"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select v-model="pages" placeholder="请选择">
+              <el-option v-for="item in optionsPages" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="theme" placeholder="主题">
-              <el-option
-                v-for="item in optionsTheme"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select v-model="theme" placeholder="请选择">
+              <el-option v-for="item in optionsTheme" :key="item.value" :label="item.label" :value="item.value"> </el-option>
             </el-select>
           </td>
           <td>下架数量</td>
           <td>
-            <el-select v-model="off_number" placeholder="下架数量">
-              <el-option
-                v-for="item in optionsOff_number"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
+            <el-select v-model="off_number" placeholder="请选择">
+              <el-option v-for="item in optionsOff_number" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </td>
         </tr>
         <tr>
         <td>简介:</td>
         </tr>
+        <div class="briefBox"> 
+    <textarea name="txt" clos=",50" rows="5" warp="virtual" style="width: 780px; height: 100px"></textarea>
+        <div class="MsgSave-btn">
+        <el-button type="primary" @click="MsgSaveI">保存</el-button>
+        </div>
+      </div>
+      
+      </table>
+    </div>
+    <!-- 编辑弹窗 -->
+    <div class="MsgModify-box" v-show="!ModifyTableDisplay"> 
+      <table>
+      <tr>
+      <td></td>
+      <td></td>
+      <td style="font-size: 25px;">书名</td>
+      <td><input type="text" v-model="book_name" style="width: 210px; height: 35px"></td>
+      </tr>
         <tr>
-        <td colspan="6" v-text="brief" class="brief"><input
-            type="text"
-            name=""
-            maxlength="100"
-            style="width: 720px; height: 60px"
-          />
-        
-        </td>
+           <td>国家</td>
+          <td>
+            <el-select v-model="country" placeholder="请选择">
+              <el-option v-for="item in optionsCountry" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </td>
+          <td>类型</td>
+          <td>
+            <el-select v-model="type" placeholder="请选择">
+              <el-option v-for="item in optionsType" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </td>
+          <td>上架数量</td>
+          <td>
+            <el-select v-model="on_number" placeholder="请选择">
+              <el-option
+                v-for="item in optionsOn_number" :key="item.value" :label="item.label" :value="item.value" ></el-option>
+            </el-select>
+          </td>
+          </tr>
+          <tr>
+          <td>篇幅</td>
+          <td>
+            <el-select v-model="pages" placeholder="请选择">
+              <el-option v-for="item in optionsPages" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </td>
+          <td>主题</td>
+          <td>
+            <el-select v-model="theme" placeholder="请选择">
+              <el-option v-for="item in optionsTheme" :key="item.value" :label="item.label" :value="item.value"> </el-option>
+            </el-select>
+          </td>
+          <td>下架数量</td>
+          <td>
+            <el-select v-model="off_number" placeholder="请选择">
+              <el-option v-for="item in optionsOff_number" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </td>
         </tr>
         <tr>
+        <td>简介:</td>
+        </tr>
+        <!--<tr>
+        <td colspan="6" v-text="brief" class="brief">
+        <input type="text" name="" maxlength="100" style="width: 720px; height: 60px"/>
+        </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
         <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSave">保存</el-button></td></tr>
-        
+        <td><el-button type="primary" @click="MsgSaveM">保存</el-button></td></tr>-->
       </table>
-       <div class="MsgSave-button">
-       
-       </div>
+      <div class="briefBox"> 
+    <textarea name="txt" clos=",50" rows="5" warp="virtual" style="width: 780px; height: 100px"></textarea>
+        <div class="MsgSave-btn">
+        <el-button type="primary" @click="MsgSaveM">保存</el-button>
+        </div>
+      </div>
     </div>
     
   </div>
@@ -211,97 +228,59 @@ export default {
   },
   methods: {
     MsgModify(){
-      this.tableDisplay=!this.tableDisplay;
+      this.ModifyTableDisplay=!this.ModifyTableDisplay;
     },
-     MsgSave(){
-      this.tableDisplay=!this.tableDisplay;
-    }
-  },
+     MsgSaveM(){
+      this.ModifyTableDisplay=!this.ModifyTableDisplay;
+
+    },
+    MsgInsert(){
+       this.InsertTableDisplay=!this.InsertTableDisplay;
+    },
+    MsgSaveI(){
+      this.InsertTableDisplay=!this.InsertTableDisplay;
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.page.currentPage = 1;
+      this.page.pageSize = val;
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.page.currentPage = val;
+    },
+
+    },
+  
   data() {
     return {
       input:"",
-      tableDisplay:true,
+      ModifyTableDisplay:true,
+      InsertTableDisplay:true,
       brief:"暂无",
-      book_name:"书名",
-      form: {
-      },
+      book_name:"",
+     
+    tableData:
+     [{ BookName: "1",OnTime: "2",},{ BookName: "1",OnTime: "8",},{ BookName: "1",OnTime: "6",},],
 
-    tableData: [
-        {
-          BookName: "1",
-          OnTime: "2",
-        },
-        
-      ],
-      optionsCountry: [
-        {
-          value: "选项1",
-          label: "中国",
-        },
-        {
-          value: "选项5",
-          label: "其他国家",
-        },
-      ],
+      optionsCountry: [ {value: "选项1",label: "中国", },],
       country: "",
-
-      optionsType: [
-        {
-          value: "选项1",
-          label: "a",
-        },
-        {
-          value: "选项2",
-          label: "b",
-        },
-      ],
+      optionsType: [{value: "选项1",label: "a",},],
       type: "",
-
-      optionsPages: [
-        {
-          value: "选项1",
-          label: "1",
-        },
-        {
-          value: "选项2",
-          label: "2",
-        },
-      ],
+      optionsPages: [{value: "选项1",label: "1",}, ],
       pages: "",
-
-      optionsTheme: [
-        {
-          value: "选项1",
-          label: "主题一",
-        },
-        {
-          value: "选项2",
-          label: "主题二",
-        },
-      ],
+      optionsTheme: [{ value: "选项1", label: "主题一",},],
       theme: "",
-      optionsOff_number:[
-        {
-          value: "选项1",
-          label: "1",
-        },
-        {
-          value: "选项2",
-          label: "2",
-        },
-      ],
+      optionsOff_number:[{value: "选项1",label: "1", },],
       off_number: "",
-      optionsOn_number:[
-        {
-          value: "选项1",
-          label: "1",
-        },
-        {
-          value: "选项2",
-          label: "2",
-        },
-      ],
-      on_number: "",
+      optionsOn_number:[{value: "选项1",label: "1",},],
+      on_number:"",
+
+      page: {
+        currentPage: 1, // 当前页码
+        total: 20, // 总条数
+        pageSize: 5, // 每页的数据条数
+      },
     };
   },
 };
@@ -321,26 +300,28 @@ export default {
   color: darkblue;
 }
 .choiceBox {
-  position: absolute;
+  position: fixed;
   right: 10%;
+  top: 150px;
 }
 .searchBox {
-  position: absolute;
-  top: 35%;
+  position: fixed;
+  top: 220px;
   right: 10%;
 }
 .tableBox {
-  position: absolute;
-  top: 40%;
+  position: fixed;
+  top: 260px;
   right: 10%;
   width: 80%;
 }
-.paging {
+.pagingBox {
   position: fixed;
   width: 200px;
   height: 50px;
-  right: 200px;
+  right: 300px;
   bottom: 0;
+  top: 700px;
 }
 .edit-btn {
   font-weight: bold;
@@ -353,5 +334,14 @@ export default {
   top: 25%;
   right: 25%;
 }
-
+.briefBox{
+  position: fixed;
+  top: 350px;
+  right: 400px;
+}
+.MsgSave-btn{
+  position: fixed;
+  top: 470px;
+  right: 400px;
+}
 </style>

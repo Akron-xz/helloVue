@@ -5,7 +5,7 @@
       cellspacing="0"
       width="850px"
       align="center"
-      class="tableid"
+      class="tableBox"
     >
       <tr>
         <td align="center" colspan="6" class="msg-title">个人资料</td>
@@ -15,10 +15,9 @@
         <td prop="Name">
           <input
             type="text"
-            v-model="Name" 
+            v-model="Name"
             maxlength="20"
             style="width: 190px; height: 30px"
-            
           />
         </td>
         <td class="msg-header">性别：</td>
@@ -45,7 +44,7 @@
         <td>
           <input
             type="text"
-         v-model="Email"
+            v-model="Email"
             maxlength="30"
             style="width: 190px; height: 30px"
           />
@@ -92,10 +91,12 @@
         </td>
       </tr>
     </table>
+
+
+
     <br /><br />
 
     <div>
-      
       <el-button type="primary" class="modify-btn">编辑</el-button>
     </div>
     <div class="modify-pasawd-box">
@@ -125,14 +126,14 @@
 export default {
   data() {
     return {
-      Name: '',
-      Sex:'',
-      Age:'',
-      Email:'',
-      Birthday:'',
-      Phone:'',
-      Adress:'',
-      Introduction:'',
+      Name: "",
+      Sex: "",
+      Age: "",
+      Email: "",
+      Birthday: "",
+      Phone: "",
+      Adress: "",
+      Introduction: "",
       ruleForm: {
         password: "",
       },
@@ -140,9 +141,6 @@ export default {
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
         password2: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
-      
-            
-         
     };
   },
   methods: {
@@ -172,30 +170,28 @@ export default {
   right: 0;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
-.tableid {
-  position: absolute;
+.tableBox {
+  position: fixed;
   right: 370px;
   top: 80px;
+  border-color: rgb(231, 231, 231);
+  background: white;
+
+
 }
-.tableid input {
+.tableBox input {
   border: 0;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background: none;
 }
 .modify-btn {
-  position: absolute;
+  position: fixed;
   top: 320px;
   right: 380px;
   height: 40px;
   width: 70px;
-  background-color: rgb(155, 247, 64);
+  background-color: #409EFF;
 }
-.confirm-btn {
-  height: 40px;
-  width: 70px;
-  border-radius: 15px;
-  border: 0;
-  background-color: rgb(35, 35, 241);
-}
+
 button:hover {
   cursor: pointer;
 }
@@ -206,8 +202,8 @@ button:hover {
   background-color: lightgray;
 }
 .modify-pasawd-box {
-  position: absolute;
-  top: 60%;
+  position: fixed;
+  top: 400px;
   left: 36%;
 }
 </style>
