@@ -91,7 +91,10 @@
         </td>
       </tr>
     </table>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
     <br /><br />
 
     <div>
@@ -168,33 +171,35 @@ export default {
   right: 0;
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
-
 .tableid {
-  position: fixed;
-
-  right: 24%;
-
+  position: absolute;
   right: 370px;
-
   top: 80px;
+<<<<<<< HEAD
   border-color: rgb(231, 231, 231);
   background: white;
+=======
+>>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
 }
 .tableid input {
   border: 0;
-  background: none;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .modify-btn {
-  position: fixed;
+  position: absolute;
   top: 320px;
   right: 380px;
   height: 40px;
   width: 70px;
-
   background-color: rgb(155, 247, 64);
-  background-color: #409eff;
 }
-
+.confirm-btn {
+  height: 40px;
+  width: 70px;
+  border-radius: 15px;
+  border: 0;
+  background-color: rgb(35, 35, 241);
+}
 button:hover {
   cursor: pointer;
 }
@@ -202,11 +207,10 @@ button:hover {
   font-size: 30px;
 }
 .msg-header {
-  background-color: rgb(243, 243, 243);
+  background-color: lightgray;
 }
 .modify-pasawd-box {
-  position: fixed;
-  top: 450px;
+  position: absolute;
   top: 60%;
   left: 36%;
 }

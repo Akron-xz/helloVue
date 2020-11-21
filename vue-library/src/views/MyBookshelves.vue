@@ -114,7 +114,7 @@ export default {
 
 <style scoped>
 .el-header {
-  position: fixed;
+  position: absolute;
   left: 30px;
   color: #333;
   line-height: 60px;

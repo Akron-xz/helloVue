@@ -8,9 +8,10 @@
         background-color="#34CFB3"
         text-color="#303133"
         text-font="15px"
+
       >
-        <el-menu-item index="1">
-          <a @click="toSearchClient" target="_self" >用户列表</a></el-menu-item
+        <el-menu-item  >
+          <a  target="_self" @click="toSearchClient" >用户列表</a></el-menu-item
         >
         <el-menu-item index="2">
           <a @click="toBooks" target="_self">图书借阅与归还</a>
@@ -37,6 +38,11 @@
 <script>
 export default {
     name:"Nav",
+    data() {
+      return {
+        activeIndex: '1'
+      }
+    },
     methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);

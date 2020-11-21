@@ -2,7 +2,6 @@
   <div class="search-container">
  <Navigation></Navigation>
       <div v-show="tableDisplay">
-      <div v-show="tableDisplayS">
       <h1 class="search-title">书籍查询</h1>
        <div class="choiceBox" >
       <table>
@@ -55,7 +54,7 @@
               </el-option>
             </el-select>
           </td>
-          <td><el-button type="" icon="el-icon-plus"  @click="MsgInsert"></el-button></td>
+          <td><el-button type="" icon="el-icon-plus"  @click="MsgModify"></el-button></td>
           <td>
             <el-button type="" icon="el-icon-search">搜索</el-button>
           </td>
@@ -105,8 +104,7 @@
         </el-pagination>
       </div>
     </div>
-    </div>
-    <!-- 修改弹窗 -->
+    <!-- 弹窗 -->
     <div class="MsgModify-box" v-show="!tableDisplay">
       
       <table>
@@ -214,114 +212,7 @@
        
        </div>
     </div>
-    <!-- 增加弹窗 -->
-    <div class="MsgModify-box" v-show="!tableDisplayS">
-      
-      <table>
-      <tr>
-      <td></td>
-      <td></td>
-      <td style="font-size: 25px;">书名</td>
-      <td><input type="text" v-model="book_name" style="width: 180px; height: 30px"></td>
-      </tr>
-        <tr>
-           <td>国家</td>
-          <td>
-            <el-select v-model="country" placeholder="国家">
-              <el-option
-                v-for="item in optionsCountry"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </td>
-          <td>类型</td>
-          <td>
-            <el-select v-model="type" placeholder="类型">
-              <el-option
-                v-for="item in optionsType"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </td>
-          <td>上架数量</td>
-          <td>
-            <el-select v-model="on_number" placeholder="上架数量">
-              <el-option
-                v-for="item in optionsOn_number"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </td>
-          </tr>
-          <tr>
-          <td>篇幅</td>
-          <td>
-            <el-select v-model="pages" placeholder="篇幅">
-              <el-option
-                v-for="item in optionsPages"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </td>
-          <td>主题</td>
-          <td>
-            <el-select v-model="theme" placeholder="主题">
-              <el-option
-                v-for="item in optionsTheme"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </td>
-          <td>下架数量</td>
-          <td>
-            <el-select v-model="off_number" placeholder="下架数量">
-              <el-option
-                v-for="item in optionsOff_number"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
-              </el-option>
-            </el-select>
-          </td>
-        </tr>
-        <tr>
-        <td>简介:</td>
-        </tr>
-        <tr>
-        <td colspan="6" v-text="brief" class="brief"><input
-            type="text"
-            name=""
-            maxlength="100"
-            style="width: 720px; height: 60px"
-          />
-        
-        </td>
-        </tr>
-        <tr>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSaveS">保存</el-button></td></tr>
-        
-      </table>
-       <div class="MsgSave-button">
-       
-       </div>
-    </div>
+    
   </div>
 </template>
 <script>
@@ -337,6 +228,7 @@ export default {
     },
      MsgSave(){
       this.tableDisplay=!this.tableDisplay;
+<<<<<<< HEAD
     },
     MsgInsert(){
        this.tableDisplayS=!this.tableDisplayS;
@@ -353,17 +245,20 @@ export default {
       console.log(`当前页: ${val}`);
       this.page.currentPage = val;
     },
+=======
+    }
+>>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
   },
   data() {
     return {
       input:"",
       tableDisplay:true,
-      tableDisplayS:true,
       brief:"暂无",
       book_name:"书名",
       form: {
       },
 
+<<<<<<< HEAD
     tableData:
      [{ BookName: "1",OnTime: "2",},{ BookName: "1",OnTime: "8",},{ BookName: "1",OnTime: "6",},],
 
@@ -378,6 +273,83 @@ export default {
       optionsOff_number:[{value: "选项1",label: "1", },],
       off_number: "",
       optionsOn_number:[{value: "选项1",label: "1",},],
+=======
+    tableData: [
+        {
+          BookName: "1",
+          OnTime: "2",
+        },
+        
+      ],
+      optionsCountry: [
+        {
+          value: "选项1",
+          label: "中国",
+        },
+        {
+          value: "选项5",
+          label: "其他国家",
+        },
+      ],
+      country: "",
+
+      optionsType: [
+        {
+          value: "选项1",
+          label: "a",
+        },
+        {
+          value: "选项2",
+          label: "b",
+        },
+      ],
+      type: "",
+
+      optionsPages: [
+        {
+          value: "选项1",
+          label: "1",
+        },
+        {
+          value: "选项2",
+          label: "2",
+        },
+      ],
+      pages: "",
+
+      optionsTheme: [
+        {
+          value: "选项1",
+          label: "主题一",
+        },
+        {
+          value: "选项2",
+          label: "主题二",
+        },
+      ],
+      theme: "",
+      optionsOff_number:[
+        {
+          value: "选项1",
+          label: "1",
+        },
+        {
+          value: "选项2",
+          label: "2",
+        },
+      ],
+      off_number: "",
+      optionsOn_number:[
+        {
+          value: "选项1",
+          label: "1",
+        },
+        {
+          value: "选项2",
+          label: "2",
+        },
+      ],
+>>>>>>> c8980a5c851538ef251107c4639c6cd117c4fa46
       on_number: "",
       page: {
         currentPage: 1, // 当前页码
@@ -399,35 +371,30 @@ export default {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .search-title {
-  position: fixed;
-  left: 45%;
   font-size: 40px;
   color: darkblue;
 }
 .choiceBox {
-  position: fixed;
-  top: 150px;
-  left: 15%;
+  position: absolute;
+  right: 10%;
 }
 .searchBox {
-  position: fixed;
-  top: 200px;
-  right: 18%;
+  position: absolute;
+  top: 35%;
+  right: 10%;
 }
 .tableBox {
-  position: fixed;
-  top:250px;
-  left: 45%;
-  margin-left: -400px;
-  width: 1000px;
+  position: absolute;
+  top: 40%;
+  right: 10%;
+  width: 80%;
 }
 .paging {
   position: fixed;
   width: 200px;
   height: 50px;
-  right: 100px;
+  right: 200px;
   bottom: 0;
-  top: 700px;
 }
 .edit-btn {
   font-weight: bold;
@@ -436,7 +403,7 @@ export default {
  
 }
 .MsgModify-box{
-  position: fixed;
+  position: absolute;
   top: 25%;
   right: 25%;
 }
