@@ -195,7 +195,8 @@ export default {
         //get方式获取数据
         method: "get",
         //接口地址
-        url: "http://localhost:8081/user/selectAllUser",
+        // url: "http://localhost:8081/user/selectAllUser",
+        url: "/data/user.json"
       })
         .then((res) => {
           //请求数据 res 返回的数据
