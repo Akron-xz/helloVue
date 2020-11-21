@@ -26,6 +26,7 @@
     </div>
 
     <div class="announce-box" >
+      <h1>图书馆公告:</h1>
       <p>{{announceContent}}</p>
     </div>
   </div>
@@ -116,6 +117,7 @@ export default {
   margin: auto;
   width: 33%;
 }
+
 .announce-box {
   position: fixed;
   bottom: 70px;
@@ -123,7 +125,11 @@ export default {
   height: 200px;
   width: 80%;
   margin-left: -40%;
-  background-color: #ffffff70;
-  border: 2px solid black;
+  background-color: #ffffff;
+  border: 1px solid black;
+}
+
+.announce-box h1{
+  margin-top: 0;
 }
 </style>>
