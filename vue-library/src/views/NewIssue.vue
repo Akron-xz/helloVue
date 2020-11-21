@@ -32,10 +32,9 @@
         </el-table-column>
         <el-table-column prop="name" label="姓名" width="100">
         </el-table-column>
-        <el-table-column prop="sex" label="性别" width="80">
+        <el-table-column prop="sexStr" label="性别" width="80">
         </el-table-column>
-        <el-table-column prop="age" label="年龄" width="60">
-        </el-table-column>
+        <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
         <el-table-column prop="email" label="邮箱" width="140">
         </el-table-column>
         <el-table-column label="操作">
@@ -101,8 +100,7 @@
 <script>
 import Navigation from "@/components/Nav.vue";
 
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
   name: "newIssue",
@@ -116,13 +114,13 @@ export default {
       dispalyInfo: false,
       searchContent: "",
       userData: [],
-        pageSize: 5,
-        total: 10,
-        tableData:[
-          {userId:1,name:"test1",sex:"1",age:"1",email:"111@qq.com"},
-          {userId:2,name:"test2",sex:"2",age:"2",email:"222@qq.com"},
-          {userId:3,name:"test3",sex:"3",age:"3",email:"333@qq.com"}
-        ],
+      pageSize: 5,
+      total: 10,
+      tableData: [
+        { userId: 1, name: "test1", sex: "1", age: "1", email: "111@qq.com" },
+        { userId: 2, name: "test2", sex: "2", age: "2", email: "222@qq.com" },
+        { userId: 3, name: "test3", sex: "3", age: "3", email: "333@qq.com" },
+      ],
 
       lists: [],
 
@@ -137,7 +135,23 @@ export default {
     //搜索
 
     search() {
-      //
+      let searchContent = this.searchContent;
+      // const id=row.i
+      // axios()
+
+      axios({
+        method: "get",
+        url:
+          "http://localhost:8081/user/selectUserByVagueName/" + searchContent,
+      })
+        .then((res) => {
+          console.log(searchContent);
+          this.lists = res.data;
+        })
+        .catch(function (error) {
+          //请求失败
+          console.log("error...", error);
+        });
     },
     //查看个人信息
     retrieve(row) {
@@ -146,10 +160,21 @@ export default {
       this.userData = [row];
     },
     //删除某个用户
-    deleteById(row){
-      console.log(row)
-      // const id=row.id;
+    deleteById(row) {
+      console.log(row);
+      const userId = parseInt(row.userId);
+      // const id=row.i
       // axios()
+      console.log(userId);
+      axios({
+        method: "post",
+        url: "http://localhost:8081/user/deleteUser/" + userId,
+        // data() {
+        //   userId : userId
+        // },
+      });
+      this.getLists();
+      alert("删除成功");
     },
     //返回
     goBack() {
@@ -170,7 +195,7 @@ export default {
         //get方式获取数据
         method: "get",
         //接口地址
-        url: "/data/user.json",
+        url: "http://localhost:8081/user/selectAllUser",
       })
         .then((res) => {
           //请求数据 res 返回的数据
@@ -193,7 +218,8 @@ export default {
   //   this.getLists();
   // },
 
-  mounted(){ //生命周期钩子函数  挂载完成
+  mounted() {
+    //生命周期钩子函数  挂载完成
     this.getLists();
   },
 };
@@ -223,5 +249,4 @@ a {
   right: 0;
   bottom: 0;
 }
-
 </style>
