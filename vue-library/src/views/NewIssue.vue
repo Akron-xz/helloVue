@@ -76,7 +76,6 @@
       <br />
       <br />
       <el-table :data="userData">
-<<<<<<< HEAD
         <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
         <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
@@ -105,8 +104,7 @@
         :modal-append-to-body="false"
         :center="true">
         <el-table :data="userData">
-=======
->>>>>>> 9e8660be7d53651800e8fe72ee0c22b5ed006543
+
         <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
         <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>

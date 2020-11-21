@@ -315,11 +315,8 @@ export default {
 
   created() {
     axios
-<<<<<<< HEAD
-      .get("http://localhost:8081/book/list", {  //http://localhost:8081/book/list
-=======
-      .get("http://localhost:8080/book/list", {
->>>>>>> 9e8660be7d53651800e8fe72ee0c22b5ed006543
+      .get("http://localhost:8081/book/list", {  
+
         params: {
           pageNum: 1,
 
@@ -328,17 +325,16 @@ export default {
       })
       .then((res) => {
         // console.log(pageInfo);
-<<<<<<< HEAD
 
         // 使用全局lists变量来接收响应的json数据
         this.lists = pageInfo;
 
         this.pageInfo = pageInfo;
         this.tableData = pageInfo.list;
-=======
+
         // 使用全局lists接受响应的json数据
         this.lists = res.data;
->>>>>>> 9e8660be7d53651800e8fe72ee0c22b5ed006543
+
       })
       .catch((err) => console.log("error...", err));
 
