@@ -10,21 +10,21 @@
         text-font="15px"
 
       >
-        <el-menu-item  >
-          <a  target="_self" @click="toSearchClient" >用户列表</a></el-menu-item
+        <el-menu-item  @click="toSearchClient">
+          <a  target="_self"  >用户列表</a></el-menu-item
         >
-        <el-menu-item index="2">
-          <a @click="toBooks" target="_self">图书借阅与归还</a>
+        <el-menu-item index="2" @click="toBooks">
+          <a  target="_self">图书借阅与归还</a>
         </el-menu-item>
 
-        <el-menu-item index="4">
-          <a @click="toAnnounce" target="_self">首页公告管理</a>
+        <el-menu-item index="4" @click="toAnnounce">
+          <a  target="_self">首页公告管理</a>
         </el-menu-item>
-        <el-menu-item index="5">
-          <a @click="toStatistics" target="_self">图书借阅统计</a></el-menu-item
+        <el-menu-item index="5" @click="toStatistics">
+          <a  target="_self">图书借阅统计</a></el-menu-item
         >
-        <el-menu-item index="6">
-          <a @click="toMain" target="_self"
+        <el-menu-item index="6" @click="toMain">
+          <a  target="_self"
             >返回主页</a
           ></el-menu-item
         >
