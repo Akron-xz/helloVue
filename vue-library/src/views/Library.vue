@@ -62,10 +62,10 @@
           </el-option>
         </el-select>
       </label>
+          <el-button type="primary" class="query" @click="selectByLabel"
+      >查询</el-button> 
     </div>
-    <el-button type="primary" class="query" @click="selectByLabel"
-      >查询</el-button
-    > 
+
     <div>
       <div class="keyWordQuery">
         <el-input
@@ -242,7 +242,7 @@ export default {
       axios
         .post(
           // 接口路径是什么？
-          "http://localhost:8081/book/list/key"
+          "http://localhost:8081/book/list/"+this.inputContent,
         )
         .then((res) => {
           console.log("搜索成功");
@@ -353,15 +353,11 @@ export default {
   width: 200px;
 }
 
-.query {
-  position: fixed;
-  top: 150px;
-  right: 60px;
-}
+
 .keyWordQuery {
   position: fixed;
   top: 200px;
-  right: 60px;
+  right: 300px;
   width: 200px;
 }
 .table-box {
