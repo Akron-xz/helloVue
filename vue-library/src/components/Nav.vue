@@ -16,14 +16,12 @@
         <el-menu-item index="2">
           <a @click="toBooks" target="_self">图书借阅与归还</a>
         </el-menu-item>
-        <el-menu-item index="3"
-          ><a @click="toMain" target="_self">注销用户</a></el-menu-item
-        >
+
         <el-menu-item index="4">
           <a @click="toAnnounce" target="_self">首页公告管理</a>
         </el-menu-item>
         <el-menu-item index="5">
-          <a @click="toMain" target="_self">图书借阅统计</a></el-menu-item
+          <a @click="toStatistics" target="_self">图书借阅统计</a></el-menu-item
         >
         <el-menu-item index="6">
           <a @click="toMain" target="_self"
@@ -63,8 +61,8 @@ export default {
     toBooks(){
       this.$router.push({path:'/booksearch'});
     },
-    toGraphReport(){
-      this.$router.push({path:'/signup'});
+    toStatistics(){
+      this.$router.push({path:'/Statistics'});
     },
 
 
