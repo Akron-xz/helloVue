@@ -130,7 +130,7 @@
   position: fixed;
   top: 155px;
   right: 160px;
-  width: 80%;
+  width: 1200px;
   
 }
 .pagingBox{
