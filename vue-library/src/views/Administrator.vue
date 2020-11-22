@@ -1,5 +1,7 @@
 <template>
   <div class="admin-login-container">
+    <el-header>管理员登陆</el-header>
+    <div class="adminBox">
     <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
       <el-form-item label="管理员ID：" prop="adminId">
         <el-input v-model.number="ruleForm2.adminId"></el-input>
@@ -13,6 +15,7 @@
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-form>
+    </div>
   </div>
 </template>
 
@@ -109,23 +112,43 @@ import axios from "axios"
 
 
 <style scoped>
-  .admin-login-container {
+.admin-login-container {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-  }
+}
 
-  .demo-ruleForm{
+.el-header {
+    text-align: left;
+    line-height: 60px;
+    font-weight: 1000;
+    font-size: 30px;
+    color: transparent;
+   -webkit-text-stroke: 1px white;
+    letter-spacing: 0.04em;
+    
+}
+
+.demo-ruleForm{
     position: absolute;
     right: 70px;
-    top: 80px;
+    top: 20px;
     width: 300px;
     height: 50px;
-  }
+}
 
+.adminBox{
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 400px;
+  height: 200px;
+  background: white;
+  border-radius: 20px;
+}
 </style>
 
 

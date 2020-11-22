@@ -1,23 +1,26 @@
 <template>
     <div class="signup-container">
+      <el-header>用户注册</el-header>
+      <div class="signUpBox">
         <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="注册ID：" prop="id">
-            <el-input v-model.number="ruleForm2.id"></el-input>
+            <el-input v-model.number="ruleForm2.id" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
         <el-form-item label="姓名：" prop="name">
-            <el-input v-model="ruleForm2.name"></el-input>
+            <el-input v-model="ruleForm2.name" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
-        <el-form-item label="邮箱：" prop="email">
-            <el-input v-model="ruleForm2.email"></el-input>
+        <el-form-item label="邮箱：" prop="email" :rules="[{ required: true, message: '请输入邮箱', trigger: 'blur' },
+      { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }]">
+            <el-input v-model="ruleForm2.email" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
         
         <el-form-item label="密码：" prop="pwd">
-            <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
+            <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
         <el-form-item label="确认密码：" prop="checkPwd">
-            <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off"></el-input>
+            <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
         
         <el-form-item>
@@ -25,6 +28,7 @@
             <el-button @click="resetForm('ruleForm2')">重置</el-button>
         </el-form-item>
         </el-form>
+      </div>
     </div>
 </template>
 
@@ -54,14 +58,7 @@ import axios from "axios"
             callback();
           }
       };
-      var checkEmail = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('邮箱不能为空'));
-        }
-         else {
-            callback();
-          }
-      };
+      
 
       var validatePass = (rule, value, callback) => {
         if (value === '') {
@@ -98,9 +95,7 @@ import axios from "axios"
           name: [
             { validator: checkName, trigger: 'blur' }
           ],
-          email: [
-            { validator: checkEmail, trigger: 'blur' }
-          ],
+          
           pwd: [
             { validator: validatePass, trigger: 'blur' }
           ],
@@ -142,21 +137,44 @@ import axios from "axios"
 </script>
 
 <style scoped>
-    .signup-container {
+.signup-container {
         position: fixed;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-    }
+}
 
-    .demo-ruleForm{
+.el-header {
+    text-align: left;
+    line-height: 60px;
+    font-weight: 1000;
+    font-size: 30px;
+    color: transparent;
+   -webkit-text-stroke: 1px white;
+    letter-spacing: 0.04em;
+    
+}
+
+.demo-ruleForm{
         position: absolute;
         right: 70px;
-        top: 80px;
+        top: 30px;
         width: 300px;
         height: 50px;
-    }
+}
+
+.signUpBox{
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 400px;
+  height: 410px;
+  background: white;
+  border-radius: 20px;
+
+}
+  
 
 </style>
