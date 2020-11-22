@@ -143,7 +143,7 @@
         <tr>
           <td>国家</td>
           <td>
-            <el-select v-model="addBookData.country.countryName" placeholder="请选择">
+            <el-select v-model="addBookData.country.countryId" placeholder="请选择">
               <el-option
                 v-for="item in country"
                 :key="item.countryId"
@@ -154,7 +154,7 @@
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="addBookData.type.typeName" placeholder="请选择">
+            <el-select v-model="addBookData.type.typeId" placeholder="请选择">
               <el-option
                 v-for="item in type"
                 :key="item.typeId"
@@ -183,7 +183,7 @@
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="addBookData.theme.themeName" placeholder="请选择">
+            <el-select v-model="addBookData.theme.themeId" placeholder="请选择">
               <el-option
                 v-for="item in theme"
                 :key="item.themeId"
@@ -242,7 +242,7 @@
           <td>国家</td>
           <td>
             <el-select
-              v-model="bookData[0].country.countryName"
+              v-model="bookData[0].country.countryId"
               placeholder="请选择"
             >
               <el-option
@@ -255,7 +255,7 @@
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="bookData[0].type.typeName" placeholder="请选择">
+            <el-select v-model="bookData[0].type.typeId" placeholder="请选择">
               <el-option
                 v-for="item in type"
                 :key="item.typeId"
@@ -266,14 +266,8 @@
           </td>
           <td>上架数量</td>
           <td>
-            <el-select v-model="bookData[0].onNumber" placeholder="请选择">
-              <el-option
-                v-for="item in onNumber"
-                :key="item.onNumberId"
-                :label="item.onNumber"
-                :value="item.onNumberId"
-              ></el-option>
-            </el-select>
+           <el-input v-model="bookData[0].onNumber" placeholder="上架数量"></el-input>
+            
           </td>
         </tr>
         <tr>
@@ -290,7 +284,7 @@
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="bookData[0].theme.themeName" placeholder="请选择">
+            <el-select v-model="bookData[0].theme.themeId" placeholder="请选择">
               <el-option
                 v-for="item in theme"
                 :key="item.themeId"
@@ -302,14 +296,8 @@
           </td>
           <td>下架数量</td>
           <td>
-            <el-select v-model="bookData[0].offNumber" placeholder="请选择">
-              <el-option
-                v-for="item in offNumber"
-                :key="item.offNumberId"
-                :label="item.offNumber"
-                :value="item.offNumberId"
-              ></el-option>
-            </el-select>
+           <el-input v-model="bookData[0].offNumber" placeholder="下架数量"></el-input>
+           
           </td>
         </tr>
         <tr>
@@ -380,7 +368,7 @@ export default {
          pages:this.bookData[0].pages,
          onTime:this.bookData[0].onTime,
          offTime:this.bookData[0].offTime,
-         surplusNumber:this.bookData[0].surplusNumber,
+         surplusNumber:(this.bookData[0].onNumber-this.bookData[0].offNumber),
          borrows:this.bookData[0].borrows,
 
         }
@@ -584,16 +572,16 @@ export default {
             countryName: "",
           },
           type: {
-            typeId: 0,
+            typeId: "",
             typeName: "",
           },
           theme: {
-            themeId: 0,
+            themeId: "",
             themeName: "",
           },
           onNumber: 0,
           offNumber:0,
-          pages: 0,
+          pages: "",
           brief: "暂无",
       }
     };

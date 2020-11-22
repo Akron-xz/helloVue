@@ -171,7 +171,7 @@ import axios from "axios"
   left: 50px;
   width: 400px;
   height: 410px;
-  background: white;
+  background:#ffffff40;
   border-radius: 20px;
 
 }
