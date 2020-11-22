@@ -1,5 +1,6 @@
 <template>
     <div class="signup-container">
+      <el-header>用户注册</el-header>
       <div class="signUpBox">
         <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="注册ID：" prop="id">
@@ -153,6 +154,17 @@ import axios from "axios"
         background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
+.el-header {
+    text-align: left;
+    line-height: 60px;
+    font-weight: 1000;
+    font-size: 30px;
+    color: transparent;
+   -webkit-text-stroke: 1px white;
+    letter-spacing: 0.04em;
+    
+}
+
 .demo-ruleForm{
         position: absolute;
         right: 70px;
@@ -163,7 +175,7 @@ import axios from "axios"
 
 .signUpBox{
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 50px;
   width: 400px;
   height: 410px;

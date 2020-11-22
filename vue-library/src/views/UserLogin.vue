@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style scoped>
- .login-container{
+.login-container{
     position: fixed;
     left: 0;
     top:0;
@@ -90,15 +90,16 @@ export default {
     background-repeat: no-repeat;
     background-size: 100%;
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
- }
- .demo-ruleForm{
+}
+.demo-ruleForm{
         position: absolute;
         left: 70px;
         top: 180px;
         width: 300px;
         height: 50px;
- }
- .el-header {
+}
+
+.el-header {
     text-align: left;
     line-height: 60px;
     font-weight: 1000;
@@ -107,7 +108,7 @@ export default {
    -webkit-text-stroke: 1px white;
     letter-spacing: 0.04em;
     
-  }
+}
 
 .loginBox{
   margin-left: 70px;
