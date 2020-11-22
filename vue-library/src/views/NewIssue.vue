@@ -167,7 +167,10 @@ export default {
     //输入姓名模糊搜索
     search() {
       if (this.searchContent=="") {
-        alert("请输入需要查询的信息。");
+        this.$message({
+          message: '请输入需要查询的信息。',
+          type: 'error'
+        });
         return 0;
       }
       let searchContent = this.searchContent;
@@ -187,7 +190,10 @@ export default {
             // 显示对话框
             this.dispalyInfo = !this.dispalyInfo;
           }else {
-            alert("查找不到用户。");
+            this.$message({
+              message: '查找不到用户。',
+              type: 'error'
+            });
           }
         })
         .catch(function (error) {
@@ -215,8 +221,11 @@ export default {
         //   userId : userId
         // },
       });
+      this.$message({
+        message: '删除成功',
+        type: 'success'
+      });
       
-      alert("删除成功");
       this.getLists();
     },
     //返回
