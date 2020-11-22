@@ -2,17 +2,12 @@
   <div class="home-container">
     <div class="login box">
       <img src="/img/home/login.png" alt="" class="home-img" @click="toLogin" />
-      <p class="logo-name" @click="toLogin">登陆</p>
+      <p class="logo-name" @click="toLogin">用户登录</p>
     </div>
 
     <div class="admin box">
-      <img
-        src="/img/home/admin.png"
-        alt=""
-        class="home-img"
-        @click="toAdmin"
-      />
-      <p class="logo-name" @click="toAdmin">图书管理</p>
+      <img src="/img/home/admin.png" alt="" class="home-img" @click="toAdmin" />
+      <p class="logo-name" @click="toAdmin">管理员登录</p>
     </div>
 
     <div class="signup box">
@@ -22,12 +17,12 @@
         class="home-img"
         @click="toSignUp"
       />
-      <p class="logo-name" @click="toSignUp">注册</p>
+      <p class="logo-name" @click="toSignUp">用户注册</p>
     </div>
 
-    <div class="announce-box" >
+    <div class="announce-box">
       <h1>图书馆公告:</h1>
-      <p>{{announceContent}}</p>
+      <p>{{ announceContent }}</p>
     </div>
   </div>
 </template>>
@@ -38,44 +33,55 @@ import axios from "axios";
 export default {
   data() {
     return {
-     
       announceTime: "",
-      announceContent:"",
-     
-
-      
+      announceContent: "",
+      permission: false,
     };
   },
   methods: {
     getAnnounce() {
       axios({
-              method:"get",
-              url:"http://localhost:8081/announce/list"
-            }).then(res=>{
-                let announceContent = res.data.announceContent;
-                this.announceContent = announceContent;
-              console.log(announceContent);
-                    
-              
-            })
+        method: "get",
+        url: "http://localhost:8081/announce/list",
+      })
+        .then((res) => {
+          let announceContent = res.data.announceContent;
+          this.announceContent = announceContent;
+          console.log(announceContent);
+        })
         .catch(function (error) {
           //请求失败
           console.log("error...", error);
         });
     },
+    // 登录
     toLogin() {
+      this.permission = true;
       this.$router.push({ path: "/UserLogin" });
     },
+    // 管理员登录
     toAdmin() {
+      this.permission = true;
       this.$router.push({ path: "/admin" });
     },
+    // 注册账号
     toSignUp() {
+      this.permission = true;
       this.$router.push({ path: "/signup" });
     },
   },
   created() {
-      this.getAnnounce();
+    this.getAnnounce();
   },
+
+  // 只有点击上面 用户登录 或 管理员登录 或 注册 才能跳转 (导航守卫)
+  // beforeRouteLeave (to, from, next) {
+  //   if (this.permission) {
+  //     next();
+  //   }else {
+  //     next(false);
+  //   }
+  // }
 };
 </script>
 
@@ -129,7 +135,7 @@ export default {
   border: 1px solid black;
 }
 
-.announce-box h1{
+.announce-box h1 {
   margin-top: 0;
 }
 </style>>

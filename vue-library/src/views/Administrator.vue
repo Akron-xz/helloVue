@@ -1,10 +1,12 @@
 <template>
   <div class="admin-login-container">
+    <el-header>管理员登陆</el-header>
+    <div class="adminBox">
     <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
       <el-form-item label="管理员ID：" prop="adminId">
         <el-input v-model.number="ruleForm2.adminId"></el-input>
       </el-form-item>
-      <el-form-item label="你的密码：" prop="pwd">
+      <el-form-item label="密码：" prop="pwd">
         <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
       </el-form-item>
 
@@ -13,11 +15,13 @@
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-form>
+    </div>
   </div>
 </template>
 
 
 <script>
+import axios from "axios"
   export default {
     data() {
       var checkadminId = (rule, value, callback) => {
@@ -45,9 +49,12 @@
       
       return {
         ruleForm2: {
+          adminId: '',
           pwd: '',
-          adminId: ''
         },
+
+        admin:[],
+
         rules2: {
           pwd: [
             { validator: validatepwd, trigger: 'blur' }
@@ -59,12 +66,38 @@
       };
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+      submitForm(formName2) {
+        this.$refs[formName2].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            axios({
+              method:"post",
+              url:"http://localhost:8081/login",
+              params : {
+                id : parseInt(this.ruleForm2.adminId),
+                password : this.ruleForm2.pwd,
+              }
+            }).then(res=>{
+              // 获取后台返回的数据
+              // 若有就得到json，若无就得到空
+              this.admin = res.data;
+              console.log(this.admin);
+
+              // 结果是undefined
+              // 应该是数组的大小被改变后length就为undefined
+              console.log(this.admin.length);
+
+              if (this.admin) {
+                console.log("登陆成功");
+                // 路由跳转
+                this.$router.push({path:'/adminmain'});
+              } else {
+                alert("登录失败！请检查你的账号和密码是否正确");
+                this.ruleForm2.adminId = "";
+                this.ruleForm2.pwd = "";
+              }
+            })
           } else {
-            console.log('error submit!!');
+            console.log('错误的表单提交');
             return false;
           }
         });
@@ -79,23 +112,43 @@
 
 
 <style scoped>
-  .admin-login-container {
+.admin-login-container {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
-  }
+}
 
-  .demo-ruleForm{
+.el-header {
+    text-align: left;
+    line-height: 60px;
+    font-weight: 1000;
+    font-size: 30px;
+    color: transparent;
+   -webkit-text-stroke: 1px white;
+    letter-spacing: 0.04em;
+    
+}
+
+.demo-ruleForm{
     position: absolute;
     right: 70px;
-    top: 80px;
+    top: 20px;
     width: 300px;
     height: 50px;
-  }
+}
 
+.adminBox{
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 400px;
+  height: 200px;
+  background: white;
+  border-radius: 20px;
+}
 </style>
 
 
