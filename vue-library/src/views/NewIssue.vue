@@ -209,8 +209,9 @@ export default {
         //   userId : userId
         // },
       });
-      this.getLists();
+      
       alert("删除成功");
+      this.getLists();
     },
     //返回
     goBack() {
@@ -231,7 +232,9 @@ export default {
         //get方式获取数据
         method: "get",
         //接口地址
-        url: "/data/user.json",
+        // url: "http://localhost:8081/user/selectAllUser",
+        url: "/data/user.json"
+
       })
         .then((res) => {
           //请求数据 res 返回的数据
