@@ -126,7 +126,16 @@ import axios from "axios"
             console.log('error submit!!');
             return false;
           }
+        
+
+
+
         });
+          this.ruleForm2.id="",
+          this.ruleForm2.name="",
+          this.ruleForm2.email="",
+          this.ruleForm2.pwd="",
+          this.ruleForm2.checkPwd=""
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
