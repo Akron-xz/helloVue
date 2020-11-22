@@ -4,7 +4,7 @@
       <el-form-item label="管理员ID：" prop="adminId">
         <el-input v-model.number="ruleForm2.adminId"></el-input>
       </el-form-item>
-      <el-form-item label="你的密码：" prop="pwd">
+      <el-form-item label="密码：" prop="pwd">
         <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
       </el-form-item>
 
@@ -18,6 +18,7 @@
 
 
 <script>
+import axios from "axios"
   export default {
     data() {
       var checkadminId = (rule, value, callback) => {
@@ -45,9 +46,12 @@
       
       return {
         ruleForm2: {
+          adminId: '',
           pwd: '',
-          adminId: ''
         },
+
+        admin:[],
+
         rules2: {
           pwd: [
             { validator: validatepwd, trigger: 'blur' }
@@ -59,12 +63,38 @@
       };
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+      submitForm(formName2) {
+        this.$refs[formName2].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            axios({
+              method:"post",
+              url:"http://localhost:8081/login",
+              params : {
+                id : parseInt(this.ruleForm2.adminId),
+                password : this.ruleForm2.pwd,
+              }
+            }).then(res=>{
+              // 获取后台返回的数据
+              // 若有就得到json，若无就得到空
+              this.admin = res.data;
+              console.log(this.admin);
+
+              // 结果是undefined
+              // 应该是数组的大小被改变后length就为undefined
+              console.log(this.admin.length);
+
+              if (this.admin) {
+                console.log("登陆成功");
+                // 路由跳转
+                this.$router.push({path:'/adminmain'});
+              } else {
+                alert("登录失败！请检查你的账号和密码是否正确");
+                this.ruleForm2.adminId = "";
+                this.ruleForm2.pwd = "";
+              }
+            })
           } else {
-            console.log('error submit!!');
+            console.log('错误的表单提交');
             return false;
           }
         });

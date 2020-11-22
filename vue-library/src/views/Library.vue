@@ -269,9 +269,7 @@ export default {
     selectByLabel() {
       axios
         .post(
-
           "http://localhost:8081/book/list/label",
-
           {
             countryId: this.couId,
             typeId: this.tyId,
