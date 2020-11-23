@@ -46,6 +46,13 @@
             onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
           ></el-input>
         </el-form-item>
+        <div class="passwordTip" style="position: absolute">
+          <verify-pass-word-tip
+            :password="ruleForm2.password"
+            :isShowTip="isShowTip"
+          >
+          </verify-pass-word-tip>
+        </div>
         <el-form-item label="确认密码：" prop="checkPwd">
           <el-input
             type="password"
@@ -163,6 +170,16 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    changePasswordTip(isShow) {
+      if (isShow) {
+        this.isShowTip = true;
+      } else {
+        this.isShowTip = false;
+      }
+    },
+  },
+  resetForm(formName) {
+    this.$refs[formName].resetFields();
   },
 };
 </script>

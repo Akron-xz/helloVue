@@ -32,15 +32,22 @@
           )
         "
         max-height="315"
+        
       >
         <el-table-column prop="name" label="姓名" width="100">
         </el-table-column>
         <el-table-column prop="sexStr" label="性别" width="80">
         </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="140">
+        <el-table-column prop="email" label="邮箱" width="300">
         </el-table-column>
-        <el-table-column label="操作">
+         <el-table-column prop="password" label="密码" width="300">
+        </el-table-column>
+        <el-table-column prop="phone" label="联系电话" width="100">
+        </el-table-column>
+        <el-table-column prop="birthdayStr" label="出生年月" width="100">
+        </el-table-column>
+        <el-table-column label="操作" width="200">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="retrieve(scope.row)"
               >查看</el-button
@@ -67,7 +74,7 @@
         </el-pagination>
       </div>
     </div>
-    <!-- 个人完整信息（第1种） -->
+    <!-- 个人完整信息（第1种）v-show -->
     <div v-show="false">
       <br />
       <el-button type="primary" icon="el-icon-back" @click="goBack"
@@ -96,32 +103,22 @@
       </el-table>
     </div>
 
-    <!-- 个人完整信息（第2种） -->
+    <!-- 个人完整信息（第2种）对话框 -->
     <div>
-      <el-dialog title="个人信息表" 
+      <el-dialog title="借阅历史" 
         :visible.sync="dispalyInfo" 
         :append-to-body="true" 
         :modal-append-to-body="false"
         :center="true">
-        <el-table :data="userData">
+        <el-table :data="borrowHistory">
 
-        <el-table-column prop="name" label="姓名" width="80"> </el-table-column>
-        <el-table-column prop="sex" label="性别" width="60"> </el-table-column>
-        <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="140">
-        </el-table-column>
-        <el-table-column prop="password" label="密码" width="140">
-        </el-table-column>
-        <el-table-column prop="birthday" label="出生年月" width="200">
-        </el-table-column>
-        <el-table-column prop="phone" label="联系电话" width="140">
-        </el-table-column>
-        <el-table-column prop="address" label="居住地址" width="140">
-        </el-table-column>
-        <el-table-column prop="introduction" label="个人描述" width="100">
-        </el-table-column>
-        <el-table-column prop="identity" label="身份" width="100">
-        </el-table-column>
+        <el-table-column prop="book.bookName" label="书名" width="80"> </el-table-column>
+        <el-table-column prop="borrowTimeStr" label="借阅时间" width="160"> </el-table-column>
+        <el-table-column prop="deadlineStr" label="截止日期" width="160"> </el-table-column>
+        <el-table-column prop="validTime" label="有效期" width="80"> </el-table-column>
+        <el-table-column prop="returnTimeStr" label="归还时间" width="160"> </el-table-column>
+        <el-table-column prop="borrowStates" label="状态" width="80"> </el-table-column>
+        
       </el-table>
       </el-dialog>
     </div>
@@ -145,6 +142,7 @@ export default {
       dispalyInfo: false,
       searchContent: "",
       userData: [],
+      borrowHistory:[],
       pageSize: 5,
       total: 10,
       tableData: [
@@ -206,6 +204,17 @@ export default {
       // console.log(row);
       this.dispalyInfo = !this.dispalyInfo;
       this.userData = [row];
+      console.log(this.userData[0].userId);
+      axios({
+        method:"get",
+        url:"http://localhost:8081/user/selectBorrowHistory",
+        params:{
+          userId:this.userData[0].userId
+        }
+      }).then(res=>{
+          this.borrowHistory=res.data;
+          console.log(this.borrowHistory);
+      })
     },
     //删除某个用户
     deleteById(row) {

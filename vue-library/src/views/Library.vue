@@ -76,7 +76,6 @@
           v-model="key"
           @keyup.enter.native="searchContent"
         >
-        
           <el-button
             slot="append"
             icon="el-icon-search"
@@ -109,7 +108,9 @@
           property="theme.themeName"
         ></el-table-column>
         <el-table-column label="状态">
-          <el-button type="" @click="borrowStatus">借阅</el-button>
+          <template slot-scope="scope">
+            <el-button type="" @click="borrowStatus(scope.row)">借阅</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <br />
@@ -130,12 +131,15 @@
     </div>
 
     <div class="borrow-box" v-show="!tableDisplay">
-      <h1>书名：时间简史</h1>
+      <h1>书名：{{ bookname }}</h1>
       <div v-text="'简介：' + brief" class="brief"></div>
       <div class="borrow-button">
         <el-button type="primary" @click="borrow">借阅</el-button>
+        <el-button type="info" @click="goBack">返回</el-button>
       </div>
     </div>
+
+  
   </div>
 </template>
 <script>
@@ -151,6 +155,7 @@ export default {
       brief: "霍金写的书",
       bookname: "时间简史",
       tableDisplay: true,
+      bookId:"",
 
       // 接收数据
       lists: [],
@@ -193,7 +198,6 @@ export default {
       ],
 
       // 篇幅
-    
 
       // 主题
 
@@ -225,11 +229,22 @@ export default {
     };
   },
   methods: {
-    borrowStatus() {
+    borrowStatus(row) {
       this.tableDisplay = !this.tableDisplay;
+      this.brief = [row][0].brief;
+      this.bookname = [row][0].bookName;
+      this.bookId = [row][0].bookId
     },
 
     borrow() {
+      axios({
+        method:"post",
+        url:"http://localhost:8081/user/borrow/"+this.bookId,
+      })
+     console.log(this.bookId)
+      this.tableDisplay = !this.tableDisplay;
+    },
+     goBack() {
       this.tableDisplay = !this.tableDisplay;
     },
 
@@ -286,13 +301,11 @@ export default {
 
     selectByKey() {
       axios
-        .get(
-          "http://localhost:8081/book/list/key",
-          {
-            params:{
-              key:this.key,
-            }
-          })
+        .get("http://localhost:8081/book/list/key", {
+          params: {
+            key: this.key,
+          },
+        })
         .then((res) => {
           this.lists = res.data;
           this.key = "";
@@ -302,11 +315,11 @@ export default {
   },
 
   created() {
+    let user = JSON.parse(sessionStorage.getItem("userSession"));
+    console.log(user);
     axios
 
       .get("http://localhost:8081/book/list", {
-
-
         params: {
           pageNum: 1,
 
@@ -317,11 +330,9 @@ export default {
         // console.log(pageInfo);
 
         // 使用全局lists变量来接收响应的json数据
-        
 
         // 使用全局lists接受响应的json数据
         this.lists = res.data;
-
       })
       .catch((err) => console.log("error...", err));
 
