@@ -53,6 +53,7 @@
             this.$data.degreeNumber = objReturn.degreeNumber;
           }
         }
+     
       },
       /**
        * 密码验证（密码复杂度：(1)大写字母(2)小写字母(3)数字(4)特殊符号，密码至少需包含上述情形中的三种）

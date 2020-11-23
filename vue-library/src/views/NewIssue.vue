@@ -164,13 +164,13 @@ export default {
 
     //输入姓名模糊搜索
     search() {
-      if (this.searchContent=="") {
-        this.$message({
-          message: '请输入需要查询的信息。',
-          type: 'error'
-        });
-        return 0;
-      }
+      // if (this.searchContent=="") {
+      //   this.$message({
+      //     message: '请输入需要查询的信息。',
+      //     type: 'error'
+      //   });
+      //   return 0;
+      // }
       let searchContent = this.searchContent;
       axios({
         method: "get",
@@ -181,18 +181,6 @@ export default {
           // 接收数据
           this.userData = res.data;
 
-          // 清空输入框
-          this.searchContent = "";
-
-          if (this.userData.length){
-            // 显示对话框
-            this.dispalyInfo = !this.dispalyInfo;
-          }else {
-            this.$message({
-              message: '查找不到用户。',
-              type: 'error'
-            });
-          }
         })
         .catch(function (error) {
           //请求失败

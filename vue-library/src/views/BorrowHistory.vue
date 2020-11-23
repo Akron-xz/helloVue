@@ -11,45 +11,30 @@
       :data="tableData.slice(
             (page.currentPage - 1) * page.pageSize,
             page.currentPage * page.pageSize
-          )" style="width: 100%">
+          )" >
       
       <el-table-column
-        prop="BookName"
+        prop="book.bookName"
         label="书籍名称"
-        width="180">
+        width="180px">
       </el-table-column>
       <el-table-column
-        prop="BorrowTime"
+        prop="borrowTimeStr"
         label="借阅时间"
-        width="180">
+        width="180px">
       </el-table-column>
       <el-table-column
-        prop="ReturnTime"
+        prop="returnTimeStr"
         label="应归还时间"
-        width="180">
+        width="180px">
       </el-table-column>
       <el-table-column
-        prop="ValidTime"
-        label="借阅有效期"></el-table-column>
-      <el-table-column label="操作">
+        prop="validTime"
+        label="借阅有效期"
+        width="180px"></el-table-column>
       
-        <el-popover
-  placement="left"
-  width="600"
-  trigger="click">
-  <el-table :data="gridData">
-    <el-table-column width="100" property="UserNumber" label="用户编号"></el-table-column>
-    <el-table-column width="100" property="Name" label="用户姓名"></el-table-column>
-    <el-table-column width="100" property="Deadline" label="距归还还剩"></el-table-column>
-    <el-table-column width="100" property="BookName" label="书籍名称"></el-table-column>
-    <el-table-column width="100" property="BorrowTime" label="借阅时间"></el-table-column>
-    <el-table-column width="100" property="ValidTime" label="借阅有效期"></el-table-column>
-
-  </el-table>
-  <el-button slot="reference" class="reference-btn">详情</el-button>
-</el-popover>
-         
-      </el-table-column>
+      
+  
     </el-table>
  </div>
     <!-- 分页 -->
@@ -69,16 +54,11 @@
 </div>
   </template>
 <script>
+import axios from "axios"
     export default {
       data() {
         return {
-          tableData: [{
-            BookName: '1',
-            BorrowTime: '2',
-            ReturnTime: '3',
-            ValidTime: '4',
-          },
-          ],
+          tableData: [],
           gridData:[{
             UserNumber:'1',
             Name:'',
@@ -92,6 +72,8 @@
         total: 20, // 总条数
         pageSize: 5, // 每页的数据条数
       },
+
+    
         }
       },
       methods: {
@@ -105,7 +87,22 @@
       this.page.currentPage = val;
     },
       },
+      created() {
+        let user = JSON.parse(sessionStorage.getItem("userSession"));
+        console.log(user.userId);
+        axios({
+          method:"get",
+          url:"http://localhost:8081/user/selectBorrowHistory",
+          params:{
+            userId:user.userId
+          }
+          
+        }).then(res=>{
+          this.tableData = res.data
+        })
+      },
     }
+
 </script>
 
 <style scoped>
@@ -130,7 +127,7 @@
   position: fixed;
   top: 155px;
   right: 160px;
-  width: 1200px;
+  width: 800px;
   
 }
 .pagingBox{
