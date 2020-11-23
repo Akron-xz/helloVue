@@ -86,8 +86,13 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
       };
 
       var validatePass = (rule, value, callback) => {
+        var reg= /(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])/;     //只能为数字、字母、特殊符号
         if (value === '') {
           callback(new Error('请输入密码'));
+        } else if (!reg.test(value)){
+          callback(new Error('必须包含数字、字母、特殊字符'));
+        } else if(/[\u4E00-\u9FA5]/g.test(value)){
+          callback(new Error('密码不能有汉字'));
         } else {
           if (this.ruleForm2.checkPwd !== '') {
             this.$refs.ruleForm2.validateField('password');
