@@ -67,7 +67,7 @@
         </el-pagination>
       </div>
     </div>
-    <!-- 个人完整信息（第1种） -->
+    <!-- 个人完整信息（第1种）v-show -->
     <div v-show="false">
       <br />
       <el-button type="primary" icon="el-icon-back" @click="goBack"
@@ -96,7 +96,7 @@
       </el-table>
     </div>
 
-    <!-- 个人完整信息（第2种） -->
+    <!-- 个人完整信息（第2种）对话框 -->
     <div>
       <el-dialog title="个人信息表" 
         :visible.sync="dispalyInfo" 

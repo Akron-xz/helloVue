@@ -175,6 +175,5 @@ import axios from "axios"
   border-radius: 20px;
 
 }
-  
 
 </style>
