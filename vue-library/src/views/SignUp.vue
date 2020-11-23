@@ -86,7 +86,6 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
       };
 
       var validatePass = (rule, value, callback) => {
-        debugger
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
