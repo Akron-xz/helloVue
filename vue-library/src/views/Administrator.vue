@@ -91,7 +91,11 @@ import axios from "axios"
                 // 路由跳转
                 this.$router.push({path:'/adminmain'});
               } else {
-                alert("登录失败！请检查你的账号和密码是否正确");
+                this.$message({
+                  message: '登录失败！请检查你的账号和密码是否正确。',
+                  type: 'error'
+                });
+                
                 this.ruleForm2.adminId = "";
                 this.ruleForm2.pwd = "";
               }

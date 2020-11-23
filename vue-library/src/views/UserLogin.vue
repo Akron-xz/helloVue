@@ -1,5 +1,6 @@
 <template>
 <div  class="login-container">
+      <!-- need to change -->
       <el-header>用户登陆</el-header>
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户ID" prop="userId">
@@ -11,10 +12,11 @@
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-link type="warning" @click="toSignUp">立即注册</el-link>
       </el-form-item>
+    </el-form>
 
-  </el-form>
-      <div class="loginBox">
+      <!-- <div class="loginBox">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
           <el-form-item label="用户名" prop="username">
             <el-input v-model="ruleForm.username"></el-input>
@@ -25,10 +27,9 @@
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
             <el-button @click="resetForm('ruleForm')">重置</el-button>
-            <el-link type="warning" @click="toSignUp">立即注册</el-link>
           </el-form-item>
         </el-form>
-      </div>
+      </div> -->
 
 </div>
 </template>
@@ -80,11 +81,18 @@ export default {
 
               if (this.user) {
                 console.log("登陆成功");
+                // session保存登录的用户信息
+                sessionStorage.setItem("userSession", JSON.stringify(this.user));
+                // console.log(JSON.parse(sessionStorage.getItem("userSession")));
+
                 // 路由跳转
                 this.$router.push({path:'/user'});
 
               } else {
-                alert("登录失败！请检查你的账号和密码是否正确");
+                this.$message({
+                  message: '登录失败！请检查你的账号和密码是否正确。',
+                  type: 'error'
+                });
                 this.ruleForm.userId = "";
                 this.ruleForm.password = "";
               }
