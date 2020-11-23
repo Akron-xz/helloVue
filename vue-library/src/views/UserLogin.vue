@@ -7,7 +7,10 @@
             <el-input v-model="ruleForm.username"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-           <el-input v-model="ruleForm.password" type="password"></el-input>
+           <el-input v-model="ruleForm.password" type="password" 
+              oncopy="return false"
+              onpaste="return false"
+              oncut="return false"></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
@@ -28,10 +31,17 @@
 import axios from "axios"
 export default {
     data() {
-        return {
-             ruleForm: {
-          username: '',
-          password:'',      
+      var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          callback();
+        }
+      };
+      return {
+          ruleForm: {
+            username: '',
+            password:'',      
          
         },
         user:[],
@@ -39,11 +49,10 @@ export default {
             username:[
                 { required: true, message: '请输入用户名', trigger: 'blur'}
             ],
-             password:[
-                { required: true, message: '请输入密码', trigger: 'blur'}
-            ]
-            
-            
+             password: [
+            { validator: validatePass, trigger: 'blur' },
+            { min: 8, max: 24,message: '长度应在 8 到 24 个字符', trigger: 'blur'}
+          ],
         }
         };
     },

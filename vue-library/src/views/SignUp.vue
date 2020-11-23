@@ -13,11 +13,24 @@
 
         <el-form-item label="邮箱：" prop="email">
             <el-input v-model="ruleForm2.email"></el-input>
-        </el-form-item>
+        </el-form-item>  
         
-        <el-form-item label="密码：" prop="pwd">
-            <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
+        
+        <el-form-item label="密码：" prop="password">
+            <el-input 
+              type="password"
+              v-model="ruleForm2.password" 
+              @focus.capture.native='changePasswordTip(true)'
+              @blur.capture.native='changePasswordTip(false)'
+              auto-complete="new-password">
+            </el-input>
         </el-form-item>
+        <div class="passwordTip" style="position: absolute">
+          <verify-pass-word-tip 
+            :password='ruleForm2.password' 
+            :isShowTip='isShowTip'>
+          </verify-pass-word-tip>
+        </div>
         <el-form-item label="确认密码：" prop="checkPwd">
             <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off"></el-input>
         </el-form-item>
@@ -35,7 +48,12 @@
 
 <script>
 import axios from "axios"
+import verifyPassWordTip from '@/components/verifyPassWordTip'
   export default {
+    name: "VerifyPassWord",
+    components:{
+      verifyPassWordTip
+    },
     data() {
       var checkId = (rule, value, callback) => {
         if (!value) {
@@ -71,6 +89,7 @@ import axios from "axios"
           callback(new Error('请输入密码'));
         } else {
           if (this.ruleForm2.checkPwd !== '') {
+            this.$refs.ruleForm2.validateField('password');
             this.$refs.ruleForm2.validateField('checkPwd');
           }
           callback();
@@ -79,18 +98,20 @@ import axios from "axios"
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码!!'));
-        } else if (value !== this.ruleForm2.pwd) {
+        } else if (value !== this.ruleForm2.password) {
           callback(new Error('两次输入密码不一致!'));
         } else {
           callback();
         }
       };
       return {
+        //password: '',
+        isShowTip: false,
         ruleForm2: {
           id: '',
           name:'',
           email:'',
-          pwd: '',
+          password: '',
           checkPwd: '',
           
         },
@@ -104,8 +125,9 @@ import axios from "axios"
           email: [
             { validator: checkEmail, trigger: 'blur' }
           ],
-          pwd: [
-            { validator: validatePass, trigger: 'blur' }
+          password: [
+            { validator: validatePass, trigger: 'blur' },
+            { min: 8, max: 24,message: '长度应在 8 到 24 个字符', trigger: 'blur'}
           ],
           checkPwd: [
             { validator: validatePass2, trigger: 'blur' }
@@ -127,7 +149,7 @@ import axios from "axios"
                 userId:this.ruleForm2.id,
                 name:this.ruleForm2.name,
                 email:this.ruleForm2.email,
-                password:this.ruleForm2.pwd
+                password:this.ruleForm2.password
               },
             },{emulateJSON:true})
           } else {
@@ -138,7 +160,14 @@ import axios from "axios"
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      }
+      },
+      changePasswordTip(isShow){
+        if (isShow) {
+          this.isShowTip = true;
+        } else{
+          this.isShowTip = false;
+        }
+      },
     },
 
   }
