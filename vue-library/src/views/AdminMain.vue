@@ -51,19 +51,19 @@ export default {
     },
 
     toSearchClient(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/newissue'});
     },
     toSearchFile(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/booksearch'});
     },
     toAnnounce(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/modifyannounce'});
     },
     toBooks(){
       this.$router.push({path:'/booksearch'});
     },
     toGraphReport(){
-      this.$router.push({path:'/signup'});
+      this.$router.push({path:'/Statistics'});
     },
 
 

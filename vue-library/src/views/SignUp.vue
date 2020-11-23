@@ -121,7 +121,14 @@ import axios from "axios"
                 email:this.ruleForm2.email,
                 password:this.ruleForm2.pwd
               },
-            },{emulateJSON:true})
+            },{emulateJSON:true}).then(res=>{
+          this.ruleForm2.id="",
+          this.ruleForm2.name="",
+          this.ruleForm2.email="",
+          this.ruleForm2.pwd="",
+          this.ruleForm2.checkPwd=""
+          console.log(res);
+            })
           } else {
             console.log('error submit!!');
             return false;
@@ -131,11 +138,7 @@ import axios from "axios"
 
 
         });
-          this.ruleForm2.id="",
-          this.ruleForm2.name="",
-          this.ruleForm2.email="",
-          this.ruleForm2.pwd="",
-          this.ruleForm2.checkPwd=""
+     
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
