@@ -6,10 +6,12 @@
       <el-form-item label="管理员ID：" prop="adminId">
         <el-input v-model.number="ruleForm2.adminId"></el-input>
       </el-form-item>
-      <el-form-item label="密码：" prop="pwd">
-        <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
+      <el-form-item label="你的密码：" prop="pwd">
+        <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"
+            oncopy="return false"
+            onpaste="return false"
+            oncut="return false"></el-input>
       </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm2')">确认</el-button>
         <el-button @click="resetForm('ruleForm2')">重置</el-button>

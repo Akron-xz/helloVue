@@ -6,104 +6,75 @@
       <div v-show="InsertTableDisplay">
         <h1 class="search-title">书籍查询</h1>
         <div class="choiceBox">
-          <table>
+          <table :rules="rules" ref="ruleForm">
             <tr>
               <td>国家</td>
               <td>
-                <el-select v-model="couId" placeholder="请选择">
+                <el-select v-model="couId" placeholder="请选择" style="width: 150px">
                   <el-option
-                    v-for="item in country"
-                    :key="item.countryId"
-                    :label="item.countryName"
+                    v-for="item in country" :key="item.countryId" :label="item.countryName"
                     :value="item.countryId"
                   ></el-option>
                 </el-select>
               </td>
               <td>类型</td>
               <td>
-                <el-select v-model="tyId" placeholder="请选择">
+                <el-select v-model="tyId" placeholder="请选择" style="width: 150px">
                   <el-option
-                    v-for="item in type"
-                    :key="item.typeId"
-                    :label="item.typeName"
+                    v-for="item in type" :key="item.typeId" :label="item.typeName"
                     :value="item.typeId"
                   ></el-option>
                 </el-select>
               </td>
               <td>篇幅</td>
               <td>
-                <el-select v-model="pagenumber" placeholder="请选择">
+                <el-select v-model="pagenumber" placeholder="请选择" style="width: 150px">
                   <el-option
-                    v-for="item in pages"
-                    :key="item.pageId"
-                    :label="item.pageName"
+                    v-for="item in pages" :key="item.pageId" :label="item.pageName"
                     :value="item.pageId"
                   ></el-option>
                 </el-select>
               </td>
               <td>主题</td>
               <td>
-                <el-select v-model="thId" placeholder="请选择">
+                <el-select v-model="thId" placeholder="请选择" style="width: 150px">
                   <el-option
-                    v-for="item in theme"
-                    :key="item.themeId"
-                    :label="item.themeName"
-                    :value="item.themeId"
+                    v-for="item in theme" :key="item.themeId" :label="item.themeName" :value="item.themeId"
                   ></el-option>
                 </el-select>
               </td>
               <td>
-                <el-button
-                  type=""
-                  icon="el-icon-plus"
-                  @click="MsgInsert"
-                ></el-button>
+                <el-button type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
               </td>
               <td>
-                <el-button type="" icon="el-icon-search" @click="selectByLabel"
-                  >搜索</el-button
-                >
+                <el-button type="" icon="el-icon-search" @click="selectByLabel">搜索</el-button>
               </td>
             </tr>
           </table>
         </div>
+
         <div class="searchBox">
-          <input
-            type="text"
-            style="width: 180px; height: 30px"
-            v-model="key"
-          />&nbsp;&nbsp;<input
-            type="button"
-            value="搜索"
-            style="width: 50px; height: 30px"
-            @click="selectByKey"
-          />
+          <el-input placeholder="请输入关键字" style="width: 220px" class="input-with-select"
+          v-model="key"
+          @keyup.enter.native="searchContent">      
+          <el-button slot="append" icon="el-icon-search" @click="selectByKey"></el-button>
+        </el-input>
         </div>
 
         <div class="table-box">
           <el-table
-            :data="
-              lists.slice(
-                (page.currentPage - 1) * page.pageSize,
-                page.currentPage * page.pageSize
-              )
-            "
-            max-height="240"
-            style="width: 100%"
-          >
+            :data="lists.slice((page.currentPage - 1) * page.pageSize,
+                page.currentPage * page.pageSize)" max-height="240"
+            style="width: 100%">
+
             <el-table-column prop="bookName" label="书籍名称" width="300">
             </el-table-column>
             <el-table-column prop="onTimeStr" label="上架时间" width="300">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button
-                  @click="MsgModify(scope.row)"
-                  type="primary "
-                  class="edit-btn"
-                  size="small"
-                  >编辑</el-button
-                >
+                <el-button @click="MsgModify(scope.row)" type="primary " class="edit-btn"
+                  size="small">编辑</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -126,16 +97,13 @@
     </div>
     <!-- 添加书籍弹窗 -->
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
-      <table>
+      <table >
         <tr>
           <td></td>
           <td></td>
           <td style="font-size: 25px">书名</td>
           <td>
-            <input
-              type="text"
-              v-model="addBookData.bookName"
-              style="width: 210px; height: 35px"
+            <input type="text" v-model="addBookData.bookName" style="width: 210px; height: 35px"
               placeholder="请输入"
             />
           </td>
@@ -144,21 +112,16 @@
           <td>国家</td>
           <td>
             <el-select v-model="addBookData.country.countryId" placeholder="请选择">
-              <el-option
-                v-for="item in country"
-                :key="item.countryId"
-                :label="item.countryName"
+              <el-option  v-for="item in country"  :key="item.countryId" :label="item.countryName"
                 :value="item.countryId"
               ></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="addBookData.type.typeId" placeholder="请选择">
-              <el-option
-                v-for="item in type"
-                :key="item.typeId"
-                :label="item.typeName"
+            <el-select v-model="addBookData.type.typeId" placeholder="请选择"
+            >
+              <el-option v-for="item in type" :key="item.typeId"  :label="item.typeName"
                 :value="item.typeId"
               ></el-option>
             </el-select>
@@ -174,9 +137,7 @@
           <td>
             <el-select v-model="addBookData.pages" placeholder="请选择">
               <el-option
-                v-for="item in pages"
-                :key="item.pageId"
-                :label="item.pageName"
+                v-for="item in pages" :key="item.pageId" :label="item.pageName"
                 :value="item.pageId"
               ></el-option>
             </el-select>
@@ -185,9 +146,7 @@
           <td>
             <el-select v-model="addBookData.theme.themeId" placeholder="请选择">
               <el-option
-                v-for="item in theme"
-                :key="item.themeId"
-                :label="item.themeName"
+                v-for="item in theme" :key="item.themeId" :label="item.themeName"
                 :value="item.themeId"
               >
               </el-option>
@@ -195,30 +154,19 @@
           </td>
           <td>下架数量</td>
           <td>
-            <el-select v-model="addBookData.offNumId" placeholder="请选择">
-              <el-option
-                v-for="item in offNumber"
-                :key="item.offNumberId"
-                :label="item.offNumber"
-                :value="item.offNumberId"
-              ></el-option>
-            </el-select>
+            <el-input v-model="addBookData.offNumId" ></el-input> 
           </td>
         </tr>
         <tr>
           <td>简介:</td>
         </tr>
         <div class="briefBox">
-          <textarea
-            name="txt"
-            clos=",50"
-            rows="5"
-            warp="virtual"
+          <textarea name="txt" clos=",50" rows="5" warp="virtual"
             style="width: 780px; height: 100px"
             v-model="addBookData.brief"
           ></textarea>
           <div class="MsgSave-btn">
-            <el-button type="primary" @click="MsgSaveI">保存</el-button>
+            <el-button type="primary" @click="MsgSaveI()">保存</el-button>
           </div>
         </div>
       </table>
@@ -246,9 +194,7 @@
               placeholder="请选择"
             >
               <el-option
-                v-for="item in country"
-                :key="item.countryId"
-                :label="item.countryName"
+                v-for="item in country" :key="item.countryId" :label="item.countryName"
                 :value="item.countryId"
               ></el-option>
             </el-select>
@@ -257,9 +203,7 @@
           <td>
             <el-select v-model="bookData[0].type.typeId" placeholder="请选择">
               <el-option
-                v-for="item in type"
-                :key="item.typeId"
-                :label="item.typeName"
+                v-for="item in type" :key="item.typeId" :label="item.typeName"
                 :value="item.typeId"
               ></el-option>
             </el-select>
@@ -275,9 +219,7 @@
           <td>
             <el-select v-model="bookData[0].pages" placeholder="请选择">
               <el-option
-                v-for="item in pages"
-                :key="item.pageId"
-                :label="item.pageName"
+                v-for="item in pages" :key="item.pageId" :label="item.pageName"
                 :value="item.pageId"
               ></el-option>
             </el-select>
@@ -286,9 +228,7 @@
           <td>
             <el-select v-model="bookData[0].theme.themeId" placeholder="请选择">
               <el-option
-                v-for="item in theme"
-                :key="item.themeId"
-                :label="item.themeName"
+                v-for="item in theme"  :key="item.themeId"  :label="item.themeName"
                 :value="item.themeId"
               >
               </el-option>
@@ -301,25 +241,12 @@
           </td>
         </tr>
         <tr>
-          <td></td>
+          <td>简介</td>
         </tr>
-        <!--<tr>
-        <td colspan="6" v-text="brief" class="brief">
-        <input type="text" name="" maxlength="100" style="width: 720px; height: 60px"/>
-        </td>
-        </tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr><td>&nbsp;</td></tr>
-        <tr>
-        <td></td><td></td><td></td><td></td><td></td>
-        <td><el-button type="primary" @click="MsgSaveM">保存</el-button></td></tr>-->
+        
       </table>
       <div class="briefBox">
-        <textarea
-          name="txt"
-          clos=",50"
-          rows="5"
-          warp="virtual"
+        <textarea name="txt" clos=",50" rows="5" warp="virtual"
           style="width: 780px; height: 100px"
           v-model="bookData[0].brief"
         ></textarea>
@@ -401,7 +328,9 @@ export default {
         }
       })
       this.InsertTableDisplay = !this.InsertTableDisplay;
-    },
+       },
+       
+    
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.page.currentPage = 1;
@@ -583,7 +512,12 @@ export default {
           offNumber:0,
           pages: "",
           brief: "暂无",
-      }
+      },
+       rules: {
+          bookName: [
+            { required: true, message: '选择不能为空', trigger: 'change' }
+          ],
+       }
     };
   },
   created() {
@@ -618,9 +552,14 @@ export default {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
+.choiceBox{
+  position: fixed;
+  
+  right: 200px;
+}
 .table-box {
   position: fixed;
-  top: 250px;
+  top: 260px;
   left: 50%;
   margin-left: -400px;
   width: 800px;
@@ -636,13 +575,18 @@ export default {
   color: darkblue;
 }
 .MsgModify-box {
-  position: absolute;
-  top: 25%;
-  right: 25%;
+  position: fixed;
+  top: 200px;
+  right: 18%;
 }
 .briefBox {
   position: fixed;
-  top: 350px;
-  right: 400px;
+  top: 335px;
+  right: 230px;
+}
+.searchBox{
+  position: fixed;
+  top: 215px;
+  right: 19%;
 }
 </style>
