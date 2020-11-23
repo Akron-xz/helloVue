@@ -11,10 +11,7 @@
             oncopy="return false"
             onpaste="return false"
             oncut="return false"></el-input>
-      <el-form-item label="密码：" prop="pwd">
-        <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off"></el-input>
       </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm2')">确认</el-button>
         <el-button @click="resetForm('ruleForm2')">重置</el-button>

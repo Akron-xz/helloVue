@@ -7,22 +7,24 @@
             <el-input v-model.number="ruleForm2.id" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
-        <el-form-item label="姓名：" prop="name">
+	<el-form-item label="姓名：" prop="name">
             <el-input v-model="ruleForm2.name" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
-
-        <el-form-item label="密码：" prop="password">
-            <el-input 
-              type="password"
-              v-model="ruleForm2.password" 
-              @focus.capture.native='changePasswordTip(true)'
-              @blur.capture.native='changePasswordTip(false)'
-              auto-complete="new-password">
-            </el-input>
 
         <el-form-item label="邮箱：" prop="email" :rules="[{ required: true, message: '请输入邮箱', trigger: 'blur' },
             {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }]">
             <el-input v-model="ruleForm2.email" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
+        </el-form-item>  
+        
+        <el-form-item label="密码：" prop="password">
+            <el-input 
+              type="password"
+              v-model="ruleForm2.password" 
+              onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
+              @focus.capture.native='changePasswordTip(true)'
+              @blur.capture.native='changePasswordTip(false)'
+              auto-complete="new-password">
+            </el-input>
         </el-form-item>
         <div class="passwordTip" style="position: absolute">
           <verify-pass-word-tip 
@@ -74,9 +76,17 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
             callback();
           }
       };
-      
+      var checkEmail = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('邮箱不能为空'));
+        }
+         else {
+            callback();
+          }
+      };
 
       var validatePass = (rule, value, callback) => {
+        debugger
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
@@ -148,16 +158,7 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
             console.log('error submit!!');
             return false;
           }
-        
-
-
-
         });
-          this.ruleForm2.id="",
-          this.ruleForm2.name="",
-          this.ruleForm2.email="",
-          this.ruleForm2.pwd="",
-          this.ruleForm2.checkPwd=""
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
@@ -209,7 +210,7 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
   left: 50px;
   width: 400px;
   height: 410px;
-  background:#ffffff40;
+  background: #ffffff40;
   border-radius: 20px;
 
 }
