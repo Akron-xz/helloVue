@@ -74,7 +74,7 @@
         </el-pagination>
       </div>
     </div>
-    <!-- 个人完整信息（第1种） -->
+    <!-- 个人完整信息（第1种）v-show -->
     <div v-show="false">
       <br />
       <el-button type="primary" icon="el-icon-back" @click="goBack"
@@ -103,7 +103,7 @@
       </el-table>
     </div>
 
-    <!-- 个人完整信息（第2种） -->
+    <!-- 个人完整信息（第2种）对话框 -->
     <div>
       <el-dialog title="借阅历史" 
         :visible.sync="dispalyInfo" 

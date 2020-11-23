@@ -7,18 +7,31 @@
             <el-input v-model.number="ruleForm2.id" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
-        <el-form-item label="姓名：" prop="name">
+	<el-form-item label="姓名：" prop="name">
             <el-input v-model="ruleForm2.name" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
         <el-form-item label="邮箱：" prop="email" :rules="[{ required: true, message: '请输入邮箱', trigger: 'blur' },
-      { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }]">
+            {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }]">
             <el-input v-model="ruleForm2.email" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
-        </el-form-item>
+        </el-form-item>  
         
-        <el-form-item label="密码：" prop="pwd">
-            <el-input type="password" v-model="ruleForm2.pwd" auto-complete="off" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
+        <el-form-item label="密码：" prop="password">
+            <el-input 
+              type="password"
+              v-model="ruleForm2.password" 
+              onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
+              @focus.capture.native='changePasswordTip(true)'
+              @blur.capture.native='changePasswordTip(false)'
+              auto-complete="new-password">
+            </el-input>
         </el-form-item>
+        <div class="passwordTip" style="position: absolute">
+          <verify-pass-word-tip 
+            :password='ruleForm2.password' 
+            :isShowTip='isShowTip'>
+          </verify-pass-word-tip>
+        </div>
         <el-form-item label="确认密码：" prop="checkPwd">
             <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
@@ -36,7 +49,12 @@
 
 <script>
 import axios from "axios"
+import verifyPassWordTip from '@/components/verifyPassWordTip'
   export default {
+    name: "VerifyPassWord",
+    components:{
+      verifyPassWordTip
+    },
     data() {
       var checkId = (rule, value, callback) => {
         if (!value) {
@@ -58,13 +76,26 @@ import axios from "axios"
             callback();
           }
       };
-      
+      var checkEmail = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('邮箱不能为空'));
+        }
+         else {
+            callback();
+          }
+      };
 
       var validatePass = (rule, value, callback) => {
+        var reg= /(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9])/;     //只能为数字、字母、特殊符号
         if (value === '') {
           callback(new Error('请输入密码'));
+        } else if (!reg.test(value)){
+          callback(new Error('必须包含数字、字母、特殊字符'));
+        } else if(/[\u4E00-\u9FA5]/g.test(value)){
+          callback(new Error('密码不能有汉字'));
         } else {
           if (this.ruleForm2.checkPwd !== '') {
+            this.$refs.ruleForm2.validateField('password');
             this.$refs.ruleForm2.validateField('checkPwd');
           }
           callback();
@@ -73,18 +104,20 @@ import axios from "axios"
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码!!'));
-        } else if (value !== this.ruleForm2.pwd) {
+        } else if (value !== this.ruleForm2.password) {
           callback(new Error('两次输入密码不一致!'));
         } else {
           callback();
         }
       };
       return {
+        //password: '',
+        isShowTip: false,
         ruleForm2: {
           id: '',
           name:'',
           email:'',
-          pwd: '',
+          password: '',
           checkPwd: '',
           
         },
@@ -95,9 +128,12 @@ import axios from "axios"
           name: [
             { validator: checkName, trigger: 'blur' }
           ],
-          
-          pwd: [
-            { validator: validatePass, trigger: 'blur' }
+          email: [
+            { validator: checkEmail, trigger: 'blur' }
+          ],
+          password: [
+            { validator: validatePass, trigger: 'blur' },
+            { min: 8, max: 24,message: '长度应在 8 到 24 个字符', trigger: 'blur'}
           ],
           checkPwd: [
             { validator: validatePass2, trigger: 'blur' }
@@ -119,7 +155,7 @@ import axios from "axios"
                 userId:this.ruleForm2.id,
                 name:this.ruleForm2.name,
                 email:this.ruleForm2.email,
-                password:this.ruleForm2.pwd
+                password:this.ruleForm2.password
               },
             },{emulateJSON:true}).then(res=>{
           this.ruleForm2.id="",
@@ -133,16 +169,22 @@ import axios from "axios"
             console.log('error submit!!');
             return false;
           }
-        
-
-
-
         });
+<<<<<<< HEAD
      
+=======
+>>>>>>> a32715cc8bc9c5a64e02b675f1617e6ca8cdf605
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
-      }
+      },
+      changePasswordTip(isShow){
+        if (isShow) {
+          this.isShowTip = true;
+        } else{
+          this.isShowTip = false;
+        }
+      },
     },
 
   }
@@ -183,10 +225,9 @@ import axios from "axios"
   left: 50px;
   width: 400px;
   height: 410px;
-  background:#ffffff40;
+  background: #ffffff40;
   border-radius: 20px;
 
 }
-  
 
 </style>
