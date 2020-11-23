@@ -82,4 +82,7 @@ export default {
     width: 33%;
 }
 
+.user-container .title{
+    margin-top: 50px;
+}
 </style>

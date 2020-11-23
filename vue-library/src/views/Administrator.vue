@@ -18,6 +18,9 @@
       </el-form-item>
     </el-form>
     </div>
+    <div class="img">
+      <img src="/img/adminImg.png" alt="" class="adminImg">
+    </div>
   </div>
 </template>
 
@@ -133,7 +136,7 @@ import axios from "axios"
     font-weight: 1000;
     font-size: 30px;
     color: transparent;
-   -webkit-text-stroke: 1px white;
+   -webkit-text-stroke: 1px black;
     letter-spacing: 0.04em;
     
 }
@@ -148,12 +151,24 @@ import axios from "axios"
 
 .adminBox{
   position: absolute;
-  top: 100px;
-  left: 50px;
+  top: 30%;
+  left: 5%;
   width: 400px;
   height: 200px;
-  background: white;
   border-radius: 20px;
+  background: white;
+}
+
+.img{
+  margin-left: 100px;
+  height: 100px;
+  width: 1000px;
+}
+
+.adminImg{
+  margin-left: 300px;
+  height: 580px;
+  width: 1000px;
 }
 </style>
 

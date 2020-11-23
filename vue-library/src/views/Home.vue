@@ -24,6 +24,9 @@
       <h1>图书馆公告:</h1>
       <p>{{ announceContent }}</p>
     </div>
+    <div class="img">
+      <!-- <img src="/img/anoncementImg.svg" alt="" class="anoncementImg">  -->
+    </div>
   </div>
 </template>>
 
@@ -99,6 +102,7 @@ export default {
 }
 
 .home-img {
+
   width: 150px;
   height: 150px;
   margin-top: 50px;
@@ -125,17 +129,22 @@ export default {
 }
 
 .announce-box {
-  position: fixed;
+  position: absolute;
   bottom: 70px;
   left: 50%;
   height: 200px;
   width: 80%;
   margin-left: -40%;
-  background-color: #ffffff;
+  background-color: #ffffff40;
   border: 1px solid black;
 }
 
 .announce-box h1 {
   margin-top: 0;
+}
+
+.anoncementImg{
+  position: relative;
+  bottom: 30%;
 }
 </style>>

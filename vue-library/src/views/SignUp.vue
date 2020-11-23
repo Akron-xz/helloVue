@@ -46,13 +46,6 @@
             onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
           ></el-input>
         </el-form-item>
-        <div class="passwordTip" style="position: absolute">
-          <verify-pass-word-tip
-            :password="ruleForm2.password"
-            :isShowTip="isShowTip"
-          >
-          </verify-pass-word-tip>
-        </div>
         <el-form-item label="确认密码：" prop="checkPwd">
           <el-input
             type="password"
@@ -69,6 +62,9 @@
           <el-button @click="resetForm('ruleForm2')">重置</el-button>
         </el-form-item>
       </el-form>
+    </div>
+    <div class="img">
+      <img src="/img/signupImg.png" alt="" class="signupImg">
     </div>
   </div>
 </template>
@@ -170,13 +166,6 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    changePasswordTip(isShow) {
-      if (isShow) {
-        this.isShowTip = true;
-      } else {
-        this.isShowTip = false;
-      }
-    },
   },
   resetForm(formName) {
     this.$refs[formName].resetFields();
@@ -200,7 +189,7 @@ export default {
   font-weight: 1000;
   font-size: 30px;
   color: transparent;
-  -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: 1px black;
   letter-spacing: 0.04em;
 }
 
@@ -214,11 +203,16 @@ export default {
 
 .signUpBox {
   position: absolute;
-  top: 100px;
-  left: 50px;
+  top: 21%;
+  left: 17%;
   width: 400px;
   height: 410px;
-  background: #ffffff40;
+  background: white;
   border-radius: 20px;
+}
+
+.signupImg{
+  height: 680px;
+  width: 1200px;
 }
 </style>
