@@ -12,10 +12,10 @@
       </tr>
       <tr>
         <td class="msg-header">姓名：</td>
-        <td prop="Name">
+        <td prop="Name" >
           <input
             type="text"
-            v-model="Name"
+            v-model="userData[0].name"
             maxlength="20"
             style="width: 190px; height: 30px"
           />
@@ -24,7 +24,7 @@
         <td>
           <input
             type="text"
-            v-model="Sex"
+            v-model="userData[0].sex"
             maxlength="5"
             style="width: 190px; height: 30px"
           />
@@ -33,7 +33,7 @@
         <td>
           <input
             type="text"
-            v-model="Age"
+            v-model="userData[0].age"
             maxlength="5"
             style="width: 190px; height: 30px"
           />
@@ -44,7 +44,7 @@
         <td>
           <input
             type="text"
-            v-model="Email"
+            v-model="userData[0].email"
             maxlength="30"
             style="width: 190px; height: 30px"
           />
@@ -53,7 +53,7 @@
         <td>
           <input
             type="text"
-            v-model="Birthday"
+            v-model="userData[0].birthday"
             maxlength="30"
             style="width: 190px; height: 30px"
           />
@@ -62,7 +62,7 @@
         <td>
           <input
             type="text"
-            v-model="Phone"
+            v-model="userData[0].phone"
             maxlength="30"
             style="width: 190px; height: 30px"
           />
@@ -73,7 +73,7 @@
         <td colspan="5">
           <input
             type="text"
-            v-model="Adress"
+            v-model="userData[0].address"
             maxlength="100"
             style="width: 750px; height: 30px"
           />
@@ -84,7 +84,7 @@
         <td colspan="5">
           <input
             type="text"
-            v-model="Introduction"
+            v-model="userData[0].introduction"
             maxlength="100"
             style="width: 750px; height: 60px"
           />
@@ -110,7 +110,7 @@
         <el-form-item label="密码" prop="password">
           <el-input v-model="ruleForm.password" type="password"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
+        <el-form-item label="确认密码" prop="password">
           <el-input v-model="ruleForm.password" type="password"></el-input>
         </el-form-item>
         <el-form-item>
@@ -126,14 +126,20 @@
 export default {
   data() {
     return {
-      Name: "",
-      Sex: "",
-      Age: "",
-      Email: "",
-      Birthday: "",
-      Phone: "",
-      Adress: "",
-      Introduction: "",
+      userData:[{
+        name: "",
+        sex: "",
+        age: "",
+        email: "",
+        birthday: "",
+        phone: "",
+        address: "",
+        introduction: "",
+      }],
+
+      // 获取登录的用户的session
+      // user: [],
+
       ruleForm: {
         password: "",
       },
@@ -158,6 +164,33 @@ export default {
       this.$refs[formName].resetFields();
     },
   },
+  
+  created() {
+    let user = JSON.parse(sessionStorage.getItem("userSession"));
+    this.userData[0].name = user.name;
+    this.userData[0].sex = user.sex;
+    this.userData[0].age = user.age;
+    this.userData[0].email = user.email;
+    this.userData[0].birthday = user.birthdayStr;
+    this.userData[0].phone = user.phone;
+    this.userData[0].address = user.address;
+    this.userData[0].introduction = user.introduction;
+    // console.log(this.user);
+  },
+
+  // 关于session，created可以使用，mounted不能用
+  // mounted() {
+  //   let user = JSON.parse(sessionStorage.getItem("userSession"));
+  //   this.userData[0].name = user.name;
+  //   this.userData[0].sex = user.sex;
+  //   this.userData[0].age = user.age;
+  //   this.userData[0].email = user.email;
+  //   this.userData[0].birthday = user.birthdayStr;
+  //   this.userData[0].phone = user.phone;
+  //   this.userData[0].address = user.address;
+  //   this.userData[0].introduction = user.introduction;
+  //   // console.log(this.user);
+  // },
 };
 </script>
 

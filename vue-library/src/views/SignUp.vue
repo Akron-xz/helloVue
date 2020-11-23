@@ -4,18 +4,13 @@
       <div class="signUpBox">
         <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="注册ID：" prop="id">
-            <el-input v-model.number="ruleForm2.id"></el-input>
+            <el-input v-model.number="ruleForm2.id" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
         <el-form-item label="姓名：" prop="name">
-            <el-input v-model="ruleForm2.name"></el-input>
+            <el-input v-model="ruleForm2.name" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
 
-        <el-form-item label="邮箱：" prop="email">
-            <el-input v-model="ruleForm2.email"></el-input>
-        </el-form-item>  
-        
-        
         <el-form-item label="密码：" prop="password">
             <el-input 
               type="password"
@@ -24,6 +19,10 @@
               @blur.capture.native='changePasswordTip(false)'
               auto-complete="new-password">
             </el-input>
+
+        <el-form-item label="邮箱：" prop="email" :rules="[{ required: true, message: '请输入邮箱', trigger: 'blur' },
+            {type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' }]">
+            <el-input v-model="ruleForm2.email" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
         <div class="passwordTip" style="position: absolute">
           <verify-pass-word-tip 
@@ -32,7 +31,7 @@
           </verify-pass-word-tip>
         </div>
         <el-form-item label="确认密码：" prop="checkPwd">
-            <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off"></el-input>
+            <el-input type="password" v-model="ruleForm2.checkPwd" auto-complete="off" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"></el-input>
         </el-form-item>
         
         <el-form-item>
@@ -75,14 +74,7 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
             callback();
           }
       };
-      var checkEmail = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('邮箱不能为空'));
-        }
-         else {
-            callback();
-          }
-      };
+      
 
       var validatePass = (rule, value, callback) => {
         if (value === '') {
@@ -156,7 +148,16 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
             console.log('error submit!!');
             return false;
           }
+        
+
+
+
         });
+          this.ruleForm2.id="",
+          this.ruleForm2.name="",
+          this.ruleForm2.email="",
+          this.ruleForm2.pwd="",
+          this.ruleForm2.checkPwd=""
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
@@ -208,7 +209,7 @@ import verifyPassWordTip from '@/components/verifyPassWordTip'
   left: 50px;
   width: 400px;
   height: 410px;
-  background: white;
+  background:#ffffff40;
   border-radius: 20px;
 
 }

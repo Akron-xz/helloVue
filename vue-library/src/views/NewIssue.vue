@@ -163,26 +163,38 @@ export default {
     };
   },
   methods: {
-    //搜索
 
+    //输入姓名模糊搜索
     search() {
       if (this.searchContent=="") {
-        alert("请输入需要查询的信息。");
+        this.$message({
+          message: '请输入需要查询的信息。',
+          type: 'error'
+        });
         return 0;
       }
-
       let searchContent = this.searchContent;
-      // const id=row.i
-      // axios()
-
       axios({
         method: "get",
         url:
           "http://localhost:8081/user/selectUserByVagueName/" + searchContent,
       })
         .then((res) => {
-          console.log(searchContent);
-          this.lists = res.data;
+          // 接收数据
+          this.userData = res.data;
+
+          // 清空输入框
+          this.searchContent = "";
+
+          if (this.userData.length){
+            // 显示对话框
+            this.dispalyInfo = !this.dispalyInfo;
+          }else {
+            this.$message({
+              message: '查找不到用户。',
+              type: 'error'
+            });
+          }
         })
         .catch(function (error) {
           //请求失败
@@ -191,7 +203,7 @@ export default {
     },
     //查看个人信息
     retrieve(row) {
-      console.log(row);
+      // console.log(row);
       this.dispalyInfo = !this.dispalyInfo;
       this.userData = [row];
     },
@@ -209,8 +221,11 @@ export default {
         //   userId : userId
         // },
       });
+      this.$message({
+        message: '删除成功',
+        type: 'success'
+      });
       
-      alert("删除成功");
       this.getLists();
     },
     //返回
@@ -232,9 +247,7 @@ export default {
         //get方式获取数据
         method: "get",
         //接口地址
-        // url: "http://localhost:8081/user/selectAllUser",
-        url: "/data/user.json"
-
+        url: "http://localhost:8081/user/selectAllUser",
       })
         .then((res) => {
           //请求数据 res 返回的数据
