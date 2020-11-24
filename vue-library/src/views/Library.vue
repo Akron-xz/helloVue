@@ -74,7 +74,7 @@
           style="width: 220px"
           class="input-with-select"
           v-model="key"
-          @keyup.enter.native="searchContent"
+          @keyup.enter.native="selectByKey"
         >
           <el-button
             slot="append"
@@ -84,6 +84,8 @@
         </el-input>
       </div>
     </div>
+
+    <!-- 搜索后显示 -->
     <div class="table-box" v-show="tableDisplay">
       <el-table
         :data="
@@ -109,7 +111,7 @@
         ></el-table-column>
         <el-table-column label="状态">
           <template slot-scope="scope">
-            <el-button type="" @click="borrowStatus(scope.row)">借阅</el-button>
+            <el-button type="" @click="borrowStatus(scope.row)">详情</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -130,16 +132,23 @@
       </div>
     </div>
 
+    <!-- 进入借阅界面 -->
     <div class="borrow-box" v-show="!tableDisplay">
       <h1>书名：{{ bookname }}</h1>
       <div v-text="'简介：' + brief" class="brief"></div>
       <div class="borrow-button">
-        <el-button type="primary" @click="borrow">借阅</el-button>
+        <el-button v-if="isBorrow()" type="primary" @click="borrow" disabled>
+          已借
+        </el-button>
+        <el-button v-else-if="this.surplusNumber >= 1" type="primary" @click="borrow">
+          借阅
+        </el-button>
+        <el-button v-else type="primary" @click="borrow" disabled style="background-color: lack">
+          无货
+        </el-button>
         <el-button type="info" @click="goBack">返回</el-button>
       </div>
     </div>
-
-  
   </div>
 </template>
 <script>
@@ -156,6 +165,10 @@ export default {
       bookname: "时间简史",
       tableDisplay: true,
       bookId:"",
+
+      // 剩余数量
+      surplusNumber:"",
+
       userData:[{
         userId:"",
         name: "",
@@ -209,9 +222,12 @@ export default {
         },
       ],
 
-      // 篇幅
-
-      // 主题
+      // 借阅历史
+      borrowList:[],
+      // 借阅状态：1.已借 2.有货 3.缺货
+      num: 2,
+      // 归还状态
+      return: [],
 
       pages: [
         {
@@ -231,7 +247,6 @@ export default {
           pageName: ">1500字",
         },
       ],
-
       theme: [
         {
           themeId: 0,
@@ -241,13 +256,16 @@ export default {
     };
   },
   methods: {
+    // 进入详细页面
     borrowStatus(row) {
       this.tableDisplay = !this.tableDisplay;
       this.brief = [row][0].brief;
       this.bookname = [row][0].bookName;
-      this.bookId = [row][0].bookId
+      this.bookId = [row][0].bookId;
+      this.surplusNumber = [row][0].surplusNumber;
     },
 
+    // 点击借阅按钮
     borrow() {
       console.log(this.bookId)
       console.log(this.userData[0].userId)
@@ -256,7 +274,8 @@ export default {
         url:"http://localhost:8081/user/borrow/",
         params:{
           userId:this.userData[0].userId,
-          bookId:this.bookId
+          bookId:this.bookId,
+          
         }
       }).then(res=>{
         alert(res.data)
@@ -267,7 +286,6 @@ export default {
      goBack() {
       this.tableDisplay = !this.tableDisplay;
     },
-
     // 每页多少条数据
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -279,6 +297,16 @@ export default {
       console.log(`当前页: ${val}`);
       this.page.currentPage = val;
     },
+   
+    // 计算是否处于借阅状态
+    isBorrow(){
+      for (let i = 0; i < this.return.length; i++) {
+        if (this.bookId == this.return[i].bookId) {
+          return true;
+        }
+      }
+      return false;
+    },
 
     // 书籍模糊搜索
     searchContent() {
@@ -288,7 +316,7 @@ export default {
       }
       axios
         .post(
-          // 接口路径是什么？
+          // 接口路径是什么？(fixed)
           "http://localhost:8081/book/list/" + this.inputContent
         )
         .then((res) => {
@@ -301,6 +329,7 @@ export default {
       this.inputContent = "";
     },
 
+    // 关键字搜索
     selectByLabel() {
       axios
         .post(
@@ -335,29 +364,25 @@ export default {
   },
 
   created() {
+    // 获取user的session
     let user = JSON.parse(sessionStorage.getItem("userSession"));
     console.log(user);
     this.userData[0].userId = user.userId;
     console.log(this.userData);
     axios
-
       .get("http://localhost:8081/book/list", {
         params: {
           pageNum: 1,
-
           pageSize: 5,
         },
       })
       .then((res) => {
         // console.log(pageInfo);
-
         // 使用全局lists变量来接收响应的json数据
-
         // 使用全局lists接受响应的json数据
         this.lists = res.data;
       })
       .catch((err) => console.log("error...", err));
-
     axios.get("http://localhost:8081/country/list").then((res) => {
       this.country = res.data;
     });
@@ -367,11 +392,38 @@ export default {
     axios.get("http://localhost:8081/theme/list").then((res) => {
       this.theme = res.data;
     });
+    axios({
+            method:"get",
+            url:"http://localhost:8081/user/bookshelves",
+            params:{
+              userId:this.userData[0].userId
+            }
+        }).then(res=>{
+            console.log("this.return");
+            // for (let i = 0; i < res.data.length; i++) {
+            //   this.return[i].bookId = res.data[i].bookId;
+            //   console.log(this.return[i].bookId);
+            // }
+            this.return = res.data;
+            console.log(this.return);
+        })
   },
+
+  // 计算v-if的判断值
+  // computed: {
+  //   isBorrow: function(){
+  //     return function(){
+  //       for (let i = 0; i < this.return.length; i++) {
+  //         if (this.bookId == this.return[i].bookId) {
+  //           return true;
+  //         }
+  //       }
+  //       return false;
+  //     }
+  //   }
+  // },
 };
 </script>
-
-
 
 <style  scoped>
 .library-container {

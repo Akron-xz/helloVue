@@ -34,20 +34,20 @@
         max-height="315"
         
       >
-        <el-table-column prop="name" label="姓名" width="100">
+        <el-table-column prop="name" label="姓名" width="70">
         </el-table-column>
-        <el-table-column prop="sexStr" label="性别" width="80">
+        <el-table-column prop="sexStr" label="性别" width="70">
         </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="300">
+        <el-table-column prop="email" label="邮箱" width="130">
         </el-table-column>
-         <el-table-column prop="password" label="密码" width="300">
-        </el-table-column>
+         <!-- <el-table-column prop="password" label="密码" width="300">
+        </el-table-column> -->
         <el-table-column prop="phone" label="联系电话" width="100">
         </el-table-column>
         <el-table-column prop="birthdayStr" label="出生年月" width="100">
         </el-table-column>
-        <el-table-column label="操作" width="200">
+        <el-table-column label="操作" width="180">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="retrieve(scope.row)"
               >查看</el-button

@@ -59,7 +59,7 @@
           <el-button type="primary" @click="submitForm('ruleForm2')"
             >注册</el-button
           >
-          <el-button @click="resetForm('ruleForm2')">重置</el-button>
+          <el-button @click="resetForm('ruleForm2')">清空</el-button>
         </el-form-item>
       </el-form>
     </div>
