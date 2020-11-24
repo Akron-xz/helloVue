@@ -34,20 +34,20 @@
         max-height="315"
         
       >
-        <el-table-column prop="name" label="姓名" width="100">
+        <el-table-column prop="name" label="姓名" width="70">
         </el-table-column>
-        <el-table-column prop="sexStr" label="性别" width="80">
+        <el-table-column prop="sexStr" label="性别" width="70">
         </el-table-column>
         <el-table-column prop="age" label="年龄" width="60"> </el-table-column>
-        <el-table-column prop="email" label="邮箱" width="300">
+        <el-table-column prop="email" label="邮箱" width="130">
         </el-table-column>
-         <el-table-column prop="password" label="密码" width="300">
-        </el-table-column>
+         <!-- <el-table-column prop="password" label="密码" width="300">
+        </el-table-column> -->
         <el-table-column prop="phone" label="联系电话" width="100">
         </el-table-column>
         <el-table-column prop="birthdayStr" label="出生年月" width="100">
         </el-table-column>
-        <el-table-column label="操作" width="200">
+        <el-table-column label="操作" width="180">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="retrieve(scope.row)"
               >查看</el-button
@@ -117,7 +117,7 @@
         <el-table-column prop="deadlineStr" label="截止日期" width="160"> </el-table-column>
         <el-table-column prop="validTime" label="有效期" width="80"> </el-table-column>
         <el-table-column prop="returnTimeStr" label="归还时间" width="160"> </el-table-column>
-        <el-table-column prop="borrowStates" label="状态" width="80"> </el-table-column>
+        <el-table-column prop="borrowStatesStr" label="状态" width="80"> </el-table-column>
         
       </el-table>
       </el-dialog>
@@ -164,13 +164,13 @@ export default {
 
     //输入姓名模糊搜索
     search() {
-      // if (this.searchContent=="") {
-      //   this.$message({
-      //     message: '请输入需要查询的信息。',
-      //     type: 'error'
-      //   });
-      //   return 0;
-      // }
+      if (this.searchContent=="") {
+        this.$message({
+          message: '请输入需要查询的信息。',
+          type: 'error'
+        });
+        return 0;
+      }
       let searchContent = this.searchContent;
       axios({
         method: "get",
@@ -179,7 +179,8 @@ export default {
       })
         .then((res) => {
           // 接收数据
-          this.userData = res.data;
+          this.lists = res.data;
+          console.log(this.lists)
 
         })
         .catch(function (error) {
@@ -217,11 +218,11 @@ export default {
         // data() {
         //   userId : userId
         // },
-      });
-      this.$message({
-        message: '删除成功',
-        type: 'success'
-      });
+      }).then(res=>{this.$message({
+        message: res.data,
+        
+      });})
+      
       
       this.getLists();
     },
