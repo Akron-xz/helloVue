@@ -32,7 +32,9 @@
         </el-form-item>
       </el-form>
     </div>
-    
+    <div class="img">
+      <img src="/img/adminImg.png" alt="" class="adminImg" />
+    </div>
   </div>
 </template>
 
@@ -159,7 +161,7 @@ import homeNavigation from '@/components/homeNav.vue'
 }
 
 .el-header {
-    text-align: right;
+    text-align: left;
     line-height: 60px;
     font-weight: 1000;
     font-size: 30px;
@@ -192,7 +194,11 @@ import homeNavigation from '@/components/homeNav.vue'
   width: 1000px;
 }
 
-
+.adminImg {
+  margin-left: 300px;
+  height: 580px;
+  width: 1000px;
+}
 </style>
 
 

@@ -159,7 +159,7 @@ import homeNavigation from '@/components/homeNav.vue'
 }
 
 .el-header {
-    text-align: right;
+    text-align: left;
     line-height: 60px;
     font-weight: 1000;
     font-size: 30px;

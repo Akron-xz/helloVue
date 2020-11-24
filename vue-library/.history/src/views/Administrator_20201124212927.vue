@@ -32,12 +32,15 @@
         </el-form-item>
       </el-form>
     </div>
-    
+    <div class="img">
+      <img src="/img/adminImg.png" alt="" class="adminImg" />
+    </div>
   </div>
 </template>
 
 
 <script>
+<<<<<<< HEAD
 import axios from "axios"
 import homeNavigation from '@/components/homeNav.vue'
   export default {
@@ -60,15 +63,33 @@ import homeNavigation from '@/components/homeNav.vue'
       var validatepwd = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
+=======
+import axios from "axios";
+export default {
+  data() {
+    var checkadminId = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("ID不能为空"));
+      }
+      setTimeout(() => {
+        if (!Number.isInteger(value)) {
+          callback(new Error("请输入数字"));
+>>>>>>> 57853de4059eb78aa018aed84753dcd18246f717
         } else {
-          if (this.ruleForm2.checkpwd !== "") {
-          this.$refs.ruleForm2.validateField("checkpwd");
-        }
           callback();
         }
-      
+      }, 1000);
     };
-    
+    var validatepwd = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
+      } else {
+        if (this.ruleForm2.checkpwd !== "") {
+          this.$refs.ruleForm2.validateField("checkpwd");
+        }
+        callback();
+      }
+    };
 
     return {
       ruleForm2: {
@@ -154,18 +175,27 @@ import homeNavigation from '@/components/homeNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/img/divBg/bg23.jpg);
-  background-size: 100% 100%;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
 .el-header {
-    text-align: right;
+<<<<<<< HEAD
+    text-align: left;
     line-height: 60px;
     font-weight: 1000;
     font-size: 30px;
     color:black;
     letter-spacing: 0.04em;
     
+=======
+  text-align: left;
+  line-height: 60px;
+  font-weight: 1000;
+  font-size: 30px;
+  color: transparent;
+  -webkit-text-stroke: 1px black;
+  letter-spacing: 0.04em;
+>>>>>>> 57853de4059eb78aa018aed84753dcd18246f717
 }
 
 .demo-ruleForm {
@@ -192,7 +222,11 @@ import homeNavigation from '@/components/homeNav.vue'
   width: 1000px;
 }
 
-
+.adminImg {
+  margin-left: 300px;
+  height: 580px;
+  width: 1000px;
+}
 </style>
 
 
