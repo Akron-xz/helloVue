@@ -64,7 +64,7 @@
       </el-form>
     </div>
     <div class="img">
-      <img src="/img/signupImg.png" alt="" class="signupImg" />
+      <img src="/img/signupImg.png" alt="" class="signupImg">
     </div>
   </div>
 </template>
@@ -151,11 +151,11 @@ export default {
             { emulateJSON: true }
           ).then((res) => {
             this.ruleForm2.id = "";
-            this.ruleForm2.name = "";
-            this.ruleForm2.email = "";
-            this.ruleForm2.pwd = "";
-            this.ruleForm2.checkPwd = "";
-            console.log(res);
+              this.ruleForm2.name = "";
+              this.ruleForm2.email = "";
+              this.ruleForm2.pwd = "";
+              this.ruleForm2.checkPwd = "";
+              console.log(res);
           });
         } else {
           console.log("error submit!!");
@@ -211,7 +211,7 @@ export default {
   border-radius: 20px;
 }
 
-.signupImg {
+.signupImg{
   height: 680px;
   width: 1200px;
 }

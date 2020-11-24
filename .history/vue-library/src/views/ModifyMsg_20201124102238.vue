@@ -110,7 +110,7 @@
 
     <div class="modify-pwd-box">
       <el-form
-        v-bind:model="pwd"
+        v-model="pwd"
         :rules="rules"
         ref="pwd"
         label-width="100px"
@@ -193,6 +193,9 @@ export default {
       msg: "",
       lists: [],
 
+      // pwd: {
+      //   password: "",
+      // },
 
       rules: {
         newPassword: [{ validator: validatePass, trigger: "blur" }],

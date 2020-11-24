@@ -110,7 +110,7 @@
 
     <div class="modify-pwd-box">
       <el-form
-        v-bind:model="pwd"
+        :model="pwd"
         :rules="rules"
         ref="pwd"
         label-width="100px"

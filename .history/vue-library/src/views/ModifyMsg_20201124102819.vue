@@ -110,7 +110,7 @@
 
     <div class="modify-pwd-box">
       <el-form
-        v-bind:model="pwd"
+        v-model="pwd"
         :rules="rules"
         ref="pwd"
         label-width="100px"
@@ -139,9 +139,7 @@
 </template>
 <script>
 import axios from "axios";
-export default {
-  data() {
-    var validatePass = (rule, value, callback) => {
+var validatePass = (rule, value, callback) => {
       debugger
       if (value === "") {
         callback(new Error("请输入密码"));
@@ -153,6 +151,7 @@ export default {
       }
     };
     var validatePass2 = (rule, value, callback) => {
+      debugger
       if (value === "") {
         callback(new Error("请再次输入密码"));
       } else if (value !== this.pwd.newPassword) {
@@ -161,6 +160,9 @@ export default {
         callback();
       }
     };
+export default {
+  data() {
+    
 
     return {
       userData: [
@@ -193,6 +195,9 @@ export default {
       msg: "",
       lists: [],
 
+      // pwd: {
+      //   password: "",
+      // },
 
       rules: {
         newPassword: [{ validator: validatePass, trigger: "blur" }],

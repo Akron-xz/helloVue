@@ -66,7 +66,7 @@ export default {
 
         rules:{
             userId:[
-                { required: true, message: '请输入用户ID', trigger: 'blur'}
+                { required: true, message: '请输入用户名', trigger: 'blur'}
             ],
 
              password: [
