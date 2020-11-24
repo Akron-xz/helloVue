@@ -3,7 +3,7 @@
 <h1 class="history-title">借阅历史</h1>
  <el-divider></el-divider>
  <div class="searchBox">
- <input type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;">
+ <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;" @click="searchByKey()">
  
  </div>
  <div class="table-box">
@@ -24,7 +24,7 @@
         width="180px">
       </el-table-column>
       <el-table-column
-        prop="returnTimeStr"
+        prop="deadlineStr"
         label="应归还时间"
         width="180px">
       </el-table-column>
@@ -58,6 +58,10 @@ import axios from "axios"
     export default {
       data() {
         return {
+          userData:[
+            {userId:"",},
+          ],
+          searchContent:"",
           tableData: [],
           gridData:[{
             UserNumber:'1',
@@ -77,6 +81,19 @@ import axios from "axios"
         }
       },
       methods: {
+        searchByKey(){
+          axios({
+            method:"get",
+            url:"http://localhost:8081/borrow/list/key",
+            params:{
+                userId:this.userData[0].userId,
+                key:this.searchContent
+            }
+          }).then(res=>{
+            this.tableData = res.data
+          })
+
+        },
          handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.page.currentPage = 1;
@@ -90,6 +107,7 @@ import axios from "axios"
       created() {
         let user = JSON.parse(sessionStorage.getItem("userSession"));
         console.log(user.userId);
+        this.userData[0].userId = user.userId;
         axios({
           method:"get",
           url:"http://localhost:8081/user/selectBorrowHistory",
