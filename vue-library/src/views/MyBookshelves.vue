@@ -136,7 +136,10 @@ export default {
                 }
             }).then(res=>{
                 this.getList();
-                console.log(res);
+                this.$message({
+                  message: res.data,
+                  type: 'success'
+                  });
             })
         }
     },

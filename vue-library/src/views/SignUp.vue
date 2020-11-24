@@ -10,12 +10,12 @@
         label-width="100px"
         class="demo-ruleForm"
       >
-        <el-form-item label="注册ID：" prop="id">
+        <!-- <el-form-item label="注册ID：" prop="id">
           <el-input
             v-model.number="ruleForm2.id"
             onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
           ></el-input>
-        </el-form-item>
+        </el-form-item> -->
 
         <el-form-item label="姓名：" prop="name">
           <el-input
@@ -64,7 +64,7 @@
       </el-form>
     </div>
     <div class="img">
-      <img src="/img/signupImg.png" alt="" class="signupImg">
+      <img src="/img/signupImg.png" alt="" class="signupImg" />
     </div>
   </div>
 </template>
@@ -136,7 +136,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         console.log(valid);
         if (valid) {
-          alert("注册成功");
+          
           axios(
             {
               method: "post",
@@ -150,12 +150,17 @@ export default {
             },
             { emulateJSON: true }
           ).then((res) => {
-            (this.ruleForm2.id = ""),
-              (this.ruleForm2.name = ""),
-              (this.ruleForm2.email = ""),
-              (this.ruleForm2.pwd = ""),
-              (this.ruleForm2.checkPwd = ""),
-              console.log(res);
+            this.ruleForm2.id = "";
+            this.ruleForm2.name = "";
+            this.ruleForm2.email = "";
+            this.ruleForm2.pwd = "";
+            this.ruleForm2.checkPwd = "";
+            this.$message({
+              message:"注册成功，您的ID为："+res.data,
+              type: "success",
+              duration:5000
+            });
+            this.$router.push({path:'/userLogin'})
           });
         } else {
           console.log("error submit!!");
@@ -211,7 +216,7 @@ export default {
   border-radius: 20px;
 }
 
-.signupImg{
+.signupImg {
   height: 680px;
   width: 1200px;
 }

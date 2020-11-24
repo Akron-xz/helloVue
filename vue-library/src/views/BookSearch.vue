@@ -10,7 +10,7 @@
             <tr>
               <td>国家</td>
               <td>
-                <el-select v-model="couId" placeholder="请选择" style="width: 150px">
+                <el-select v-model="couId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
                     v-for="item in country" :key="item.countryId" :label="item.countryName"
                     :value="item.countryId"
@@ -19,7 +19,7 @@
               </td>
               <td>类型</td>
               <td>
-                <el-select v-model="tyId" placeholder="请选择" style="width: 150px">
+                <el-select v-model="tyId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
                     v-for="item in type" :key="item.typeId" :label="item.typeName"
                     :value="item.typeId"
@@ -28,7 +28,7 @@
               </td>
               <td>篇幅</td>
               <td>
-                <el-select v-model="pagenumber" placeholder="请选择" style="width: 150px">
+                <el-select v-model="pagenumber" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
                     v-for="item in pages" :key="item.pageId" :label="item.pageName"
                     :value="item.pageId"
@@ -37,7 +37,7 @@
               </td>
               <td>主题</td>
               <td>
-                <el-select v-model="thId" placeholder="请选择" style="width: 150px">
+                <el-select v-model="thId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
                     v-for="item in theme" :key="item.themeId" :label="item.themeName" :value="item.themeId"
                   ></el-option>
@@ -75,6 +75,8 @@
               <template slot-scope="scope">
                 <el-button @click="MsgModify(scope.row)" type="primary " class="edit-btn"
                   size="small">编辑</el-button>
+                  <el-button @click="bookHistoryOfUser(scope.row)" type="primary " class="edit-btn"
+                  size="small">查看</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -111,7 +113,7 @@
         <tr>
           <td>国家</td>
           <td>
-            <el-select v-model="addBookData.country.countryId" placeholder="请选择">
+            <el-select v-model="addBookData.country.countryId" placeholder="请选择" clearable>
               <el-option  v-for="item in country"  :key="item.countryId" :label="item.countryName"
                 :value="item.countryId"
               ></el-option>
@@ -119,7 +121,7 @@
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="addBookData.type.typeId" placeholder="请选择"
+            <el-select v-model="addBookData.type.typeId" placeholder="请选择" clearable
             >
               <el-option v-for="item in type" :key="item.typeId"  :label="item.typeName"
                 :value="item.typeId"
@@ -135,7 +137,7 @@
         <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="addBookData.pages" placeholder="请选择">
+            <el-select v-model="addBookData.pages" placeholder="请选择" clearable>
               <el-option
                 v-for="item in pages" :key="item.pageId" :label="item.pageName"
                 :value="item.pageId"
@@ -144,7 +146,7 @@
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="addBookData.theme.themeId" placeholder="请选择">
+            <el-select v-model="addBookData.theme.themeId" placeholder="请选择" clearable>
               <el-option
                 v-for="item in theme" :key="item.themeId" :label="item.themeName"
                 :value="item.themeId"
@@ -192,6 +194,7 @@
             <el-select
               v-model="bookData[0].country.countryId"
               placeholder="请选择"
+              clearable
             >
               <el-option
                 v-for="item in country" :key="item.countryId" :label="item.countryName"
@@ -201,7 +204,7 @@
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="bookData[0].type.typeId" placeholder="请选择">
+            <el-select v-model="bookData[0].type.typeId" placeholder="请选择" clearable>
               <el-option
                 v-for="item in type" :key="item.typeId" :label="item.typeName"
                 :value="item.typeId"
@@ -217,7 +220,7 @@
         <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="bookData[0].pages" placeholder="请选择">
+            <el-select v-model="bookData[0].pages" placeholder="请选择" clearable>
               <el-option
                 v-for="item in pages" :key="item.pageId" :label="item.pageName"
                 :value="item.pageId"
@@ -226,7 +229,7 @@
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="bookData[0].theme.themeId" placeholder="请选择">
+            <el-select v-model="bookData[0].theme.themeId" placeholder="请选择" clearable>
               <el-option
                 v-for="item in theme"  :key="item.themeId"  :label="item.themeName"
                 :value="item.themeId"
@@ -255,6 +258,18 @@
         </div>
       </div>
     </div>
+    <el-dialog title="借阅用户" :visible.sync="bookHistoryIfo"
+        :append-to-body="true" 
+        :modal-append-to-body="false"
+        :center="true">
+  <el-table :data="borrowLists">
+     <el-table-column property="user.name" label="用户名" width="80"></el-table-column>
+     <el-table-column property="borrowTimeStr" label="借阅时间" width="150"></el-table-column>
+      <el-table-column property="returnTimeStr" label="归还时间" width="150"></el-table-column>
+      <el-table-column property="borrowStatesStr" label="状态" width="150">
+      </el-table-column>
+  </el-table>
+</el-dialog>
   </div>
 </template>
 <script>
@@ -272,6 +287,26 @@ export default {
       console.log(this.bookName);
       console.log(row);
     },
+    //
+    bookHistoryOfUser(row){
+      this.bookHistoryIfo = !this.bookHistoryIfo
+      this.bookData = [row];
+      axios({
+        method:"get",
+        url:"http://localhost:8081/book/borrows",
+        params:{
+          id:this.bookData[0].bookId
+        }
+      }).then(res=>{
+        console.log(res.data);
+        this.borrowLists = res.data;
+        // this.borrowLists.userName = res.data.user.name;
+        // this.borrowLists.borrowTime = res.data.borrowTimeStr;
+        // this.borrowLists.returnTime = res.data.returnTimeStr
+        // this.borrowLists.borrowStates = res.data.borrowStates ? "借出" : "归还";
+        console.log(this.borrowLists);
+      })
+      },
     // 保存按钮
     MsgSaveM() {
       axios({
@@ -384,6 +419,14 @@ export default {
       offNumId: "",
       key: "",
       pagenumber: "",
+      borrowLists:[
+        // {
+        //   userName:"",
+        //   borrowTime:"",
+        //   returnTime:"",
+        //   borrowStates:"",
+        // }
+      ],
       bookData: [
         {
           bookId:0,
@@ -411,7 +454,7 @@ export default {
         },
       ],
       bookName: "",
-
+      bookHistoryIfo:false,
       ModifyTableDisplay: true,
       InsertTableDisplay: true,
       brief: "暂无",
@@ -439,19 +482,19 @@ export default {
       pages: [
         {
           pageId: 1,
-          pageName: "1-500字",
+          pageName: "短篇",
         },
         {
           pageId: 2,
-          pageName: "501-1000字",
+          pageName: "中篇",
         },
         {
           pageId: 3,
-          pageName: "1001-1500字",
+          pageName: "长篇",
         },
         {
           pageId: 4,
-          pageName: ">1500字",
+          pageName: "超长篇",
         },
       ],
 

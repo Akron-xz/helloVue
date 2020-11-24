@@ -22,7 +22,7 @@
 
     <div class="announce-box">
       <h1>图书馆公告:</h1>
-      <p>{{ announceContent }}</p>
+      <p>公告时间:{{announceTimeStr}}---- 公告内容：{{ announceContent }}</p>
     </div>
     <div class="img">
       <!-- <img src="/img/anoncementImg.svg" alt="" class="anoncementImg">  -->
@@ -36,7 +36,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      announceTime: "",
+      announceTimeStr: "",
       announceContent: "",
       permission: false,
     };
@@ -50,7 +50,9 @@ export default {
         .then((res) => {
           let announceContent = res.data.announceContent;
           this.announceContent = announceContent;
+          this.announceTimeStr = res.data.announceTimeStr
           console.log(announceContent);
+          console.log( this.announceTimeStr)
         })
         .catch(function (error) {
           //请求失败

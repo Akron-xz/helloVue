@@ -258,6 +258,8 @@ export default {
           userId:this.userData[0].userId,
           bookId:this.bookId
         }
+      }).then(res=>{
+        alert(res.data)
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;
