@@ -156,6 +156,18 @@ export default {
       bookname: "时间简史",
       tableDisplay: true,
       bookId:"",
+      userData:[{
+        userId:"",
+        name: "",
+          sex: "",
+          age: "",
+          email: "",
+          birthday: "",
+          phone: "",
+          address: "",
+          introduction: "",
+          password: "",
+      }],
 
       // 接收数据
       lists: [],
@@ -237,9 +249,15 @@ export default {
     },
 
     borrow() {
+      console.log(this.bookId)
+      console.log(this.userData[0].userId)
       axios({
-        method:"post",
-        url:"http://localhost:8081/user/borrow/"+this.bookId,
+        method:"get",
+        url:"http://localhost:8081/user/borrow/",
+        params:{
+          userId:this.userData[0].userId,
+          bookId:this.bookId
+        }
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;
@@ -317,6 +335,8 @@ export default {
   created() {
     let user = JSON.parse(sessionStorage.getItem("userSession"));
     console.log(user);
+    this.userData[0].userId = user.userId;
+    console.log(this.userData);
     axios
 
       .get("http://localhost:8081/book/list", {

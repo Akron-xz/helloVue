@@ -47,11 +47,6 @@
           ></el-input>
         </el-form-item>
         <div class="passwordTip" style="position: absolute">
-          <verify-pass-word-tip
-            :password="ruleForm2.password"
-            :isShowTip="isShowTip"
-          >
-          </verify-pass-word-tip>
         </div>
         <el-form-item label="确认密码：" prop="checkPwd">
           <el-input
