@@ -1,20 +1,26 @@
 <template>
 <div  class="login-container">
-      <!-- need to change -->
+      <!-- need to change (fixed)-->
+    
       <el-header>用户登陆</el-header>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="用户ID" prop="userId">
+      <div class="loginBox">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="用户ID" prop="userId">
             <el-input v-model="ruleForm.userId"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
             <el-input v-model="ruleForm.password" type="password"></el-input>
         </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-        <el-link type="warning" @click="toSignUp">立即注册</el-link>
-      </el-form-item>
-    </el-form>
+        <el-form-item>
+          <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-link type="warning" @click="toSignUp">立即注册</el-link>
+        </el-form-item>
+      </el-form>
+    </div>
+    <div class="img">
+    <img src="/img/loginImg.png" alt="" class="loginImg">
+    </div>
 
       <!-- <div class="loginBox">
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
@@ -132,6 +138,8 @@ export default {
 <style scoped>
 .login-container{
     position: fixed;
+    display: flex;
+    flex-direction: column;
     left: 0;
     top:0;
     width: 100%;
@@ -142,8 +150,7 @@ export default {
 }
 .demo-ruleForm{
         position: absolute;
-        left: 70px;
-        top: 180px;
+        top: 20px;
         width: 300px;
         height: 50px;
  }
@@ -154,21 +161,33 @@ export default {
     font-weight: 1000;
     font-size: 30px;
     color: transparent;
-   -webkit-text-stroke: 1px white;
+   -webkit-text-stroke: 1px black;
     letter-spacing: 0.04em;
   }
 
 .loginBox{
-  margin-left: 70px;
-  margin-top: 100px;
+  position: absolute;
+  top: 30%;
+  left: 5%;
   width: 380px;
   height: 230px;
   border-radius: 20px;
-  background: rgb(255, 255, 255);
+  background: white;
 }
   
 .el-link{
   float: right;
 }
 
+.img{
+  margin-left: 100px;
+  height: 100px;
+  width: 1000px;
+}
+
+.loginImg{
+  margin-left: 300px;
+  height: 600px;
+  width: 1000px;
+}
 </style>
