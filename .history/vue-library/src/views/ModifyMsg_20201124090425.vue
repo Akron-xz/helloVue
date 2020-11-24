@@ -255,7 +255,7 @@ export default {
           axios({
             method: "get",
             url: "http://localhost:8081/user/changPwd",
-            params: {
+            data: {
               userId: this.userData[0].userId,
               password: this.pwd.newPassword,
             },

@@ -249,13 +249,13 @@ export default {
     },
 
     // 修改密码
-    submitForm(pwd) {
-      this.$refs[pwd].validate((valid) => {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           axios({
             method: "get",
             url: "http://localhost:8081/user/changPwd",
-            params: {
+            data: {
               userId: this.userData[0].userId,
               password: this.pwd.newPassword,
             },

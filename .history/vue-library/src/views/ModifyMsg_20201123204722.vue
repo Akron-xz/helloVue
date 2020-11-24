@@ -116,17 +116,17 @@
         label-width="100px"
         class="demo-pwd"
       >
-        <el-form-item label="新密码" prop="password">
+        <el-form-item label="新密码" prop="newPasswordword">
           <el-input
             v-model="pwd.newPassword"
-            type="password"
+            type="newPasswordword"
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <el-form-item label="确认新密码" prop="password">
+        <el-form-item label="确认新密码" prop="newPasswordword">
           <el-input
             v-model="pwd.checkPassword"
-            type="password"
+            type="newPasswordword"
             autocomplete="off"
           ></el-input>
         </el-form-item>
@@ -146,7 +146,7 @@ export default {
         callback(new Error("请输入密码"));
       } else {
         if (this.pwd.checkPassword !== "") {
-          this.$refs.pwd.validateField("checkPassword");
+          this.$refs.pwd.validateField("checkPass");
         }
         callback();
       }
@@ -173,7 +173,7 @@ export default {
           phone: "",
           address: "",
           introduction: "",
-          password: "",
+          newPasswordword: "",
         },
       ],
       // 新密码
@@ -193,7 +193,7 @@ export default {
       lists: [],
 
       // pwd: {
-      //   password: "",
+      //   newPasswordword: "",
       // },
 
       rules: {
@@ -227,7 +227,7 @@ export default {
             phone: this.userData[0].phone,
             address: this.userData[0].address,
             introduction: this.userData[0].introduction,
-            password: this.userData[0].password,
+            newPasswordword: this.userData[0].newPasswordword,
           },
         })
           .then((res) => {
@@ -249,28 +249,36 @@ export default {
     },
 
     // 修改密码
-    submitForm(pwd) {
-      this.$refs[pwd].validate((valid) => {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           axios({
-            method: "get",
-            url: "http://localhost:8081/user/changPwd",
-            params: {
+            method: "post",
+            url: "http://localhost:8081/user/updateUser",
+            data: {
               userId: this.userData[0].userId,
-              password: this.pwd.newPassword,
+              name: this.userData[0].name,
+              sex: this.userData[0].sex,
+              age: this.userData[0].age,
+              email: this.userData[0].email,
+              birthday: Date.parse(this.userData[0].birthday),
+              phone: this.userData[0].phone,
+              address: this.userData[0].address,
+              introduction: this.userData[0].introduction,
+
+              newPasswordword: this.pwd.newPassword,
             },
           })
             .then((res) => {
               console.log(res.data);
               // 更新session的数据
-              this.userData[0].password = this.pwd.newPassword;
               sessionStorage.setItem(
                 "userSession",
                 JSON.stringify(this.userData[0])
               );
               // 写一条打印新密码的语句
               // .........
-              // 清空输入框的密码
+              // 清空密码
               this.pwd.newPassword = "";
               this.pwd.checkPassword = "";
 
@@ -322,7 +330,7 @@ export default {
     this.userData[0].phone = user.phone;
     this.userData[0].address = user.address;
     this.userData[0].introduction = user.introduction;
-    this.userData[0].password = user.password;
+    this.userData[0].newPasswordword = user.newPasswordword;
   },
 };
 </script>

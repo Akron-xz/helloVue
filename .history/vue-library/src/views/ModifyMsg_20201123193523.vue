@@ -108,57 +108,41 @@
       }}</el-button>
     </div>
 
-    <div class="modify-pwd-box">
+    <div class="modify-pasawd-box">
       <el-form
-        v-model="pwd"
+        v-model="userData"
         :rules="rules"
-        ref="pwd"
+        ref="userData"
         label-width="100px"
-        class="demo-pwd"
+        class="demo-userData"
       >
         <el-form-item label="新密码" prop="password">
-          <el-input
-            v-model="pwd.newPassword"
-            type="password"
-            autocomplete="off"
-          ></el-input>
+          <el-input v-model="userData.password" type="password"></el-input>
         </el-form-item>
-        <el-form-item label="确认新密码" prop="password">
-          <el-input
-            v-model="pwd.checkPassword"
-            type="password"
-            autocomplete="off"
-          ></el-input>
+        <el-form-item label="确认新密码" prop="checkPassword">
+          <el-input v-model="checkPassword" type="password"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('pwd')">确认</el-button>
+          <el-button type="primary" @click="submitForm('userData')"
+            >确认</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from "axios"
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入密码"));
-      } else {
-        if (this.pwd.checkPassword !== "") {
-          this.$refs.pwd.validateField("checkPassword");
+        if (value === '') {
+          callback(new Error('请再次输入密码!!'));
+        } else if (value !== this.userData.password) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
         }
-        callback();
-      }
-    };
-    var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
-      } else if (value !== this.pwd.newPassword) {
-        callback(new Error("两次输入密码不一致!"));
-      } else {
-        callback();
-      }
     };
 
     return {
@@ -174,13 +158,9 @@ export default {
           address: "",
           introduction: "",
           password: "",
+          checkPassword: "",
         },
       ],
-      // 新密码
-      pwd: {
-        newPassword: "",
-        checkPassword: "",
-      },
 
       // 输入框默认禁用，只有点击编辑只有才能输入
       isDisabled: true,
@@ -192,14 +172,15 @@ export default {
       msg: "",
       lists: [],
 
-      // pwd: {
+      // ruleForm: {
       //   password: "",
       // },
 
       rules: {
-        newPassword: [{ validator: validatePass, trigger: "blur" }],
-        checkPassword: [{ validator: validatePass2, trigger: "blur" }],
+        password: [{ required: true, message: "请输入新密码", trigger: "blur" }],
+        checkPassword: [{ required: true, message: "请确认新密码", trigger: "blur", validator: validatePass}],
       },
+
     };
   },
   methods: {
@@ -209,15 +190,16 @@ export default {
       this.isEdit = !this.isEdit;
       // 输入框可编辑
       this.isDisabled = !this.isDisabled;
+
       // isEdit: true="编辑", false="保存"
       if (!this.isEdit) {
         this.$message("进入个人信息编辑模式");
       } else {
-        console.log(this.userData[0]);
+        console.log(this.userData[0])
         axios({
-          method: "post",
-          url: "http://localhost:8081/user/updateUser",
-          data: {
+          method:"post",
+          url:"http://localhost:8081/user/updateUser",
+          data:{
             userId: this.userData[0].userId,
             name: this.userData[0].name,
             sex: this.userData[0].sex,
@@ -228,60 +210,53 @@ export default {
             address: this.userData[0].address,
             introduction: this.userData[0].introduction,
             password: this.userData[0].password,
-          },
-        })
+          }})
           .then((res) => {
             console.log(res.data);
             // session保存登录的用户信息
 
             // 刷新页面之后，数据变回旧数据，需要重新设置session  (fixed)
-            sessionStorage.setItem(
-              "userSession",
-              JSON.stringify(this.userData[0])
-            );
+            sessionStorage.setItem("userSession", JSON.stringify(this.userData[0]));
           })
           .catch((err) => console.log("error...", err));
         this.$message({
-          message: "保存成功",
-          type: "success",
-        });
+          message: '保存成功',
+          type: 'success'
+          })
       }
     },
 
     // 修改密码
-    submitForm(pwd) {
-      this.$refs[pwd].validate((valid) => {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           axios({
-            method: "get",
-            url: "http://localhost:8081/user/changPwd",
-            params: {
-              userId: this.userData[0].userId,
-              password: this.pwd.newPassword,
-            },
+          method:"post",
+          url:"http://localhost:8081/user/updateUser",
+          data:{
+            userId: this.userData[0].userId,
+            name: this.userData[0].name,
+            sex: this.userData[0].sex,
+            age: this.userData[0].age,
+            email: this.userData[0].email,
+            birthday: Date.parse(this.userData[0].birthday),
+            phone: this.userData[0].phone,
+            address: this.userData[0].address,
+            introduction: this.userData[0].introduction,
+            password: this.userData[0].password,
+          }})
+          .then((res) => {
+            console.log(res.data);
+            // 更新session的数据
+            sessionStorage.setItem("userSession", JSON.stringify(this.userData[0]));
+            this.$message({
+              message: '密码修改成功',
+              type: 'success'
           })
-            .then((res) => {
-              console.log(res.data);
-              // 更新session的数据
-              this.userData[0].password = this.pwd.newPassword;
-              sessionStorage.setItem(
-                "userSession",
-                JSON.stringify(this.userData[0])
-              );
-              // 写一条打印新密码的语句
-              // .........
-              // 清空输入框的密码
-              this.pwd.newPassword = "";
-              this.pwd.checkPassword = "";
-
-              this.$message({
-                message: "密码修改成功",
-                type: "success",
-              });
-            })
-            .catch((err) => console.log("error...", err));
+          })
+          .catch((err) => console.log("error...", err));
         } else {
-          this.$message.error("密码修改失败");
+          this.$message.error('密码修改失败');
           return false;
         }
       });
@@ -314,7 +289,7 @@ export default {
     this.userData[0].sex = user.sex;
     this.userData[0].age = user.age;
     this.userData[0].email = user.email;
-    if (user.birthdayStr) {
+    if (user.birthdayStr){
       this.userData[0].birthday = user.birthdayStr;
     } else {
       this.userData[0].birthday = user.birthday;
@@ -323,6 +298,7 @@ export default {
     this.userData[0].address = user.address;
     this.userData[0].introduction = user.introduction;
     this.userData[0].password = user.password;
+
   },
 };
 </script>
@@ -365,7 +341,7 @@ button:hover {
 .msg-header {
   background-color: lightgray;
 }
-.modify-pwd-box {
+.modify-pasawd-box {
   position: fixed;
   top: 400px;
   left: 36%;

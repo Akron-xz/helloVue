@@ -249,28 +249,36 @@ export default {
     },
 
     // 修改密码
-    submitForm(pwd) {
-      this.$refs[pwd].validate((valid) => {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           axios({
-            method: "get",
+            method: "post",
             url: "http://localhost:8081/user/changPwd",
-            params: {
+            data: {
               userId: this.userData[0].userId,
+              name: this.userData[0].name,
+              sex: this.userData[0].sex,
+              age: this.userData[0].age,
+              email: this.userData[0].email,
+              birthday: Date.parse(this.userData[0].birthday),
+              phone: this.userData[0].phone,
+              address: this.userData[0].address,
+              introduction: this.userData[0].introduction,
+
               password: this.pwd.newPassword,
             },
           })
             .then((res) => {
               console.log(res.data);
               // 更新session的数据
-              this.userData[0].password = this.pwd.newPassword;
               sessionStorage.setItem(
                 "userSession",
                 JSON.stringify(this.userData[0])
               );
               // 写一条打印新密码的语句
               // .........
-              // 清空输入框的密码
+              // 清空密码
               this.pwd.newPassword = "";
               this.pwd.checkPassword = "";
 
