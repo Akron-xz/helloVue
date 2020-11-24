@@ -193,7 +193,7 @@ export default {
 }
 
 .el-header {
-  text-align: right;
+  text-align: left;
   line-height: 60px;
   font-weight: 1000;
   font-size: 30px;
@@ -215,7 +215,7 @@ export default {
   left: 17%;
   width: 400px;
   height: 410px;
-  background: #ffffffd7;
+  background: white;
   border-radius: 20px;
 }
 

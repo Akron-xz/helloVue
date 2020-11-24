@@ -14,7 +14,7 @@
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
           <el-button @click="resetForm('ruleForm')">重置</el-button>
-          <el-link @click="toSignUp">立即注册</el-link>
+          <el-link type="primary" @click="toSignUp">立即注册</el-link>
         </el-form-item>
       </el-form>
     </div>
@@ -173,7 +173,7 @@ export default {
   width: 380px;
   height: 230px;
   border-radius: 20px;
-  background: #ffffffd7;
+  background: #ffffff99;
 }
   
 .el-link{

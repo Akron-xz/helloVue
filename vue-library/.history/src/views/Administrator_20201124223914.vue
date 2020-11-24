@@ -154,7 +154,7 @@ import homeNavigation from '@/components/homeNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/img/divBg/bg22.jpg);
+  background-image: url(/img/divBg/bg23.jpg);
   background-size: 100% 100%;
 }
 
@@ -183,7 +183,7 @@ import homeNavigation from '@/components/homeNav.vue'
   width: 400px;
   height: 200px;
   border-radius: 20px;
-  background: #ffffffe1;
+  background: ffffffd7;
 }
 
 .img {

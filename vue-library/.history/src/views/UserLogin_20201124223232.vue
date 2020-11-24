@@ -173,7 +173,7 @@ export default {
   width: 380px;
   height: 230px;
   border-radius: 20px;
-  background: #ffffffd7;
+  background: #ffffff99;
 }
   
 .el-link{

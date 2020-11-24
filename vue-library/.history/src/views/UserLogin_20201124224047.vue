@@ -148,7 +148,7 @@ export default {
     height: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-image: url(/img/divBg/bg20.jpg);
+    background-image: url(/img/divBg/bg22.jpg);
 }
 .demo-ruleForm{
         position: absolute;

@@ -215,7 +215,7 @@ export default {
   left: 17%;
   width: 400px;
   height: 410px;
-  background: #ffffffd7;
+  background: #ffffffea;
   border-radius: 20px;
 }
 
