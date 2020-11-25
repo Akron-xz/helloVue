@@ -127,10 +127,10 @@ export default {
       },
       rules2: {
         id: [{ validator: checkId, trigger: "blur" }],
-        name: [{ validator: checkName, trigger: "blur" }],
+        name: [{required: true,validator: checkName, trigger: "blur" }],
 
-        pwd: [{ validator: validatePass, trigger: "blur" }],
-        checkPwd: [{ validator: validatePass2, trigger: "blur" }],
+        pwd: [{ required: true,validator: validatePass, trigger: "blur" }],
+        checkPwd: [{ required: true,validator: validatePass2, trigger: "blur" }],
       },
     };
   },

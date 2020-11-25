@@ -72,7 +72,7 @@ export default {
             ],
 
              password: [
-            { validator: validatePass, trigger: 'blur' },
+            { required: true,validator: validatePass, trigger: 'blur' },
             { min: 8, max: 24,message: '长度应在 8 到 24 个字符', trigger: 'blur'}
           ],
         },
