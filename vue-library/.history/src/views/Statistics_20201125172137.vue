@@ -107,16 +107,12 @@ export default {
     color: white;
 }
 
+
 .statistics-title {
   margin-top: 0px;
   margin-left: 20px;
   text-align: left;
   font-size: 32px;
   color: white;
-}
-
-.count{
-    color: white;
-    font-size: 30px;
 }
 </style>
