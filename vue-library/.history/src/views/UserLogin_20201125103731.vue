@@ -165,12 +165,6 @@ export default {
     background-size: 100% 100%;
     background-image: url(/img/divBg/bg32.jpg);
 }
-.demo-ruleForm{
-        position: absolute;
-        top: 20px;
-        width: 300px;
-        height: 50px;
- }
 
 .el-header {
     text-align: left;
@@ -181,7 +175,7 @@ export default {
     letter-spacing: 0.04em;
   }
 
-.loginBox{
+.loginBox {
   position: fixed;
   top: 30%;
   left: 5%;
@@ -190,12 +184,12 @@ export default {
   border-radius: 20px;
   background: #ffffffd7;
 }
-  
-.el-link{
+
+.el-link {
   float: right;
 }
 
-.img{
+.img {
   margin-left: 100px;
   height: 100px;
   width: 1000px;
