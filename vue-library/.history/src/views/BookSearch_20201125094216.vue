@@ -92,8 +92,6 @@
             :page-size="page.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="lists.length"
-            style="cursor:pointer;"
-            title="回车确认"
           >
           </el-pagination>
           
@@ -614,7 +612,7 @@ export default {
   position: fixed;
   width: 150px;
   bottom: 20px;
-  left: 30%;
+  left: 50%;
 }
 .search-title {
   font-size: 40px;

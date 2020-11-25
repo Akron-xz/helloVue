@@ -24,22 +24,13 @@
         </td>
         <td class="msg-header">性别：</td>
         <td>
-         <input
-            type="text"
-            v-if="userData[0].sex == 1"
-            maxlength="5"
-            style="width: 190px; height: 30px"
-            :readonly="isDisabled"
-            value="男"
-          />
-          <input
-            type="text"
-            v-else
-            maxlength="5"
-            style="width: 190px; height: 30px"
-            :readonly="isDisabled"
-            value="女"
-          />
+          <input
+            type="text"
+            v-model="userData[0].sex"
+            maxlength="5"
+            style="width: 190px; height: 30px"
+            :readonly="isDisabled"
+          />
         </td>
         <td class="msg-header">年龄：</td>
         <td>
@@ -355,8 +346,7 @@ export default {
   height: 100%;
   top: 0;
   right: 0;
-  background-image: url(/img/divBg/bg34.jpg);
-  background-size: 100% 100%;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .tableBox {
   position: fixed;
@@ -387,30 +377,13 @@ button:hover {
 .msg-header {
   background-color: lightgray;
 }
-
 .modify-pwd-box {
   position: fixed;
   top: 400px;
   left: 36%;
-  width: 340px;
-  height: 200px;
-  background-color: white;
-  border-radius: 10px;
 }
 
 input {
   outline: none;
 }
-
-.el-input{
-  align-items: center;
-  width: 200px;
-}
-
-.demo-pwd{
-  position: absolute;
-  top: 20px;
-  width: 300px;
-  height: 50px;
- }
 </style>

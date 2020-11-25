@@ -162,16 +162,16 @@ import homeNavigation from '@/components/homeNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/img/divBg/bg32.jpg);
+  background-image: url(/img/divBg/bg22.jpg);
   background-size: 100% 100%;
 }
 
 .el-header {
-    text-align: left;
+    text-align: right;
     line-height: 60px;
     font-weight: 1000;
     font-size: 30px;
-    color:white;
+    color:black;
     letter-spacing: 0.04em;
     
 }

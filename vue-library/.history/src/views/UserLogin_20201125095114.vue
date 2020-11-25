@@ -153,49 +153,49 @@ export default {
 </script>
 
 <style scoped>
-.login-container{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    left: 0;
-    top:0;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-image: url(/img/divBg/bg32.jpg);
+.login-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(/img/divBg/bg20.jpg);
 }
-.demo-ruleForm{
-        position: absolute;
-        top: 20px;
-        width: 300px;
-        height: 50px;
- }
+.demo-ruleForm {
+  position: absolute;
+  top: 20px;
+  width: 300px;
+  height: 50px;
+}
 
 .el-header {
-    text-align: left;
-    line-height: 60px;
-    font-weight: 1000;
-    font-size: 30px;
-    color: white;
-    letter-spacing: 0.04em;
-  }
+  text-align: right;
+  line-height: 60px;
+  font-weight: 1000;
+  font-size: 30px;
+  color: black;
+  letter-spacing: 0.04em;
+}
 
-.loginBox{
+.loginBox {
   position: fixed;
   top: 30%;
-  left: 5%;
+  left: 40%;
   width: 380px;
   height: 230px;
   border-radius: 20px;
   background: #ffffffd7;
 }
-  
-.el-link{
+
+.el-link {
   float: right;
 }
 
-.img{
+.img {
   margin-left: 100px;
   height: 100px;
   width: 1000px;

@@ -355,8 +355,7 @@ export default {
   height: 100%;
   top: 0;
   right: 0;
-  background-image: url(/img/divBg/bg34.jpg);
-  background-size: 100% 100%;
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .tableBox {
   position: fixed;
@@ -387,30 +386,13 @@ button:hover {
 .msg-header {
   background-color: lightgray;
 }
-
 .modify-pwd-box {
   position: fixed;
   top: 400px;
   left: 36%;
-  width: 340px;
-  height: 200px;
-  background-color: white;
-  border-radius: 10px;
 }
 
 input {
   outline: none;
 }
-
-.el-input{
-  align-items: center;
-  width: 200px;
-}
-
-.demo-pwd{
-  position: absolute;
-  top: 20px;
-  width: 300px;
-  height: 50px;
- }
 </style>
