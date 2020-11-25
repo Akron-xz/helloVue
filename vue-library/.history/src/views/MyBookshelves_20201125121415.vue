@@ -1,7 +1,6 @@
 <template>
     <div class="Bookshelves-container container">
         <userNavigation></userNavigation>
-        <h1 class="history-title">借阅历史</h1>
     
         <div class="book-first" v-for="(item, index) in list" :key="index">
             <el-input

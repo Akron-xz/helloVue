@@ -67,7 +67,7 @@
                 page.currentPage * page.pageSize)" max-height="240"
             style="width: 100%">
 
-            <el-table-column prop="bookName" label="书籍名称" width="350">
+            <el-table-column prop="bookName" label="书籍名称" width="300">
             </el-table-column>
             <el-table-column prop="onTimeStr" label="上架时间" width="300">
             </el-table-column>
@@ -81,6 +81,7 @@
             </el-table-column>
           </el-table>
         </div>
+        <br>
         <!-- 分页器 -->
         <div class="block">
           <el-pagination
@@ -92,11 +93,8 @@
             :page-size="page.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="lists.length"
-            style="cursor:pointer;"
-            title="回车确认"
           >
           </el-pagination>
-          
         </div>
       </div>
     </div>
@@ -610,12 +608,7 @@ export default {
   margin-left: -400px;
   width: 800px;
 }
-.block {
-  position: fixed;
-  width: 150px;
-  bottom: 40px;
-  left: 37%;
-}
+
 .search-title {
   font-size: 40px;
   color: darkblue;

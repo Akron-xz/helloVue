@@ -2,7 +2,7 @@
   <div class="admin-main-container">
     <Navigation></Navigation>
     <div class="img-container">
-      <!-- <div>
+      <div>
         <div class="block">
           <img src="/icon/search-client.png" @click="toSearchClient"/><br/>
           <span class="demonstration">用户列表</span>
@@ -25,7 +25,7 @@
       <div class="block">
         <img src="/icon/graph-report.png" @click="toGraphReport"/><br />
         <span class="demonstration">图书借阅统计</span>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -46,25 +46,25 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    // toMain(){
-    //   this.$router.push({path:'/#'});
-    // },
+    toMain(){
+      this.$router.push({path:'/#'});
+    },
 
-    // toSearchClient(){
-    //   this.$router.push({path:'/newissue'});
-    // },
-    // toSearchFile(){
-    //   this.$router.push({path:'/booksearch'});
-    // },
-    // toAnnounce(){
-    //   this.$router.push({path:'/modifyannounce'});
-    // },
-    // toBooks(){
-    //   this.$router.push({path:'/booksearch'});
-    // },
-    // toGraphReport(){
-    //   this.$router.push({path:'/Statistics'});
-    // },
+    toSearchClient(){
+      this.$router.push({path:'/newissue'});
+    },
+    toSearchFile(){
+      this.$router.push({path:'/booksearch'});
+    },
+    toAnnounce(){
+      this.$router.push({path:'/modifyannounce'});
+    },
+    toBooks(){
+      this.$router.push({path:'/booksearch'});
+    },
+    toGraphReport(){
+      this.$router.push({path:'/Statistics'});
+    },
 
 
   },
@@ -81,5 +81,21 @@ export default {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
+a {
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.block {
+  display: inline-block;
+  padding: 25px;
+  margin-left: 50px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
 
 </style>

@@ -118,8 +118,6 @@
           :page-size="page.pageSize"
           layout="total, sizes, prev, pager, next, jumper"
           :total="lists.length"
-           style="cursor:pointer;"
-            title="回车确认"
         >
         </el-pagination>
       </div>
@@ -432,7 +430,7 @@ export default {
   height: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-image: url(/img/divBg/bg34.jpg);
+  background-image: url(/img/divBg/bg26.jpg);
   background-size: 100% 100%;
   text-align: center;
 }

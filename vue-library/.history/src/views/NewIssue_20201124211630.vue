@@ -70,8 +70,6 @@
           :page-size="page.pageSize"
           layout="total, sizes, prev, pager, next, jumper"
           :total="lists.length"
-           style="cursor:pointer;"
-            title="回车确认"
         >
         </el-pagination>
       </div>

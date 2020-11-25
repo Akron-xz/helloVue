@@ -81,5 +81,21 @@ export default {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 
+a {
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.block {
+  display: inline-block;
+  padding: 25px;
+  margin-left: 50px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
 
 </style>

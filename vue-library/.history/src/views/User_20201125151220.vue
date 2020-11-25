@@ -69,7 +69,7 @@ export default {
 }
 
 .box h2{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .box p{

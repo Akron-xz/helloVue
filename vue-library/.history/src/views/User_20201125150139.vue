@@ -6,12 +6,7 @@
             <h2 class="sentence">书籍是人类进步的阶梯</h2>
             <p class="author">————高尔基</p>
         </div>
-
-
     </div>
-
-    
-
 </template>
 
 <script>
@@ -51,25 +46,25 @@ export default {
 .user-container .title{
     float: left;
     text-align: left;
-    margin-left: 20px;
     margin-top: 0px;
+    margin: auto;
     color: white;
-    width: 600px;
+    width: 800px;
 
 }
 
 .box{
     position: fixed;
-    height: 200px;
-    width: 600px;
+    height: 1oopx;
+    width: 300px;
     bottom: 1%; 
-    right: 5%;
+    left: 50%;
     color: white;
     
 }
 
 .box h2{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .box p{
