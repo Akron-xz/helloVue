@@ -1,10 +1,10 @@
 <template>
-  <div class="history-container">
-    <userNavigation></userNavigation>
-    <h1 class="history-title">借阅历史</h1>
+<div class="history-container">
+<userNavigation></userNavigation>
+<h1 class="history-title">借阅历史</h1>
 
  <div class="searchBox">
-    <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;" @click="searchByKey()">
+ <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;" @click="searchByKey()">
  
  </div>
  <div class="table-box">
@@ -33,7 +33,10 @@
         prop="validTime"
         label="借阅有效期"
         width="180px"></el-table-column>
-      </el-table>
+      
+      
+  
+    </el-table>
  </div>
     <!-- 分页 -->
     <div class="pagingBox" >
@@ -133,7 +136,6 @@ import userNavigation from '@/components/userNav.vue'
   width: 100%;
   height: 100%;
   background-image: url(/img/divBg/bg29.jpg);
-  background-size: 100% 100%;
 }
 .history-title{
   margin-top: 0px;

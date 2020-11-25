@@ -493,10 +493,9 @@ export default {
 
 .block{
   background: white;
-  border-radius: 5px;
 }
 
 .el-table{
-  border-radius: 5px;
+  border-radius: 10px;
 }
 </style>

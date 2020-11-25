@@ -374,6 +374,7 @@ button:hover {
   left: 36%;
   background: white;
   width: 400px;
+  align-items: center;
 }
 
 input {
@@ -381,7 +382,7 @@ input {
 }
 
 .el-input{
-  align-items: center;
+  
   width: 200px;
 }
 </style>

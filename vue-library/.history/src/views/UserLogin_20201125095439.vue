@@ -158,18 +158,18 @@ export default {
  }
 
 .el-header {
-    text-align: left;
+    text-align: right;
     line-height: 60px;
     font-weight: 1000;
     font-size: 30px;
-    color: white;
+    color: black;
     letter-spacing: 0.04em;
   }
 
 .loginBox{
   position: fixed;
   top: 30%;
-  left: 5%;
+  left: 40%;
   width: 380px;
   height: 230px;
   border-radius: 20px;

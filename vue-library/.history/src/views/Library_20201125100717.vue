@@ -430,7 +430,7 @@ export default {
   height: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-image: url(/img/divBg/bg29.jpg);
+  background-image: url(/img/divBg/bg12.jpg);
   background-size: 100% 100%;
   text-align: center;
 }
@@ -456,7 +456,6 @@ export default {
   right: 300px;
   width: 200px;
 }
-
 .table-box {
   position: fixed;
   top: 250px;
@@ -464,7 +463,6 @@ export default {
   margin-left: -400px;
   width: 800px;
 }
-
 .borrow-box {
   position: fixed;
   top: 250px;
@@ -489,14 +487,5 @@ export default {
   width: 200px;
   margin-top: -50px;
   margin-left: 40px;
-}
-
-.block{
-  background: white;
-  border-radius: 5px;
-}
-
-.el-table{
-  border-radius: 5px;
 }
 </style>

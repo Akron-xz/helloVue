@@ -193,11 +193,11 @@ export default {
 }
 
 .el-header {
-  text-align: left;
+  text-align: right;
   line-height: 60px;
   font-weight: 1000;
   font-size: 30px;
-  color: white;
+  color: black;
   letter-spacing: 0.04em;
 }
 
@@ -211,7 +211,7 @@ export default {
 
 .signUpBox {
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 5%;
   width: 400px;
   height: 410px;

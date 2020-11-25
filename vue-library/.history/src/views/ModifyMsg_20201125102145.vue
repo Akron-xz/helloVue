@@ -337,7 +337,6 @@ export default {
   top: 0;
   right: 0;
   background-image: url(/img/divBg/bg10.jpg);
-  background-size: 100% 100%;
 }
 .tableBox {
   position: fixed;
@@ -369,19 +368,12 @@ button:hover {
   background-color: lightgray;
 }
 .modify-pwd-box {
-  position: absolute;
+  position: fixed;
   top: 400px;
   left: 36%;
-  background: white;
-  width: 400px;
 }
 
 input {
   outline: none;
-}
-
-.el-input{
-  align-items: center;
-  width: 200px;
 }
 </style>

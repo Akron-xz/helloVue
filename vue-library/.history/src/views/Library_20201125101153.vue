@@ -456,15 +456,14 @@ export default {
   right: 300px;
   width: 200px;
 }
-
 .table-box {
   position: fixed;
   top: 250px;
   left: 50%;
   margin-left: -400px;
   width: 800px;
+  border-radius: 1opx;
 }
-
 .borrow-box {
   position: fixed;
   top: 250px;
@@ -493,10 +492,5 @@ export default {
 
 .block{
   background: white;
-  border-radius: 5px;
-}
-
-.el-table{
-  border-radius: 5px;
 }
 </style>

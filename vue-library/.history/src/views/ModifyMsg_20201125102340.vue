@@ -369,19 +369,14 @@ button:hover {
   background-color: lightgray;
 }
 .modify-pwd-box {
-  position: absolute;
+  position: fixed;
   top: 400px;
   left: 36%;
   background: white;
-  width: 400px;
+  width: 300px;
 }
 
 input {
   outline: none;
-}
-
-.el-input{
-  align-items: center;
-  width: 200px;
 }
 </style>

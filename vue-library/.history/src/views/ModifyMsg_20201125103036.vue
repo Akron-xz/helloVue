@@ -381,7 +381,7 @@ input {
 }
 
 .el-input{
-  align-items: center;
+  
   width: 200px;
 }
 </style>

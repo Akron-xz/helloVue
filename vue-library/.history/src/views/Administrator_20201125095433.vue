@@ -159,11 +159,11 @@ import homeNavigation from '@/components/homeNav.vue'
 }
 
 .el-header {
-    text-align: left;
+    text-align: right;
     line-height: 60px;
     font-weight: 1000;
     font-size: 30px;
-    color:white;
+    color:black;
     letter-spacing: 0.04em;
     
 }
