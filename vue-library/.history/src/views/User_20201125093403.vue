@@ -2,10 +2,8 @@
     <div class="user-container container">
         <userNavigation></userNavigation>
         <h1 class="title">今天你阅读了吗？</h1>
-        <div class="box">
-            <h2 class="sentence">书籍是人类进步的阶梯</h2>
-            <p class="author">————高尔基</p>
-        </div>
+        <h2 class="sentence">书籍是人类进步的阶梯</h2>
+        <p class="author">————高尔基</p>
     </div>
 </template>
 
@@ -52,22 +50,7 @@ export default {
 
 }
 
-.box{
-    position: fixed;
-    height: 1oopx;
-    width: 300px;
-    bottom: 1%; 
-    left: 50%;
-    color: white;
-    
-}
-
-.box h2{
-    font-size: 40px;
-}
-
-.box p{
-    float: right;
-    margin-right: 15px;
+.user-container .h2{
+    bottom: 10%;
 }
 </style>

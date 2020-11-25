@@ -52,22 +52,12 @@ export default {
 
 }
 
-.box{
-    position: fixed;
-    height: 1oopx;
-    width: 300px;
-    bottom: 1%; 
-    left: 50%;
-    color: white;
+.sentence{
+    bottom: 0px;
+}
+
+.author{
+    top: 80%;
     
-}
-
-.box h2{
-    font-size: 40px;
-}
-
-.box p{
-    float: right;
-    margin-right: 15px;
 }
 </style>

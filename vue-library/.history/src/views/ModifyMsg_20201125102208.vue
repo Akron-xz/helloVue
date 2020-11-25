@@ -24,22 +24,13 @@
         </td>
         <td class="msg-header">性别：</td>
         <td>
-         <input
-            type="text"
-            v-if="userData[0].sex == 1"
-            maxlength="5"
-            style="width: 190px; height: 30px"
-            :readonly="isDisabled"
-            value="男"
-          />
-          <input
-            type="text"
-            v-else
-            maxlength="5"
-            style="width: 190px; height: 30px"
-            :readonly="isDisabled"
-            value="女"
-          />
+          <input
+            type="text"
+            v-model="userData[0].sex"
+            maxlength="5"
+            style="width: 190px; height: 30px"
+            :readonly="isDisabled"
+          />
         </td>
         <td class="msg-header">年龄：</td>
         <td>
@@ -195,16 +186,6 @@ export default {
         newPassword: "",
         checkPassword: "",
       },
-      sex:[
-        {
-          sexId:0,
-          sexName:"女",
-        },
-        {
-          sexId:1,
-          sexName:"男",
-        },
-      ],
 
       // 输入框默认禁用，只有点击编辑只有才能输入
       isDisabled: true,
@@ -388,19 +369,12 @@ button:hover {
   background-color: lightgray;
 }
 .modify-pwd-box {
-  position: absolute;
+  position: fixed;
   top: 400px;
   left: 36%;
-  background: white;
-  width: 400px;
 }
 
 input {
   outline: none;
-}
-
-.el-input{
-  align-items: center;
-  width: 200px;
 }
 </style>

@@ -4,8 +4,7 @@
     <h1 class="history-title">借阅历史</h1>
 
  <div class="searchBox">
- <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;
- <input type="button" value="搜索" style="width:50px;height:35px;" @click="searchByKey()">
+    <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;" @click="searchByKey()">
  
  </div>
  <div class="table-box">
@@ -144,13 +143,13 @@ import userNavigation from '@/components/userNav.vue'
 }
 .searchBox{
  position: fixed;
- top: 147px;
- right: 18%;
+ top: 116px;
+ right: 10%;
 }
 .table-box{
   position: fixed;
-  top: 188px;
-  right: 18%;
+  top: 155px;
+  right: 160px;
   width: 800px;
   
 }
@@ -158,9 +157,9 @@ import userNavigation from '@/components/userNav.vue'
   position: fixed;
   width: 200px;
   height: 50px;
-  right: 50%;
+  right: 280px;
   bottom: 0;
-  top: 565px;
+  top: 690px;
 
 }
 .reference-btn{

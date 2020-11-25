@@ -110,20 +110,12 @@ import homeNavigation from '@/components/homeNav.vue'
             if (this.admin) {
               if (this.admin.identity == 1) {
                 // console.log("登陆成功");
-                if(this.admin.password!=this.ruleForm2.pwd){
-                  this.$message({
-                  message: "登录失败！请检查你的密码是否正确。",
-                  type: "error",
-                })
-                }else{
-                  this.$message({
+                this.$message({
                   message: "登录成功",
                   type: "success",
                 });
                 // 路由跳转到管理员主页
                 this.$router.push({ path: "/adminmain" });
-                }
-                
               } else {
                 this.$message({
                 message: '普通用户请在普通用户页面登录',

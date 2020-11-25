@@ -179,8 +179,7 @@ export default {
 }
 
 .welcomeWord{
-  margin-top: 30px;
-  margin-left: 20px;
+  left: 10px;
   float: left;
   background: none;
   margin-top: 0px;

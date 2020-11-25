@@ -56,18 +56,9 @@ export default {
     position: fixed;
     height: 1oopx;
     width: 300px;
-    bottom: 1%; 
+    bottom: 10%; 
     left: 50%;
     color: white;
     
-}
-
-.box h2{
-    font-size: 40px;
-}
-
-.box p{
-    float: right;
-    margin-right: 15px;
 }
 </style>
