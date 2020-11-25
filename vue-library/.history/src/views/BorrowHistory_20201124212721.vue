@@ -1,6 +1,5 @@
 <template>
 <div class="history-container">
-<userNavigation></userNavigation>
 <h1 class="history-title">借阅历史</h1>
  <el-divider></el-divider>
  <div class="searchBox">
@@ -56,11 +55,7 @@
   </template>
 <script>
 import axios from "axios"
-import userNavigation from '@/components/userNav.vue'
     export default {
-      components:{
-        userNavigation
-    },
       data() {
         return {
           userData:[
@@ -135,10 +130,9 @@ import userNavigation from '@/components/userNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .history-title{
-  margin-top: 0px;
   font-size: 40px;
   color: darkblue;
 }

@@ -1,6 +1,15 @@
 <template >
   <div class="library-container">
-    <userNavigation></userNavigation>
+    <div>
+      <el-header>
+        <router-link to="./" class="a">首页</router-link>
+        /
+        <router-link to="./user" class="b">我是借阅者</router-link>
+        /
+        <router-link to="./library" class="c">图书库</router-link>
+      </el-header>
+    </div>
+
     <div class="select">
       <label for=""
         >国家:
@@ -144,11 +153,7 @@
 </template>
 <script>
 import axios from "axios";
-import userNavigation from '@/components/userNav.vue';
 export default {
-  components:{
-        userNavigation
-    },
   data() {
     return {
       couId: "",
@@ -274,7 +279,6 @@ export default {
         }
       }).then(res=>{
         alert(res.data)
-        this.$router.go(0);
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;
@@ -433,7 +437,24 @@ export default {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   text-align: center;
 }
-
+.el-header {
+  position: absolute;
+  left: 30px;
+  color: #333;
+  line-height: 60px;
+  width: 100%;
+  height: 60px;
+  text-align: left;
+}
+.a {
+  text-decoration: none;
+}
+.b {
+  text-decoration: none;
+}
+.c {
+  text-decoration: none;
+}
 .select {
   display: flex;
   flex-direction: row;

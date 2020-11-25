@@ -31,7 +31,7 @@
             </el-menu-item>
 
             <el-menu-item index="6" class="exitIcon">
-                <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon" @click="signOut">
+                <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon">
             </el-menu-item>
 
             <!-- <el-menu-item index="6" @click="toMain">
@@ -70,10 +70,7 @@ export default {
     toLibrary(){
       this.$router.push({path:'/Library'});
     },
-    signOut(){
-      sessionStorage.clear();
-      this.$router.push({path:'/'});
-    }
+
 
 
   },

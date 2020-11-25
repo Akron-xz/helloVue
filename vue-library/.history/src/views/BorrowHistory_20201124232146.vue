@@ -135,7 +135,7 @@ import userNavigation from '@/components/userNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .history-title{
   margin-top: 0px;

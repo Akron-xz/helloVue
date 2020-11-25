@@ -19,7 +19,15 @@ export default {
         }
     },
     methods: {
-        
+        toMyInformation(){
+            this.$router.push({path:'/MyInformation'})
+        },
+        toLibrary(){
+            this.$router.push({path:'/library'})
+        },
+        toMyBookshelves(){
+            this.$router.push({path:'/MyBookshelves'})
+        },
     },
     created() {
         
@@ -35,13 +43,13 @@ export default {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-image: url(/img/divBg/bg29.jpg);
+    background-size: 100%;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 
 }
 
 
 .user-container .title{
-    margin-top: 0px;
+    margin-top: 50px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="MyInformation-container container">
-        <userNavigation></userNavigation>
+         
         <div class="exit">
         <button class="exit-login">
             退出登陆
@@ -20,11 +20,7 @@
 </template>
 
 <script>
-import userNavigation from '@/components/userNav.vue'
 export default {
-    components:{
-        userNavigation
-    },
     data() {
         return {
            
