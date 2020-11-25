@@ -332,10 +332,9 @@ export default {
     },
   },
 
-  // 钩子函数
   mounted() {
     let user = JSON.parse(sessionStorage.getItem("userSession"));
-    // 接收数据
+    // console.log("mounted...",user);
     this.userData[0].userId = user.userId;
     this.userData[0].name = user.name;
     this.userData[0].sex = user.sex;

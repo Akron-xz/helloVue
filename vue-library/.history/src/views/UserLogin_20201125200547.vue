@@ -26,6 +26,24 @@
         </el-form-item>
       </el-form>
     </div>
+
+    <!-- <div class="loginBox">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="ruleForm.username"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+           <el-input v-model="ruleForm.password" type="password" 
+              oncopy="return false"
+              onpaste="return false"
+              oncut="return false"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
+      </div> -->
   </div>
 </template>
 
@@ -35,7 +53,6 @@ import axios from "axios";
 import homeNavigation from "@/components/homeNav.vue";
 export default {
   components: {
-    // 导航栏组件
     homeNavigation,
   },
   data() {
@@ -48,16 +65,13 @@ export default {
     };
 
     return {
-      // 账号和密码的表单
       ruleForm: {
         userId: "",
         password: "",
       },
 
-      // 用户列表
       user: [],
 
-      // 密码规则验证
       rules: {
         userId: [{ required: true, message: "请输入用户ID", trigger: "blur" }],
 
@@ -128,12 +142,9 @@ export default {
         }
       });
     },
-    // 请空输入框
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-
-    // 注册跳转
     toSignUp() {
       this.$router.push({ path: "/SignUp" });
     },

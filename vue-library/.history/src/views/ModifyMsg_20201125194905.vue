@@ -24,22 +24,22 @@
         </td>
         <td class="msg-header" style="width: 120px">性别：</td>
         <td>
-          <input
-            type="text"
-            v-if="userData[0].sex == 1"
-            maxlength="5"
-            style="width: 190px;  height: 30px"
-            :readonly="isDisabled"
-            value="男"
-          />
-                    <input
-            type="text"
-            v-else
-            maxlength="5"
-            style="width: 190px;  height: 30px"
-            :readonly="isDisabled"
-            value="女"
-          />
+         <input
+            type="text"
+            v-if="userData[0].sex == 1"
+            maxlength="5"
+            style="width: 190px; height: 30px"
+            :readonly="isDisabled"
+            value="男"
+          />
+          <input
+            type="text"
+            v-else
+            maxlength="5"
+            style="width: 190px; height: 30px"
+            :readonly="isDisabled"
+            value="女"
+          />
         </td>
         <td class="msg-header" style="width: 120px">年龄：</td>
         <td>
@@ -118,7 +118,9 @@
       }}</el-button>
     </div>
 
+
     <div class="modify-pwd-box">
+    
       <el-form
         v-bind:model="pwd"
         :rules="rules"
@@ -133,13 +135,6 @@
             autocomplete="off"
           ></el-input>
         </el-form-item>
-        <!-- 密码强度验证条 -->
-        <el-form-item label="密码强度">
-          <verify-pwd
-            v-model="pwd.newPassword"
-            style="padding-top: 10px"
-          ></verify-pwd>
-        </el-form-item>
         <el-form-item label="确认新密码" prop="checkPassword">
           <el-input
             v-model="pwd.checkPassword"
@@ -147,22 +142,28 @@
             autocomplete="off"
           ></el-input>
         </el-form-item>
+        <!-- 密码强度验证条 -->
+        <el-form-item label="密码强度">
+          <verify-pwd  v-model="ruleForm2.pwd" style="padding-top: 10px;"></verify-pwd>
+        </el-form-item>
+        
         <el-form-item>
           <el-button type="primary" @click="submitForm('pwd')">确认</el-button>
         </el-form-item>
       </el-form>
     </div>
-  </div>
+    </div>
+
 </template>
 <script>
 import axios from "axios";
-import userNavigation from "@/components/userNav.vue";
-import verifyPwd from "@/components/verifyPwd";
+import userNavigation from '@/components/userNav.vue'
+import verifyPwd from '@/components/verifyPwd'
 export default {
-  components: {
-    userNavigation,
-    verifyPwd,
-  },
+  components:{
+        userNavigation,
+        verifyPwd,
+    },
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === "") {
@@ -185,7 +186,6 @@ export default {
     };
 
     return {
-      // 用户数据数组表
       userData: [
         {
           userId: "",
@@ -205,14 +205,14 @@ export default {
         newPassword: "",
         checkPassword: "",
       },
-      sex: [
+      sex:[
         {
-          sexId: 0,
-          sexName: "女",
+          sexId:0,
+          sexName:"女",
         },
         {
-          sexId: 1,
-          sexName: "男",
+          sexId:1,
+          sexName:"男",
         },
       ],
 
@@ -226,17 +226,9 @@ export default {
       msg: "",
       lists: [],
 
-      // 密码规则验证
+
       rules: {
-        newPassword: [
-          { validator: validatePass, trigger: "blur" },
-          {
-            required: true,
-            pattern: /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,24}$/,
-            message: "请包含大小写和数字与字符*",
-            trigger: "blur",
-          },
-        ],
+        newPassword: [{ validator: validatePass, trigger: "blur" }],
         checkPassword: [{ validator: validatePass2, trigger: "blur" }],
       },
     };
@@ -332,10 +324,22 @@ export default {
     },
   },
 
-  // 钩子函数
+  // created() {
+  //   let user = JSON.parse(sessionStorage.getItem("userSession"));
+  //   this.userData[0].name = user.name;
+  //   this.userData[0].sex = user.sex;
+  //   this.userData[0].age = user.age;
+  //   this.userData[0].email = user.email;
+  //   this.userData[0].birthday = user.birthday;
+  //   this.userData[0].phone = user.phone;
+  //   this.userData[0].address = user.address;
+  //   this.userData[0].introduction = user.introduction;
+  //   // console.log(this.user);
+  // },
+
   mounted() {
     let user = JSON.parse(sessionStorage.getItem("userSession"));
-    // 接收数据
+    // console.log("mounted...",user);
     this.userData[0].userId = user.userId;
     this.userData[0].name = user.name;
     this.userData[0].sex = user.sex;
@@ -380,7 +384,7 @@ export default {
 .modify-btn {
   position: fixed;
   top: 330px;
-  left: 50%;
+  left:  50%;
   height: 40px;
   width: 70px;
   background-color: #409eff;
@@ -395,6 +399,7 @@ button:hover {
 }
 .msg-header {
   background-color: lightgray;
+  
 }
 
 .modify-pwd-box {
@@ -408,18 +413,17 @@ button:hover {
   border-radius: 10px;
 }
 
-.el-input {
+
+.el-input{
   align-items: center;
   width: 200px;
 }
-input:focus {
-  outline: none;
-}
+ input:focus {outline:none}
 
-.demo-pwd {
+.demo-pwd{
   position: absolute;
   top: 20px;
   width: 300px;
   height: 50px;
-}
+ }
 </style>

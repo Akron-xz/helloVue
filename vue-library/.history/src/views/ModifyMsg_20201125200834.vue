@@ -226,7 +226,6 @@ export default {
       msg: "",
       lists: [],
 
-      // 密码规则验证
       rules: {
         newPassword: [
           { validator: validatePass, trigger: "blur" },
@@ -332,10 +331,22 @@ export default {
     },
   },
 
-  // 钩子函数
+  // created() {
+  //   let user = JSON.parse(sessionStorage.getItem("userSession"));
+  //   this.userData[0].name = user.name;
+  //   this.userData[0].sex = user.sex;
+  //   this.userData[0].age = user.age;
+  //   this.userData[0].email = user.email;
+  //   this.userData[0].birthday = user.birthday;
+  //   this.userData[0].phone = user.phone;
+  //   this.userData[0].address = user.address;
+  //   this.userData[0].introduction = user.introduction;
+  //   // console.log(this.user);
+  // },
+
   mounted() {
     let user = JSON.parse(sessionStorage.getItem("userSession"));
-    // 接收数据
+    // console.log("mounted...",user);
     this.userData[0].userId = user.userId;
     this.userData[0].name = user.name;
     this.userData[0].sex = user.sex;
