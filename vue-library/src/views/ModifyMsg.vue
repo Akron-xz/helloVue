@@ -407,6 +407,7 @@ button:hover {
   align-items: center;
   width: 200px;
 }
+ input:focus {outline:none}
 
 .demo-pwd{
   position: absolute;
