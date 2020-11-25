@@ -20,11 +20,7 @@
 </template>
 
 <script>
-import userNavigation from '@/components/userNav.vue'
 export default {
-    components:{
-        userNavigation
-    },
     data() {
         return {
            

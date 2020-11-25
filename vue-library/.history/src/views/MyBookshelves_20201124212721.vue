@@ -1,12 +1,24 @@
 <template>
     <div class="Bookshelves-container container">
-        <userNavigation></userNavigation>
+        <div>
+      <el-header>
+        <router-link to="./" class="a">首页</router-link>
+        /
+        <router-link to="./user" class="b">我是借阅者</router-link>
+        /
+        <router-link to="./MyBookshelves" class="c">我的书架</router-link>
+      </el-header>
+    </div>
+
+        <div class="guide">
+
+        </div>
     
         <div class="book-first" v-for="(item, index) in list" :key="index">
             <el-input
                 class="bookstatus"
                 placeholder="已借入书籍"
-                v-model="input" 
+                v-model="input"
                 :disabled="true">
             </el-input>
             <el-button type="primary" round @click="returnBook(index)">还书</el-button>
@@ -91,11 +103,7 @@
 
 <script>
 import axios from "axios"
-import userNavigation from '@/components/userNav.vue'
 export default {
-    components:{
-        userNavigation
-    },
     data() {
         return {
             list:[],
@@ -145,6 +153,24 @@ export default {
 </script>
 
 <style scoped>
+.el-header {
+  position: absolute;
+  left: 30px;
+  color: #333;
+  line-height: 60px;
+  width: 100%;
+  height: 60px;
+  text-align: left;
+}
+.a {
+  text-decoration: none;
+}
+.b {
+  text-decoration: none;
+}
+.c {
+  text-decoration: none;
+}
 
 .bookstatus{
     width: 400px;
@@ -157,8 +183,8 @@ export default {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-image: url(/img/divBg/bg29.jpg);
+    background-size: 100%;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 
 }
 

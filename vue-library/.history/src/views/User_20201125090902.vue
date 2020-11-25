@@ -42,6 +42,6 @@ export default {
 
 
 .user-container .title{
-    margin-top: 0px;
+    margin-top: 50px;
 }
 </style>

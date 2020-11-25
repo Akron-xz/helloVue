@@ -10,7 +10,7 @@
             text-font="15px">
 
       
-            <el-menu-item index="1" @click="toUser">
+            <el-menu-item index="1" >
                 <img src="/img/libraryIcon.png" alt="" target="_self" class="libraryIcon">
             </el-menu-item>
 
@@ -31,7 +31,7 @@
             </el-menu-item>
 
             <el-menu-item index="6" class="exitIcon">
-                <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon" @click="signOut">
+                <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon">
             </el-menu-item>
 
             <!-- <el-menu-item index="6" @click="toMain">
@@ -54,8 +54,8 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    toUser(){
-      this.$router.push({path:'/user'});
+    toMain(){
+      this.$router.push({path:'/'});
     },
 
     toModifyMsg(){
@@ -70,10 +70,7 @@ export default {
     toLibrary(){
       this.$router.push({path:'/Library'});
     },
-    signOut(){
-      sessionStorage.clear();
-      this.$router.push({path:'/'});
-    }
+
 
 
   },

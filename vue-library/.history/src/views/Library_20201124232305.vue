@@ -1,6 +1,7 @@
 <template >
   <div class="library-container">
-    <userNavigation></userNavigation>
+
+
     <div class="select">
       <label for=""
         >国家:
@@ -273,8 +274,7 @@ export default {
           
         }
       }).then(res=>{
-        alert(res.data);
-        this.$router.go(0);
+        alert(res.data)
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;

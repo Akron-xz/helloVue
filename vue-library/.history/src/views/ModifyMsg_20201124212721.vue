@@ -1,6 +1,5 @@
 <template>
   <div class="table-container">
-    <userNavigation></userNavigation>
     <table
       border="1"
       cellspacing="0"
@@ -140,11 +139,7 @@
 </template>
 <script>
 import axios from "axios";
-import userNavigation from '@/components/userNav.vue'
 export default {
-  components:{
-        userNavigation
-    },
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === "") {

@@ -1,11 +1,9 @@
 <template>
 <div class="history-container">
-<userNavigation></userNavigation>
 <h1 class="history-title">借阅历史</h1>
  <el-divider></el-divider>
  <div class="searchBox">
- <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;
- <input type="button" value="搜索" style="width:50px;height:35px;" @click="searchByKey()">
+ <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;" @click="searchByKey()">
  
  </div>
  <div class="table-box">
@@ -57,11 +55,7 @@
   </template>
 <script>
 import axios from "axios"
-import userNavigation from '@/components/userNav.vue'
     export default {
-      components:{
-        userNavigation
-    },
       data() {
         return {
           userData:[
@@ -136,22 +130,21 @@ import userNavigation from '@/components/userNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 }
 .history-title{
-  margin-top: 0px;
   font-size: 40px;
   color: darkblue;
 }
 .searchBox{
  position: fixed;
  top: 116px;
- right: 18%;
+ right: 10%;
 }
 .table-box{
   position: fixed;
   top: 155px;
-  right: 18%;
+  right: 160px;
   width: 800px;
   
 }
@@ -159,9 +152,9 @@ import userNavigation from '@/components/userNav.vue'
   position: fixed;
   width: 200px;
   height: 50px;
-  right: 50%;
+  right: 280px;
   bottom: 0;
-  top: 565px;
+  top: 690px;
 
 }
 .reference-btn{

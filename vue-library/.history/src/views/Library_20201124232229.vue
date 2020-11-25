@@ -1,6 +1,7 @@
 <template >
   <div class="library-container">
-    <userNavigation></userNavigation>
+
+
     <div class="select">
       <label for=""
         >国家:
@@ -144,11 +145,7 @@
 </template>
 <script>
 import axios from "axios";
-import userNavigation from '@/components/userNav.vue';
 export default {
-  components:{
-        userNavigation
-    },
   data() {
     return {
       couId: "",
@@ -273,8 +270,7 @@ export default {
           
         }
       }).then(res=>{
-        alert(res.data);
-        this.$router.go(0);
+        alert(res.data)
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;

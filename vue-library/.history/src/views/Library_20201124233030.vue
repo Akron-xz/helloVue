@@ -273,7 +273,7 @@ export default {
           
         }
       }).then(res=>{
-        alert(res.data);
+        alert(res.data)
         this.$router.go(0);
       })
      console.log(this.bookId)
