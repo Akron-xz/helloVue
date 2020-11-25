@@ -1,8 +1,7 @@
 <template>
     <div class="statistics-container container">
     <Navigation></Navigation>
-    <!-- 标题 -->
-    <h1 class="statistics-title">首页公告管理</h1>
+        
         <div class="statisticsTable" >
             <div class="lendBox">
                 <div class="dayLendMod">
@@ -70,8 +69,8 @@ export default {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-image: url(/img/divBg/bg34.jpg);
+    background-size: 100%;
+    background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
 
 }
 
@@ -103,15 +102,4 @@ export default {
     padding-left: 60px;
 }
 
-.title{
-    color: white;
-}
-
-.statistics-title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
-}
 </style>

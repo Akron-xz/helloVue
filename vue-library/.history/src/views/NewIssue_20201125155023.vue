@@ -4,6 +4,7 @@
     <div>
       <navigation></navigation>
     </div>
+    <br />
     <!-- 标题 -->
     <h1 class="newIssue-title">用户列表</h1>
     <!-- 展示简略表格 -->

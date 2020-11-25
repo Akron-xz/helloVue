@@ -79,7 +79,6 @@ export default {
   width: 100%;
   height: 100%;
   background-image: url(/img/divBg/bg34.jpg);
-  background-size: 100% 100%;
 }
 
 

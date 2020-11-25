@@ -619,7 +619,6 @@ export default {
 }
 .search-title {
   margin-top: 0px;
-  margin-left: 20px;
   text-align: left;
   font-size: 32px;
   color: white;

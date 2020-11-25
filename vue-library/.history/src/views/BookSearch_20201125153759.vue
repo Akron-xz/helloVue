@@ -618,11 +618,12 @@ export default {
   left: 30%;
 }
 .search-title {
+  float: left;
   margin-top: 0px;
   margin-left: 20px;
-  text-align: left;
   font-size: 32px;
   color: white;
+  width: 100%;
 }
 .MsgModify-box {
   position: fixed;

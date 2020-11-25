@@ -1,8 +1,6 @@
 <template>
   <div class="ModifyAnnounce-container">
     <navigation></navigation>
-    <!-- 标题 -->
-    <h1 class="ModifyAnnounce-title">首页公告管理</h1>
     <div class="announce-box">
       <el-input placeholder="修改公告"  :disabled="true">
       </el-input>
@@ -57,7 +55,7 @@ export default {
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100%;
   background-image: url(/img/divBg/bg34.jpg);
   text-align: center;
 }
@@ -88,13 +86,5 @@ export default {
     width: 52%;
     margin-left: -26%;
     height: 100px;
-}
-
-.ModifyAnnounce-title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
 }
 </style>

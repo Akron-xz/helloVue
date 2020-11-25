@@ -1,7 +1,7 @@
 <template>
     <div class="Bookshelves-container container">
         <userNavigation></userNavigation>
-        <h1 class="Bookshelves-title">我的书架</h1>
+        <h1 class="history-title">我的书架</h1>
     
         <div class="book-first" v-for="(item, index) in list" :key="index">
             <el-input
@@ -194,14 +194,5 @@ export default {
 
 .book-third{
     margin-top: 50px;
-}
-
-.Bookshelves-title {
-  float: left;
-  margin-top: 0px;
-  margin-left: 20px;
-  font-size: 32px;
-  color: white;
-  left: 40%;
 }
 </style>

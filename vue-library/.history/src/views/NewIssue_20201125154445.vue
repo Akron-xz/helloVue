@@ -1,11 +1,12 @@
 <template>
   <div class="new-issue-container">
+    <!-- 标题 -->
+    <h1 class="newIssue-title">用户列表</h1>
     <!-- 导航栏 -->
     <div>
       <navigation></navigation>
     </div>
-    <!-- 标题 -->
-    <h1 class="newIssue-title">用户列表</h1>
+    <br />
     <!-- 展示简略表格 -->
     <!-- <div class="table-div" v-show="!dispalyInfo"> -->
     <div class="table-div">

@@ -4,7 +4,7 @@
 
     <div v-show="ModifyTableDisplay">
       <div v-show="InsertTableDisplay">
-        <h1 class="search-title">图书借阅与归还</h1>
+        <h1 class="search-title">书籍查询</h1>
         <div class="choiceBox">
           <table :rules="rules" ref="ruleForm">
             <tr>
@@ -596,7 +596,6 @@ export default {
   width: 100%;
   height: 100%;
   background-image: url(/img/divBg/bg34.jpg);
-  background-size: 100% 100%;
 }
 
 .choiceBox{
@@ -618,11 +617,8 @@ export default {
   left: 30%;
 }
 .search-title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
+  font-size: 40px;
+  color: darkblue;
 }
 .MsgModify-box {
   position: fixed;
