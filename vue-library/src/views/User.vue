@@ -1,5 +1,6 @@
 <template>
     <div class="user-container container">
+    <userNavigation></userNavigation>
         <h1 class="title">今天你阅读了吗？</h1>
         
         <div class="myInformation box">
@@ -19,8 +20,11 @@
 </template>
 
 <script>
+import userNavigation from '@/components/userNav.vue'
 export default {
-
+    components:{
+        userNavigation
+    },
     data() {
         return {
             

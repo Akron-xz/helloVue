@@ -1,6 +1,7 @@
 <template>
   <div class="signup-container">
-    <el-header>用户注册</el-header>
+    <homeNavigation></homeNavigation>
+    <el-header>图书馆管理系统  用户注册</el-header>
     <div class="signUpBox">
       <el-form
         :model="ruleForm2"
@@ -63,9 +64,7 @@
         </el-form-item>
       </el-form>
     </div>
-    <div class="img">
-      <img src="/img/signupImg.png" alt="" class="signupImg" />
-    </div>
+    
   </div>
 </template>
 
@@ -73,7 +72,11 @@
 
 <script>
 import axios from "axios";
+import homeNavigation from '@/components/homeNav.vue'
 export default {
+  components:{
+        homeNavigation
+    },
   data() {
     var checkId = (rule, value, callback) => {
       if (!value) {
@@ -124,10 +127,10 @@ export default {
       },
       rules2: {
         id: [{ validator: checkId, trigger: "blur" }],
-        name: [{ validator: checkName, trigger: "blur" }],
+        name: [{required: true,validator: checkName, trigger: "blur" }],
 
-        pwd: [{ validator: validatePass, trigger: "blur" }],
-        checkPwd: [{ validator: validatePass2, trigger: "blur" }],
+        pwd: [{ required: true,validator: validatePass, trigger: "blur" }],
+        checkPwd: [{ required: true,validator: validatePass2, trigger: "blur" }],
       },
     };
   },
@@ -185,16 +188,16 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-image: url(/img/divBg/bg25.png);
+  background-size: 100% 100%;
 }
 
 .el-header {
-  text-align: left;
+  text-align: right;
   line-height: 60px;
   font-weight: 1000;
   font-size: 30px;
-  color: transparent;
-  -webkit-text-stroke: 1px black;
+  color: black;
   letter-spacing: 0.04em;
 }
 
@@ -208,16 +211,12 @@ export default {
 
 .signUpBox {
   position: absolute;
-  top: 21%;
+  top: 30%;
   left: 17%;
   width: 400px;
   height: 410px;
-  background: white;
+  background: #ffffffd7;
   border-radius: 20px;
 }
 
-.signupImg {
-  height: 680px;
-  width: 1200px;
-}
 </style>
