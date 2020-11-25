@@ -313,10 +313,10 @@ export default {
     // 保存按钮
     MsgSaveM() {
       if(this.bookData[0].bookName==""){
-        this.$message({
-          message:"书名不能为空",
+        this.$message{
+          message:"书名不能为空"
           type:"error"
-        });
+        }
       }else{
                axios({
         method:"post",
@@ -343,11 +343,6 @@ export default {
          borrows:this.bookData[0].borrows,
 
         }
-      }).then(res=>{
-          this.$message({
-          message:"图书"+res.data,
-          type:"success"
-        });
       })
       this.ModifyTableDisplay = !this.ModifyTableDisplay;
       }

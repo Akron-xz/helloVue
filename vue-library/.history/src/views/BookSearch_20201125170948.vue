@@ -64,7 +64,7 @@
         <div class="table-box">
           <el-table
             :data="lists.slice((page.currentPage - 1) * page.pageSize,
-                page.currentPage * page.pageSize)" max-height="300"
+                page.currentPage * page.pageSize)" max-height="240"
             style="width: 100%">
 
             <el-table-column prop="bookName" label="书籍名称" width="350">
@@ -312,13 +312,7 @@ export default {
       },
     // 保存按钮
     MsgSaveM() {
-      if(this.bookData[0].bookName==""){
-        this.$message({
-          message:"书名不能为空",
-          type:"error"
-        });
-      }else{
-               axios({
+      axios({
         method:"post",
         url:"http://localhost:8081/book/update/",
         data:{
@@ -343,15 +337,8 @@ export default {
          borrows:this.bookData[0].borrows,
 
         }
-      }).then(res=>{
-          this.$message({
-          message:"图书"+res.data,
-          type:"success"
-        });
       })
       this.ModifyTableDisplay = !this.ModifyTableDisplay;
-      }
- 
     },
     MsgInsert() {
       this.InsertTableDisplay = !this.InsertTableDisplay;
@@ -641,7 +628,6 @@ export default {
   position: fixed;
   top: 200px;
   right: 18%;
-  color: white;
 }
 .briefBox {
   position: fixed;
@@ -650,7 +636,7 @@ export default {
 }
 .searchBox{
   position: fixed;
-  top: 200px;
+  top: 215px;
   right: 19%;
 }
 </style>

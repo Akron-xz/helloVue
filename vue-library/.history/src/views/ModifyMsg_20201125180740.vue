@@ -367,8 +367,7 @@ export default {
   top: 100px;
   border-color: rgb(231, 231, 231);
   background: white;
-  width: 1000px;
-  margin-left: -500px;
+  
 }
 .tableBox input {
   border: 0;
@@ -376,12 +375,11 @@ export default {
 }
 .modify-btn {
   position: fixed;
-  top: 330px;
-  left:  50%;
+  top: 320px;
+  left:  1045px;
   height: 40px;
   width: 70px;
   background-color: #409eff;
-  margin-left: 429px;
 }
 
 button:hover {

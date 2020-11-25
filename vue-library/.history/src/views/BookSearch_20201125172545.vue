@@ -345,7 +345,7 @@ export default {
         }
       }).then(res=>{
           this.$message({
-          message:"图书"+res.data,
+          message:"图书跟新成功"+res.data,
           type:"success"
         });
       })

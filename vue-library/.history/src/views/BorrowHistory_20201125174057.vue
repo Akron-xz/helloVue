@@ -146,9 +146,7 @@ import userNavigation from '@/components/userNav.vue'
 .searchBox{
  position: fixed;
  top: 147px;
- width: 300px;
- right: 50%;
- margin-right: -430px;
+ right: 21%;
 }
 .table-box{
   position: fixed;
@@ -156,7 +154,6 @@ import userNavigation from '@/components/userNav.vue'
   right: 50%;
   margin-right: -400px;
   width: 800px;
-  border-radius: 10px;
   
 }
 .pagingBox{

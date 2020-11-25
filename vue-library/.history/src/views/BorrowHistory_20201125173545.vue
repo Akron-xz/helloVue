@@ -146,29 +146,24 @@ import userNavigation from '@/components/userNav.vue'
 .searchBox{
  position: fixed;
  top: 147px;
- width: 300px;
- right: 50%;
- margin-right: -430px;
+ right: 18%;
 }
 .table-box{
   position: fixed;
   top: 188px;
   right: 50%;
-  margin-right: -400px;
   width: 800px;
-  border-radius: 10px;
   
 }
 .pagingBox{
   position: fixed;
   width: 800px;
-  height: 30px;
+  height: 50px;
   right: 50%;
   bottom: 0;
   top: 565px;
   margin-right: -400px;
   background-color: white;
-  border-radius: 5px;
 
 }
 .reference-btn{

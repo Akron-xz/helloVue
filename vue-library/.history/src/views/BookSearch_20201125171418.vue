@@ -312,11 +312,8 @@ export default {
       },
     // 保存按钮
     MsgSaveM() {
-      if(this.bookData[0].bookName==""){
-        this.$message({
-          message:"书名不能为空",
-          type:"error"
-        });
+      if(this.bookData[0].bookName==null){
+        alert("书名不能为空")
       }else{
                axios({
         method:"post",
@@ -343,11 +340,6 @@ export default {
          borrows:this.bookData[0].borrows,
 
         }
-      }).then(res=>{
-          this.$message({
-          message:"图书"+res.data,
-          type:"success"
-        });
       })
       this.ModifyTableDisplay = !this.ModifyTableDisplay;
       }
@@ -641,7 +633,6 @@ export default {
   position: fixed;
   top: 200px;
   right: 18%;
-  color: white;
 }
 .briefBox {
   position: fixed;

@@ -376,12 +376,12 @@ export default {
 }
 .modify-btn {
   position: fixed;
-  top: 330px;
+  top: 320px;
   left:  50%;
   height: 40px;
   width: 70px;
   background-color: #409eff;
-  margin-left: 429px;
+  margin-left: 420px;
 }
 
 button:hover {

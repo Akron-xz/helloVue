@@ -147,8 +147,8 @@ import userNavigation from '@/components/userNav.vue'
  position: fixed;
  top: 147px;
  width: 300px;
- right: 50%;
- margin-right: -430px;
+ right: 40%;
+ margin-right: -300px;
 }
 .table-box{
   position: fixed;
