@@ -1,8 +1,7 @@
 <template>
     <div class="statistics-container container">
     <Navigation></Navigation>
-    <!-- 标题 -->
-    <h1 class="statistics-title">首页公告管理</h1>
+        
         <div class="statisticsTable" >
             <div class="lendBox">
                 <div class="dayLendMod">
@@ -105,13 +104,5 @@ export default {
 
 .title{
     color: white;
-}
-
-.statistics-title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
 }
 </style>

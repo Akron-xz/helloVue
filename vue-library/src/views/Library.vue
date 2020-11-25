@@ -1,7 +1,7 @@
 <template >
   <div class="library-container">
     <userNavigation></userNavigation>
-    <div class="select">
+    <div class="select" v-show="tableDisplay">
       <label for=""
         >国家:
         <el-select v-model="couId" clearable placeholder="请选择">
@@ -59,7 +59,7 @@
     </div>
 
     <div>
-      <div class="keyWordQuery">
+      <div class="keyWordQuery"  v-show="tableDisplay">
         <el-input
           placeholder="请输入关键字"
           style="width: 220px"
@@ -469,28 +469,28 @@ export default {
 
 .borrow-box {
   position: fixed;
-  top: 250px;
+  top: 100px;
   left: 50%;
-  margin-left: -400px;
-  width: 800px;
-  height: 300px;
+  margin-left: -230px;
+  width: 500px;
+  height: 400px;
   background-color: white;
 }
 
 .brief {
-  border: 1px solid black;
+
   width: 400px;
   height: 200px;
-  margin-left: 10px;
+  margin-left: 50px;
   text-align: left;
 }
 
 .borrow-button {
-  float: right;
+  float: bottom;
   height: 150px;
   width: 200px;
-  margin-top: -50px;
-  margin-left: 40px;
+  margin-top: 140px;
+  margin-left: 160px;
 }
 
 .block{

@@ -4,8 +4,7 @@
     <div>
       <navigation></navigation>
     </div>
-    <!-- 标题 -->
-    <h1 class="newIssue-title">用户列表</h1>
+    <br />
     <!-- 展示简略表格 -->
     <!-- <div class="table-div" v-show="!dispalyInfo"> -->
     <div class="table-div">
@@ -302,17 +301,5 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-}
-
-.newIssue-title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
-}
-
-.el-table{
-  border-radius: 6px;
 }
 </style>

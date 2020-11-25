@@ -142,6 +142,7 @@ import userNavigation from '@/components/userNav.vue'
   margin-left: 20px;
   font-size: 32px;
   color: white;
+  left: 40%;
 }
 .searchBox{
  position: fixed;

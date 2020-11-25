@@ -311,8 +311,4 @@ a {
   font-size: 32px;
   color: white;
 }
-
-.el-table{
-  border-radius: 6px;
-}
 </style>

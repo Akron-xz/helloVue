@@ -2,7 +2,7 @@
   <div class="ModifyAnnounce-container">
     <navigation></navigation>
     <!-- 标题 -->
-    <h1 class="ModifyAnnounce-title">首页公告管理</h1>
+    <h1 class="ModifyAnnounce-title">用户列表</h1>
     <div class="announce-box">
       <el-input placeholder="修改公告"  :disabled="true">
       </el-input>
