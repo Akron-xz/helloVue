@@ -4,7 +4,7 @@
     <table
       border="1"
       cellspacing="0"
-      width="850px"
+      width="950px"
       align="center"
       class="tableBox"
     >
@@ -12,7 +12,7 @@
         <td align="center" colspan="6" class="msg-title">个人资料</td>
       </tr>
       <tr>
-        <td class="msg-header">姓名：</td>
+        <td class="msg-header" style="width: 120px">姓名：</td>
         <td prop="Name">
           <input
             type="text"
@@ -22,7 +22,7 @@
             :readonly="isDisabled"
           />
         </td>
-        <td class="msg-header">性别：</td>
+        <td class="msg-header" style="width: 120px">性别：</td>
         <td>
          <input
             type="text"
@@ -41,7 +41,7 @@
             value="女"
           />
         </td>
-        <td class="msg-header">年龄：</td>
+        <td class="msg-header" style="width: 120px">年龄：</td>
         <td>
           <input
             type="text"
@@ -91,7 +91,7 @@
             type="text"
             v-model="userData[0].address"
             maxlength="100"
-            style="width: 750px; height: 30px"
+            style="width: 830px; height: 30px"
             :readonly="isDisabled"
           />
         </td>
@@ -103,7 +103,7 @@
             type="text"
             v-model="userData[0].introduction"
             maxlength="100"
-            style="width: 750px; height: 60px"
+            style="width: 830px; height: 60px"
             :readonly="isDisabled"
           />
         </td>
@@ -118,7 +118,9 @@
       }}</el-button>
     </div>
 
+
     <div class="modify-pwd-box">
+    
       <el-form
         v-bind:model="pwd"
         :rules="rules"
@@ -145,7 +147,8 @@
         </el-form-item>
       </el-form>
     </div>
-  </div>
+    </div>
+
 </template>
 <script>
 import axios from "axios";
@@ -360,8 +363,8 @@ export default {
 }
 .tableBox {
   position: fixed;
-  right: 370px;
-  top: 80px;
+  left: 167px;
+  top: 100px;
   border-color: rgb(231, 231, 231);
   background: white;
 }
@@ -372,7 +375,7 @@ export default {
 .modify-btn {
   position: fixed;
   top: 320px;
-  right: 380px;
+  left:  1045px;
   height: 40px;
   width: 70px;
   background-color: #409eff;
@@ -386,21 +389,19 @@ button:hover {
 }
 .msg-header {
   background-color: lightgray;
+  
 }
 
 .modify-pwd-box {
   position: fixed;
   top: 400px;
-  left: 36%;
-  width: 340px;
-  height: 200px;
+  left: 500px;
   background-color: white;
+  width: 380px;
+  height: 200px;
   border-radius: 10px;
 }
 
-input {
-  outline: none;
-}
 
 .el-input{
   align-items: center;

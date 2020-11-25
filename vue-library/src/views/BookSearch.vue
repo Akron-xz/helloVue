@@ -67,7 +67,7 @@
                 page.currentPage * page.pageSize)" max-height="240"
             style="width: 100%">
 
-            <el-table-column prop="bookName" label="书籍名称" width="300">
+            <el-table-column prop="bookName" label="书籍名称" width="350">
             </el-table-column>
             <el-table-column prop="onTimeStr" label="上架时间" width="300">
             </el-table-column>
@@ -614,8 +614,8 @@ export default {
 .block {
   position: fixed;
   width: 150px;
-  bottom: 20px;
-  left: 30%;
+  bottom: 40px;
+  left: 37%;
 }
 .search-title {
   margin-top: 0px;
