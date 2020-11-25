@@ -3,7 +3,8 @@
 <h1 class="history-title">借阅历史</h1>
  <el-divider></el-divider>
  <div class="searchBox">
- <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;<input type="button" value="搜索" style="width:50px;height:30px;" @click="searchByKey()">
+ <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;
+ <input type="button" value="搜索" style="width:50px;height:35px;" @click="searchByKey()">
  
  </div>
  <div class="table-box">
@@ -139,12 +140,12 @@ import axios from "axios"
 .searchBox{
  position: fixed;
  top: 116px;
- right: 10%;
+ right: 18%;
 }
 .table-box{
   position: fixed;
   top: 155px;
-  right: 160px;
+  right: 18%;
   width: 800px;
   
 }
@@ -152,9 +153,9 @@ import axios from "axios"
   position: fixed;
   width: 200px;
   height: 50px;
-  right: 280px;
+  right: 50%;
   bottom: 0;
-  top: 690px;
+  top: 565px;
 
 }
 .reference-btn{
