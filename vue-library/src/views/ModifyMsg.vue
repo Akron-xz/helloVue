@@ -91,7 +91,7 @@
             type="text"
             v-model="userData[0].address"
             maxlength="100"
-            style="width: 830px; height: 30px"
+            style="width: 860px; height: 30px"
             :readonly="isDisabled"
           />
         </td>
@@ -103,7 +103,7 @@
             type="text"
             v-model="userData[0].introduction"
             maxlength="100"
-            style="width: 830px; height: 60px"
+            style="width: 860px; height: 60px"
             :readonly="isDisabled"
           />
         </td>

@@ -106,17 +106,23 @@
       </div>
     </div>
     <!-- 添加书籍弹窗 -->
+    
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
+    <div class="bookName-box">  
+    书名<input type="text" v-model="addBookData.bookName" style="width: 752px; height: 35px"
+    placeholder="请输入">
+    </div>
       <table >
-        <tr>
+       <!-- <tr>
           
           <td style="font-size: 25px">书名</td>
           <td>
             <input type="text" v-model="addBookData.bookName" style="width: 210px; height: 35px"
               placeholder="请输入"
             />
+
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <td>国家</td>
           <td>
@@ -171,7 +177,7 @@
         </tr>
         <div class="briefBox">
           <textarea name="txt" clos="50" rows="5" warp="virtual"
-            style="width: 780px; height: 100px"
+            style="width: 760px;height: 150px"
             v-model="addBookData.brief"
           ></textarea>
           <div class="MsgSave-btn">
@@ -182,8 +188,12 @@
     </div>
     <!-- 编辑弹窗 -->
     <div class="MsgModify-box" v-show="!ModifyTableDisplay">
+    <div class="bookName-box">  
+    书名<input type="text" v-model="bookData[0].bookName" style="width: 752px; height: 35px"
+  >
+    </div>
       <table>
-        <tr>
+        <!--<tr>
           <td></td>
           <td></td>
           <td style="font-size: 25px">书名</td>
@@ -194,7 +204,7 @@
               style="width: 210px; height: 35px"
             />
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <td>国家</td>
           <td>
@@ -257,7 +267,7 @@
       </table>
       <div class="briefBox">
         <textarea name="txt" clos=",50" rows="5" warp="virtual"
-          style="width: 780px; height: 100px"
+          style="width: 760px; height: 150px"
           v-model="bookData[0].brief"
         ></textarea>
         <div class="MsgSave-btn">
@@ -618,8 +628,9 @@ export default {
 
 .choiceBox{
   position: fixed;
-  
-  right: 200px;
+  width: 1000px;
+  right: 50%;
+  margin-right: -560px;
 }
 .table-box {
   position: fixed;
@@ -638,26 +649,39 @@ export default {
 }
 .MsgModify-box {
   position: fixed;
-  top: 200px;
-  right: 18%;
+  top: 240px;
+  right: 50%;
+  margin-right: -410px;
   color: white;
 }
 .briefBox {
   position: fixed;
   top: 335px;
-  right: 230px;
+  right: 50%;
+  margin-right: -410px;
 }
 .searchBox{
   position: fixed;
   top: 200px;
-  right: 19%;
+  width: 200px;
+  right: 50%;
+  margin-right: -380px;
 }
 .select-header{
   color: white;
 }
 .insert-btn{
   position: fixed;
-  left: 240px;
- 
+  width: 60px;
+  right: 50%;
+  margin-right: 340px;
+}
+.bookName-box{
+ position: fixed;
+ width: 800px;
+ right: 50%;
+margin-right: -407px;
+ top: 200px;
+ font-size: 20px;
 }
 </style>
