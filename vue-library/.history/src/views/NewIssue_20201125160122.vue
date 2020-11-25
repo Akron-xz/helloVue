@@ -313,6 +313,6 @@ a {
 }
 
 .el-table{
-  border-radius: 6px;
+  border-radius: 10px;
 }
 </style>
