@@ -638,7 +638,6 @@ export default {
   left: 50%;
   margin-left: -400px;
   width: 800px;
- 
 }
 
 .search-title {

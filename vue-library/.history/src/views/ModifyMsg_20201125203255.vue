@@ -238,7 +238,7 @@ export default {
             trigger: "blur",
           },
         ],
-        checkPassword: [{ required: true,validator: validatePass2, trigger: "blur" }],
+        checkPassword: [{ validator: validatePass2, trigger: "blur" }],
       },
     };
   },
@@ -429,13 +429,13 @@ input:focus {
   width: 70px;
   right: 50%;
   margin-right: 10px;
-  bottom: 20px;
+  bottom: 50px;
 }
 .resetPwd-btn{
   position: fixed;
    width: 70px;
   right: 50%;
   margin-right: -80px;
-  bottom: 20px;
+  bottom: 50px;
 }
 </style>

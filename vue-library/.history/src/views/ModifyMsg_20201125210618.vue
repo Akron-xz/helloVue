@@ -429,7 +429,7 @@ input:focus {
   width: 70px;
   right: 50%;
   margin-right: 10px;
-  bottom: 20px;
+  bottom: 30px;
 }
 .resetPwd-btn{
   position: fixed;

@@ -69,7 +69,7 @@
         <div class="table-box">
           <el-table
             :data="lists.slice((page.currentPage - 1) * page.pageSize,
-                page.currentPage * page.pageSize)" max-height="350"
+                page.currentPage * page.pageSize)" max-height="325"
             style="width: 100%">
 
             <el-table-column prop="bookName" label="书籍名称" width="350">
@@ -638,7 +638,6 @@ export default {
   left: 50%;
   margin-left: -400px;
   width: 800px;
- 
 }
 
 .search-title {
@@ -684,15 +683,5 @@ export default {
 margin-right: -407px;
  top: 200px;
  font-size: 20px;
-}
-.block{
-  position: fixed;
-  bottom: 10px;
-  width: 600px;
-  height: 30px;
-  left: 50%;
-  margin-left: -300px;
-  background-color: white;
-  border-radius: 5px;
 }
 </style>

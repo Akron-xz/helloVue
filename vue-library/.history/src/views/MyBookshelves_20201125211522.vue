@@ -186,7 +186,6 @@ export default {
 .Bookshelves-title {
   float: left;
   margin-top: 0px;
-  margin-bottom: 0px;
   margin-left: 20px;
   font-size: 32px;
   color: white;

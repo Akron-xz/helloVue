@@ -149,7 +149,7 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('pwd')" class="updatePwd-btn">确认</el-button>
-          <el-button @click="resetForm('pwd')" class="resetPwd-btn">清空</el-button>
+          <el-button @click="resetForm('pwd')">清空</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -238,7 +238,7 @@ export default {
             trigger: "blur",
           },
         ],
-        checkPassword: [{ required: true,validator: validatePass2, trigger: "blur" }],
+        checkPassword: [{ validator: validatePass2, trigger: "blur" }],
       },
     };
   },
@@ -429,13 +429,6 @@ input:focus {
   width: 70px;
   right: 50%;
   margin-right: 10px;
-  bottom: 20px;
-}
-.resetPwd-btn{
-  position: fixed;
-   width: 70px;
-  right: 50%;
-  margin-right: -80px;
-  bottom: 20px;
+  bottom: 50px;
 }
 </style>

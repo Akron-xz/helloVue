@@ -149,7 +149,6 @@
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('pwd')" class="updatePwd-btn">确认</el-button>
-          <el-button @click="resetForm('pwd')" class="resetPwd-btn">清空</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -238,12 +237,11 @@ export default {
             trigger: "blur",
           },
         ],
-        checkPassword: [{ required: true,validator: validatePass2, trigger: "blur" }],
+        checkPassword: [{ validator: validatePass2, trigger: "blur" }],
       },
     };
   },
   methods: {
-
     // 编辑模式 <-> 保存模式
     changeMode() {
       // 编辑 -> 保存
@@ -329,8 +327,8 @@ export default {
     },
 
     // 重置信息
-    resetForm(pwd) {
-      this.$refs[pwd].resetFields();
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
 
@@ -405,7 +403,7 @@ button:hover {
   right: 50%;
   background-color: white;
   width: 380px;
-  height: 300px;
+  height: 260px;
   margin-right: -190px;
   border-radius: 10px;
 }
@@ -428,14 +426,7 @@ input:focus {
   position: fixed;
   width: 70px;
   right: 50%;
-  margin-right: 10px;
-  bottom: 20px;
-}
-.resetPwd-btn{
-  position: fixed;
-   width: 70px;
-  right: 50%;
-  margin-right: -80px;
-  bottom: 20px;
+  margin-right: -180px;
+  bottom: 50px;
 }
 </style>

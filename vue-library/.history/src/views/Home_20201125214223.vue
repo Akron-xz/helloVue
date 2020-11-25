@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <userNavigation></userNavigation>
+  <userNavigation></userNavigation>
     <!-- <div class="login box">
       <img src="/img/home/userIcon.png" alt="" class="login-img" @click="toLogin" />
       <p class="logo-name" @click="toLogin">用户登录</p>
@@ -25,9 +25,10 @@
     </div>
 
     <div class="announce-box">
+
       <h2>图书馆公告:</h2>
       <div class="link-top"></div>
-      <p>公告时间:{{ announceTimeStr }}</p>
+      <p>公告时间:{{announceTimeStr}}</p>
       <p>公告内容：{{ announceContent }}</p>
     </div>
     <div class="img">
@@ -39,11 +40,11 @@
 
 <script>
 import axios from "axios";
-import userNavigation from "@/components/homeNav.vue";
+import userNavigation from '@/components/homeNav.vue'
 export default {
-  components: {
-    userNavigation,
-  },
+  components:{
+        userNavigation
+    },
   data() {
     return {
       announceTimeStr: "",
@@ -60,9 +61,9 @@ export default {
         .then((res) => {
           let announceContent = res.data.announceContent;
           this.announceContent = announceContent;
-          this.announceTimeStr = res.data.announceTimeStr;
+          this.announceTimeStr = res.data.announceTimeStr
           console.log(announceContent);
-          console.log(this.announceTimeStr);
+          console.log( this.announceTimeStr)
         })
         .catch(function (error) {
           //请求失败
@@ -90,13 +91,13 @@ export default {
   },
 
   // 只有点击上面 用户登录 或 管理员登录 或 注册 才能跳转 (导航守卫)
-  // beforeRouteLeave (to, from, next) {
-  //   if (this.permission) {
-  //     next();
-  //   }else {
-  //     next(false);
-  //   }
-  // }
+  beforeRouteLeave (to, from, next) {
+    if (this.permission) {
+      next();
+    }else {
+      next(false);
+    }
+  }
 };
 </script>
 
@@ -113,24 +114,25 @@ export default {
   text-align: center;
 }
 
-.login-img {
+.login-img{
   width: 150px;
   height: 150px;
   margin-top: 50px;
-  opacity: 0.7;
+  opacity: .70;
 }
 
-.admin-img {
+.admin-img{
   width: 150px;
   height: 150px;
   margin-top: 50px;
   cursor: pointer;
 }
 
-.signup-img {
+.signup-img{
   width: 150px;
   height: 150px;
   margin-top: 50px;
+
 }
 
 .logo-name:hover {
@@ -146,36 +148,36 @@ export default {
   width: 31%;
 }
 
-.login {
+.login{
   background-image: url(/img/divBg/bg6.jpg);
   background-size: 100% 100%;
 }
 
-.admin {
+.admin{
   background-image: url(/img/divBg/bg2.jpg);
   background-size: 100% 100%;
 }
 
-.signup {
+.signup{
   background-image: url(/img/divBg/bg3.jpg);
   background-size: 100% 100%;
 }
 
-.logo-name {
+.logo-name{
   color: black;
 }
 
 .announce-box {
   position: fixed;
-  top: 40%;
+  top: 40%;  
   left: 50%;
   height: 200px;
   width: 400px;
   margin-left: -40%;
-  background: none;
+  background:none;
 }
 
-.welcomeWord {
+.welcomeWord{
   margin-top: 30px;
   margin-left: 20px;
   float: left;
@@ -183,15 +185,15 @@ export default {
   margin-top: 0px;
 }
 
-.welcomeWord h1 {
-  font-size: 40px;
+.welcomeWord h1{
+  font-size:40px;
   margin-top: 0px;
   color: white;
 }
 
-.announce-box p {
+.announce-box p{
   color: white;
-  font-size: 20px;
+  font-size:20px;
   text-align: left;
 }
 
@@ -201,14 +203,14 @@ export default {
   border-top: solid white 2px;
 }
 .announce-box h2 {
-  font-size: 35px;
+  font-size:35px;
   color: white;
   margin-top: 0;
   margin-bottom: 0;
   text-align: left;
 }
 
-.anoncementImg {
+.anoncementImg{
   position: relative;
   bottom: 30%;
 }

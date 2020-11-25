@@ -638,7 +638,6 @@ export default {
   left: 50%;
   margin-left: -400px;
   width: 800px;
- 
 }
 
 .search-title {
@@ -684,15 +683,5 @@ export default {
 margin-right: -407px;
  top: 200px;
  font-size: 20px;
-}
-.block{
-  position: fixed;
-  bottom: 10px;
-  width: 600px;
-  height: 30px;
-  left: 50%;
-  margin-left: -300px;
-  background-color: white;
-  border-radius: 5px;
 }
 </style>

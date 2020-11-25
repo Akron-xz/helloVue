@@ -32,7 +32,7 @@
             page.currentPage * page.pageSize
           )
         "
-        max-height="350"
+        max-height="315"
         
       >
         <el-table-column prop="name" label="姓名" width="70">
@@ -314,15 +314,5 @@ a {
 
 .el-table{
   border-radius: 6px;
-}
-.block{
-  position: fixed;
-  bottom: 40px;
-  width: 600px;
-  height: 30px;
-  left: 50%;
-  margin-left: -300px;
-  background-color: white;
-  border-radius: 5px;
 }
 </style>

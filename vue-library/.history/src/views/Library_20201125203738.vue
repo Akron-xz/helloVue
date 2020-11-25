@@ -17,7 +17,7 @@
 
       <label for=""
         >类型:
-        <el-select v-model="tyId" clearable placeholder="请选择" >
+        <el-select v-model="tyId" clearable placeholder="请选择">
           <el-option
             v-for="item in type"
             :key="item.typeId"
@@ -500,8 +500,5 @@ export default {
 
 .el-table{
   border-radius: 5px;
-}
-.el-select{
-  width: 150px;
 }
 </style>

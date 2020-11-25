@@ -315,14 +315,4 @@ a {
 .el-table{
   border-radius: 6px;
 }
-.block{
-  position: fixed;
-  bottom: 40px;
-  width: 600px;
-  height: 30px;
-  left: 50%;
-  margin-left: -300px;
-  background-color: white;
-  border-radius: 5px;
-}
 </style>
