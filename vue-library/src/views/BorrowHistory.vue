@@ -145,12 +145,12 @@ import userNavigation from '@/components/userNav.vue'
 }
 .searchBox{
  position: fixed;
- top: 116px;
+ top: 147px;
  right: 18%;
 }
 .table-box{
   position: fixed;
-  top: 155px;
+  top: 188px;
   right: 18%;
   width: 800px;
   
