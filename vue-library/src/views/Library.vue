@@ -160,7 +160,7 @@ export default {
       key: "",
       brief: "霍金写的书",
       bookname: "时间简史",
-      tableDisplay: false,
+      tableDisplay: true,
       bookId:"",
 
       // 剩余数量
