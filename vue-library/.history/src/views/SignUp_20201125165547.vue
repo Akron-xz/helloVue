@@ -49,7 +49,7 @@
         </el-form-item>
       
         <el-form-item label="密码强度">
-          <verify-pwd  v-model="ruleForm2.pwd" style="padding-top: 10px;"></verify-pwd>
+          <verify-pwd  v-model="ruleForm2.pwd" style="padding-top: 10px;"></verify-pwd>>
         </el-form-item>
 
         <el-form-item label="确认密码：" prop="checkPwd">
