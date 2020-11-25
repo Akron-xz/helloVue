@@ -92,7 +92,7 @@
             :page-size="page.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="lists.length"
-          >
+          >kkkkk
           </el-pagination>
           
         </div>

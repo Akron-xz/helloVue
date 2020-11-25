@@ -94,7 +94,6 @@
             :total="lists.length"
           >
           </el-pagination>
-          
         </div>
       </div>
     </div>

@@ -93,6 +93,7 @@
             layout="total, sizes, prev, pager, next, jumper"
             :total="lists.length"
           >
+          <span>121321</span>
           </el-pagination>
           
         </div>

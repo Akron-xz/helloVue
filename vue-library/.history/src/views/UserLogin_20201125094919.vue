@@ -110,7 +110,7 @@ export default {
             console.log(this.user.length);
 
             if (this.user) {
-              if (this.user.password != this.ruleForm.password) {
+              if (this.user[0].password != this.ruleForm.password) {
                 this.$message({
                   message: "登录失败！请检查你的密码是否正确。",
                   type: "error",
