@@ -8,7 +8,7 @@
         <div class="choiceBox">
           <table :rules="rules" ref="ruleForm">
             <tr>
-              <td>国家</td>
+              <td class="select-header">国家</td>
               <td>
                 <el-select v-model="couId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -17,7 +17,7 @@
                   ></el-option>
                 </el-select>
               </td>
-              <td>类型</td>
+              <td class="select-header">类型</td>
               <td>
                 <el-select v-model="tyId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -26,7 +26,7 @@
                   ></el-option>
                 </el-select>
               </td>
-              <td>篇幅</td>
+              <td class="select-header">篇幅</td>
               <td>
                 <el-select v-model="pagenumber" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -35,7 +35,7 @@
                   ></el-option>
                 </el-select>
               </td>
-              <td>主题</td>
+              <td class="select-header">主题</td>
               <td>
                 <el-select v-model="thId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -44,16 +44,21 @@
                 </el-select>
               </td>
               <td>
-                <el-button type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
+              <el-button type="" icon="el-icon-search" @click="selectByLabel">搜索</el-button>
+                
               </td>
-              <td>
-                <el-button type="" icon="el-icon-search" @click="selectByLabel">搜索</el-button>
-              </td>
+              
+                
+              
             </tr>
           </table>
         </div>
+        
+        
+        
 
         <div class="searchBox">
+        <el-button class="insert-btn" type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
           <el-input placeholder="请输入关键字" style="width: 220px" class="input-with-select"
           v-model="key"
           @keyup.enter.native="searchContent">      
@@ -82,7 +87,7 @@
           </el-table>
         </div>
         <!-- 分页器 -->
-        <div class="block">
+        <div class="block" style="margin-top: 465px">
           <el-pagination
             align="center"
             @size-change="handleSizeChange"
@@ -101,18 +106,23 @@
       </div>
     </div>
     <!-- 添加书籍弹窗 -->
+    
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
+    <div class="bookName-box">  
+    书名<input type="text" v-model="addBookData.bookName" style="width: 752px; height: 35px"
+    placeholder="请输入">
+    </div>
       <table >
-        <tr>
-          <td></td>
-          <td></td>
+       <!-- <tr>
+          
           <td style="font-size: 25px">书名</td>
           <td>
             <input type="text" v-model="addBookData.bookName" style="width: 210px; height: 35px"
               placeholder="请输入"
             />
+
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <td>国家</td>
           <td>
@@ -166,8 +176,8 @@
           <td>简介:</td>
         </tr>
         <div class="briefBox">
-          <textarea name="txt" clos=",50" rows="5" warp="virtual"
-            style="width: 780px; height: 100px"
+          <textarea name="txt" clos="50" rows="5" warp="virtual"
+            style="width: 760px;height: 150px"
             v-model="addBookData.brief"
           ></textarea>
           <div class="MsgSave-btn">
@@ -178,8 +188,12 @@
     </div>
     <!-- 编辑弹窗 -->
     <div class="MsgModify-box" v-show="!ModifyTableDisplay">
+    <div class="bookName-box">  
+    书名<input type="text" v-model="bookData[0].bookName" style="width: 752px; height: 35px"
+  >
+    </div>
       <table>
-        <tr>
+        <!--<tr>
           <td></td>
           <td></td>
           <td style="font-size: 25px">书名</td>
@@ -190,7 +204,7 @@
               style="width: 210px; height: 35px"
             />
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <td>国家</td>
           <td>
@@ -253,7 +267,7 @@
       </table>
       <div class="briefBox">
         <textarea name="txt" clos=",50" rows="5" warp="virtual"
-          style="width: 780px; height: 100px"
+          style="width: 760px; height: 150px"
           v-model="bookData[0].brief"
         ></textarea>
         <div class="MsgSave-btn">
@@ -614,8 +628,9 @@ export default {
 
 .choiceBox{
   position: fixed;
-  
-  right: 200px;
+  width: 1000px;
+  right: 50%;
+  margin-right: -560px;
 }
 .table-box {
   position: fixed;
@@ -624,12 +639,7 @@ export default {
   margin-left: -400px;
   width: 800px;
 }
-.block {
-  position: fixed;
-  width: 150px;
-  bottom: 40px;
-  left: 37%;
-}
+
 .search-title {
   margin-top: 0px;
   margin-left: 20px;
@@ -639,18 +649,39 @@ export default {
 }
 .MsgModify-box {
   position: fixed;
-  top: 200px;
-  right: 18%;
+  top: 240px;
+  right: 50%;
+  margin-right: -410px;
   color: white;
 }
 .briefBox {
   position: fixed;
   top: 335px;
-  right: 230px;
+  right: 50%;
+  margin-right: -410px;
 }
 .searchBox{
   position: fixed;
   top: 200px;
-  right: 19%;
+  width: 200px;
+  right: 50%;
+  margin-right: -380px;
+}
+.select-header{
+  color: white;
+}
+.insert-btn{
+  position: fixed;
+  width: 60px;
+  right: 50%;
+  margin-right: 340px;
+}
+.bookName-box{
+ position: fixed;
+ width: 800px;
+ right: 50%;
+margin-right: -407px;
+ top: 200px;
+ font-size: 20px;
 }
 </style>
