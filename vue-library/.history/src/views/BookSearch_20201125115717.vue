@@ -607,12 +607,7 @@ export default {
   margin-left: -400px;
   width: 800px;
 }
-.block {
-  position: fixed;
-  width: 150px;
-  bottom: 20px;
-  left: 30%;
-}
+
 .search-title {
   font-size: 40px;
   color: darkblue;

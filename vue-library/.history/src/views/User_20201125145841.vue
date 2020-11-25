@@ -1,17 +1,12 @@
 <template>
     <div class="user-container container">
         <userNavigation></userNavigation>
-        <h1 class="title">欢迎来到图书管理系统用户界面</h1>
+        <h1 class="title">今天你阅读了吗？</h1>
         <div class="box">
             <h2 class="sentence">书籍是人类进步的阶梯</h2>
             <p class="author">————高尔基</p>
         </div>
-
-
     </div>
-
-    
-
 </template>
 
 <script>
@@ -49,27 +44,26 @@ export default {
 
 
 .user-container .title{
-    float: left;
-    text-align: left;
-    margin-left: 20px;
+    float: right;
     margin-top: 0px;
+    margin: auto;
     color: white;
-    width: 600px;
+    width: 300px;
 
 }
 
 .box{
     position: fixed;
-    height: 200px;
-    width: 600px;
+    height: 1oopx;
+    width: 300px;
     bottom: 1%; 
-    right: 5%;
+    left: 50%;
     color: white;
     
 }
 
 .box h2{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .box p{

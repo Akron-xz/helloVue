@@ -81,6 +81,7 @@
             </el-table-column>
           </el-table>
         </div>
+        <br>
         <!-- 分页器 -->
         <div class="block">
           <el-pagination
@@ -607,12 +608,7 @@ export default {
   margin-left: -400px;
   width: 800px;
 }
-.block {
-  position: fixed;
-  width: 150px;
-  bottom: 20px;
-  left: 30%;
-}
+
 .search-title {
   font-size: 40px;
   color: darkblue;

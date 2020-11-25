@@ -373,10 +373,9 @@ button:hover {
   position: fixed;
   top: 400px;
   left: 36%;
-  width: 340px;
+  width: 380px;
   height: 200px;
   background-color: white;
-  border-radius: 10px;
 }
 
 input {

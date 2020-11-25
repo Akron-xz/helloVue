@@ -368,15 +368,12 @@ button:hover {
 .msg-header {
   background-color: lightgray;
 }
-
 .modify-pwd-box {
-  position: fixed;
+  position: absolute;
   top: 400px;
   left: 36%;
-  width: 340px;
-  height: 200px;
-  background-color: white;
-  border-radius: 10px;
+  background: white;
+  width: 400px;
 }
 
 input {
@@ -387,11 +384,4 @@ input {
   align-items: center;
   width: 200px;
 }
-
-.demo-pwd{
-  position: absolute;
-  top: 20px;
-  width: 300px;
-  height: 50px;
- }
 </style>

@@ -137,10 +137,8 @@ import userNavigation from '@/components/userNav.vue'
   background-size: 100% 100%;
 }
 .history-title{
-  float: left;
   margin-top: 0px;
-  margin-left: 20px;
-  font-size: 32px;
+  font-size: 40px;
   color: white;
   left: 40%;
 }

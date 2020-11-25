@@ -430,7 +430,7 @@ export default {
   height: 100%;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-image: url(/img/divBg/bg34.jpg);
+  background-image: url(/img/divBg/bg36.jpg);
   background-size: 100% 100%;
   text-align: center;
 }

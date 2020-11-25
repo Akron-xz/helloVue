@@ -1,7 +1,6 @@
 <template>
     <div class="Bookshelves-container container">
         <userNavigation></userNavigation>
-        <h1 class="history-title">借阅历史</h1>
     
         <div class="book-first" v-for="(item, index) in list" :key="index">
             <el-input
@@ -159,7 +158,7 @@ export default {
     height: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    background-image: url(/img/divBg/bg34.jpg);
+    background-image: url(/img/divBg/bg33.jpg);
 
 }
 

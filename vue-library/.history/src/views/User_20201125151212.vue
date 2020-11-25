@@ -60,7 +60,7 @@ export default {
 
 .box{
     position: fixed;
-    height: 200px;
+    height: 1px;
     width: 600px;
     bottom: 1%; 
     right: 5%;
@@ -69,7 +69,7 @@ export default {
 }
 
 .box h2{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .box p{

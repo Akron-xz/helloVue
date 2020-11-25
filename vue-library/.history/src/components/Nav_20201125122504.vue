@@ -26,7 +26,7 @@
         <el-menu-item index="4" @click="toStatistics">
           <a  target="_self">图书借阅统计</a></el-menu-item
         >
-        <el-menu-item index="5" @click="toHome">
+        <el-menu-item index="5" @click="toMain">
           <a  target="_self">返回主页</a>
         </el-menu-item>
 

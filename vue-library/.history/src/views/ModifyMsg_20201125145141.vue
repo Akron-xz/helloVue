@@ -376,7 +376,6 @@ button:hover {
   width: 340px;
   height: 200px;
   background-color: white;
-  border-radius: 10px;
 }
 
 input {

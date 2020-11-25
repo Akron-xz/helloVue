@@ -370,13 +370,10 @@ button:hover {
 }
 
 .modify-pwd-box {
-  position: fixed;
+  position: absolute;
   top: 400px;
   left: 36%;
-  width: 340px;
-  height: 200px;
-  background-color: white;
-  border-radius: 10px;
+  width: 400px;
 }
 
 input {

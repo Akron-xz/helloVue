@@ -611,7 +611,7 @@ export default {
   position: fixed;
   width: 150px;
   bottom: 20px;
-  left: 30%;
+  left: 50%;
 }
 .search-title {
   font-size: 40px;

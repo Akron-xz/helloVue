@@ -133,15 +133,13 @@ import userNavigation from '@/components/userNav.vue'
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/img/divBg/bg34.jpg);
+  background-image: url(/img/divBg/bg33.jpg);
   background-size: 100% 100%;
 }
 .history-title{
-  float: left;
   margin-top: 0px;
-  margin-left: 20px;
-  font-size: 32px;
-  color: white;
+  font-size: 40px;
+  color: black;
   left: 40%;
 }
 .searchBox{

@@ -7,6 +7,13 @@
             <p class="author">————高尔基</p>
         </div>
 
+        <div class="announce-box">
+
+            <h2>图书馆公告:</h2>
+            <div class="link-top"></div>
+            <p>公告时间:{{announceTimeStr}}---- 公告内容：{{ announceContent }}</p>
+
+        </div>
 
     </div>
 
@@ -60,16 +67,16 @@ export default {
 
 .box{
     position: fixed;
-    height: 200px;
+    height: 1oopx;
     width: 600px;
     bottom: 1%; 
-    right: 5%;
+    left: 50%;
     color: white;
     
 }
 
 .box h2{
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .box p{

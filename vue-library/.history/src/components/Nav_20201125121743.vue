@@ -9,7 +9,7 @@
         text-color="#ffffff"
         text-font="15px">
 
-        <el-menu-item @click="toMain">
+        <el-menu-item>
                 <img src="/img/libraryIcon.png" alt="" target="_self" class="libraryIcon">
             </el-menu-item>
             
@@ -26,12 +26,12 @@
         <el-menu-item index="4" @click="toStatistics">
           <a  target="_self">图书借阅统计</a></el-menu-item
         >
-        <el-menu-item index="5" @click="toHome">
+        <el-menu-item index="5" @click="toMain">
           <a  target="_self">返回主页</a>
         </el-menu-item>
 
         <el-menu-item index="6" class="exitIcon">
-                <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon">
+                <img src="/img/logoutIcon.png" alt="" target="_self" class="logoutIcon">
         </el-menu-item>
 
       </el-menu>
@@ -52,7 +52,7 @@ export default {
       console.log(key, keyPath);
     },
     toMain(){
-      this.$router.push({path:'/adminmain'});
+      this.$router.push({path:'/'});
     },
 
     toSearchClient(){
@@ -69,9 +69,6 @@ export default {
     },
     toStatistics(){
       this.$router.push({path:'/Statistics'});
-    },
-    toHome(){
-      this.$router.push({path:'/'});
     },
 
 
