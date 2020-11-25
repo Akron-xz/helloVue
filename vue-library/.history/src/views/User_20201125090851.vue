@@ -35,13 +35,13 @@ export default {
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
     background-image: url(/img/divBg/bg29.jpg);
 
 }
 
 
 .user-container .title{
-    margin-top: 0px;
+    margin-top: 50px;
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
     <div class="Bookshelves-container container">
-        <userNavigation></userNavigation>
+    <userNavigation></userNavigation>
     
         <div class="book-first" v-for="(item, index) in list" :key="index">
             <el-input
                 class="bookstatus"
                 placeholder="已借入书籍"
-                v-model="input" 
+                v-model="input"
                 :disabled="true">
             </el-input>
             <el-button type="primary" round @click="returnBook(index)">还书</el-button>

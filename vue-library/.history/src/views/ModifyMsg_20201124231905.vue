@@ -1,6 +1,5 @@
 <template>
   <div class="table-container">
-    <userNavigation></userNavigation>
     <table
       border="1"
       cellspacing="0"

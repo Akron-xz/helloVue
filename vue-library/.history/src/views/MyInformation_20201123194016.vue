@@ -1,6 +1,14 @@
 <template>
     <div class="MyInformation-container container">
-        <userNavigation></userNavigation>
+         <div>
+      <el-header>
+        <router-link to="./" class="a">首页</router-link>
+        /
+        <router-link to="./user" class="b">我是借阅者</router-link>
+        /
+        <router-link to="./MyInformation" class="c">我的信息</router-link>
+      </el-header>
+    </div>
         <div class="exit">
         <button class="exit-login">
             退出登陆
@@ -20,11 +28,7 @@
 </template>
 
 <script>
-import userNavigation from '@/components/userNav.vue'
 export default {
-    components:{
-        userNavigation
-    },
     data() {
         return {
            
@@ -46,7 +50,24 @@ export default {
 </script>
 
 <style scoped>
-
+.el-header {
+  position: absolute;
+  left: 30px;
+  color: #333;
+  line-height: 60px;
+  width: 100%;
+  height: 60px;
+  text-align: left;
+}
+.a {
+  text-decoration: none;
+}
+.b {
+  text-decoration: none;
+}
+.c {
+  text-decoration: none;
+}
 .MyInformation-container{
     position: fixed;
     left: 0;

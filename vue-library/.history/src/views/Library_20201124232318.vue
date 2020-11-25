@@ -273,8 +273,7 @@ export default {
           
         }
       }).then(res=>{
-        alert(res.data);
-        this.$router.go(0);
+        alert(res.data)
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;
