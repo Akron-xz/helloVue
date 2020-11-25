@@ -376,7 +376,7 @@ export default {
 }
 .modify-btn {
   position: fixed;
-  top: 330px;
+  top: 320px;
   left:  50%;
   height: 40px;
   width: 70px;

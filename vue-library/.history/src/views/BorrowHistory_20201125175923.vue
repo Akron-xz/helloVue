@@ -5,7 +5,7 @@
 
  <div class="searchBox">
  <input v-model="searchContent" type="text" style="width:180px;height:30px;">&nbsp;&nbsp;
- <input type="button" class="search-btn" value="搜索" style="width:50px;height:35px;" @click="searchByKey()">
+ <input type="button" value="搜索" style="width:50px;height:35px;" @click="searchByKey()">
  
  </div>
  <div class="table-box">
@@ -146,13 +146,8 @@ import userNavigation from '@/components/userNav.vue'
 .searchBox{
  position: fixed;
  top: 147px;
- width: 300px;
+ width: 100px;
  right: 50%;
- margin-right: -430px;
-}
-.search-btn{
-  border-radius: 7px;
-  outline: none;
 }
 .table-box{
   position: fixed;

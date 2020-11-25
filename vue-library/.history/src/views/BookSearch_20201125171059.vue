@@ -8,7 +8,7 @@
         <div class="choiceBox">
           <table :rules="rules" ref="ruleForm">
             <tr>
-              <td class="select-header">国家</td>
+              <td>国家</td>
               <td>
                 <el-select v-model="couId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -17,7 +17,7 @@
                   ></el-option>
                 </el-select>
               </td>
-              <td class="select-header">类型</td>
+              <td>类型</td>
               <td>
                 <el-select v-model="tyId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -26,7 +26,7 @@
                   ></el-option>
                 </el-select>
               </td>
-              <td class="select-header">篇幅</td>
+              <td>篇幅</td>
               <td>
                 <el-select v-model="pagenumber" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -35,7 +35,7 @@
                   ></el-option>
                 </el-select>
               </td>
-              <td class="select-header">主题</td>
+              <td>主题</td>
               <td>
                 <el-select v-model="thId" placeholder="请选择" style="width: 150px" clearable>
                   <el-option
@@ -44,21 +44,16 @@
                 </el-select>
               </td>
               <td>
-              <el-button type="" icon="el-icon-search" @click="selectByLabel">搜索</el-button>
-                
+                <el-button type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
               </td>
-              
-                
-              
+              <td>
+                <el-button type="" icon="el-icon-search" @click="selectByLabel">搜索</el-button>
+              </td>
             </tr>
           </table>
         </div>
-        
-        
-        
 
         <div class="searchBox">
-        <el-button class="insert-btn" type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
           <el-input placeholder="请输入关键字" style="width: 220px" class="input-with-select"
           v-model="key"
           @keyup.enter.native="searchContent">      
@@ -87,7 +82,7 @@
           </el-table>
         </div>
         <!-- 分页器 -->
-        <div class="block" style="margin-top: 465px">
+        <div class="block">
           <el-pagination
             align="center"
             @size-change="handleSizeChange"
@@ -109,7 +104,8 @@
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
       <table >
         <tr>
-          
+          <td></td>
+          <td></td>
           <td style="font-size: 25px">书名</td>
           <td>
             <input type="text" v-model="addBookData.bookName" style="width: 210px; height: 35px"
@@ -170,7 +166,7 @@
           <td>简介:</td>
         </tr>
         <div class="briefBox">
-          <textarea name="txt" clos="50" rows="5" warp="virtual"
+          <textarea name="txt" clos=",50" rows="5" warp="virtual"
             style="width: 780px; height: 100px"
             v-model="addBookData.brief"
           ></textarea>
@@ -316,13 +312,7 @@ export default {
       },
     // 保存按钮
     MsgSaveM() {
-      if(this.bookData[0].bookName==""){
-        this.$message({
-          message:"书名不能为空",
-          type:"error"
-        });
-      }else{
-               axios({
+      axios({
         method:"post",
         url:"http://localhost:8081/book/update/",
         data:{
@@ -347,15 +337,8 @@ export default {
          borrows:this.bookData[0].borrows,
 
         }
-      }).then(res=>{
-          this.$message({
-          message:"图书"+res.data,
-          type:"success"
-        });
       })
       this.ModifyTableDisplay = !this.ModifyTableDisplay;
-      }
- 
     },
     MsgInsert() {
       this.InsertTableDisplay = !this.InsertTableDisplay;
@@ -628,7 +611,12 @@ export default {
   margin-left: -400px;
   width: 800px;
 }
-
+.block {
+  position: fixed;
+  width: 150px;
+  bottom: 40px;
+  left: 37%;
+}
 .search-title {
   margin-top: 0px;
   margin-left: 20px;
@@ -640,7 +628,6 @@ export default {
   position: fixed;
   top: 200px;
   right: 18%;
-  color: white;
 }
 .briefBox {
   position: fixed;
@@ -651,13 +638,5 @@ export default {
   position: fixed;
   top: 200px;
   right: 19%;
-}
-.select-header{
-  color: white;
-}
-.insert-btn{
-  position: fixed;
-  left: 240px;
- 
 }
 </style>

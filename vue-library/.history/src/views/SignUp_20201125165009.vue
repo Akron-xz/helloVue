@@ -47,10 +47,9 @@
             onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
           ></el-input>
         </el-form-item>
-      
-        <el-form-item label="密码强度">
-          <verify-pwd  v-model="ruleForm2.pwd" style="padding-top: 10px;"></verify-pwd>
-        </el-form-item>
+        <el-form-item label="密码强度">
+          <verifyPwd v-model="ruleForm2.pwd" style="padding-top: 10px;"></verifyPwd>
+        </el-form-item>
 
         <el-form-item label="确认密码：" prop="checkPwd">
           <el-input
