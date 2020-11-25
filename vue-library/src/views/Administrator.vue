@@ -79,8 +79,8 @@ import homeNavigation from '@/components/homeNav.vue'
       admin: [],
 
       rules2: {
-        pwd: [{ validator: validatepwd, trigger: "blur" }],
-        adminId: [{ validator: checkadminId, trigger: "blur" }],
+        pwd: [{ required: true,validator: validatepwd, trigger: "blur" }],
+        adminId: [{ required: true,validator: checkadminId, trigger: "blur" }],
       },
     };
   },
