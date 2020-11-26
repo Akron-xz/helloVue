@@ -89,8 +89,19 @@
             @click="MsgInsert"
           ></el-button>
 
+          <el-upload
+            style="display: inline; margin-left: 10px; margin-right: 10px"
+            action=""
+            :http-request="uploadFile"
+            :limit="1"
+            :on-exceed="fileExceed"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+            :file-list="uploadList"
+            ref="fileupload"
+          >
+          </el-upload>
+
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -424,6 +435,7 @@
 <script>
 import Navigation from "@/components/Nav.vue";
 import axios from "axios";
+import HTTP_API from '@/httpApi' //  封装好的axios:get post请求（含headers和拦截器等【代码略】
 export default {
   components: {
     Navigation,
@@ -568,8 +580,6 @@ export default {
         })
         .catch((err) => console.log("error...", err));
     },
-
-    
   },
 
   data() {
@@ -724,6 +734,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;

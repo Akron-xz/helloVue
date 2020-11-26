@@ -88,9 +88,21 @@
             icon="el-icon-plus"
             @click="MsgInsert"
           ></el-button>
+           <el-upload
+    class="upload-demo"
+    action=""
+    :on-change="handleChange"
+    :on-exceed="handleExceed"
+    :on-remove="handleRemove"
+    :file-list="fileListUpload"
+    :limit="limitUpload"
+    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+    :auto-upload="false">
+    <el-button size="small" type="primary">点击上传</el-button>
+    <div slot="tip" class="el-upload__tip">只 能 上 传 xlsx / xls 文 件</div>
+</el-upload>
 
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -436,7 +448,6 @@ export default {
       console.log(this.bookName);
       console.log(row);
     },
-
     //
     bookHistoryOfUser(row) {
       this.bookHistoryIfo = !this.bookHistoryIfo;
@@ -568,8 +579,6 @@ export default {
         })
         .catch((err) => console.log("error...", err));
     },
-
-    
   },
 
   data() {
@@ -637,6 +646,10 @@ export default {
           typeName: "",
         },
       ],
+
+      // 篇幅
+
+      // 主题
 
       pages: [
         {
@@ -724,6 +737,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;

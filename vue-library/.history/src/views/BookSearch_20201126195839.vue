@@ -90,7 +90,26 @@
           ></el-button>
 
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
+          <el-form-item style="float:right;">
+        <el-button  size="small" icon="el-icon-download" @click="downLoadExlce">模板下载</el-button>
+      <el-upload
+                ref="upload"
+                :action="uploadUrl"   
+                :limit="1" 
+                :before-upload="beforeUpload" 
+                :headers="token"   
+                :data = "importData"   
+                accept=".xls"   
+                class="up-class"
+                :on-success="uploadSuccess"   
+                :show-file-list="false"  
+                :auto-upload="true" 
+                >
+          <el-button slot="trigger" size="small" type="primary" class="el-icon-plus el-icon-upload" >导入数据</el-button>
+        </el-upload>
+</el-form-item>
+
+
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -623,6 +642,8 @@ export default {
       brief: "暂无",
       book_name: "",
       lists: [],
+      importData:[],
+      uploadUrl:"",
       country: [
         {
           countryId: 0,

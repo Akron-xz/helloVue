@@ -90,7 +90,19 @@
           ></el-button>
 
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
+          <el-upload
+ 2             style="display:inline-block"
+ 3             :limit="5"
+ 4             class="upload-demo"
+ 5             ref="upload"
+ 6             :action="uploadUrl"
+ 7             :file-list="fileList"
+ 8             :http-request="uploadSectionFile"
+ 9             :auto-upload="false"
+10             :before-remove="handleRemove">
+11             <el-button slot="trigger" size="small" type="primary" plain>选取文件</el-button>
+12             <el-button style="margin-left: 10px;" size="small" icon="el-icon-upload2" type="success" @click="submitUpload">导入</el-button>
+13           </el-upload> 
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"

@@ -89,8 +89,19 @@
             @click="MsgInsert"
           ></el-button>
 
+          <el-upload
+            style="display: inline; margin-left: 10px; margin-right: 10px"
+            action=""
+            :http-request="uploadFile"
+            :limit="1"
+            :on-exceed="fileExceed"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+            :file-list="uploadList"
+            ref="fileupload"
+          >
+          </el-upload>
+
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -724,6 +735,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;

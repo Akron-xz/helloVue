@@ -89,8 +89,19 @@
             @click="MsgInsert"
           ></el-button>
 
+          <el-upload
+            style="display: inline; margin-left: 10px; margin-right: 10px"
+            action=""
+            :http-request="uploadFile"
+            :limit="1"
+            :on-exceed="fileExceed"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+            :file-list="uploadList"
+            ref="fileupload"
+          >
+          </el-upload>
+
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -424,6 +435,7 @@
 <script>
 import Navigation from "@/components/Nav.vue";
 import axios from "axios";
+import HTTP_API from "@/httpApi"; //  封装好的axios:get post请求（含headers和拦截器等【代码略】
 export default {
   components: {
     Navigation,
@@ -569,7 +581,60 @@ export default {
         .catch((err) => console.log("error...", err));
     },
 
-    
+    fileExceed() {
+      this.$message.error("别贪心！一次只能上传一个哦~");
+    },
+
+    // 请求成功
+    importSuccess(res) {
+      // 后端的返回码--上传成功
+      if (res.code == xxxxx) {
+        // 显示√图标
+        let e = document.getElementsByClassName(
+          "el-upload-list__item-status-label"
+        );
+        e[0].setAttribute("style", "display:block !important");
+        // 成功提示
+        this.$message.success("上传成功");
+        // 重新调用列表请求（代码略）
+        // this.getList();
+        // 后端的返回码--上传失败
+      } else {
+        // 隐藏√图标
+        let e = document.getElementsByClassName(
+          "el-upload-list__item-status-label"
+        );
+        e[0].setAttribute("style", "display:none !important");
+        // 失败提示--及后端返回的失败详情
+        this.$message.error({
+          dangerouslyUseHTMLString: true,
+          duration: 4500,
+          message: res.remark + ",<br/>请删除上传失败的文件，修改后重新上传",
+        });
+      }
+    },
+
+    // 请求失败
+    importError(err) {
+      this.$message.error({
+        dangerouslyUseHTMLString: true,
+        duration: 4500,
+        message: "上传出现异常，请稍后重试" + ",<br/><br/>异常原因：" + err,
+      });
+    },
+
+    // 自定义上传
+    uploadFile(item) {
+      const form = new FormData();
+      form.append("file", item.file);
+      HTTP_API.xlsx_upload(form)
+        .then((res) => {
+          this.importSuccess(res);
+        })
+        .catch((err) => {
+          this.importError(err);
+        });
+    },
   },
 
   data() {
@@ -724,6 +789,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;

@@ -31,7 +31,7 @@
         width="180px">
       </el-table-column>
       <el-table-column
-        prop="borrowStatesStr"
+        prop="validTime"
         label="借阅状态"
         width="180px"></el-table-column>
       </el-table>

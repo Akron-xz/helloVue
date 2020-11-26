@@ -88,9 +88,8 @@
             icon="el-icon-plus"
             @click="MsgInsert"
           ></el-button>
-
-          <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
           
+          <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -436,7 +435,6 @@ export default {
       console.log(this.bookName);
       console.log(row);
     },
-
     //
     bookHistoryOfUser(row) {
       this.bookHistoryIfo = !this.bookHistoryIfo;
@@ -568,8 +566,6 @@ export default {
         })
         .catch((err) => console.log("error...", err));
     },
-
-    
   },
 
   data() {
@@ -637,6 +633,10 @@ export default {
           typeName: "",
         },
       ],
+
+      // 篇幅
+
+      // 主题
 
       pages: [
         {
@@ -724,6 +724,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;

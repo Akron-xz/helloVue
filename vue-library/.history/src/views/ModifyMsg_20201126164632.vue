@@ -27,7 +27,7 @@
           <el-radio v-model="userData[0].sex" label="0" :disabled="isDisabled">女</el-radio>
           <el-radio v-model="userData[0].sex" label="1" :disabled="isDisabled">男</el-radio>
         </td>
-        <td class="msg-header" style="width: 120px">用户账号：</td>
+        <td class="msg-header" style="width: 120px">用户ID：</td>
         <td>
           <input
             type="text"

@@ -90,7 +90,6 @@
           ></el-button>
 
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -723,6 +722,8 @@ export default {
     };
   },
   created() {
+    console.log(this.$cookie.get('token'));
+
     axios
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {

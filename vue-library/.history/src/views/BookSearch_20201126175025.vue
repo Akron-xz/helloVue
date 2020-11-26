@@ -89,8 +89,30 @@
             @click="MsgInsert"
           ></el-button>
 
+          <el-upload
+            ref="upload"
+            :action="uploadUrl"
+            :limit="1"
+            :before-upload="beforeUpload"
+            :headers="token"
+            :data="importData"
+            accept=".xls"
+            class="bulkImport-btn"
+            :on-success="uploadSuccess"
+            :show-file-list="false"
+            :auto-upload="true"
+          >
+            <el-button
+              slot="trigger"
+              size="small"
+              type="primary"
+              class="el-icon-plus el-icon-upload"
+              >导入excel</el-button
+            >
+            <div slot="tip" class="el-upload__tip">只能上传xls文件</div>
+          </el-upload>
+
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -436,7 +458,33 @@ export default {
       console.log(this.bookName);
       console.log(row);
     },
-
+    // 验证导入文件格式
+    beforeUpload(file) {
+      let extension =file.name.substring(file.name.lastIndexOf('.')+1);
+      if(extension  !== 'xls') {
+        this.$message({
+          message: '上传文件只能是 xls格式!',
+          type: 'warning'
+        });
+        return false;
+      }
+    },
+    // 提示excel是否成功信息
+    uploadSuccess (res ,file,fileList) {
+      if (res.code == 200)
+      {
+        this.$message({
+          message: '导入成功!',
+          type: 'info'
+        });
+      }else
+      {
+        this.$alert(res.message, '导入失败', {
+          confirmButtonText: '确定',
+        });
+      }
+      this.$refs.upload.clearFiles();
+    },
     //
     bookHistoryOfUser(row) {
       this.bookHistoryIfo = !this.bookHistoryIfo;
@@ -568,8 +616,6 @@ export default {
         })
         .catch((err) => console.log("error...", err));
     },
-
-    
   },
 
   data() {
@@ -724,6 +770,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;
