@@ -73,10 +73,10 @@ export default {
     signOut(){
       sessionStorage.clear();
       this.$router.push({path:'/'});
-      this.$message({
-        message:"退出成功",
-        type:"success"
-      })
+      this.$message{
+        message:"退出成功";
+        type:"success";
+      }
     }
 
 

@@ -201,8 +201,6 @@ export default {
           password: "",
         },
       ],
-      date:"",
-      year:"",
       // 新密码
       pwd: {
         newPassword: "",
@@ -257,10 +255,9 @@ export default {
         this.$message("进入个人信息编辑模式");
       } else {
         console.log(this.userData[0]);
-        this.changeAge();
         axios({
           method: "post",
-          url: "http://192.168.3.23:8081/user/updateUser",
+          url: "http://localhost:8081/user/updateUser",
           data: {
             userId: this.userData[0].userId,
             name: this.userData[0].name,
@@ -291,13 +288,6 @@ export default {
         });
       }
     },
-    changeAge(){
-    let date = new Date();
-    let year = new Date("2020-11-26").getFullYear();
-    let birYear = new Date(this.userData[0].birthday).getFullYear();
-    this.userData[0].age=year-birYear;
-    
-  },
 
     // 修改密码
     submitForm(pwd) {
@@ -305,7 +295,7 @@ export default {
         if (valid) {
           axios({
             method: "get",
-            url: "http://192.168.3.23:8081/user/changPwd",
+            url: "http://localhost:8081/user/changPwd",
             params: {
               userId: this.userData[0].userId,
               password: this.pwd.newPassword,
@@ -363,8 +353,6 @@ export default {
     this.userData[0].introduction = user.introduction;
     this.userData[0].password = user.password;
   },
-
-
 };
 </script>
 
