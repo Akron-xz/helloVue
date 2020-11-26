@@ -1,31 +1,9 @@
 <template>
   <div class="admin-main-container">
     <Navigation></Navigation>
+    <h1 class="adminMain-title">欢迎来到管理员界面</h1>
     <div class="img-container">
-      <!-- <div>
-        <div class="block">
-          <img src="/icon/search-client.png" @click="toSearchClient"/><br/>
-          <span class="demonstration">用户列表</span>
-        </div>
-        <div class="block">
-          <img src="/icon/search-file.png" @click="toSearchFile"/><br />
-          <span class="demonstration">图书借阅与归还</span>
-        </div>
-      </div>
-      <div>
-        <div class="block">
-          <img src="/icon/announce.png" @click="toAnnounce"/><br />
-          <span class="demonstration">首页公告管理</span>
-        </div>
-        <div class="block">
-          <img src="/icon/books.png" @click="toBooks"/><br />
-          <span class="demonstration">书库</span>
-        </div>
-      </div>
-      <div class="block">
-        <img src="/icon/graph-report.png" @click="toGraphReport"/><br />
-        <span class="demonstration">图书借阅统计</span>
-      </div> -->
+        
     </div>
   </div>
 </template>
@@ -46,26 +24,7 @@ export default {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    // toMain(){
-    //   this.$router.push({path:'/#'});
-    // },
-
-    // toSearchClient(){
-    //   this.$router.push({path:'/newissue'});
-    // },
-    // toSearchFile(){
-    //   this.$router.push({path:'/booksearch'});
-    // },
-    // toAnnounce(){
-    //   this.$router.push({path:'/modifyannounce'});
-    // },
-    // toBooks(){
-    //   this.$router.push({path:'/booksearch'});
-    // },
-    // toGraphReport(){
-    //   this.$router.push({path:'/Statistics'});
-    // },
-
+ 
 
   },
 };
@@ -82,5 +41,12 @@ export default {
   background-size: 100% 100%;
 }
 
+.adminMain-title{
+  margin-top: 0px;
+  margin-left: 20px;
+  text-align: left;
+  font-size: 32px;
+  color: white;
+}
 
 </style>

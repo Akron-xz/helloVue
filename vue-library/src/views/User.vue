@@ -47,7 +47,6 @@ export default {
 
 }
 
-
 .user-container .title{
     float: left;
     text-align: left;

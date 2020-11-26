@@ -34,6 +34,10 @@
                 <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon" @click="signOut">
             </el-menu-item>
 
+            <el-menu-item index="5" @click="toThanks">
+                <a  target="_self">关于</a>
+            </el-menu-item>
+
             <!-- <el-menu-item index="6" @click="toMain">
                 <a  target="_self">返回主页</a>
             </el-menu-item> -->
@@ -70,6 +74,9 @@ export default {
     toLibrary(){
       this.$router.push({path:'/Library'});
     },
+    toThanks(){
+      this.$router.push({path:'/Thanks'});
+    },
     signOut(){
       sessionStorage.clear();
       this.$router.push({path:'/'});
@@ -100,4 +107,15 @@ export default {
   width: 40px;
 }
 
+
+.el-menu-item:hover{
+    background-color: #E2EFF9 !important;
+    color: #000000 !important;
+
+}
+
+.el-menu-item.is-active {
+    background-color: #E2EFF9 !important;
+    color: #000000 !important;
+}
 </style>>

@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <userNavigation></userNavigation>
+    <homeNavigation></homeNavigation>
     <!-- <div class="login box">
       <img src="/img/home/userIcon.png" alt="" class="login-img" @click="toLogin" />
       <p class="logo-name" @click="toLogin">用户登录</p>
@@ -39,10 +39,10 @@
 
 <script>
 import axios from "axios";
-import userNavigation from "@/components/homeNav.vue";
+import homeNavigation from "@/components/homeNav.vue";
 export default {
   components: {
-    userNavigation,
+    homeNavigation,
   },
   data() {
     return {
