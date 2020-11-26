@@ -34,8 +34,8 @@
                 <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon" @click="logOut">
         </el-menu-item>
 
-        <el-menu-item index="5" @click="toThanks">
-          <a  target="_self">关于</a>
+        <el-menu-item index="7">
+                <img src="/img/logoutIconWhite.png" alt="" target="_self" class="logoutIcon" @click="logOut">
         </el-menu-item>
 
       </el-menu>
@@ -77,12 +77,10 @@ export default {
     toHome(){
       this.$router.push({path:'/'});
     },
-    logOut(){
+     logOut(){
       this.$router.push({path:'/'});
     },
-    toThanks(){
-      this.$router.push({path:'/Thanks'});
-    },
+
 
   },
     
@@ -102,16 +100,5 @@ export default {
 .logoutIcon{
   height: 40px;
   width: 40px;
-}
-
-.el-menu-item:hover{
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
-
-}
-
-.el-menu-item.is-active {
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
 }
 </style>>

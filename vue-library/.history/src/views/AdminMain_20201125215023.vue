@@ -3,27 +3,35 @@
     <Navigation></Navigation>
     <h1 class="adminMain-title">欢迎来到管理员界面</h1>
     <div class="img-container">
-        
+        <el-container id="box">
+       {{ date | formaDate }}
+  </el-container>
     </div>
   </div>
 </template>
 
 <script>
 import Navigation from '@/components/Nav.vue'
+    var padaDate = function(value){
+      return value<10 ? '0'+value : value;
+    };
 export default {
   components:{
         Navigation
     },
   data() {
     return {
-      activeIndex: "1",
-      activeIndex2: "1",
+      date: new Date(),
     };
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
+    watch: {
+   
+    },
+    computed: {},
  
 
   },

@@ -103,15 +103,4 @@ export default {
   height: 40px;
   width: 40px;
 }
-
-.el-menu-item:hover{
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
-
-}
-
-.el-menu-item.is-active {
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
-}
 </style>>

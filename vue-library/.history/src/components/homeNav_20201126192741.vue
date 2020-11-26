@@ -100,16 +100,10 @@ export default {
   width: 40px;
 }
 
-
-
-.el-menu-item:hover{
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
-
+.navigation-bar .el-menu-item.hover{
+  background: #6db6ff !important;
 }
-
-.el-menu-item.is-active {
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
+.navigation-bar .el-submenu__title.hover{
+  background: #6db6ff !important;
 }
-</style>
+</style>>

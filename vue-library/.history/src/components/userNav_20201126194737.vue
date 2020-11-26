@@ -109,13 +109,13 @@ export default {
 
 
 .el-menu-item:hover{
-    background-color: #E2EFF9 !important;
+    background-color: #88cafc !important;
     color: #000000 !important;
 
 }
 
 .el-menu-item.is-active {
-    background-color: #E2EFF9 !important;
+    background-color: #88cafc !important;
     color: #000000 !important;
 }
 </style>>

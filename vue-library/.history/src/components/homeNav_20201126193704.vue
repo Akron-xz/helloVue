@@ -102,14 +102,19 @@ export default {
 
 
 
-.el-menu-item:hover{
-    background-color: #E2EFF9 !important;
-    color: #000000 !important;
 
+.el-menu-item:hover{
+    border-left:#33A2EF solid 6px !important;
+    background-color: #E2EFF9 !important;
+    color: #38B2FF !important;
+    i {
+        color: #38B2FF;
+      }
 }
 
 .el-menu-item.is-active {
+    border-left:#33A2EF solid 6px !important;
     background-color: #E2EFF9 !important;
-    color: #000000 !important;
+    color: #38B2FF !important;
 }
 </style>

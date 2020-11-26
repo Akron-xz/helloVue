@@ -109,7 +109,7 @@ export default {
 
 
 .el-menu-item:hover{
-    background-color: #E2EFF9 !important;
+    background-color: #60baff !important;
     color: #000000 !important;
 
 }

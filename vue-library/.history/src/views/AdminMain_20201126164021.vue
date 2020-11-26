@@ -44,7 +44,7 @@ export default {
 .adminMain-title{
   margin-top: 0px;
   margin-left: 20px;
-  text-align: left;
+  text-align: center;
   font-size: 32px;
   color: white;
 }

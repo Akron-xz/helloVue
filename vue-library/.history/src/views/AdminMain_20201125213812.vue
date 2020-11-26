@@ -3,7 +3,7 @@
     <Navigation></Navigation>
     <h1 class="adminMain-title">欢迎来到管理员界面</h1>
     <div class="img-container">
-        
+      <div class="timeBox">{{nowTime}}</div>
     </div>
   </div>
 </template>
@@ -18,13 +18,33 @@ export default {
     return {
       activeIndex: "1",
       activeIndex2: "1",
+       nowTime:'',
     };
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
- 
+    // toMain(){
+    //   this.$router.push({path:'/#'});
+    // },
+
+    // toSearchClient(){
+    //   this.$router.push({path:'/newissue'});
+    // },
+    // toSearchFile(){
+    //   this.$router.push({path:'/booksearch'});
+    // },
+    // toAnnounce(){
+    //   this.$router.push({path:'/modifyannounce'});
+    // },
+    // toBooks(){
+    //   this.$router.push({path:'/booksearch'});
+    // },
+    // toGraphReport(){
+    //   this.$router.push({path:'/Statistics'});
+    // },
+
 
   },
 };

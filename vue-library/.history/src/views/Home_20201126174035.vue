@@ -42,7 +42,7 @@ import axios from "axios";
 import homeNavigation from "@/components/homeNav.vue";
 export default {
   components: {
-    homeNavigation,
+    userNavigation,
   },
   data() {
     return {

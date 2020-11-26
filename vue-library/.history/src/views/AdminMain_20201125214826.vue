@@ -3,7 +3,7 @@
     <Navigation></Navigation>
     <h1 class="adminMain-title">欢迎来到管理员界面</h1>
     <div class="img-container">
-        
+  
     </div>
   </div>
 </template>
