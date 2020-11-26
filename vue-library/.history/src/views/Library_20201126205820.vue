@@ -314,11 +314,7 @@ export default {
     // 书籍模糊搜索
     searchContent() {
       if (this.inputContent == "") {
-        this.$message({
-          message:"请输入需要查询的信息。",
-          type:"message",
-          duration:3000
-        });
+        alert("请输入需要查询的信息。");
         return 0;
       }
       axios

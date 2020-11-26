@@ -275,13 +275,12 @@ export default {
           
         }
       }).then(res=>{
-        this.getList();
-        this.getBorrowList();
+       
         this.$message({
           message:res.data,
-          duration:3000,
+          duration:5000,
         });
-         
+         this.$router.go(0);
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;
@@ -314,11 +313,7 @@ export default {
     // 书籍模糊搜索
     searchContent() {
       if (this.inputContent == "") {
-        this.$message({
-          message:"请输入需要查询的信息。",
-          type:"message",
-          duration:3000
-        });
+        alert("请输入需要查询的信息。");
         return 0;
       }
       axios
@@ -383,23 +378,6 @@ export default {
         this.lists = res.data;
       })
       .catch((err) => console.log("error...", err));
-    },
-    getBorrowList(){
-       axios({
-            method:"get",
-            url:"http://192.168.3.23:8081/user/bookshelves",
-            params:{
-              userId:this.userData[0].userId
-            }
-        }).then(res=>{
-            console.log("this.return");
-            // for (let i = 0; i < res.data.length; i++) {
-            //   this.return[i].bookId = res.data[i].bookId;
-            //   console.log(this.return[i].bookId);
-            // }
-            this.return = res.data;
-            console.log(this.return);
-        })
     }
   },
 
@@ -419,8 +397,21 @@ export default {
     axios.get("http://192.168.3.23:8081/theme/list").then((res) => {
       this.theme = res.data;
     });
-    this.getBorrowList();
-   
+    axios({
+            method:"get",
+            url:"http://192.168.3.23:8081/user/bookshelves",
+            params:{
+              userId:this.userData[0].userId
+            }
+        }).then(res=>{
+            console.log("this.return");
+            // for (let i = 0; i < res.data.length; i++) {
+            //   this.return[i].bookId = res.data[i].bookId;
+            //   console.log(this.return[i].bookId);
+            // }
+            this.return = res.data;
+            console.log(this.return);
+        })
   },
 
   // 计算v-if的判断值

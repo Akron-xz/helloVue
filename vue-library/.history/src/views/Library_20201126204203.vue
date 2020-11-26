@@ -275,13 +275,9 @@ export default {
           
         }
       }).then(res=>{
-        this.getList();
-        this.getBorrowList();
-        this.$message({
-          message:res.data,
-          duration:3000,
-        });
-         
+        this.$router.go(0);
+        this.$message(res.data);
+        
       })
      console.log(this.bookId)
       this.tableDisplay = !this.tableDisplay;
@@ -314,11 +310,7 @@ export default {
     // 书籍模糊搜索
     searchContent() {
       if (this.inputContent == "") {
-        this.$message({
-          message:"请输入需要查询的信息。",
-          type:"message",
-          duration:3000
-        });
+        alert("请输入需要查询的信息。");
         return 0;
       }
       axios
@@ -368,8 +360,15 @@ export default {
         })
         .catch((err) => console.log("error...", err));
     },
-    getList(){
-      axios
+  },
+
+  created() {
+    // 获取user的session
+    let user = JSON.parse(sessionStorage.getItem("userSession"));
+    console.log(user);
+    this.userData[0].userId = user.userId;
+    console.log(this.userData);
+    axios
       .get("http://192.168.3.23:8081/book/list", {
         params: {
           pageNum: 1,
@@ -383,9 +382,16 @@ export default {
         this.lists = res.data;
       })
       .catch((err) => console.log("error...", err));
-    },
-    getBorrowList(){
-       axios({
+    axios.get("http://192.168.3.23:8081/country/list").then((res) => {
+      this.country = res.data;
+    });
+    axios.get("http://192.168.3.23:8081/type/list").then((res) => {
+      this.type = res.data;
+    });
+    axios.get("http://192.168.3.23:8081/theme/list").then((res) => {
+      this.theme = res.data;
+    });
+    axios({
             method:"get",
             url:"http://192.168.3.23:8081/user/bookshelves",
             params:{
@@ -400,27 +406,6 @@ export default {
             this.return = res.data;
             console.log(this.return);
         })
-    }
-  },
-
-  created() {
-    // 获取user的session
-    let user = JSON.parse(sessionStorage.getItem("userSession"));
-    console.log(user);
-    this.userData[0].userId = user.userId;
-    console.log(this.userData);
-    this.getList();
-    axios.get("http://192.168.3.23:8081/country/list").then((res) => {
-      this.country = res.data;
-    });
-    axios.get("http://192.168.3.23:8081/type/list").then((res) => {
-      this.type = res.data;
-    });
-    axios.get("http://192.168.3.23:8081/theme/list").then((res) => {
-      this.theme = res.data;
-    });
-    this.getBorrowList();
-   
   },
 
   // 计算v-if的判断值

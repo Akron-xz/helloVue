@@ -475,7 +475,7 @@ export default {
         method:"post",
         url:"http://192.168.3.23:8081/book/add/",
         data:{
-        bookName:this.addBookData.bookName.trim,
+        bookName:this.addBookData.bookName.trim(),
         country:{
         countryId:this.addBookData.country.countryId,
          },

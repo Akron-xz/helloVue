@@ -316,8 +316,7 @@ export default {
       if (this.inputContent == "") {
         this.$message({
           message:"请输入需要查询的信息。",
-          type:"message",
-          duration:3000
+          type:"message"
         });
         return 0;
       }
