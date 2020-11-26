@@ -148,6 +148,7 @@
             </el-input>
           </td>
         </tr>
+        <br/>
         <tr>
           <td>篇幅</td>
           <td>
@@ -173,12 +174,13 @@
             <el-input v-model="addBookData.offNumId" ></el-input> 
           </td>
         </tr>
+        <br/>
         <tr>
-          <td>简介:</td>
+          <td>简介</td>
         </tr>
         <div class="briefBox">
           <textarea name="txt" clos="50" rows="5" warp="virtual"
-            style="width: 760px;height: 150px"
+            style="width: 750px;height: 150px"
             v-model="addBookData.brief"
           ></textarea>
           <div class="MsgSave-btn">
@@ -194,18 +196,7 @@
   >
     </div>
       <table>
-        <!--<tr>
-          <td></td>
-          <td></td>
-          <td style="font-size: 25px">书名</td>
-          <td>
-            <input
-              type="text"
-              v-model="bookData[0].bookName"
-              style="width: 210px; height: 35px"
-            />
-          </td>
-        </tr>-->
+     
         <tr>
           <td>国家</td>
           <td>
@@ -235,6 +226,7 @@
             
           </td>
         </tr>
+        <br/>
         <tr>
           <td>篇幅</td>
           <td>
@@ -261,6 +253,7 @@
            
           </td>
         </tr>
+        <br/>
         <tr>
           <td>简介</td>
         </tr>
@@ -268,7 +261,7 @@
       </table>
       <div class="briefBox">
         <textarea name="txt" clos=",50" rows="5" warp="virtual"
-          style="width: 760px; height: 150px"
+          style="width: 750px; height: 150px"
           v-model="bookData[0].brief"
         ></textarea>
         <div class="MsgSave-btn">
@@ -391,6 +384,7 @@ export default {
          pages:this.addBookData.pages,
          offNumber:0,
          surplusNumber:this.addBookData.onNumber
+         
         }
       })
       this.InsertTableDisplay = !this.InsertTableDisplay;
@@ -658,9 +652,9 @@ export default {
 }
 .briefBox {
   position: fixed;
-  top: 335px;
+  top: 380px;
   right: 50%;
-  margin-right: -410px;
+  margin-right: -406px;
 }
 .searchBox{
   position: fixed;
@@ -680,11 +674,12 @@ export default {
 }
 .bookName-box{
  position: fixed;
- width: 800px;
+ width: 794px;
  right: 50%;
 margin-right: -407px;
- top: 200px;
- font-size: 20px;
+ top: 180px;
+ font-size: 17px;
+ 
 }
 .block{
   position: fixed;
