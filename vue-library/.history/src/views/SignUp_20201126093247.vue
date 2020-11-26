@@ -137,7 +137,7 @@ export default {
       rules2: {
         id: [{ validator: checkId, trigger: "blur" }],
         name: [{ required: true, validator: checkName, trigger: "blur" },
-        {required:true,pattern:/^.{1,20}$/,
+        {required:true,pattern:/^{1,20}$/,
         message:"不能超过20位",
         trigger:"blur"
         
