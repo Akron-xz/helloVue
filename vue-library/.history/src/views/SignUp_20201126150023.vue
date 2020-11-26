@@ -31,8 +31,6 @@
           :rules="[
             { required: true, message: '请输入邮箱', trigger: 'blur' },
             { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur' },
-            
-            
           ]"
         >
           <el-input
@@ -150,7 +148,7 @@ export default {
           {
             required: true,
             pattern: /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*])[\da-zA-Z~!@#$%^&*]{8,24}$/,
-            message: "请包含大小写和数字与字符*8到24位",
+            message: "请包含大小写和数字与字符*",
             trigger: "blur",
           },
         ],
