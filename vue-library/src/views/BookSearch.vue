@@ -4,15 +4,15 @@
 
     <div v-show="ModifyTableDisplay">
       <div v-show="InsertTableDisplay">
-        <h1 class="search-title">图书借阅与归还</h1>
+        <h1 class="title">图书借阅与归还</h1>
+
         <div class="choiceBox">
           <table :rules="rules" ref="ruleForm">
             <tr>
               <td class="select-header">国家</td>
               <td>
                 <el-select v-model="couId" placeholder="请选择" style="width: 150px" clearable>
-                  <el-option
-                    v-for="item in country" :key="item.countryId" :label="item.countryName"
+                  <el-option v-for="item in country" :key="item.countryId" :label="item.countryName"
                     :value="item.countryId"
                   ></el-option>
                 </el-select>
@@ -20,17 +20,14 @@
               <td class="select-header">类型</td>
               <td>
                 <el-select v-model="tyId" placeholder="请选择" style="width: 150px" clearable>
-                  <el-option
-                    v-for="item in type" :key="item.typeId" :label="item.typeName"
-                    :value="item.typeId"
-                  ></el-option>
+                  <el-option v-for="item in type" :key="item.typeId" :label="item.typeName"
+                   :value="item.typeId"></el-option>
                 </el-select>
               </td>
               <td class="select-header">篇幅</td>
               <td>
                 <el-select v-model="pagenumber" placeholder="请选择" style="width: 150px" clearable>
-                  <el-option
-                    v-for="item in pages" :key="item.pageId" :label="item.pageName"
+                  <el-option v-for="item in pages" :key="item.pageId" :label="item.pageName"
                     :value="item.pageId"
                   ></el-option>
                 </el-select>
@@ -38,51 +35,74 @@
               <td class="select-header">主题</td>
               <td>
                 <el-select v-model="thId" placeholder="请选择" style="width: 150px" clearable>
-                  <el-option
-                    v-for="item in theme" :key="item.themeId" :label="item.themeName" :value="item.themeId"
+                  <el-option v-for="item in theme" :key="item.themeId" :label="item.themeName"
+                    :value="item.themeId"
                   ></el-option>
                 </el-select>
               </td>
               <td>
-              <el-button type="" icon="el-icon-search" @click="selectByLabel">搜索</el-button>
-                
+                <el-button type="" icon="el-icon-search" @click="selectByLabel"
+                  >搜索</el-button
+                >
               </td>
-              
-                
-              
             </tr>
           </table>
         </div>
-        
-        
-        
 
         <div class="searchBox">
-        <el-button class="insert-btn" type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
-        <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          <el-input placeholder="请输入关键字" style="width: 220px" class="input-with-select"
-          v-model="key"
-          @keyup.enter.native="searchContent">      
-          <el-button slot="append" icon="el-icon-search" @click="selectByKey"></el-button>
-        </el-input>
+          <el-button
+            class="insert-btn"
+            type=""
+            icon="el-icon-plus"
+            @click="MsgInsert"
+          ></el-button>
+          <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
+          <el-input
+            placeholder="请输入关键字"
+            style="width: 220px"
+            class="input-with-select"
+            v-model="key"
+            @keyup.enter.native="searchContent"
+          >
+            <el-button
+              slot="append"
+              icon="el-icon-search"
+              @click="selectByKey"
+            ></el-button>
+          </el-input>
         </div>
 
         <div class="table-box">
           <el-table
-            :data="lists.slice((page.currentPage - 1) * page.pageSize,
-                page.currentPage * page.pageSize)" max-height="350"
-            style="width: 100%">
-
+            :data="
+              lists.slice(
+                (page.currentPage - 1) * page.pageSize,
+                page.currentPage * page.pageSize
+              )
+            "
+            max-height="350"
+            style="width: 100%"
+          >
             <el-table-column prop="bookName" label="书籍名称" width="350">
             </el-table-column>
             <el-table-column prop="onTimeStr" label="上架时间" width="200">
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
-                <el-button @click="MsgModify(scope.row)" type="primary " class="edit-btn"
-                  size="small">编辑</el-button>
-                  <el-button @click="bookHistoryOfUser(scope.row)" type="primary " class="edit-btn"
-                  size="small">查看</el-button>
+                <el-button
+                  @click="MsgModify(scope.row)"
+                  type="primary "
+                  class="edit-btn"
+                  size="small"
+                  >编辑</el-button
+                >
+                <el-button
+                  @click="bookHistoryOfUser(scope.row)"
+                  type="primary "
+                  class="edit-btn"
+                  size="small"
+                  >查看</el-button
+                >
               </template>
             </el-table-column>
           </el-table>
@@ -98,36 +118,52 @@
             :page-size="page.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="lists.length"
-            style="cursor:pointer;"
-            title="回车确认"
+            style="cursor: pointer"
+            title="回车确认"
           >
           </el-pagination>
-          
         </div>
       </div>
     </div>
-    
+
     <!-- 添加书籍弹窗 -->
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
-    <div class="bookName-box">  
-    书名<input type="text" v-model="addBookData.bookName" class="bookNameText"
-    placeholder="请输入">
-    </div>
-      <table >
+      <div class="bookName-box">
+        书名<input
+          type="text"
+          v-model="addBookData.bookName"
+          class="bookNameText"
+          placeholder="请输入"
+        />
+      </div>
+      <table>
         <tr>
           <td>国家</td>
           <td>
-            <el-select v-model="addBookData.country.countryId" placeholder="请选择" clearable>
-              <el-option  v-for="item in country"  :key="item.countryId" :label="item.countryName"
+            <el-select
+              v-model="addBookData.country.countryId"
+              placeholder="请选择"
+              clearable
+            >
+              <el-option
+                v-for="item in country"
+                :key="item.countryId"
+                :label="item.countryName"
                 :value="item.countryId"
               ></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="addBookData.type.typeId" placeholder="请选择" clearable
+            <el-select
+              v-model="addBookData.type.typeId"
+              placeholder="请选择"
+              clearable
             >
-              <el-option v-for="item in type" :key="item.typeId"  :label="item.typeName"
+              <el-option
+                v-for="item in type"
+                :key="item.typeId"
+                :label="item.typeName"
                 :value="item.typeId"
               ></el-option>
             </el-select>
@@ -138,22 +174,34 @@
             </el-input>
           </td>
         </tr>
-        <br/>
+        <br />
         <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="addBookData.pages" placeholder="请选择" clearable>
+            <el-select
+              v-model="addBookData.pages"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
-                v-for="item in pages" :key="item.pageId" :label="item.pageName"
+                v-for="item in pages"
+                :key="item.pageId"
+                :label="item.pageName"
                 :value="item.pageId"
               ></el-option>
             </el-select>
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="addBookData.theme.themeId" placeholder="请选择" clearable>
+            <el-select
+              v-model="addBookData.theme.themeId"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
-                v-for="item in theme" :key="item.themeId" :label="item.themeName"
+                v-for="item in theme"
+                :key="item.themeId"
+                :label="item.themeName"
                 :value="item.themeId"
               >
               </el-option>
@@ -161,15 +209,19 @@
           </td>
           <td>下架数量</td>
           <td>
-            <el-input v-model="addBookData.offNumId" ></el-input> 
+            <el-input v-model="addBookData.offNumId"></el-input>
           </td>
         </tr>
-        <br/>
+        <br />
         <tr>
           <td>简介</td>
         </tr>
         <div>
-          <textarea name="txt" clos="50" rows="5" warp="virtual"
+          <textarea
+            name="txt"
+            clos="50"
+            rows="5"
+            warp="virtual"
             class="briefText"
             v-model="addBookData.brief"
           ></textarea>
@@ -179,14 +231,17 @@
         </div>
       </table>
     </div>
+
     <!-- 编辑弹窗 -->
     <div class="MsgModify-box" v-show="!ModifyTableDisplay">
-    <div class="bookName-box">  
-    书名<input type="text" v-model="bookData[0].bookName" class="bookNameText"
-  >
-    </div>
+      <div class="bookName-box">
+        书名<input
+          type="text"
+          v-model="bookData[0].bookName"
+          class="bookNameText"
+        />
+      </div>
       <table>
-     
         <tr>
           <td>国家</td>
           <td>
@@ -196,42 +251,64 @@
               clearable
             >
               <el-option
-                v-for="item in country" :key="item.countryId" :label="item.countryName"
+                v-for="item in country"
+                :key="item.countryId"
+                :label="item.countryName"
                 :value="item.countryId"
               ></el-option>
             </el-select>
           </td>
           <td>类型</td>
           <td>
-            <el-select v-model="bookData[0].type.typeId" placeholder="请选择" clearable>
+            <el-select
+              v-model="bookData[0].type.typeId"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
-                v-for="item in type" :key="item.typeId" :label="item.typeName"
+                v-for="item in type"
+                :key="item.typeId"
+                :label="item.typeName"
                 :value="item.typeId"
               ></el-option>
             </el-select>
           </td>
           <td>上架数量</td>
           <td>
-           <el-input v-model="bookData[0].onNumber" placeholder="上架数量"></el-input>
-            
+            <el-input
+              v-model="bookData[0].onNumber"
+              placeholder="上架数量"
+            ></el-input>
           </td>
         </tr>
-        <br/>
+        <br />
         <tr>
           <td>篇幅</td>
           <td>
-            <el-select v-model="bookData[0].pages" placeholder="请选择" clearable>
+            <el-select
+              v-model="bookData[0].pages"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
-                v-for="item in pages" :key="item.pageId" :label="item.pageName"
+                v-for="item in pages"
+                :key="item.pageId"
+                :label="item.pageName"
                 :value="item.pageId"
               ></el-option>
             </el-select>
           </td>
           <td>主题</td>
           <td>
-            <el-select v-model="bookData[0].theme.themeId" placeholder="请选择" clearable>
+            <el-select
+              v-model="bookData[0].theme.themeId"
+              placeholder="请选择"
+              clearable
+            >
               <el-option
-                v-for="item in theme"  :key="item.themeId"  :label="item.themeName"
+                v-for="item in theme"
+                :key="item.themeId"
+                :label="item.themeName"
                 :value="item.themeId"
               >
               </el-option>
@@ -239,17 +316,23 @@
           </td>
           <td>下架数量</td>
           <td>
-           <el-input v-model="bookData[0].offNumber" placeholder="下架数量"></el-input>
-           
+            <el-input
+              v-model="bookData[0].offNumber"
+              placeholder="下架数量"
+            ></el-input>
           </td>
         </tr>
-        <br/>
+        <br />
         <tr>
           <td>简介</td>
         </tr>
       </table>
       <div>
-        <textarea name="txt" clos="50" rows="5" warp="virtual"
+        <textarea
+          name="txt"
+          clos="50"
+          rows="5"
+          warp="virtual"
           class="briefText"
           v-model="bookData[0].brief"
         ></textarea>
@@ -258,18 +341,33 @@
         </div>
       </div>
     </div>
-    <el-dialog title="借阅用户" :visible.sync="bookHistoryIfo"
-        :append-to-body="true" 
-        :modal-append-to-body="false"
-        :center="true">
-  <el-table :data="borrowLists">
-     <el-table-column property="user.name" label="用户名" width="80"></el-table-column>
-     <el-table-column property="borrowTimeStr" label="借阅时间" width="150"></el-table-column>
-      <el-table-column property="returnTimeStr" label="归还时间" width="150"></el-table-column>
-      <el-table-column property="borrowStatesStr" label="状态" width="150">
-      </el-table-column>
-  </el-table>
-</el-dialog>
+    <el-dialog
+      title="借阅用户"
+      :visible.sync="bookHistoryIfo"
+      :append-to-body="true"
+      :modal-append-to-body="false"
+      :center="true"
+    >
+      <el-table :data="borrowLists">
+        <el-table-column
+          property="user.name"
+          label="用户名"
+          width="80"
+        ></el-table-column>
+        <el-table-column
+          property="borrowTimeStr"
+          label="借阅时间"
+          width="150"
+        ></el-table-column>
+        <el-table-column
+          property="returnTimeStr"
+          label="归还时间"
+          width="150"
+        ></el-table-column>
+        <el-table-column property="borrowStatesStr" label="状态" width="150">
+        </el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -288,16 +386,16 @@ export default {
       console.log(row);
     },
     //
-    bookHistoryOfUser(row){
-      this.bookHistoryIfo = !this.bookHistoryIfo
+    bookHistoryOfUser(row) {
+      this.bookHistoryIfo = !this.bookHistoryIfo;
       this.bookData = [row];
       axios({
-        method:"get",
-        url:"http://192.168.3.23:8081/book/borrows",
-        params:{
-          id:this.bookData[0].bookId
-        }
-      }).then(res=>{
+        method: "get",
+        url: "http://192.168.3.23:8081/book/borrows",
+        params: {
+          id: this.bookData[0].bookId,
+        },
+      }).then((res) => {
         console.log(res.data);
         this.borrowLists = res.data;
         // this.borrowLists.userName = res.data.user.name;
@@ -305,81 +403,78 @@ export default {
         // this.borrowLists.returnTime = res.data.returnTimeStr
         // this.borrowLists.borrowStates = res.data.borrowStates ? "借出" : "归还";
         console.log(this.borrowLists);
-      })
-      },
+      });
+    },
     // 保存按钮
     MsgSaveM() {
-      if(this.bookData[0].bookName==""){
+      if (this.bookData[0].bookName == "") {
         this.$message({
-          message:"书名不能为空",
-          type:"error"
+          message: "书名不能为空",
+          type: "error",
         });
-      }else{
-               axios({
-        method:"post",
-        url:"http://192.168.3.23:8081/book/update/",
-        data:{
-         bookId:this.bookData[0].bookId,
-         bookName:this.bookData[0].bookName,
-         country:{
-           countryId:this.bookData[0].country.countryId,
-         },
-         type:{
-           typeId:this.bookData[0].type.typeId,
-         },
-         theme:{
-           themeId:this.bookData[0].theme.themeId,
-         },
-         brief:this.bookData[0].brief,
-         onNumber:this.bookData[0].onNumber,
-         offNumber:this.bookData[0].offNumber,
-         pages:this.bookData[0].pages,
-         onTime:this.bookData[0].onTime,
-         offTime:this.bookData[0].offTime,
-         surplusNumber:(this.bookData[0].onNumber-this.bookData[0].offNumber),
-         borrows:this.bookData[0].borrows,
-
-        }
-      }).then(res=>{
+      } else {
+        axios({
+          method: "post",
+          url: "http://192.168.3.23:8081/book/update/",
+          data: {
+            bookId: this.bookData[0].bookId,
+            bookName: this.bookData[0].bookName,
+            country: {
+              countryId: this.bookData[0].country.countryId,
+            },
+            type: {
+              typeId: this.bookData[0].type.typeId,
+            },
+            theme: {
+              themeId: this.bookData[0].theme.themeId,
+            },
+            brief: this.bookData[0].brief,
+            onNumber: this.bookData[0].onNumber,
+            offNumber: this.bookData[0].offNumber,
+            pages: this.bookData[0].pages,
+            onTime: this.bookData[0].onTime,
+            offTime: this.bookData[0].offTime,
+            surplusNumber:
+              this.bookData[0].onNumber - this.bookData[0].offNumber,
+            borrows: this.bookData[0].borrows,
+          },
+        }).then((res) => {
           this.$message({
-          message:"图书"+res.data,
-          type:"success"
+            message: "图书" + res.data,
+            type: "success",
+          });
         });
-      })
-      this.ModifyTableDisplay = !this.ModifyTableDisplay;
+        this.ModifyTableDisplay = !this.ModifyTableDisplay;
       }
- 
     },
     MsgInsert() {
       this.InsertTableDisplay = !this.InsertTableDisplay;
     },
     MsgSaveI() {
       axios({
-        method:"post",
-        url:"http://192.168.3.23:8081/book/add/",
-        data:{
-        bookName:this.addBookData.bookName,
-        country:{
-        countryId:this.addBookData.country.countryId,
-         },
-         type:{
-           typeId:this.addBookData.type.typeId,
-         },
-         theme:{
-           themeId:this.addBookData.theme.themeId,
-         },
-         brief:this.addBookData.brief,
-         onNumber:this.addBookData.onNumber,
-         pages:this.addBookData.pages,
-         offNumber:0,
-         surplusNumber:this.addBookData.onNumber
-         
-        }
-      })
+        method: "post",
+        url: "http://192.168.3.23:8081/book/add/",
+        data: {
+          bookName: this.addBookData.bookName,
+          country: {
+            countryId: this.addBookData.country.countryId,
+          },
+          type: {
+            typeId: this.addBookData.type.typeId,
+          },
+          theme: {
+            themeId: this.addBookData.theme.themeId,
+          },
+          brief: this.addBookData.brief,
+          onNumber: this.addBookData.onNumber,
+          pages: this.addBookData.pages,
+          offNumber: 0,
+          surplusNumber: this.addBookData.onNumber,
+        },
+      });
       this.InsertTableDisplay = !this.InsertTableDisplay;
-       },
-       
-    
+    },
+
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.page.currentPage = 1;
@@ -433,7 +528,7 @@ export default {
       offNumId: "",
       key: "",
       pagenumber: "",
-      borrowLists:[
+      borrowLists: [
         // {
         //   userName:"",
         //   borrowTime:"",
@@ -443,7 +538,7 @@ export default {
       ],
       bookData: [
         {
-          bookId:0,
+          bookId: 0,
           bookName: "1",
           country: {
             countryId: "",
@@ -458,17 +553,17 @@ export default {
             themeName: "",
           },
           onNumber: 0,
-          offNumber:0,
+          offNumber: 0,
           pages: 0,
           brief: "暂无",
-          onTime:"",
-          offTime:"",
-          surplusNumber:"",
-          borrows:""
+          onTime: "",
+          offTime: "",
+          surplusNumber: "",
+          borrows: "",
         },
       ],
       bookName: "",
-      bookHistoryIfo:false,
+      bookHistoryIfo: false,
       ModifyTableDisplay: true,
       InsertTableDisplay: true,
       brief: "暂无",
@@ -551,30 +646,30 @@ export default {
           brief: "5",
         },
       ],
-      addBookData:{
-         bookName: "",
-          country: {
-            countryId: "",
-            countryName: "",
-          },
-          type: {
-            typeId: "",
-            typeName: "",
-          },
-          theme: {
-            themeId: "",
-            themeName: "",
-          },
-          onNumber: 0,
-          offNumber:0,
-          pages: "",
-          brief: "暂无",
+      addBookData: {
+        bookName: "",
+        country: {
+          countryId: "",
+          countryName: "",
+        },
+        type: {
+          typeId: "",
+          typeName: "",
+        },
+        theme: {
+          themeId: "",
+          themeName: "",
+        },
+        onNumber: 0,
+        offNumber: 0,
+        pages: "",
+        brief: "暂无",
       },
-       rules: {
-          bookName: [
-            { required: true, message: '选择不能为空', trigger: 'change' }
-          ],
-       }
+      rules: {
+        bookName: [
+          { required: true, message: "选择不能为空", trigger: "change" },
+        ],
+      },
     };
   },
   created() {
@@ -610,14 +705,14 @@ export default {
   background-size: 100% 100%;
 }
 
-.search-title {
+.title {
   margin-top: 0px;
   margin-left: 20px;
   text-align: left;
   font-size: 32px;
   color: white;
 }
-.choiceBox{
+.choiceBox {
   position: fixed;
   width: 1000px;
   right: 50%;
@@ -629,9 +724,7 @@ export default {
   left: 50%;
   margin-left: -400px;
   width: 800px;
- 
 }
-
 
 .MsgModify-box {
   position: fixed;
@@ -641,24 +734,24 @@ export default {
   color: white;
 }
 
-.searchBox{
+.searchBox {
   position: fixed;
   top: 200px;
   width: 200px;
   right: 50%;
   margin-right: -380px;
 }
-.select-header{
+.select-header {
   color: white;
 }
-.insert-btn{
+.insert-btn {
   position: fixed;
   width: 60px;
   right: 50%;
   margin-right: 340px;
 }
 
-.block{
+.block {
   position: fixed;
   bottom: 10px;
   width: 600px;
@@ -669,27 +762,27 @@ export default {
   border-radius: 5px;
 }
 
-.bulkImport-btn{
+.bulkImport-btn {
   position: fixed;
   width: 90px;
   right: 50%;
   margin-right: 230px;
 }
-.bookName-box{
- position: fixed;
- width: 794px;
- right: 50%;
-margin-right: -404px;
- top: 150px;
- font-size: 17px;
+.bookName-box {
+  position: fixed;
+  width: 794px;
+  right: 50%;
+  margin-right: -404px;
+  top: 150px;
+  font-size: 17px;
 }
-.bookNameText{
+.bookNameText {
   width: 752px;
   height: 35px;
-  border-radius: 5px; 
+  border-radius: 5px;
 }
 
-.briefText{
+.briefText {
   width: 750px;
   height: 150px;
   border-radius: 5px;
@@ -698,15 +791,15 @@ margin-right: -404px;
   right: 50%;
   margin-right: -406px;
 }
-.MsgSave-btn{
+.MsgSave-btn {
   position: fixed;
   width: 100px;
   right: 50%;
   top: 540px;
   margin-right: -50px;
 }
-input,textarea:focus {
+input,
+textarea:focus {
   outline: none;
 }
-
 </style>
