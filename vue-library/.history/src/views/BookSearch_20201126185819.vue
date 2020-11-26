@@ -4,8 +4,7 @@
 
     <div v-show="ModifyTableDisplay">
       <div v-show="InsertTableDisplay">
-        <h1 class="title">图书借阅与归还</h1>
-
+        <h1 class="search-title">图书借阅与归还</h1>
         <div class="choiceBox">
           <table :rules="rules" ref="ruleForm">
             <tr>
@@ -90,8 +89,30 @@
             @click="MsgInsert"
           ></el-button>
 
+          <el-upload
+            ref="upload"
+            :action="uploadUrl"
+            :limit="1"
+            :before-upload="beforeUpload"
+            :headers="token"
+            :data="importData"
+            accept=".xls"
+            class="bulkImport-btn"
+            :on-success="uploadSuccess"
+            :show-file-list="false"
+            :auto-upload="true"
+          >
+            <el-button
+              slot="trigger"
+              size="small"
+              type="primary"
+              class="el-icon-plus el-icon-upload"
+              >导入excel</el-button
+            >
+            <div slot="tip" class="el-upload__tip">只能上传xls文件</div>
+          </el-upload>
+
           <!--<el-button type="success" plain class="bulkImport-btn">批量导入</el-button>-->
-          
           <el-input
             placeholder="请输入关键字"
             style="width: 220px"
@@ -160,18 +181,28 @@
         </div>
       </div>
     </div>
-
     <!-- 添加书籍弹窗 -->
+
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
       <div class="bookName-box">
         书名<input
           type="text"
           v-model="addBookData.bookName"
-          class="bookNameText"
+          style="width: 752px; height: 35px"
           placeholder="请输入"
         />
       </div>
       <table>
+        <!-- <tr>
+          
+          <td style="font-size: 25px">书名</td>
+          <td>
+            <input type="text" v-model="addBookData.bookName" style="width: 210px; height: 35px"
+              placeholder="请输入"
+            />
+
+          </td>
+        </tr>-->
         <tr>
           <td>国家</td>
           <td>
@@ -209,7 +240,6 @@
             </el-input>
           </td>
         </tr>
-        <br />
         <tr>
           <td>篇幅</td>
           <td>
@@ -247,17 +277,16 @@
             <el-input v-model="addBookData.offNumId"></el-input>
           </td>
         </tr>
-        <br />
         <tr>
-          <td>简介</td>
+          <td>简介:</td>
         </tr>
-        <div>
+        <div class="briefBox">
           <textarea
             name="txt"
             clos="50"
             rows="5"
             warp="virtual"
-            class="briefText"
+            style="width: 760px; height: 150px"
             v-model="addBookData.brief"
           ></textarea>
           <div class="MsgSave-btn">
@@ -266,17 +295,28 @@
         </div>
       </table>
     </div>
-
     <!-- 编辑弹窗 -->
     <div class="MsgModify-box" v-show="!ModifyTableDisplay">
       <div class="bookName-box">
         书名<input
           type="text"
           v-model="bookData[0].bookName"
-          class="bookNameText"
+          style="width: 752px; height: 35px"
         />
       </div>
       <table>
+        <!--<tr>
+          <td></td>
+          <td></td>
+          <td style="font-size: 25px">书名</td>
+          <td>
+            <input
+              type="text"
+              v-model="bookData[0].bookName"
+              style="width: 210px; height: 35px"
+            />
+          </td>
+        </tr>-->
         <tr>
           <td>国家</td>
           <td>
@@ -316,7 +356,6 @@
             ></el-input>
           </td>
         </tr>
-        <br />
         <tr>
           <td>篇幅</td>
           <td>
@@ -357,18 +396,17 @@
             ></el-input>
           </td>
         </tr>
-        <br />
         <tr>
           <td>简介</td>
         </tr>
       </table>
-      <div>
+      <div class="briefBox">
         <textarea
           name="txt"
-          clos="50"
+          clos=",50"
           rows="5"
           warp="virtual"
-          class="briefText"
+          style="width: 760px; height: 150px"
           v-model="bookData[0].brief"
         ></textarea>
         <div class="MsgSave-btn">
@@ -420,7 +458,33 @@ export default {
       console.log(this.bookName);
       console.log(row);
     },
-
+    // 验证导入文件格式
+    beforeUpload(file) {
+      let extension =file.name.substring(file.name.lastIndexOf('.')+1);
+      if(extension  !== 'xls') {
+        this.$message({
+          message: '上传文件只能是 xls格式!',
+          type: 'warning'
+        });
+        return false;
+      }
+    },
+    // 提示excel是否成功信息
+    uploadSuccess (res ,file,fileList) {
+      if (res.code == 200)
+      {
+        this.$message({
+          message: '导入成功!',
+          type: 'info'
+        });
+      }else
+      {
+        this.$alert(res.message, '导入失败', {
+          confirmButtonText: '确定',
+        });
+      }
+      this.$refs.upload.clearFiles();
+    },
     //
     bookHistoryOfUser(row) {
       this.bookHistoryIfo = !this.bookHistoryIfo;
@@ -552,8 +616,6 @@ export default {
         })
         .catch((err) => console.log("error...", err));
     },
-
-    
   },
 
   data() {
@@ -708,6 +770,7 @@ export default {
   },
   created() {
     axios
+
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;
@@ -723,6 +786,7 @@ export default {
     axios.get("http://192.168.3.23:8081/theme/list").then((res) => {
       this.theme = res.data;
     });
+        
   },
 };
 </script>
@@ -738,13 +802,6 @@ export default {
   background-size: 100% 100%;
 }
 
-.title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
-}
 .choiceBox {
   position: fixed;
   width: 1000px;
@@ -759,14 +816,26 @@ export default {
   width: 800px;
 }
 
+.search-title {
+  margin-top: 0px;
+  margin-left: 20px;
+  text-align: left;
+  font-size: 32px;
+  color: white;
+}
 .MsgModify-box {
   position: fixed;
-  top: 210px;
+  top: 240px;
   right: 50%;
   margin-right: -410px;
   color: white;
 }
-
+.briefBox {
+  position: fixed;
+  top: 335px;
+  right: 50%;
+  margin-right: -410px;
+}
 .searchBox {
   position: fixed;
   top: 200px;
@@ -783,7 +852,14 @@ export default {
   right: 50%;
   margin-right: 340px;
 }
-
+.bookName-box {
+  position: fixed;
+  width: 800px;
+  right: 50%;
+  margin-right: -407px;
+  top: 200px;
+  font-size: 20px;
+}
 .block {
   position: fixed;
   bottom: 10px;
@@ -794,45 +870,10 @@ export default {
   background-color: white;
   border-radius: 5px;
 }
-
 .bulkImport-btn {
   position: fixed;
   width: 90px;
   right: 50%;
   margin-right: 230px;
-}
-.bookName-box {
-  position: fixed;
-  width: 794px;
-  right: 50%;
-  margin-right: -404px;
-  top: 150px;
-  font-size: 17px;
-}
-.bookNameText {
-  width: 752px;
-  height: 35px;
-  border-radius: 5px;
-}
-
-.briefText {
-  width: 750px;
-  height: 150px;
-  border-radius: 5px;
-  position: fixed;
-  top: 350px;
-  right: 50%;
-  margin-right: -406px;
-}
-.MsgSave-btn {
-  position: fixed;
-  width: 100px;
-  right: 50%;
-  top: 540px;
-  margin-right: -50px;
-}
-input,
-textarea:focus {
-  outline: none;
 }
 </style>
