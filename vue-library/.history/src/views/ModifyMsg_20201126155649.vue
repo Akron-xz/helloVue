@@ -23,9 +23,9 @@
           />
         </td>
         <td class="msg-header" style="width: 120px">性别：</td>
-        <td>    
-          <el-radio v-model="userData[0].sex" label="0" :disabled="isDisabled">女</el-radio>
-          <el-radio v-model="userData[0].sex" label="1" :disabled="isDisabled">男</el-radio>
+        <td>
+           <el-radio v-model="userData[0].sex" label="0" :disabled="isDisabled">女</el-radio>
+           <el-radio v-model="userData[0].sex" label="1" :disabled="isDisabled">男</el-radio>
         </td>
         <td class="msg-header" style="width: 120px">年龄：</td>
         <td>
