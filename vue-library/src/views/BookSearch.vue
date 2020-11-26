@@ -59,6 +59,7 @@
 
         <div class="searchBox">
         <el-button class="insert-btn" type="" icon="el-icon-plus"  @click="MsgInsert"></el-button>
+         <el-button type="success" plain class="bulkImport-btn">批量导入</el-button>
           <el-input placeholder="请输入关键字" style="width: 220px" class="input-with-select"
           v-model="key"
           @keyup.enter.native="searchContent">      
@@ -694,5 +695,11 @@ margin-right: -407px;
   margin-left: -300px;
   background-color: white;
   border-radius: 5px;
+}
+.bulkImport-btn{
+  position: fixed;
+  width: 90px;
+  right: 50%;
+  margin-right: 230px;
 }
 </style>
