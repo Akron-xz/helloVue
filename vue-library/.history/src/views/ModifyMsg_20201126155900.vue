@@ -23,9 +23,23 @@
           />
         </td>
         <td class="msg-header" style="width: 120px">性别：</td>
-        <td>    
-          <el-radio v-model="userData[0].sex" label="0" :disabled="isDisabled">女</el-radio>
-          <el-radio v-model="userData[0].sex" label="1" :disabled="isDisabled">男</el-radio>
+        <td>
+          <input
+            type="text"
+            v-if="userData[0].sex == 1"
+            maxlength="5"
+            style="width: 190px;  height: 30px"
+            :readonly="isDisabled"
+            value="男"
+          />
+                    <input
+            type="text"
+            v-else
+            maxlength="5"
+            style="width: 190px;  height: 30px"
+            :readonly="isDisabled"
+            value="女"
+          />
         </td>
         <td class="msg-header" style="width: 120px">年龄：</td>
         <td>
