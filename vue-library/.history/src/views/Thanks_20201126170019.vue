@@ -1,0 +1,42 @@
+<template>
+    <div class="thankBox-container">
+        <h1 class="title">特别鸣谢</h1>
+        <p class="thanksWord">
+        指导老师：<br>
+        曹世雄 &nbsp;&nbsp;张秋阳  杜佳蔚  朱婷婷
+
+        
+        
+        
+        </p>
+    </div>
+</template>
+
+<script>
+export default {
+    
+}
+</script>
+
+<style scoped>
+.thankBox-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/img/divBg/bg34.jpg);
+  background-size: 100% 100%;
+}
+
+.title{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 40px;
+    color: white;
+}
+
+.thanksWord{
+    color: white;
+}
+</style>

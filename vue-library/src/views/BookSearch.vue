@@ -159,28 +159,14 @@
         </div>
       </div>
     </div>
+    
     <!-- 添加书籍弹窗 -->
-
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
-      <div class="bookName-box">
-        书名<input
-          type="text"
-          v-model="addBookData.bookName"
-          style="width: 752px; height: 35px"
-          placeholder="请输入"
-        />
-      </div>
-      <table>
-        <!-- <tr>
-          
-          <td style="font-size: 25px">书名</td>
-          <td>
-            <input type="text" v-model="addBookData.bookName" style="width: 210px; height: 35px"
-              placeholder="请输入"
-            />
-
-          </td>
-        </tr>-->
+    <div class="bookName-box">  
+    书名<input type="text" v-model="addBookData.bookName" class="bookNameText"
+    placeholder="请输入">
+    </div>
+      <table >
         <tr>
           <td>国家</td>
           <td>
@@ -218,6 +204,7 @@
             </el-input>
           </td>
         </tr>
+        <br/>
         <tr>
           <td>篇幅</td>
           <td>
@@ -255,16 +242,13 @@
             <el-input v-model="addBookData.offNumId"></el-input>
           </td>
         </tr>
+        <br/>
         <tr>
-          <td>简介:</td>
+          <td>简介</td>
         </tr>
-        <div class="briefBox">
-          <textarea
-            name="txt"
-            clos="50"
-            rows="5"
-            warp="virtual"
-            style="width: 760px; height: 150px"
+        <div>
+          <textarea name="txt" clos="50" rows="5" warp="virtual"
+            class="briefText"
             v-model="addBookData.brief"
           ></textarea>
           <div class="MsgSave-btn">
@@ -275,26 +259,12 @@
     </div>
     <!-- 编辑弹窗 -->
     <div class="MsgModify-box" v-show="!ModifyTableDisplay">
-      <div class="bookName-box">
-        书名<input
-          type="text"
-          v-model="bookData[0].bookName"
-          style="width: 752px; height: 35px"
-        />
-      </div>
+    <div class="bookName-box">  
+    书名<input type="text" v-model="bookData[0].bookName" class="bookNameText"
+  >
+    </div>
       <table>
-        <!--<tr>
-          <td></td>
-          <td></td>
-          <td style="font-size: 25px">书名</td>
-          <td>
-            <input
-              type="text"
-              v-model="bookData[0].bookName"
-              style="width: 210px; height: 35px"
-            />
-          </td>
-        </tr>-->
+     
         <tr>
           <td>国家</td>
           <td>
@@ -334,6 +304,7 @@
             ></el-input>
           </td>
         </tr>
+        <br/>
         <tr>
           <td>篇幅</td>
           <td>
@@ -374,17 +345,14 @@
             ></el-input>
           </td>
         </tr>
+        <br/>
         <tr>
           <td>简介</td>
         </tr>
       </table>
-      <div class="briefBox">
-        <textarea
-          name="txt"
-          clos=",50"
-          rows="5"
-          warp="virtual"
-          style="width: 760px; height: 150px"
+      <div>
+        <textarea name="txt" clos="50" rows="5" warp="virtual"
+          class="briefText"
           v-model="bookData[0].brief"
         ></textarea>
         <div class="MsgSave-btn">
@@ -504,26 +472,27 @@ export default {
     },
     MsgSaveI() {
       axios({
-        method: "post",
-        url: "http://192.168.3.23:8081/book/add/",
-        data: {
-          bookName: this.addBookData.bookName,
-          country: {
-            countryId: this.addBookData.country.countryId,
-          },
-          type: {
-            typeId: this.addBookData.type.typeId,
-          },
-          theme: {
-            themeId: this.addBookData.theme.themeId,
-          },
-          brief: this.addBookData.brief,
-          onNumber: this.addBookData.onNumber,
-          pages: this.addBookData.pages,
-          offNumber: 0,
-          surplusNumber: this.addBookData.onNumber,
-        },
-      });
+        method:"post",
+        url:"http://192.168.3.23:8081/book/add/",
+        data:{
+        bookName:this.addBookData.bookName,
+        country:{
+        countryId:this.addBookData.country.countryId,
+         },
+         type:{
+           typeId:this.addBookData.type.typeId,
+         },
+         theme:{
+           themeId:this.addBookData.theme.themeId,
+         },
+         brief:this.addBookData.brief,
+         onNumber:this.addBookData.onNumber,
+         pages:this.addBookData.pages,
+         offNumber:0,
+         surplusNumber:this.addBookData.onNumber
+         
+        }
+      })
       this.InsertTableDisplay = !this.InsertTableDisplay;
     },
 
@@ -754,7 +723,14 @@ export default {
   background-size: 100% 100%;
 }
 
-.choiceBox {
+.search-title {
+  margin-top: 0px;
+  margin-left: 20px;
+  text-align: left;
+  font-size: 32px;
+  color: white;
+}
+.choiceBox{
   position: fixed;
   width: 1000px;
   right: 50%;
@@ -768,27 +744,16 @@ export default {
   width: 800px;
 }
 
-.search-title {
-  margin-top: 0px;
-  margin-left: 20px;
-  text-align: left;
-  font-size: 32px;
-  color: white;
-}
+
 .MsgModify-box {
   position: fixed;
-  top: 240px;
+  top: 210px;
   right: 50%;
   margin-right: -410px;
   color: white;
 }
-.briefBox {
-  position: fixed;
-  top: 335px;
-  right: 50%;
-  margin-right: -410px;
-}
-.searchBox {
+
+.searchBox{
   position: fixed;
   top: 200px;
   width: 200px;
@@ -804,15 +769,8 @@ export default {
   right: 50%;
   margin-right: 340px;
 }
-.bookName-box {
-  position: fixed;
-  width: 800px;
-  right: 50%;
-  margin-right: -407px;
-  top: 200px;
-  font-size: 20px;
-}
-.block {
+
+.block{
   position: fixed;
   bottom: 10px;
   width: 600px;
@@ -822,10 +780,45 @@ export default {
   background-color: white;
   border-radius: 5px;
 }
-.bulkImport-btn {
+
+.bulkImport-btn{
   position: fixed;
   width: 90px;
   right: 50%;
   margin-right: 230px;
 }
+.bookName-box{
+ position: fixed;
+ width: 794px;
+ right: 50%;
+margin-right: -404px;
+ top: 150px;
+ font-size: 17px;
+}
+.bookNameText{
+  width: 752px;
+  height: 35px;
+  border-radius: 5px; 
+}
+
+.briefText{
+  width: 750px;
+  height: 150px;
+  border-radius: 5px;
+  position: fixed;
+  top: 350px;
+  right: 50%;
+  margin-right: -406px;
+}
+.MsgSave-btn{
+  position: fixed;
+  width: 100px;
+  right: 50%;
+  top: 540px;
+  margin-right: -50px;
+}
+input,textarea:focus {
+  outline: none;
+}
+
 </style>
