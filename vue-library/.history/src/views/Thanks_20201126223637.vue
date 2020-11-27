@@ -29,10 +29,7 @@
         </div>
         <p class="organizer">
         同时感谢在一起奋战的组员<br>
-        组长:谢卓<br>
-        后端:吕守淼 刘志勇 邱海鹏 朱建勇<br>
-        前端:关光强 谢卓 梁嘉文 钱锦荣<br>
-        测试：林海 李卓武   
+        © 国际商业机器（中国）有限公司     
         </p>
 
        
@@ -60,22 +57,19 @@ export default {
 }
 
 .title{
-   
+    margin-top: 10px;
     text-align: center;
     font-size: 32px;
     color: white;
 }
 
 .thanksWord{
-  
     color: white;
 }
 
 .thanksTeacher{
- 
     color: white;
     align-items: center;
-    font-size: 30px;
 }
 
 .name{
@@ -84,6 +78,5 @@ export default {
 
 .organizer{
      color: white;
-     font-size: 20px;
 }
 </style>

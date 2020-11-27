@@ -60,22 +60,21 @@ export default {
 }
 
 .title{
-   
+    margin-top: 10px;
     text-align: center;
     font-size: 32px;
     color: white;
 }
 
 .thanksWord{
-  
     color: white;
 }
 
 .thanksTeacher{
- 
+    margin-top: 50px;
     color: white;
     align-items: center;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .name{
@@ -84,6 +83,5 @@ export default {
 
 .organizer{
      color: white;
-     font-size: 20px;
 }
 </style>

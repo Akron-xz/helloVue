@@ -90,6 +90,7 @@ export default {
     verifyPwd,
   },
   data() {
+    // 验证ID
     var checkId = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("注册ID不能为空"));
@@ -102,6 +103,7 @@ export default {
         }
       }, 1000);
     };
+    // 验证姓名
     var checkName = (rule, value, callback) => {
       if (!value) {
         return callback(new Error("姓名不能为空"));
@@ -109,7 +111,7 @@ export default {
         callback();
       }
     };
-
+    // 验证密码
     var validatePass = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
@@ -120,6 +122,7 @@ export default {
         callback();
       }
     };
+    // 验证第二次密码
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码!!"));
@@ -130,6 +133,7 @@ export default {
       }
     };
     return {
+      // 注册的表单
       ruleForm2: {
         id: "",
         name: "",
@@ -137,6 +141,7 @@ export default {
         pwd: "",
         checkPwd: "",
       },
+      // 验证规则
       rules2: {
         id: [{ validator: checkId, trigger: "blur" }],
         name: [{ required: true, validator: checkName, trigger: "blur" },
@@ -162,6 +167,7 @@ export default {
     };
   },
   methods: {
+    // 提交表单
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         console.log(valid);
@@ -197,6 +203,7 @@ export default {
         }
       });
     },
+    // 重置、清空表单
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },

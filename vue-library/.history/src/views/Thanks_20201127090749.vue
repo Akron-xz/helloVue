@@ -75,7 +75,7 @@ export default {
  
     color: white;
     align-items: center;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .name{
@@ -84,6 +84,5 @@ export default {
 
 .organizer{
      color: white;
-     font-size: 20px;
 }
 </style>

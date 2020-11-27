@@ -84,6 +84,5 @@ export default {
 
 .organizer{
      color: white;
-     font-size: 20px;
 }
 </style>

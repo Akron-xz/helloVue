@@ -77,6 +77,7 @@ export default {
     toThanks(){
       this.$router.push({path:'/Thanks'});
     },
+    //退出到主页，并清空session数据
     signOut(){
       sessionStorage.clear();
       this.$router.push({path:'/'});

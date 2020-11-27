@@ -64,6 +64,7 @@ import userNavigation from '@/components/userNav.vue'
           userData:[
             {userId:"",},
           ],
+          // 搜索内容
           searchContent:"",
           tableData: [],
           gridData:[{
@@ -84,6 +85,7 @@ import userNavigation from '@/components/userNav.vue'
         }
       },
       methods: {
+        // 搜索方法
         searchByKey(){
           axios({
             method:"get",
@@ -97,11 +99,13 @@ import userNavigation from '@/components/userNav.vue'
           })
 
         },
+        // 每页条数
          handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
       this.page.currentPage = 1;
       this.page.pageSize = val;
     },
+    // 当前页数
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
       this.page.currentPage = val;

@@ -31,9 +31,11 @@ export default {
         }
     },
     methods: {
+        // 路由跳转去个人信息修改
         toModifyMsg(){
             this.$router.push({path:'/ModifyMsg'})
         },
+        // 路由跳转到借阅历史
         toBorrowHistory(){
             this.$router.push({path:'/BorrowHistory'})
 

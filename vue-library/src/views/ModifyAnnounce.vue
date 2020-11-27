@@ -34,6 +34,7 @@ export default {
   },
 
   methods:{
+    // 更新公告信息
     updateAnnounce(){
       axios({
         method:"post",

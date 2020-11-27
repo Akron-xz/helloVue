@@ -267,10 +267,6 @@ export default {
     },
   },
 
-  // created() {
-  //   this.getLists();
-  // },
-
   mounted() {
     //生命周期钩子函数  挂载完成
     this.getLists();

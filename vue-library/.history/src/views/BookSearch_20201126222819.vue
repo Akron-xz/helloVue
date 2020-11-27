@@ -708,22 +708,19 @@ export default {
     };
   },
   created() {
-    //接收书本所有数据
     axios
       .get("http://192.168.3.23:8081/book/list", {})
       .then((res) => {
         this.lists = res.data;
       })
       .catch((err) => console.log("error...", err));
-     //接收下拉框国家
+
     axios.get("http://192.168.3.23:8081/country/list").then((res) => {
       this.country = res.data;
     });
-    //接收下拉框类型
     axios.get("http://192.168.3.23:8081/type/list").then((res) => {
       this.type = res.data;
     });
-    //接收下拉框主题
     axios.get("http://192.168.3.23:8081/theme/list").then((res) => {
       this.theme = res.data;
     });

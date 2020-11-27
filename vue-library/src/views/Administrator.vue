@@ -71,13 +71,14 @@ import homeNavigation from '@/components/homeNav.vue'
     
 
     return {
+      //管理员登陆表单
       ruleForm2: {
         adminId: "",
         pwd: "",
       },
 
       admin: [],
-
+     
       rules2: {
         pwd: [{ required: true,validator: validatepwd, trigger: "blur" }],
         adminId: [{ required: true,validator: checkadminId, trigger: "blur" }],

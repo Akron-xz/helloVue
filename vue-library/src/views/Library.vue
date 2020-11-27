@@ -393,10 +393,6 @@ export default {
             }
         }).then(res=>{
             console.log("this.return");
-            // for (let i = 0; i < res.data.length; i++) {
-            //   this.return[i].bookId = res.data[i].bookId;
-            //   console.log(this.return[i].bookId);
-            // }
             this.return = res.data;
             console.log(this.return);
         })
@@ -422,20 +418,6 @@ export default {
     this.getBorrowList();
    
   },
-
-  // 计算v-if的判断值
-  // computed: {
-  //   isBorrow: function(){
-  //     return function(){
-  //       for (let i = 0; i < this.return.length; i++) {
-  //         if (this.bookId == this.return[i].bookId) {
-  //           return true;
-  //         }
-  //       }
-  //       return false;
-  //     }
-  //   }
-  // },
 };
 </script>
 

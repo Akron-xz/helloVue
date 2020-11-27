@@ -102,6 +102,7 @@ export default {
     };
   },
   methods: {
+    // 获取数据列表
     getList() {
       axios({
         method: "get",
@@ -114,6 +115,7 @@ export default {
         console.log(this.list);
       });
     },
+    // 还书
     returnBook(index) {
       axios({
         method: "get",
