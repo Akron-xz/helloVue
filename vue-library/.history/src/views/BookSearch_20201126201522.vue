@@ -4,8 +4,7 @@
 
     <div v-show="ModifyTableDisplay">
       <div v-show="InsertTableDisplay">
-        <h1 class="title">图书借阅与归还</h1>
-
+        <h1 class="search-title">图书借阅与归还</h1>
         <div class="choiceBox">
           <table :rules="rules" ref="ruleForm">
             <tr>
@@ -160,18 +159,14 @@
         </div>
       </div>
     </div>
-
+    
     <!-- 添加书籍弹窗 -->
     <div class="MsgModify-box" v-show="!InsertTableDisplay">
-      <div class="bookName-box">
-        书名<input
-          type="text"
-          v-model="addBookData.bookName"
-          class="bookNameText"
-          placeholder="请输入"
-        />
-      </div>
-      <table>
+    <div class="bookName-box">  
+    书名<input type="text" v-model="addBookData.bookName" class="bookNameText"
+    placeholder="请输入">
+    </div>
+      <table >
         <tr>
           <td>国家</td>
           <td>
@@ -209,7 +204,7 @@
             </el-input>
           </td>
         </tr>
-        <br />
+        <br/>
         <tr>
           <td>篇幅</td>
           <td>
@@ -247,16 +242,12 @@
             <el-input v-model="addBookData.offNumId"></el-input>
           </td>
         </tr>
-        <br />
+        <br/>
         <tr>
           <td>简介</td>
         </tr>
         <div>
-          <textarea
-            name="txt"
-            clos="50"
-            rows="5"
-            warp="virtual"
+          <textarea name="txt" clos="50" rows="5" warp="virtual"
             class="briefText"
             v-model="addBookData.brief"
           ></textarea>
@@ -266,17 +257,14 @@
         </div>
       </table>
     </div>
-
     <!-- 编辑弹窗 -->
     <div class="MsgModify-box" v-show="!ModifyTableDisplay">
-      <div class="bookName-box">
-        书名<input
-          type="text"
-          v-model="bookData[0].bookName"
-          class="bookNameText"
-        />
-      </div>
+    <div class="bookName-box">  
+    书名<input type="text" v-model="bookData[0].bookName" class="bookNameText"
+  >
+    </div>
       <table>
+     
         <tr>
           <td>国家</td>
           <td>
@@ -316,7 +304,7 @@
             ></el-input>
           </td>
         </tr>
-        <br />
+        <br/>
         <tr>
           <td>篇幅</td>
           <td>
@@ -357,17 +345,13 @@
             ></el-input>
           </td>
         </tr>
-        <br />
+        <br/>
         <tr>
           <td>简介</td>
         </tr>
       </table>
       <div>
-        <textarea
-          name="txt"
-          clos="50"
-          rows="5"
-          warp="virtual"
+        <textarea name="txt" clos="50" rows="5" warp="virtual"
           class="briefText"
           v-model="bookData[0].brief"
         ></textarea>
@@ -491,7 +475,7 @@ export default {
         method:"post",
         url:"http://192.168.3.23:8081/book/add/",
         data:{
-        bookName:this.addBookData.bookName.trim,
+        bookName:this.addBookData.bookName,
         country:{
         countryId:this.addBookData.country.countryId,
          },
@@ -739,14 +723,14 @@ export default {
   background-size: 100% 100%;
 }
 
-.title {
+.search-title {
   margin-top: 0px;
   margin-left: 20px;
   text-align: left;
   font-size: 32px;
   color: white;
 }
-.choiceBox {
+.choiceBox{
   position: fixed;
   width: 1000px;
   right: 50%;
@@ -760,6 +744,7 @@ export default {
   width: 800px;
 }
 
+
 .MsgModify-box {
   position: fixed;
   top: 210px;
@@ -768,7 +753,7 @@ export default {
   color: white;
 }
 
-.searchBox {
+.searchBox{
   position: fixed;
   top: 200px;
   width: 200px;
@@ -785,7 +770,7 @@ export default {
   margin-right: 340px;
 }
 
-.block {
+.block{
   position: fixed;
   bottom: 10px;
   width: 600px;
@@ -796,7 +781,7 @@ export default {
   border-radius: 5px;
 }
 
-.bulkImport-btn {
+.bulkImport-btn{
   position: fixed;
   width: 90px;
   right: 50%;
@@ -806,14 +791,14 @@ export default {
  position: fixed;
  width: 794px;
  right: 50%;
-margin-right: -410px;
+margin-right: -404px;
  top: 150px;
  font-size: 17px;
 }
 .bookNameText{
   width: 738px;
   height: 35px;
-  border-radius: 5px;
+  border-radius: 5px; 
 }
 
 .briefText{
@@ -825,15 +810,15 @@ margin-right: -410px;
   right: 50%;
   margin-right: -406px;
 }
-.MsgSave-btn {
+.MsgSave-btn{
   position: fixed;
   width: 100px;
   right: 50%;
   top: 540px;
   margin-right: -50px;
 }
-input,
-textarea:focus {
+input,textarea:focus {
   outline: none;
 }
+
 </style>

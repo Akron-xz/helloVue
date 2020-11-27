@@ -68,7 +68,6 @@
             maxlength="30"
             style="width: 190px; height: 30px"
             :readonly="isDisabled"
-            onkeyup="value=value.replace(/[^0-9]/g,'')" onchange="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
           />
         </td>
       </tr>

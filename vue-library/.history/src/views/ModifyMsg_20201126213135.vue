@@ -42,7 +42,7 @@
         <td class="msg-header">邮箱：</td>
         <td>
           <input
-            type="text"
+            type="email"
             v-model="userData[0].email"
             maxlength="30"
             style="width: 190px; height: 30px"
@@ -68,7 +68,6 @@
             maxlength="30"
             style="width: 190px; height: 30px"
             :readonly="isDisabled"
-            onkeyup="value=value.replace(/[^0-9]/g,'')" onchange="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
           />
         </td>
       </tr>

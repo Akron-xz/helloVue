@@ -47,6 +47,7 @@
             maxlength="30"
             style="width: 190px; height: 30px"
             :readonly="isDisabled"
+            :pattern="/^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/"
           />
         </td>
         <td class="msg-header">出生年月：</td>
@@ -68,7 +69,6 @@
             maxlength="30"
             style="width: 190px; height: 30px"
             :readonly="isDisabled"
-            onkeyup="value=value.replace(/[^0-9]/g,'')" onchange="value=value.replace(/[^\a-\z\A-\Z0-9]/g,'')"
           />
         </td>
       </tr>
